@@ -1,4 +1,4 @@
-package newmadamequery;
+package model;
 
 import java.util.*;
 
