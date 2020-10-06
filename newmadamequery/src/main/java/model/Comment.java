@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Comment {
 	private int _id; // 댓글 번호(id)
-	private String userName; //댓글 올린 사람 이름
+	private User userName; //댓글 올린 사람 이름
 	private Date uploadDate; //댓글 올린 날짜
 	private String commentText; // 댓글 내용
 	
