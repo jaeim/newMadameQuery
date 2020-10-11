@@ -6,7 +6,7 @@ public class Post {
 	private int _id; // 게시글 id
 	private String postName; // 게시글 제목
 	private Date uploadDate; // 게시글 올린 날짜
-	private String userName; //글쓴이
+	private User userName; //글쓴이
 	private String postText; // 게시글 내용
 	
 	
