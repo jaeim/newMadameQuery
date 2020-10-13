@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>마이페이지 - 내 정보 받아와서 보여주기 </title>
-<!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] -->
+<!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] mypage.jsp-->
 <style>
 body {
   margin: 0;
