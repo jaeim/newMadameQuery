@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>마이페이지 - 내 정보 받아와서 보여주기 </title>
-<!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] mypage.jsp-->
+<title> 스터디 게시판 ()</title>
+<!-- 내가 속한 스터디- 게시판 (내가 속한 각각의 스터디 그룹 게시판) -->
 <style>
-body {
+	body {
   margin: 0;
   padding: 0;
   font-family: Arial;
@@ -86,29 +86,37 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- #title {
- 		text-align: center;
- 		font-size: 50px;
- 		font-family: Arial;
- }
- #joinTable, #lectureTable{
- 		text-align: center;
- 		border: 1px solid black;
- 		margin-left: auto;
- 		margin-right: auto;
- 		font-family: Arial;
- }
- #joinTable{
- 		width: 550px;
- 		height: 500px;
- }
- #lectureTable, #tags{
- 		border: 1px solid black;
- 		width: 350px;
+ 	
+ 	#name{
+ 		background-color: black;
+ 		width: 100%;
+ 		heght: 200px;
+ 		color: white;
+ 	}
+ 	#board{
+ 		background-color: blue;
+ 		width: 50%;
  		height: 100px;
- 		margin-left: auto;
- 		margin-right: auto;
- }
+ 		float: left;
+ 	}
+ 	#members{
+ 		background-color: green;
+ 		width: 50%;
+ 		height: 50px;
+ 		float:right;
+ 	}
+ 	#groupinfo {
+ 		background-color: pink;
+ 		width: 50%;
+ 		height: 50px;
+ 		float:right;
+ 	}
+ 	#addboard{
+ 		background-color: aqua;
+ 		width: 50%;
+ 		height: 50px;
+ 		text-align: right;
+ 	}
 </style>
 </head>
 <body>
@@ -133,71 +141,22 @@ ul, li {
 		
 	</ul>
 </nav>
-
 <div>
-	<p id="title">My Page</p>
-	<table id="joinTable">
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>ID</td>
-			<td><h5>받아온 id 값 출력.</h5></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>PASSWORD</td>
-			<td><input type="text" name="userPass" value="비밀번호를 입력하세요."></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>CHECK PASS</td>
-			<td><input type="text" name="checkPass" value="비밀번호를 다시 입력해주세요."></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>EMAIL</td>
-			<td>
-				<h5>받아온 email 값 출력</h5>
-			</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>MAJOR</td>
-			<td><h5>자신의 전공 출력</h5></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>LECTURE</td>
-			<td colspan="2" rowspan="2">
-				<h5>내가 듣는 강의들 table로 출력.</h5>
-			
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>TAGS</td>
-			<td colspan="2" rowspan="3">
-				<div id="tags">
-					<h5>자신이 선택한 tag들 출력.</h5>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		
-	</table>
-
+	<div id="name">
+		<h2>this is studygroup board</h2>
+	</div>
+	<div id="board">
+	
+	</div>
+	<div id="members">
+	
+	</div>
+	<div id="groupinfo">
+	
+	</div>
+	<div id= "addboard">
+		<button>글쓰기</button>
+	</div>
 </div>
 </body>
 </html>
