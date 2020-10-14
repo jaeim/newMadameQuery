@@ -15,10 +15,10 @@ public class Comment {
 	public void set_id(int _id) {
 		this._id = _id;
 	}
-	public String getUserName() {
+	public User getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(User userName) {
 		this.userName = userName;
 	}
 	public Date getUploadDate() {
