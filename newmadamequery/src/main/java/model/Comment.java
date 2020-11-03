@@ -3,17 +3,32 @@ package model;
 import java.util.*;
 
 public class Comment {
-	private int _id; // 댓글 번호(id)
+	private int comment_id; // 댓글 번호(comment_id)
 	private User userName; //댓글 올린 사람 이름
-	private Date uploadDate; //댓글 올린 날짜
-	private String commentText; // 댓글 내용
+	private Date createdDate; //댓글 올린 날짜
+	private Date modifiedDate; //댓글 수정 날짜
+	private String content; // 댓글 내용
+	private int ref; //post_id
 	
-	
-	public int get_id() {
-		return _id;
+	public Comment() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void set_id(int _id) {
-		this._id = _id;
+	
+	public Comment(int comment_id, User userName, Date createdDate, Date modifiedDate, String content, int ref) {
+		super();
+		this.comment_id = comment_id;
+		this.userName = userName;
+		this.createdDate = createdDate;
+		this.modifiedDate = modifiedDate;
+		this.content = content;
+		this.ref = ref;
+	}
+	public int getComment_id() {
+		return comment_id;
+	}
+	public void setComment_id(int _id) {
+		this.comment_id = _id;
 	}
 	public User getUserName() {
 		return userName;
@@ -21,18 +36,33 @@ public class Comment {
 	public void setUserName(User userName) {
 		this.userName = userName;
 	}
-	public Date getUploadDate() {
-		return uploadDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setUploadDate(Date uploadDate) {
-		this.uploadDate = uploadDate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
-	public String getCommentText() {
-		return commentText;
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
-	public void setCommentText(String commentText) {
-		this.commentText = commentText;
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+	
+	
+	
 	
 	
 }
