@@ -2,7 +2,10 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.StudyGroup;
 import model.User;
 
 public class MemberDAO {
@@ -16,18 +19,31 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return md;
 	}
-	//회원가입 (새로운 user 추가)
 	
+	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
 		
-		String query = "INSERT INTO MEMBER VALUES (?, ?, ?, )"
+		String query = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		Object[] param = new Object[] {user.getUserId(), user.getPassword(), user.getEmail(), user.getPhone(),
+				user.getUniversity(), user.getDepartment(), user.getGrade()};
 		
+		jdbcUtil.setSqlAndParameters(query, param);
+		try {
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		}catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
 		return 0;
 	}
 	//로그인 (userId에 해당하는 사용자가 존재하는지 검사)
 	public boolean existingUser(String userId, String password) throws SQLException{
 		
-		String query = "SELECT count(*) FROM MEMBER WHERE member_id=?, password=?";
+		String query = "SELECT count(*) FROM MEMBER WHERE email=?, password=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {userId, password});
 		
 		try {
@@ -100,6 +116,51 @@ public class MemberDAO {
 			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
+		return 0;
+	}
+	//나의 스터디 조회
+	public List<StudyGroup> getMyGroup(StudyGroup s, User user) throws SQLException{
+		
+		List<StudyGroup> groupList = null;
+		String query = "SELECT ";
+		Object[] param = new Object[] {};
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			while(rs.next()) {
+				
+				
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			jdbcUtil.close();	
+		}
+		return groupList;
+	}
+	
+	//스터디 그룹 생성
+	public int addGroup(StudyGroup s, User user) throws SQLException{
+		
+		String query = "INSERT INTO STUDYGROUP(name, description, number_of_members, term, meeting_type, gendertype, leader_id) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		Object[] param = new Object[] {s.getSubjectName(), s.getDescription(), s.getNumberOfUsers(), 
+				s.getSpan(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			int result = jdbcUtil.executeUpdate();
+			return result;
+		}catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	
+		}		
 		return 0;
 	}
 }
