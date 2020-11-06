@@ -41,6 +41,29 @@ public class CommentDAO {
 		}
 		return null;
 	}
+	//해당 게시글에 달린 댓글 갯수를 가져옴
+	public int getCommentCount(int ref) throws SQLException {
+		String query = "select count(*) as count from commt where post_id=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {ref});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			int count = 0;
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			return count;
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return 0;
+		
+
+	}
+	
 	
 	//해당 게시글에 해당하는 댓글리스트를 가져옴
 	public List<Comment> getCommentList(int ref) throws SQLException{
