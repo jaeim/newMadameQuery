@@ -1,4 +1,4 @@
-package DTO;
+package model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +15,14 @@ public class StudyGroup {
 	
 	User groupLeader; 
 	ArrayList<User> groupUsers;
+	
+	public StudyGroup() {}
+	public StudyGroup(String subjectName, int span, int numberOfUsers) {
+		
+		this.subjectName = subjectName;
+		this.span = span;
+		this.numberOfUsers = numberOfUsers;
+	}
 	
 	public int get_id() {
 		return _id;
