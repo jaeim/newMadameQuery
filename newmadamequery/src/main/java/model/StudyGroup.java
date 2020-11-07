@@ -1,4 +1,4 @@
-package DTO;
+package model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,6 +52,7 @@ public class StudyGroup {
 	public void setNumberOfUsers(int numberOfUsers) {
 		this.numberOfUsers = numberOfUsers;
 	}
+	
 	public User getGroupLeader() {
 		return groupLeader;
 	}
@@ -72,5 +73,7 @@ public class StudyGroup {
 		this.groupUsers.remove(oldUser);
 	}
 	
+	
+	// 그룹 유저들을 찾는 메소드 정의 할 것(manager이용) -> groupUsers
 	
 }
