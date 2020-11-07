@@ -1,6 +1,9 @@
 package dao;
 
 import model.Post;
+import model.StudyGroup; //StudyGroupDAO로 옮기면 삭제 해야함
+import model.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ public class PostDAO {
 	}
 
 	//전체 게시글 보기
-	public List<Post> getAllPostList(int groupId) throws SQLException {
+	public List<Post> getPostList(int groupId) throws SQLException {
 		String query = "SELECT post_id, name, title, content, created_date, modified_date, member_id "
 				+ "FROM post JOIN member USING (member_id) "
 				+ "WHERE group_id = ? ORDER BY created_date DESC";
@@ -63,9 +66,10 @@ public class PostDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			Post post = new Post();
 			
-			if (rs.next()) {			
+			if (rs.next()) {
+				Post post = new Post();
+				
 				post.setUserName(rs.getString("name"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getNString("content"));
@@ -146,4 +150,80 @@ public class PostDAO {
 		return 0;
 	}
 
+	
+	//스터디그룹 DAO -> 스터디그룹 검색, 모든 스터디그룹 목록 조회 -> 나중에 StudyGroupDAO로 옮겨야함
+	
+	//스터디그룹 목록 조회
+	public List<StudyGroup> getGroupList() throws SQLException {
+		String query = "SELECT * FROM studygroup ORDER BY name";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			
+			while (rs.next()) {
+				StudyGroup group = new StudyGroup();
+				
+				group.set_id(rs.getInt("group_id"));
+				group.setCreatedDate(rs.getDate("created_date"));
+				group.setSubjectName(rs.getString("name"));
+				group.setDescription(rs.getString("description"));
+				group.setSpan(rs.getInt("term"));
+				group.setMeetingType(rs.getString("meeting_type"));
+				group.setGenderType(rs.getString("gender_type"));
+				group.setGradeType(rs.getString("gender_type"));
+				group.setRefSubject(rs.getInt("subject_id"));
+				group.setRefLeader(rs.getInt("leader_id"));
+				
+				groupList.add(group);
+			}
+			return groupList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		
+		return null;
+	}
+	
+	
+	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
+	public List<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
+		String query = "SELECT * FROM studygroup WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
+		Object[] param = new Object[] {name, term, numOfMem};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			
+			while (rs.next()) {
+				StudyGroup group = new StudyGroup();
+				
+				group.set_id(rs.getInt("group_id"));
+				group.setCreatedDate(rs.getDate("created_date"));
+				group.setNumberOfUsers(rs.getInt("number_of_member"));
+				group.setSubjectName(rs.getString("name"));
+				group.setDescription(rs.getString("description"));
+				group.setSpan(rs.getInt("term"));
+				group.setMeetingType(rs.getString("meeting_type"));
+				group.setGenderType(rs.getString("gender_type"));
+				group.setGradeType(rs.getString("gender_type"));
+				group.setRefSubject(rs.getInt("subject_id"));
+				group.setRefLeader(rs.getInt("leader_id"));
+				
+				groupList.add(group);
+			}
+			return groupList;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		
+		return null;
+	}
 }

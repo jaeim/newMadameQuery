@@ -10,9 +10,11 @@ public class StudyGroup {
 	int span ; // 기간 (term)
 	int numberOfUsers ; // 스터디 그룹 인원
 	String description; // 간단한 설명
-	int genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
-	int gradeType; // 학년 ( 1~4, 0 - 상관없음)
-	int meetingType; //스터디 방식 지정
+	String genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
+	String gradeType; // 학년 ( 1~4, 0 - 상관없음)
+	String meetingType; //스터디 방식 지정
+	int refSubject;
+	int refLeader;
 	
 	Date postedDate; 
 	Date createdDate; 
@@ -22,8 +24,8 @@ public class StudyGroup {
 	
 	public StudyGroup() {}
 	
-	public StudyGroup(int _id, String subjectName, int span, int numberOfUsers, String description, int genderType,
-			int gradeType, int meetingType, User groupLeader) {
+	public StudyGroup(int _id, String subjectName, int span, int numberOfUsers, String description, String genderType,
+			String gradeType, String meetingType, User groupLeader) {
 		super();
 		this._id = _id;
 		this.subjectName = subjectName;
@@ -65,16 +67,16 @@ public class StudyGroup {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getGenderType() {
+	public String getGenderType() {
 		return genderType;
 	}
-	public void setGenderType(int genderType) {
+	public void setGenderType(String genderType) {
 		this.genderType = genderType;
 	}
-	public int getGradeType() {
+	public String getGradeType() {
 		return gradeType;
 	}
-	public void setGradeType(int gradeType) {
+	public void setGradeType(String gradeType) {
 		this.gradeType = gradeType;
 	}
 	public Date getPostedDate() {
@@ -101,11 +103,28 @@ public class StudyGroup {
 	public void setGroupUsers(ArrayList<User> groupUsers) {
 		this.groupUsers = groupUsers;
 	}
-	public int getMeetingType() {
+	public String getMeetingType() {
 		return meetingType;
 	}
-	public void setMeetingType(int meetingType) {
+	public void setMeetingType(String meetingType) {
 		this.meetingType = meetingType;
 	}
+
+	public int getRefSubject() {
+		return refSubject;
+	}
+
+	public void setRefSubject(int refSubject) {
+		this.refSubject = refSubject;
+	}
+
+	public int getRefLeader() {
+		return refLeader;
+	}
+
+	public void setRefLeader(int refLeader) {
+		this.refLeader = refLeader;
+	}
+	
 	
 }
