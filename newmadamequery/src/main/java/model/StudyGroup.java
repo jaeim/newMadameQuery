@@ -1,11 +1,5 @@
 package model;
-//<<<<<<< HEAD
-
 import java.util.Date;
-
-//=======
-//>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
-
 import java.util.ArrayList;
 
 public class StudyGroup {
@@ -21,135 +15,132 @@ public class StudyGroup {
 	int gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; //과목id
 	int leaderId;
-
+	int refSubject;
+	int refLeader;
+	
+	Date postedDate; 
 	ArrayList<User> groupUsers;
 	
+
 	public StudyGroup() {
 		
 	}
-
-	public StudyGroup(int _id, Date createdDate, int numberOfUsers, String groupName, String description, int term,
-			int meetingType, int genderType, int gradeType, int subjectId, int leaderId,
-			ArrayList<User> groupUsers) {
-		super();
-		this._id = _id;
-		this.createdDate = createdDate;
-		this.numberOfUsers = numberOfUsers;
-		this.groupName = groupName;
-		this.description = description;
-		this.term = term;
-		this.meetingType = meetingType;
-		this.genderType = genderType;
-		this.gradeType = gradeType;
-		this.subjectId = subjectId;
-		this.leaderId = leaderId;
-		this.groupUsers = groupUsers;
-	}
-
-
-
-	public int get_id() {
-		return _id;
-	}
-
-	public void set_id(int _id) {
-		this._id = _id;
-	}
-
-	public java.util.Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(java.util.Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public int getNumberOfUsers() {
-		return numberOfUsers;
-	}
-
-	public void setNumberOfUsers(int numberOfUsers) {
-		this.numberOfUsers = numberOfUsers;
-	}
-
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 	public int getTerm() {
 		return term;
 	}
+
+
 
 	public void setTerm(int term) {
 		this.term = term;
 	}
 
+
+
 	public int getMeetingType() {
 		return meetingType;
 	}
+
+
 
 	public void setMeetingType(int meetingType) {
 		this.meetingType = meetingType;
 	}
 
+
+
 	public int getGenderType() {
 		return genderType;
 	}
+
+
 
 	public void setGenderType(int genderType) {
 		this.genderType = genderType;
 	}
 
+
+
 	public int getGradeType() {
 		return gradeType;
 	}
+
+
 
 	public void setGradeType(int gradeType) {
 		this.gradeType = gradeType;
 	}
 
+
+
 	public int getSubjectId() {
 		return subjectId;
 	}
+
+
 
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
 
+
+
 	public int getLeaderId() {
 		return leaderId;
 	}
+
+
 
 	public void setLeaderId(int leaderId) {
 		this.leaderId = leaderId;
 	}
 
+
+
+	public int getRefSubject() {
+		return refSubject;
+	}
+
+
+
+	public void setRefSubject(int refSubject) {
+		this.refSubject = refSubject;
+	}
+
+
+
+	public int getRefLeader() {
+		return refLeader;
+	}
+
+
+
+	public void setRefLeader(int refLeader) {
+		this.refLeader = refLeader;
+	}
+
+
+
+	public Date getPostedDate() {
+		return postedDate;
+	}
+
+
+
+	public void setPostedDate(Date postedDate) {
+		this.postedDate = postedDate;
+	}
+
+
+
 	public ArrayList<User> getGroupUsers() {
 		return groupUsers;
 	}
 
+
+
 	public void setGroupUsers(ArrayList<User> groupUsers) {
 		this.groupUsers = groupUsers;
 	}
-	
-
-	
-//<<<<<<< HEAD
-	
-	// 그룹 유저들을 찾는 메소드 정의 할 것(manager이용) -> groupUsers
-	
-//=======
-//>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 }
