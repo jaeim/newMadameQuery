@@ -37,6 +37,8 @@ public class StudyGroup {
 		this.meetingType = meetingType;
 		this.groupLeader = groupLeader;
 	}
+	
+	
 	public int get_id() {
 		return _id;
 	}

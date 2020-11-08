@@ -122,16 +122,29 @@ public class MemberDAO {
 	public List<StudyGroup> getMyGroup(StudyGroup s, User user) throws SQLException{
 		
 		List<StudyGroup> groupList = null;
-		String query = "SELECT ";
+		
+		String query = "SELECT s.name, s.description, s.term, s.number_of_member, s.gender_type, s.grade_type, s.meeting_type, "
+				+ "FROM STUDYGROUP s, MEMBER m "
+				+ "WHERE s.leader_id = m.member_id;";
+				
 		Object[] param = new Object[] {};
 		jdbcUtil.setSqlAndParameters(query, param);
-		
+	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			while(rs.next()) {
+				StudyGroup sg = new StudyGroup();
 				
+				sg.setSubjectName(rs.getString("s.name"));
+				sg.setDescription(rs.getString("s.description"));
+				sg.setSpan(rs.getInt("s.term"));
+				sg.setNumberOfUsers(rs.getInt("s.number_of_member"));
+				sg.setGenderType(rs.getString("s.gender_type"));
+				sg.setGradeType(rs.getString("s.grade_type"));
+				sg.setMeetingType(rs.getString("s.meeting_type"));
 				
-			}
+				groupList.add(sg);
+		}
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -139,6 +152,7 @@ public class MemberDAO {
 			jdbcUtil.close();	
 		}
 		return groupList;
+		
 	}
 	
 	//스터디 그룹 생성
