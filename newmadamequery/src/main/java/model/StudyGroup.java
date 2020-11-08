@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class StudyGroup {
 
 	int _id;
-	Date createdDate; // 생성일
+	java.util.Date createdDate; // 생성일
 	int numberOfUsers ; // 스터디 그룹 인원
 	String groupName; //그룹명
 	String description; //간단한 설명
@@ -19,15 +19,17 @@ public class StudyGroup {
 	int meetingType; // 만남의 방식
 	int genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
 	int gradeType; // 학년 ( 1~4, 0 - 상관없음)	
-	String subjectId; //과목id
-	String leaderId;
+	int subjectId; //과목id
+	int leaderId;
 
 	ArrayList<User> groupUsers;
 	
-	public StudyGroup() {}
+	public StudyGroup() {
+		
+	}
 
 	public StudyGroup(int _id, Date createdDate, int numberOfUsers, String groupName, String description, int term,
-			int meetingType, int genderType, int gradeType, String subjectId, String leaderId,
+			int meetingType, int genderType, int gradeType, int subjectId, int leaderId,
 			ArrayList<User> groupUsers) {
 		super();
 		this._id = _id;
@@ -54,11 +56,11 @@ public class StudyGroup {
 		this._id = _id;
 	}
 
-	public Date getCreatedDate() {
+	public java.util.Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(java.util.Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -118,19 +120,19 @@ public class StudyGroup {
 		this.gradeType = gradeType;
 	}
 
-	public String getSubjectId() {
+	public int getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubjectId(String subjectId) {
+	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
 
-	public String getLeaderId() {
+	public int getLeaderId() {
 		return leaderId;
 	}
 
-	public void setLeaderId(String leaderId) {
+	public void setLeaderId(int leaderId) {
 		this.leaderId = leaderId;
 	}
 
