@@ -8,17 +8,18 @@ import model.User;
 
 public class StudyGroupDAO {
 
-	//private static StudyGroupDAO dao = new StudyGroupDAO();
+	private static StudyGroupDAO dao = new StudyGroupDAO();
 	JDBCUtil util = null;
 	
 	public StudyGroupDAO() {
 		util = new JDBCUtil();
 	}
 	
-//	public StudyGroupDAO getInstance() {
-//		return dao;
-//	}
+	public StudyGroupDAO getInstance() {
+		return dao;
+	}
 
+	// StudyGroup 삭제
 	boolean removeGroup(int groupId) {
 		//group을 참조하고 있는 모든 자식 레코드들 삭제해야함
 		
@@ -45,6 +46,7 @@ public class StudyGroupDAO {
 		
 	}
 	
+	// group에 속해 있는 member 삭제
 	boolean removeMemberInGroup(int groupId, int memberId) {
 		int result = 0;
 		String query = "DELETE FROM groupMember WHERE group_id=? and member_id=?";
@@ -68,6 +70,7 @@ public class StudyGroupDAO {
 		return false;
 	}
 	
+	// StudyGroup의 속성을 수정
 	boolean updateGroup(StudyGroup group) {
 		int result = 0;
 		String query = "UPDATE studyGroup SET created_date=? , number_of_member=? "
@@ -82,9 +85,6 @@ public class StudyGroupDAO {
 				group.getGroupName(), group.getDescription(), group.getTerm(), group.getMeetingType()
 				, group.getGenderType(), group.getGradeType(), group.getSubjectId(), group.getLeaderId(), group.get_id()};
 		
-//		String query="UPDATE studyGroup SET number_of_member=? WHERE group_id=?";
-//		Object [] param = new Object[] {group.getNumberOfUsers(), group.get_id()};
-//		
 		util.setSqlAndParameters(query, param);
 		try {
 			result = util.executeUpdate();
