@@ -28,10 +28,10 @@ public class Post {
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
-	public String getUserName() {
+	public User getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(User userName) {
 		this.userName = userName;
 	}
 	public String getPostText() {

@@ -4,6 +4,7 @@ package model;
  * 사용자 관리를 위한 user dto. USERINFO 테이블과 대응됨
  */
 public class User {
+	
 	private String userId;
 	private String password;
 	private String name;
