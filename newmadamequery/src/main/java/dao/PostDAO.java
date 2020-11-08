@@ -149,7 +149,7 @@ public class PostDAO {
 		
 		return 0;
 	}
-
+	
 	
 	//스터디그룹 DAO -> 스터디그룹 검색, 모든 스터디그룹 목록 조회 -> 나중에 StudyGroupDAO로 옮겨야함
 	
@@ -167,14 +167,15 @@ public class PostDAO {
 				
 				group.set_id(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
-				group.setSubjectName(rs.getString("name"));
+				group.setNumberOfUsers(rs.getInt("number_of_member"));
+				group.setGroupName(rs.getString("name"));
 				group.setDescription(rs.getString("description"));
-				group.setSpan(rs.getInt("term"));
-				group.setMeetingType(rs.getString("meeting_type"));
-				group.setGenderType(rs.getString("gender_type"));
-				group.setGradeType(rs.getString("gender_type"));
+				group.setTerm(rs.getInt("term"));
+				group.setMeetingType(rs.getInt("meeting_type"));
+				group.setGenderType(rs.getInt("gender_type"));
+				group.setGradeType(rs.getInt("gender_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));
+				group.setRefLeader(rs.getInt("leader_id"));;
 				
 				groupList.add(group);
 			}
@@ -206,12 +207,12 @@ public class PostDAO {
 				group.set_id(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
 				group.setNumberOfUsers(rs.getInt("number_of_member"));
-				group.setSubjectName(rs.getString("name"));
+				group.setGroupName(rs.getString("name"));
 				group.setDescription(rs.getString("description"));
-				group.setSpan(rs.getInt("term"));
-				group.setMeetingType(rs.getString("meeting_type"));
-				group.setGenderType(rs.getString("gender_type"));
-				group.setGradeType(rs.getString("gender_type"));
+				group.setTerm(rs.getInt("term"));
+				group.setMeetingType(rs.getInt("meeting_type"));
+				group.setGenderType(rs.getInt("gender_type"));
+				group.setGradeType(rs.getInt("gender_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));
 				

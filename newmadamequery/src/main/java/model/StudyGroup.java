@@ -26,6 +26,68 @@ public class StudyGroup {
 		
 	}
 	
+	
+	
+	public int get_id() {
+		return _id;
+	}
+
+
+
+	public void set_id(int _id) {
+		this._id = _id;
+	}
+
+
+
+	public java.util.Date getCreatedDate() {
+		return createdDate;
+	}
+
+
+
+	public void setCreatedDate(java.util.Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+
+
+	public int getNumberOfUsers() {
+		return numberOfUsers;
+	}
+
+
+
+	public void setNumberOfUsers(int numberOfUsers) {
+		this.numberOfUsers = numberOfUsers;
+	}
+
+
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 	public int getTerm() {
 		return term;
 	}

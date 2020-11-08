@@ -136,6 +136,7 @@ public class CommentDAO {
 		return 0;
 	}
 	
+	
 	//댓글 수정
 	public int updateComment(Comment comt) throws SQLException {
 		String query = "update commt set content=?, modified_date = sysdate "
