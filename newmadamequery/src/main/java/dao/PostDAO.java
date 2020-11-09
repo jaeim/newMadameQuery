@@ -155,8 +155,9 @@ public class PostDAO {
 	
 	//스터디그룹 목록 조회
 	public List<StudyGroup> getGroupList() throws SQLException {
-		String query = "SELECT * FROM studygroup ORDER BY name";
-		jdbcUtil.setSqlAndParameters(query, new Object[] {});
+		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
+				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup ORDER BY name";
+		jdbcUtil.setSqlAndParameters(query, null);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -173,7 +174,7 @@ public class PostDAO {
 				group.setTerm(rs.getInt("term"));
 				group.setMeetingType(rs.getInt("meeting_type"));
 				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("gender_type"));
+				group.setGradeType(rs.getInt("grade_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));;
 				
@@ -192,7 +193,9 @@ public class PostDAO {
 	
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public List<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
-		String query = "SELECT * FROM studygroup WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
+		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
+				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup "
+				+ "WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
 		Object[] param = new Object[] {name, term, numOfMem};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -212,7 +215,7 @@ public class PostDAO {
 				group.setTerm(rs.getInt("term"));
 				group.setMeetingType(rs.getInt("meeting_type"));
 				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("gender_type"));
+				group.setGradeType(rs.getInt("grade_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));
 				
