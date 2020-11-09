@@ -303,13 +303,13 @@ public class MemberDAO {
 			while(rs.next()) {
 				StudyGroup sg = new StudyGroup();
 				
-				sg.setSubjectName(rs.getString("s.name"));
+				sg.setGroupName(rs.getString("s.name"));
 				sg.setDescription(rs.getString("s.description"));
-				sg.setSpan(rs.getInt("s.term"));
+				sg.setTerm(rs.getInt("s.term"));
 				sg.setNumberOfUsers(rs.getInt("s.number_of_member"));
-				sg.setGenderType(rs.getString("s.gender_type"));
-				sg.setGradeType(rs.getString("s.grade_type"));
-				sg.setMeetingType(rs.getString("s.meeting_type"));
+				sg.setGenderType(rs.getInt("s.gender_type"));
+				sg.setGradeType(rs.getInt("s.grade_type"));
+				sg.setMeetingType(rs.getInt("s.meeting_type"));
 				
 				groupList.add(sg);
 		}
@@ -328,8 +328,8 @@ public class MemberDAO {
 		
 		String query = "INSERT INTO STUDYGROUP(name, description, number_of_members, term, meeting_type, gendertype, leader_id) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] {s.getSubjectName(), s.getDescription(), s.getNumberOfUsers(), 
-				s.getSpan(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
+		Object[] param = new Object[] {s.getGroupName(), s.getDescription(), s.getNumberOfUsers(), 
+				s.getTerm(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
