@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import model.StudyGroup;
 import model.User;
 
+
 public class StudyGroupDAO {
 
 	private static StudyGroupDAO dao = new StudyGroupDAO();
@@ -96,7 +97,7 @@ public class StudyGroupDAO {
 		// group에서 게시된 모든 게시물 삭제
 		sub = removeAllPost(groupId);
 		System.out.println(sub + "개의 게시글 삭제");
-		
+		//
 		// group에 지원한 모든 지원서 삭제
 		sub = removeAllApply(groupId);
 		System.out.println(sub + "개의 지원서 삭제");
