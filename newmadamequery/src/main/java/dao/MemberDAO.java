@@ -287,15 +287,15 @@ public class MemberDAO {
 		return 0;
 	}
 	//나의 스터디 조회
-	public List<StudyGroup> getMyGroup(StudyGroup s, User user) throws SQLException{
+	public List<StudyGroup> getMyGroup(int memberId) throws SQLException{
 		
 		List<StudyGroup> groupList = null;
 		
 		String query = "SELECT s.name, s.description, s.term, s.number_of_member, s.gender_type, s.grade_type, s.meeting_type, "
 				+ "FROM STUDYGROUP s, MEMBER m "
-				+ "WHERE s.leader_id = m.member_id;";
+				+ "WHERE s.leader_id = m.member_id; and m.member_id=?";
 				
-		Object[] param = new Object[] {};
+		Object[] param = new Object[] {memberId};
 		jdbcUtil.setSqlAndParameters(query, param);
 	
 		try {
