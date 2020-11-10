@@ -184,7 +184,7 @@ public class PostDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();
 		}
 		
 		return null;
@@ -225,7 +225,7 @@ public class PostDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();
 		}
 		
 		return null;
