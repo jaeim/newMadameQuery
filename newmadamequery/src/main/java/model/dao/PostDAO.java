@@ -1,4 +1,4 @@
-package dao;
+package model.dao;
 
 import model.Post;
 import model.StudyGroup; //StudyGroupDAO로 옮기면 삭제 해야함
@@ -13,7 +13,7 @@ public class PostDAO {
 	private static PostDAO dao = new PostDAO();
 	private JDBCUtil jdbcUtil = null;
 	
-	public PostDAO() {
+	private PostDAO() {
 		jdbcUtil = new JDBCUtil();
 	}
 	
@@ -148,86 +148,5 @@ public class PostDAO {
 		}
 		
 		return 0;
-	}
-	
-	
-	//스터디그룹 DAO -> 스터디그룹 검색, 모든 스터디그룹 목록 조회 -> 나중에 StudyGroupDAO로 옮겨야함
-	
-	//스터디그룹 목록 조회
-	public List<StudyGroup> getGroupList() throws SQLException {
-		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
-				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup ORDER BY name";
-		jdbcUtil.setSqlAndParameters(query, null);
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
-			
-			while (rs.next()) {
-				StudyGroup group = new StudyGroup();
-				
-				group.set_id(rs.getInt("group_id"));
-				group.setCreatedDate(rs.getDate("created_date"));
-				group.setNumberOfUsers(rs.getInt("number_of_member"));
-				group.setGroupName(rs.getString("name"));
-				group.setDescription(rs.getString("description"));
-				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getInt("meeting_type"));
-				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("grade_type"));
-				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));;
-				
-				groupList.add(group);
-			}
-			return groupList;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-		
-		return null;
-	}
-	
-	
-	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
-	public List<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
-		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
-				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup "
-				+ "WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
-		Object[] param = new Object[] {name, term, numOfMem};
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
-			
-			while (rs.next()) {
-				StudyGroup group = new StudyGroup();
-				
-				group.set_id(rs.getInt("group_id"));
-				group.setCreatedDate(rs.getDate("created_date"));
-				group.setNumberOfUsers(rs.getInt("number_of_member"));
-				group.setGroupName(rs.getString("name"));
-				group.setDescription(rs.getString("description"));
-				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getInt("meeting_type"));
-				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("grade_type"));
-				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));
-				
-				groupList.add(group);
-			}
-			return groupList;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-		
-		return null;
 	}
 }

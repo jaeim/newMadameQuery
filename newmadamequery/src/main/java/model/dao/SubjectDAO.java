@@ -1,15 +1,15 @@
-package dao;
+package model.dao;
 
 public class SubjectDAO {
 	
 	private static SubjectDAO dao = new SubjectDAO();
 	JDBCUtil util = null;
 	
-	public SubjectDAO() {
+	private SubjectDAO() {
 		util = new JDBCUtil();
 	}
 	
-	public SubjectDAO getInstance() {
+	public static SubjectDAO getInstance() {
 		return dao;
 	}
 	
