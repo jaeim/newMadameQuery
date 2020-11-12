@@ -8,6 +8,7 @@ import java.util.List;
 
 import model.StudyGroup;
 import model.User;
+import model.service.AppException;
 
 
 public class StudyGroupDAO {
@@ -32,18 +33,20 @@ public class StudyGroupDAO {
 					s.getTerm(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
 			
 		jdbcUtil.setSqlAndParameters(query, param);
-			
+		int result = 0;	
 		try {
-			int result = jdbcUtil.executeUpdate();
-			return result;
+			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch (Exception ex) {
+			//if(ex instanceof AppException)
+				//추가 할 코드가 있다면 정의
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
-			jdbcUtil.commit();
 			jdbcUtil.close();	
 		}		
-		return 0;
+		return result;
 	}
 	
 	public int removeAllPost(int groupId) throws SQLException {
@@ -55,11 +58,12 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
@@ -77,18 +81,19 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
 		return result;
 	}
 	
-	int removeAllApply(int groupId) {
+	public int removeAllApply(int groupId) {
 		int result = 0;
 		String query = "DELETE FROM applylist WHERE group_id=?";
 		
@@ -97,10 +102,11 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 
@@ -108,24 +114,24 @@ public class StudyGroupDAO {
 	}
 	
 	// StudyGroup 삭제
-	boolean removeGroup(int groupId) throws SQLException {
+	public int removeGroup(int groupId) throws SQLException {
 		//group을 참조하고 있는 모든 자식 레코드들 삭제해야함
 		
-		// group에 속한 모든 멤버삭제
-		int sub = removeMemberInGroup(groupId, -1);
-		System.out.println(sub + "개의 그룹멤버 삭제");
-		
-		//group의 게시물에 달린 모든 댓글 삭제
-		sub = removeAllComment(groupId);
-		System.out.println(sub + "개의 댓글 삭제");
-		
-		// group에서 게시된 모든 게시물 삭제
-		sub = removeAllPost(groupId);
-		System.out.println(sub + "개의 게시글 삭제");
-		//
-		// group에 지원한 모든 지원서 삭제
-		sub = removeAllApply(groupId);
-		System.out.println(sub + "개의 지원서 삭제");
+//		// group에 속한 모든 멤버삭제
+//		int sub = removeMemberInGroup(groupId, -1);
+//		System.out.println(sub + "개의 그룹멤버 삭제");
+//		
+//		//group의 게시물에 달린 모든 댓글 삭제
+//		sub = removeAllComment(groupId);
+//		System.out.println(sub + "개의 댓글 삭제");
+//		
+//		// group에서 게시된 모든 게시물 삭제
+//		sub = removeAllPost(groupId);
+//		System.out.println(sub + "개의 게시글 삭제");
+//		//
+//		// group에 지원한 모든 지원서 삭제
+//		sub = removeAllApply(groupId);
+//		System.out.println(sub + "개의 지원서 삭제");
 		
 		int result = 0;
 		String query = "DELETE FROM studyGroup WHERE group_id=?";
@@ -135,23 +141,19 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		if(result == 1) {
-			System.out.println("1행 삭제 성공");
-			return true;
-		}
-		System.out.println("삭제실패");
-		return false;
 		
+		return result;
 	}
 	
 	// group에 속해 있는 member 삭제
-	int removeMemberInGroup(int groupId, int memberId) {
+	public int removeMemberInGroup(int groupId, int memberId) {
 		int result = 0;
 		String query;
 		Object [] param;
@@ -167,10 +169,11 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();} 
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
@@ -178,7 +181,7 @@ public class StudyGroupDAO {
 	}
 	
 	// StudyGroup의 속성을 수정
-	boolean updateGroup(StudyGroup group) {
+	public int updateGroup(StudyGroup group) {
 		int result = 0;
 		String query = "UPDATE studyGroup SET created_date=? , number_of_member=? "
 				+ ", name=? , description=? , term=? , meeting_type=? "
@@ -195,21 +198,18 @@ public class StudyGroupDAO {
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
-		if(result == 1) { 
-			System.out.println("1행 수정 성공");
-			return true; }
-		System.out.println("수정실패");
-		return false;
+		return result;
 	}
 	
-	boolean applyToGroup(int groupId, int userId) {
+	public int applyToGroup(int groupId, int userId) {
 		int result = 0;
 		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved) values(?, ?, ?, ?)";
 		
@@ -222,21 +222,18 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
-		if(result == 1) { 
-			System.out.println("1행 삽입 성공");
-			return true; }
-		System.out.println("삽입실패");
-		return false;
+		return result;
 	}
 	
-	boolean manageApplication(int groupId, int userId, boolean approved) {
+	public int manageApplication(int groupId, int userId, boolean approved) {
 		int result = 0;
 		String query;
 		Object [] param;
@@ -257,18 +254,15 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
 		
-		if(result == 1) { 
-			System.out.println("1행 수정 성공");
-			return true; }
-		System.out.println("수정실패");
-		return false;
+		return result;
 	}
 	
 	//스터디그룹 목록 조회
@@ -279,6 +273,8 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs == null) {throw new AppException();}
+			
 			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
 			
 			while (rs.next()) {
@@ -295,11 +291,13 @@ public class StudyGroupDAO {
 				group.setGradeType(rs.getInt("grade_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));;
-					
+					 
 				groupList.add(group);
 			}
+			jdbcUtil.commit();
 			return groupList;
 		} catch (Exception ex) {
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();
@@ -319,6 +317,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs == null) {throw new AppException();}
 			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
 				
 			while (rs.next()) {
@@ -338,8 +337,10 @@ public class StudyGroupDAO {
 				
 				groupList.add(group);
 			}
+			jdbcUtil.commit();
 			return groupList;
 		} catch (Exception ex) {
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();
@@ -348,12 +349,12 @@ public class StudyGroupDAO {
 		return null;
 	}
 	
-	ArrayList<User> getMemberList(String groupId){
+	public ArrayList<User> getMemberList(String groupId){
 		
 		return null;
 	}
 	
-	int getNumberOfMember(String groupId) {
+	public int getNumberOfMember(String groupId) {
 		return -1;
 	}
 	

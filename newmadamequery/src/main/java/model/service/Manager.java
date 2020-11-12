@@ -63,4 +63,17 @@ public class Manager {
 		
 		return studyGroupDAO.addGroup(group, user);
 	}
+	
+	public int removeStudyGroup(int groupId) throws SQLException, NotFoundException{
+		if(!studyGroupDAO.existingGroup(groupId)) {
+			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
+		}
+		
+		studyGroupDAO.removeMemberInGroup(groupId, -1);
+		studyGroupDAO.removeAllComment(groupId);
+		studyGroupDAO.removeAllPost(groupId);
+		studyGroupDAO.removeAllApply(groupId);
+		
+		return studyGroupDAO.removeGroup(groupId);
+	}
 }
