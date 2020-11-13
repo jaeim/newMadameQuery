@@ -10,9 +10,9 @@ public class StudyGroup {
 	String groupName; //그룹명
 	String description; //간단한 설명
 	int term; // 기간
-	int meetingType; // 만남의 방식
-	int genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
-	int gradeType; // 학년 ( 1~4, 0 - 상관없음)	
+	String meetingType; // 만남의 방식
+	String genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
+	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; //과목id
 	int leaderId;
 	int refSubject;
@@ -100,37 +100,37 @@ public class StudyGroup {
 
 
 
-	public int getMeetingType() {
+	public String getMeetingType() {
 		return meetingType;
 	}
 
 
 
-	public void setMeetingType(int meetingType) {
+	public void setMeetingType(String meetingType) {
 		this.meetingType = meetingType;
 	}
 
 
 
-	public int getGenderType() {
+	public String getGenderType() {
 		return genderType;
 	}
 
 
 
-	public void setGenderType(int genderType) {
+	public void setGenderType(String genderType) {
 		this.genderType = genderType;
 	}
 
 
 
-	public int getGradeType() {
+	public String getGradeType() {
 		return gradeType;
 	}
 
 
 
-	public void setGradeType(int gradeType) {
+	public void setGradeType(String gradeType) {
 		this.gradeType = gradeType;
 	}
 

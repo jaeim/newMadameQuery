@@ -25,13 +25,37 @@ public class StudyGroupDAO {
 	}
 	
 	//스터디 그룹 생성
-	public int addGroup(StudyGroup s, User user) throws SQLException{
+	public int addGroup(StudyGroup s, int memberId) throws SQLException{
+		int result = 0;	
+		String query = "INSERT INTO STUDYGROUP "
+					+ "VALUES (sequence_studygroup.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		java.sql.Date created_date = new java.sql.Date(new java.util.Date().getTime());
+		
+		Object[] param = new Object[] {created_date, s.getNumberOfUsers(), s.getGroupName(), s.getDescription(),
+				s.getTerm(), s.getMeetingType(), s.getGenderType(), s.getGradeType(), s.getSubjectId(), memberId};
 			
-		String query = "INSERT INTO STUDYGROUP(name, description, number_of_members, term, meeting_type, gendertype, leader_id) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] {s.getGroupName(), s.getDescription(), s.getNumberOfUsers(), 
-					s.getTerm(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
-			
+		jdbcUtil.setSqlAndParameters(query, param);
+		try {
+			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		}catch (Exception ex) {
+			//if(ex instanceof AppException)
+				//추가 할 코드가 있다면 정의
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.close();	
+		}		
+		return result;
+	}
+	
+	public int addMemberInGroupMember(int group_id, int member_id, String isLeader) {
+		String query = "insert into GROUPMEMBER values(?, ?, ?)";
+		
+		Object [] param = new Object[] {group_id, member_id, isLeader};
+		
 		jdbcUtil.setSqlAndParameters(query, param);
 		int result = 0;	
 		try {
@@ -188,7 +212,6 @@ public class StudyGroupDAO {
 				+", gender_type=? , grade_type=? , subject_id=? , leader_id=? "
 				+ "WHERE group_id=?";
 		
-		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(group.getCreatedDate().getTime());
 		
 		Object [] param = new Object[] {sqlDate, group.getNumberOfUsers(),
@@ -223,6 +246,30 @@ public class StudyGroupDAO {
 		try {
 			result = jdbcUtil.executeUpdate();
 			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return result;
+	}
+	
+	public int findApplication(int groupId, int userId) {
+		int result = 0;
+		String query = "select * from applyList where group_id=? and member_id=?";
+		
+		ResultSet rs = null;
+		Object [] param = new Object[] {groupId, userId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			if(rs == null)
+				result = 0;
+			result = 1;
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -286,9 +333,9 @@ public class StudyGroupDAO {
 				group.setGroupName(rs.getString("name"));
 				group.setDescription(rs.getString("description"));
 				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getInt("meeting_type"));
-				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("grade_type"));
+				group.setMeetingType(rs.getString("meeting_type"));
+				group.setGenderType(rs.getString("gender_type"));
+				group.setGradeType(rs.getString("grade_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));;
 					 
@@ -329,9 +376,9 @@ public class StudyGroupDAO {
 				group.setGroupName(rs.getString("name"));
 				group.setDescription(rs.getString("description"));
 				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getInt("meeting_type"));
-				group.setGenderType(rs.getInt("gender_type"));
-				group.setGradeType(rs.getInt("grade_type"));
+				group.setMeetingType(rs.getString("meeting_type"));
+				group.setGenderType(rs.getString("gender_type"));
+				group.setGradeType(rs.getString("grade_type"));
 				group.setRefSubject(rs.getInt("subject_id"));
 				group.setRefLeader(rs.getInt("leader_id"));
 				
@@ -349,12 +396,44 @@ public class StudyGroupDAO {
 		return null;
 	}
 	
-	public ArrayList<User> getMemberList(String groupId){
-		
+	public ArrayList<User> getAllMemberInGroup(int groupId){
+		String query = "SELECT * from GROUPMEMBER gm, MEMBER m "
+				+ "where gm.member_id = m.member_id and gm.group_id=?";
+		Object[] param = new Object[] {groupId};
+			
+		jdbcUtil.setSqlAndParameters(query, param);
+			
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs == null) {throw new AppException();}
+			ArrayList<User> memberList = new ArrayList<User>();
+				
+			while (rs.next()) {
+				User member = new User();
+				member.setMember_id(rs.getInt("m.member_id"));
+				member.setEmail(rs.getString("email"));
+				member.setPassword(rs.getString("password"));
+				member.setName(rs.getString("name"));
+				member.setPhone(rs.getString("phone"));
+				member.setUniversity(rs.getString("univ"));
+				member.setDepartment(rs.getString("dep"));
+				member.setGrade(rs.getString("grade"));
+				
+				memberList.add(member);
+			}
+			jdbcUtil.commit();
+			return memberList;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+			
 		return null;
 	}
 	
-	public int getNumberOfMember(String groupId) {
+	public int getNumberOfMember(int groupId) {
 		return -1;
 	}
 	
@@ -379,5 +458,9 @@ public class StudyGroupDAO {
 		
 		if(result == 1) return true;
 		return false;
+	}
+	
+	public static void main(String args[]) {
+	
 	}
 }

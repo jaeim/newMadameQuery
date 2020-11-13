@@ -1,9 +1,12 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.naming.java.javaURLContextFactory;
 
 import model.StudyGroup;
 import model.User;
@@ -22,131 +25,144 @@ public class MemberDAO {
 	
 	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
+		int result = 0;
+		String query = "INSERT INTO MEMBER VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		String query = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] {user.getUserId(), user.getPassword(), user.getEmail(), user.getPhone(),
-				user.getUniversity(), user.getDepartment(), user.getGrade()};
+		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
+		java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob,
+				user.getPhone(), date_of_join, user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
-			int result = jdbcUtil.executeUpdate();
-			return result;
+			result = jdbcUtil.executeUpdate();
+			jdbcUtil.commit();
 		}catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
-			jdbcUtil.commit();
 			jdbcUtil.close();	
 		}		
-		return 0;
+		return result;
 	}
 	//로그인 (userId에 해당하는 사용자가 존재하는지 검사)
-	public boolean existingUser(String userId, String password) throws SQLException{
-		
-		String query = "SELECT count(*) FROM MEMBER WHERE email=?, password=?";
+	public boolean existingUser(int userId, String password) throws SQLException{
+		boolean result = false;
+		String query = "SELECT * FROM MEMBER WHERE member_id=? and password=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {userId, password});
 		
 		try {
-			
 			ResultSet rs = jdbcUtil.executeQuery();
-			while(rs.next()) {
-				int count = rs.getInt(1);
-				return (count == 1 ? true : false);
+			if(rs != null) {
+				result = true;
 			}
+			jdbcUtil.commit();
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			jdbcUtil.rollback();
 		}finally {
 			jdbcUtil.close();
 		}
-		return false;
+		return result;
 	}
 	
 	//회원정보 수정 
 	//-1 사용자의 정보 가져오기
-	public User findUser(String userId) throws SQLException{
+	public User findUser(int userId) throws SQLException{
 		
 		//String userId, String password, String name, String email, String phone, String university,
 		//String department, int grade
-		String query = "SELECT password, name, email, phone, university, department, grade"
+		String query = "SELECT *"
 				+ "FROM MEMBER "
-				+ "WHERE member_id =? ";
+				+ "WHERE member_id =?";
 		
 		jdbcUtil.setSqlAndParameters(query, new Object[] {userId});
-		
+		ResultSet rs = null;
+		User user = null;
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			while(rs.next()) {
-				User user = new User(
+			rs = jdbcUtil.executeQuery();
+			if(rs.next()) {
+				user = new User(
 						userId,
+						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						rs.getString("email"),
+						new java.util.Date(rs.getDate("dob").getTime()),
 						rs.getString("phone"),
-						rs.getString("university"),
-						rs.getString("department"),
-						rs.getInt("grade"));
-				return user;
+						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getString("univ"),
+						rs.getString("dep"),
+						rs.getString("grade"),
+						rs.getInt("gender"));			
 			}
+			jdbcUtil.commit();
 		}catch(Exception ex) {
 			ex.printStackTrace();
+			jdbcUtil.rollback();
 		} finally {
 			jdbcUtil.close();		// resource 반환
 		}
-		return null;
+		return user;
 	}
 	
 	//-2 사용자 정보 수정 
 	public int userInfoUpdate(User user) throws SQLException {
-		
+		int result = 0;
 		String query = "UPDATE MEMBER "
-				+ "SET password=?, name=?, email=?, phone=?, university=?, department=?, grade=?"
+				+ "SET email=?, password=?, name=?, dob=?, phone=?, "
+				+ "date_of_join=?, univ=?, dep=?, grade=?, gender=?"
 				+ "WHERE member_id=?";
-		Object[] param = new Object[] {user.getPassword(), user.getName(), user.getEmail(), user.getPhone(),
-				user.getUniversity(), user.getDepartment(), user.getGrade()};
+		
+		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
+		java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
+		
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob, user.getPhone(),
+				date_of_join, user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender(), user.getMember_id()};
 		jdbcUtil.setSqlAndParameters(query, param);
 		
 		try {
-			
-			int result = jdbcUtil.executeUpdate();
-			return result;
+			result = jdbcUtil.executeUpdate();
+			jdbcUtil.commit();
 		}catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();
 		}
-		return 0;
+		return result;
 	}
-	//나의 스터디 조회
-	public List<StudyGroup> getMyGroup(int memberId) throws SQLException{
+
+	
+	public ArrayList<StudyGroup> getMyGroup(int memberId) throws SQLException{
 		
-		List<StudyGroup> groupList = null;
+		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 		
-		String query = "SELECT s.name, s.description, s.term, s.number_of_member, s.gender_type, s.grade_type, s.meeting_type, "
-				+ "FROM STUDYGROUP s, MEMBER m "
-				+ "WHERE s.leader_id = m.member_id; and m.member_id=?";
-				
+		String query = "select * from GROUPMEMBER gm, STUDYGROUP s "
+				+ "where gm.group_id = s.group_id and member_id=?";
 		Object[] param = new Object[] {memberId};
 		jdbcUtil.setSqlAndParameters(query, param);
-	
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
 			while(rs.next()) {
 				StudyGroup sg = new StudyGroup();
 				
-				sg.setGroupName(rs.getString("s.name"));
-				sg.setDescription(rs.getString("s.description"));
-				sg.setTerm(rs.getInt("s.term"));
-				sg.setNumberOfUsers(rs.getInt("s.number_of_member"));
-				sg.setGenderType(rs.getInt("s.gender_type"));
-				sg.setGradeType(rs.getInt("s.grade_type"));
-				sg.setMeetingType(rs.getInt("s.meeting_type"));
+				sg.set_id(rs.getInt("group_id"));
+				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setNumberOfUsers(rs.getInt("number_of_member"));
+				sg.setGroupName(rs.getString("name"));
+				sg.setDescription(rs.getString("description"));
+				sg.setTerm(rs.getInt("term"));
+				sg.setMeetingType(rs.getString("meeting_type"));
+				sg.setGenderType(rs.getString("gender_type"));
+				sg.setGradeType(rs.getString("grade_type"));
+				sg.setSubjectId(rs.getInt("subject_id"));
+				sg.setLeaderId(rs.getInt("leader_id"));
 				
 				groupList.add(sg);
 		}
-			
+			jdbcUtil.commit();
 		}catch(Exception ex) {
+			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}finally {
 			jdbcUtil.close();	
@@ -155,26 +171,4 @@ public class MemberDAO {
 		
 	}
 	
-	//스터디 그룹 생성
-	public int addGroup(StudyGroup s, User user) throws SQLException{
-		
-		String query = "INSERT INTO STUDYGROUP(name, description, number_of_members, term, meeting_type, gendertype, leader_id) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] {s.getGroupName(), s.getDescription(), s.getNumberOfUsers(), 
-				s.getTerm(), s.getMeetingType(), s.getGenderType(), user.getUserId()};
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		
-		try {
-			int result = jdbcUtil.executeUpdate();
-			return result;
-		}catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();	
-		}		
-		return 0;
-	}
 }
