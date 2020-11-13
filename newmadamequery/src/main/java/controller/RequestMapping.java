@@ -45,7 +45,7 @@ public class RequestMapping {
     	
     	//게시글
 //    	mappings.put("/post/list", new ListPostController();
-//    	mappings.put("/post/create/form", new CreateController());
+    	mappings.put("/post/create/form", new ForwardController("/mystudy/addStudyboard.jsp"));
 //    	mappings.put("/post/create", new CreateController();
 //    	mappings.put("/post/update/form", new UpdateController();
 //    	mappings.put("/post/update", new UpdateController();
