@@ -1,8 +1,6 @@
 package model.dao;
 
 import model.Post;
-import model.StudyGroup; //StudyGroupDAO로 옮기면 삭제 해야함
-import model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -149,4 +147,5 @@ public class PostDAO {
 		
 		return 0;
 	}
+	
 }
