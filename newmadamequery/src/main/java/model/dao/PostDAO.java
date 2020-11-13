@@ -96,6 +96,13 @@ public class PostDAO {
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
+			
+			if (result != 1) {
+				jdbcUtil.rollback();
+			} else {
+				jdbcUtil.commit();
+			}
+			
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -117,6 +124,13 @@ public class PostDAO {
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
+			
+			if (result != 1) {
+				jdbcUtil.rollback();
+			} else {
+				jdbcUtil.commit();
+			}
+			
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -136,6 +150,13 @@ public class PostDAO {
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
+			
+			if (result != 1) {
+				jdbcUtil.rollback();
+			} else {
+				jdbcUtil.commit();
+			}
+			
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
