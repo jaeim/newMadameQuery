@@ -27,18 +27,26 @@ public class StudyGroupDAO {
 	//스터디 그룹 생성
 	public int addGroup(StudyGroup s, int memberId) throws SQLException{
 		int result = 0;	
-		String query = "INSERT INTO STUDYGROUP "
+		String query1 = "INSERT INTO STUDYGROUP "
 					+ "VALUES (sequence_studygroup.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query2 = "SELECT SEQUENCE_STUDYGROUP.CURRVAL as group_id FROM DUAL";
+		ResultSet rs = null;
 		
 		java.sql.Date created_date = new java.sql.Date(new java.util.Date().getTime());
-		
 		Object[] param = new Object[] {created_date, s.getNumberOfUsers(), s.getGroupName(), s.getDescription(),
 				s.getTerm(), s.getMeetingType(), s.getGenderType(), s.getGradeType(), s.getSubjectId(), memberId};
-			
-		jdbcUtil.setSqlAndParameters(query, param);
+		Object[] param2 = new Object[] {};
 		try {
+			jdbcUtil.setSqlAndParameters(query1, param);
 			result = jdbcUtil.executeUpdate();
 			if(result != 1) {throw new AppException();}
+			
+			jdbcUtil.setSqlAndParameters(query2, param2);
+			rs = jdbcUtil.executeQuery();
+			if(rs.next()) {
+				s.set_id(rs.getInt("group_id"));
+			}
+			
 			jdbcUtil.commit();
 		}catch (Exception ex) {
 			//if(ex instanceof AppException)
@@ -54,7 +62,7 @@ public class StudyGroupDAO {
 	public int addMemberInGroupMember(int group_id, int member_id, String isLeader) {
 		String query = "insert into GROUPMEMBER values(?, ?, ?)";
 		
-		Object [] param = new Object[] {group_id, member_id, isLeader};
+		Object [] param = new Object[] {member_id, group_id, isLeader};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		int result = 0;	
@@ -82,7 +90,7 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -105,7 +113,7 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -126,7 +134,7 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -141,22 +149,6 @@ public class StudyGroupDAO {
 	public int removeGroup(int groupId) throws SQLException {
 		//group을 참조하고 있는 모든 자식 레코드들 삭제해야함
 		
-//		// group에 속한 모든 멤버삭제
-//		int sub = removeMemberInGroup(groupId, -1);
-//		System.out.println(sub + "개의 그룹멤버 삭제");
-//		
-//		//group의 게시물에 달린 모든 댓글 삭제
-//		sub = removeAllComment(groupId);
-//		System.out.println(sub + "개의 댓글 삭제");
-//		
-//		// group에서 게시된 모든 게시물 삭제
-//		sub = removeAllPost(groupId);
-//		System.out.println(sub + "개의 게시글 삭제");
-//		//
-//		// group에 지원한 모든 지원서 삭제
-//		sub = removeAllApply(groupId);
-//		System.out.println(sub + "개의 지원서 삭제");
-		
 		int result = 0;
 		String query = "DELETE FROM studyGroup WHERE group_id=?";
 		
@@ -165,7 +157,7 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -193,7 +185,7 @@ public class StudyGroupDAO {
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();} 
+//			if(result != 1) {throw new AppException();} 
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -221,7 +213,7 @@ public class StudyGroupDAO {
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -239,13 +231,13 @@ public class StudyGroupDAO {
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 		
-		Object [] param = new Object[] {userId, groupId, sqlDate, 0};
+		Object [] param = new Object[] {userId, groupId, sqlDate, "0"};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
 		try {
 			result = jdbcUtil.executeUpdate();
-			if(result != 1) {throw new AppException();}
+//			if(result != 1) {throw new AppException();}
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
@@ -410,7 +402,7 @@ public class StudyGroupDAO {
 				
 			while (rs.next()) {
 				User member = new User();
-				member.setMember_id(rs.getInt("m.member_id"));
+				member.setMember_id(rs.getInt("member_id"));
 				member.setEmail(rs.getString("email"));
 				member.setPassword(rs.getString("password"));
 				member.setName(rs.getString("name"));
@@ -434,13 +426,64 @@ public class StudyGroupDAO {
 	}
 	
 	public int getNumberOfMember(int groupId) {
-		return -1;
+		int result = 0;
+		String query = "select count(*) as count from GROUPMEMBER where group_id=?";
+		
+		ResultSet rs = null;
+		Object [] param = new Object[] {groupId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			if(rs.next()){
+				result = rs.getInt("count");
+			}
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return result;
 	}
 	
 	public StudyGroup findGroup(int groupId) {
-		StudyGroup group;
+		StudyGroup group = null;
+		String query = "select * from STUDYGROUP where group_id=?";
 		
-		return null;
+		ResultSet rs = null;
+		Object [] param = new Object[] {groupId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			if(rs.next()){
+				group = new StudyGroup();
+				
+				group.set_id(rs.getInt("group_id"));
+				group.setCreatedDate(rs.getDate("created_date"));
+				group.setNumberOfUsers(rs.getInt("number_of_member"));
+				group.setGroupName(rs.getString("name"));
+				group.setDescription(rs.getString("description"));
+				group.setTerm(rs.getInt("term"));
+				group.setMeetingType(rs.getString("meeting_type"));
+				group.setGenderType(rs.getString("gender_type"));
+				group.setGradeType(rs.getString("grade_type"));
+				group.setRefSubject(rs.getInt("subject_id"));
+				group.setRefLeader(rs.getInt("leader_id"));;
+			}
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		
+		return group;
 	}
 	
 	public boolean existingGroup(int groupId) {
@@ -460,7 +503,4 @@ public class StudyGroupDAO {
 		return false;
 	}
 	
-	public static void main(String args[]) {
-	
-	}
 }
