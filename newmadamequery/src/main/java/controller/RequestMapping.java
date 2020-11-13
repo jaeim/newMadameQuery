@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class RequestMapping {
     
-    // 각 요청 uri에 대한 controller 객체를 저장할 HashMap 생성
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
@@ -61,7 +60,6 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {	
-    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
         return mappings.get(uri);
     }
 }
