@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>내가 속한 스터디그룹 리스트 출력</title>
+<!--  하나의 스터디를 선택할 경우 myStudy_view.jsp로 이동 (정보 전달)-->
 <style>
 	body {
   margin: 0;
@@ -85,6 +86,12 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+
+#groupList{
+	border-bottom: 1px solid black;
+}
+
+
 </style>
 </head>
 <body>
@@ -110,7 +117,17 @@ ul, li {
 	</ul>
 </nav>
 <div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 -->
-	<
+	<table id="groupList">
+		<tr>
+			<th>과목 명</th>
+			<th>게시판 이동</th>
+		</tr>
+		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
+		<tr>
+			<td>알고리즘</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
 </div>
 </body>
 </html>
