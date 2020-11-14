@@ -10,17 +10,34 @@ public class StudyGroup {
 	String groupName; //그룹명
 	String description; //간단한 설명
 	int term; // 기간
-	int meetingType; // 만남의 방식
-	int genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
-	int gradeType; // 학년 ( 1~4, 0 - 상관없음)	
+	String meetingType; // 만남의 방식
+	String genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
+	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; //과목id
 	int leaderId;
-	int refSubject;
+	int refSubject;// ref 변수의 의미는?
 	int refLeader;
 	
 	Date postedDate; 
 	ArrayList<User> groupUsers;
 	
+	
+
+	
+	public StudyGroup(int numberOfUsers, String groupName, String description, int term, String meetingType,
+			String genderType, String gradeType, int subjectId) {
+		super();
+		this.numberOfUsers = numberOfUsers;
+		this.groupName = groupName;
+		this.description = description;
+		this.term = term;
+		this.meetingType = meetingType;
+		this.genderType = genderType;
+		this.gradeType = gradeType;
+		this.subjectId = subjectId;
+	}
+
+
 
 	public StudyGroup() {
 		
@@ -100,37 +117,37 @@ public class StudyGroup {
 
 
 
-	public int getMeetingType() {
+	public String getMeetingType() {
 		return meetingType;
 	}
 
 
 
-	public void setMeetingType(int meetingType) {
+	public void setMeetingType(String meetingType) {
 		this.meetingType = meetingType;
 	}
 
 
 
-	public int getGenderType() {
+	public String getGenderType() {
 		return genderType;
 	}
 
 
 
-	public void setGenderType(int genderType) {
+	public void setGenderType(String genderType) {
 		this.genderType = genderType;
 	}
 
 
 
-	public int getGradeType() {
+	public String getGradeType() {
 		return gradeType;
 	}
 
 
 
-	public void setGradeType(int gradeType) {
+	public void setGradeType(String gradeType) {
 		this.gradeType = gradeType;
 	}
 

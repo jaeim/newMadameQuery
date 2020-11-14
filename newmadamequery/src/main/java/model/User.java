@@ -1,27 +1,34 @@
 package model;
 
+import java.util.Date;
+
 /*
  * 사용자 관리를 위한 user dto. USERINFO 테이블과 대응됨
  */
 public class User {
 	
-	private String userId;
+	private int member_id;
+	private String email;
 	private String password;
 	private String name;
-	private String email;
+	private java.util.Date dob;
 	private String phone;
+	private java.util.Date date_of_join;
 	private String university;
 	private String department;
-	private int grade;
+	private String grade;
+	private int gender;
 
-	public User() { }		// 기본 생성자
-	
-	
+	public User() { 
+		dob = null;
+		date_of_join = null;
+		
+	}		// 기본 생성자
 
-	public User(String userId, String password, String name, String email, String phone, String university,
-			String department, int grade) {
+	public User(int userId, String password, String name, String email, String phone, String university,
+			String department, String grade) {
 		super();
-		this.userId = userId;
+		this.member_id = userId;
 		this.password = password;
 		this.name = name;
 		this.email = email;
@@ -31,24 +38,62 @@ public class User {
 		this.grade = grade;
 	}
 
-
-
-	public void update(User updateUser) {
-        this.password = updateUser.password;
-        this.name = updateUser.name;
-        this.email = updateUser.email;
-        this.phone = updateUser.phone;
-        this.university = university;
+	public User(int member_id, String email, String password, String name, Date dob, String phone, Date date_of_join,
+			String university, String department, String grade, int gender) {
+		super();
+		this.member_id = member_id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.dob = dob;
+		this.phone = phone;
+		this.date_of_join = date_of_join;
+		this.university = university;
 		this.department = department;
 		this.grade = grade;
-    }
-	
-	public String getUserId() {
-		return userId;
+		this.gender = gender;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+//	public void update(User updateUser) {
+//        this.password = updateUser.password;
+//        this.name = updateUser.name;
+//        this.email = updateUser.email;
+//        this.phone = updateUser.phone;
+//        this.university = updateUser.university;
+//		this.department = updateUser.department;
+//		this.grade = updateUser.grade;
+//    }
+	
+	public int getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+
+	public java.util.Date getDob() {
+		return dob;
+	}
+
+	public void setDob(java.util.Date dob) {
+		this.dob = dob;
+	}
+
+	public java.util.Date getDate_of_join() {
+		return date_of_join;
+	}
+
+	public void setDate_of_join(java.util.Date date_of_join) {
+		this.date_of_join = date_of_join;
 	}
 
 	public String getPassword() {
@@ -100,11 +145,11 @@ public class User {
 		this.department = department;
 	}
 
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
@@ -116,13 +161,15 @@ public class User {
 		return this.password.equals(password);
 	}
 	
-	public boolean isSameUser(String userid) {
-        return this.userId.equals(userid);
+	public boolean isSameUser(int userid) {
+        if(this.member_id == member_id)
+        	return true;
+        return false;
     }
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
+		return "User [userId=" + member_id + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
 				+ phone + ", university=" + university + ", department=" + department + ", grade=" + grade + "]";
 	}
 

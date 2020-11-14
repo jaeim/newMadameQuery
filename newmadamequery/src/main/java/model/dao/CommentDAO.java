@@ -1,4 +1,4 @@
-package dao;
+package model.dao;
 
 import model.Comment;
 import java.sql.ResultSet;
@@ -21,7 +21,6 @@ public class CommentDAO {
 		String query = "SELECT * FROM COMMT WHERE COMMENT_ID=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {comment_id});
 		try {
-			// 아래 메소드에서 autoCommit 해제
 			ResultSet rs = jdbcUtil.executeQuery();	
 			Comment comt = new Comment();
 			if (rs.next()) {	
@@ -36,10 +35,8 @@ public class CommentDAO {
 				return comt;
 			}
 		} catch (Exception ex) {
-			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.commit();
 			jdbcUtil.close();		// resource 반환
 		}
 		return null;
