@@ -1,9 +1,12 @@
 package model.dao;
 
 import model.Comment;
+import model.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CommentDAO {
@@ -169,6 +172,7 @@ public class CommentDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 }
