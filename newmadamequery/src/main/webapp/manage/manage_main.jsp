@@ -85,6 +85,13 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+
+#groupList{
+	text-align: center;
+	border: 1px solid black;
+	width : 700px;
+	height: 400px;
+}
 </style>
 <body>
 <nav>
@@ -109,10 +116,36 @@ ul, li {
 	</ul>
 </nav>
 	<!-- 자신이 팀장인 스터디 그룹 리스트 출력 -->
-	<%
-		for(int i= 0; i< 10; i++){
-			
-		}
-	%>
+<br>
+<div >
+
+	<table id="groupList">
+		<tr>
+			<th>과목 명</th>
+			<th>인원</th>
+			<th>기간</th>
+		</tr>
+		<tr>
+			<td>ㄱ</td> <!-- 각 항목 선택 시 해당 스터디그룹 관리로 이동(manage_view.jsp) -->
+			<td>ㄴ</td>
+			<td>ㄷ</td>
+		</tr>
+		<tr>
+			<td>ㄹ</td>
+			<td>ㅁ</td>
+			<td>ㅂ</td>
+		</tr>
+		<tr>
+			<td>ㅅ</td>
+			<td>ㅇ</td>
+			<td>ㅈ</td>
+		</tr>
+		<tr>
+			<td>ㅊ</td>
+			<td>ㅋ</td>
+			<td>ㅌ</td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>
