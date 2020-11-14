@@ -160,19 +160,32 @@ public class CommentDAO {
 		}		
 		return 0;
 	}
+	
 	public static void main(String[] args) {
 		//commentDAO 테스트
-		CommentDAO dao = CommentDAO.getInstance();		
-		
+		CommentDAO dao = CommentDAO.getInstance();	
+		User user = null;
 		int comment_id = 1;
+		
+		Comment cmt = new Comment(comment_id, user, new java.util.Date(), new java.util.Date(), "감사합니다~", 401);
+		
+		//int comment_id, User userName, Date createdDate, Date modifiedDate, String content, int ref
+		
+	
+//		try {
+//			Comment comm = dao.getOneComment(1);
+//			System.out.println("댓글번호: " + comm.getComment_id() +
+//					" 작성날짜: " + comm.getCreatedDate() + " 내용: " + comm.getContent());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+
 		try {
-			Comment comm = dao.getOneComment(1);
-			System.out.println("댓글번호: " + comm.getComment_id() +
-					" 작성날짜: " + comm.getCreatedDate() + " 내용: " + comm.getContent());
-		} catch (SQLException e) {
+				int result = dao.createComment(cmt);
+				System.out.println("댓글 작성 날짜: " + cmt.getCreatedDate() +"\n댓글 내용: "+ cmt.getContent());
+			
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 }
