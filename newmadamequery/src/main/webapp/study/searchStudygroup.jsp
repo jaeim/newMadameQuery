@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+	function showResult(){
+	
+		alert("결과 보여주기");
+	}
+</script>
 <meta charset="EUC-KR">
 <title>스터디그룹 검색</title>
 <style>
@@ -178,11 +184,25 @@ ul, li {
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<form><td colspan="2"><input type="button" value="검색"></td></form>
+			<td colspan="2"><input type="button" value="검색하기" onClick=showResult() /></td>
 		</tr>
 	</table>
 </div>
 
 <!-- 조건에 맞는 스터디모임 검색 결과를 리스트로 보여주기 -->
+<div id="result">
+	<table id="searchResult">
+		<tr>
+			<th>과목 명</th>
+			<th>인원</th>
+			<th>기간</th>
+		</tr>
+		<tr> <!-- 여기에 StudyGropu의 정보 받아와서 출력 -->
+			<td>데이터 베이스 프로그래밍</td>
+			<td>4</td>
+			<td>6</td>
+		</tr>
+	</table>
+</div>
 </body>
 </html>
