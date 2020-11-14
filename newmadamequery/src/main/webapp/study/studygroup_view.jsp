@@ -148,6 +148,9 @@ ul, li {
 	<div id="addToMember">
 		<%@include file="registerStudy.jsp" %>
 	</div>
-</div>	
+</div>
+<br><br>
+
+<button onClick="location.href='studygroup_list.jsp'">GoBack</button> <!--  다시 되돌아 가기 버튼 -->
 </body>
 </html>
