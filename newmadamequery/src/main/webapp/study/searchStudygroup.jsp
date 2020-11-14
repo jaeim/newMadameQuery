@@ -4,10 +4,10 @@
 <html>
 <head>
 <script>
-	function showResult(){
+	//function showResult(){
 	
-		alert("결과 보여주기");
-	}
+		//alert("결과 보여주기");
+//	}
 </script>
 <meta charset="EUC-KR">
 <title>스터디그룹 검색</title>
@@ -143,12 +143,14 @@ ul, li {
 	</pre>		
 </div>
 
+<form name="form1" method="POST" action="searchResult.jsp">
 <div id="add" style="clear:both">
 	<h2>스터디 검색</h2>
+	
 	<table>
 		<tr>
 			<td>과목</td>
-			<td><input type="text" value="과목명/주제를 입력해주세요." size=50></td>
+			<td><input type="text" placeholder="과목명/주제를 입력해주세요." size=50 name="subjectName"></td>
 		</tr>
 		
 		<tr>
@@ -184,25 +186,12 @@ ul, li {
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" value="검색하기" onClick=showResult() /></td>
+			<td colspan="2"><input type="submit" value="검색하기"/></td>
 		</tr>
 	</table>
 </div>
-
+</form>
 <!-- 조건에 맞는 스터디모임 검색 결과를 리스트로 보여주기 -->
-<div id="result">
-	<table id="searchResult">
-		<tr>
-			<th>과목 명</th>
-			<th>인원</th>
-			<th>기간</th>
-		</tr>
-		<tr> <!-- 여기에 StudyGropu의 정보 받아와서 출력 -->
-			<td>데이터 베이스 프로그래밍</td>
-			<td>4</td>
-			<td>6</td>
-		</tr>
-	</table>
-</div>
+
 </body>
 </html>
