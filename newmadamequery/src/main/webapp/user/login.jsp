@@ -1,11 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>로그인</title>
+<script>
+	// function 작성
+	function login(){
+		if(form.userId.value= "") {
 
+			alert("사용자 ID를 입력하세요.");
+			form.userId.focus();
+			return false;
+		}
+		if(form.password.value=""){
+			alert("비밀번호를 입력하십시오.");
+			form.password.focus();
+			return false;
+		}
+		form.submit();
+		
+	}
+	
+	function userCreate(targetUri) {
+		form.action = targetUri;
+		form.submit();
+	}
+</script>
 <style>
 	body {
   margin: 0;
@@ -134,7 +158,7 @@ ul, li {
 
 <div>
 	<p id="title">LOGIN</p>
-	<form>
+	<form name="form" method= "POST" action="<c:url value='user/login/' /> ">
 		<table id= "logintable">
 		<tr>
 			<td></td>
@@ -143,7 +167,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td>ID</td>
-			<td colspan="2"><input type="text" value="아이디를 입력하세요."></td>
+			<td colspan="2"><input type="text" name="userId" placeholder="아이디를 입력하세요."></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -152,11 +176,11 @@ ul, li {
 		</tr>
 		<tr>
 			<td>PASSWORD</td>
-			<td colspan="2"><input type="text" value="비밀번호를 입력하세요."></td>
+			<td colspan="2"><input type="text" name="password" placeholder="비밀번호를 입력하세요."></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="login" class="button" value="LOGIN"></td>
+			<td><input type="submit" name="login" class="button" value="LOGIN" onClick =login() ></td>
 			<td></td>
 		</tr>
 		
