@@ -28,14 +28,26 @@ public class Main {
 //		u.setGrade("3");
 //		u.setGender(2);
 		
-		// userCreate 실행
+//		User u = new User();
+//		u.setEmail("20201234@naver.com");
+//		u.setPassword("01020304");
+//		u.setName("김동덕");
+//		u.setDob(new java.util.Date());
+//		u.setPhone("010-9999-8876");
+//		u.setDate_of_join(new java.util.Date());
+//		u.setUniversity("동덕여자대학교");
+//		u.setDepartment("정보통계학과");
+//		u.setGrade("2");
+//		u.setGender(1);
+//		
+	// userCreate 실행
 //		try {
 //			System.out.println(member.userCreate(u));
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+//		
 		// existingUser 실행
 //		try {
 //			if(member.existingUser(u.getMember_id(), u.getPassword())) {
@@ -47,21 +59,21 @@ public class Main {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
-//		 findUser 실행
-//		User user = null;
-//		try {
-//			user = member.findUser(201);
-//			if(user == null) {
-//				System.out.println("찾지못함");
-//			}else {
-//				System.out.println("찾음\n 이름:" + user.getName());
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 //		
+		// findUser 실행
+		User user = null;
+		try {
+			user = member.findUser(221);
+			if(user == null) {
+				System.out.println("찾지못함");
+			}else {
+				System.out.println("찾음\n 이름:" + user.getName());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		if(user != null) {
 //			user.setName("YHJ");
 //			user.setDepartment("Computer Science");
@@ -95,6 +107,7 @@ public class Main {
 //			System.out.println(s.get_id() + ", " + s.getGroupName());
 //		}
 		
+		//새로운 스터디그룹 생성
 //		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
 //		StudyGroup s = new StudyGroup();
 //		s.setCreatedDate(new java.util.Date());
@@ -151,14 +164,14 @@ public class Main {
 //			}
 //		}
 	
-		try {
-			System.out.println(manager.removeStudyGroup(211));
-		} catch (SQLException e) {
+//		try {
+//			System.out.println(manager.removeStudyGroup(211));
+//		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotFoundException e) {
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	//		e.printStackTrace();
+//		}
 	}
 }
