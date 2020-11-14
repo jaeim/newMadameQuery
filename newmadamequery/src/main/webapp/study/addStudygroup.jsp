@@ -141,6 +141,7 @@ ul, li {
 	
 <div id="add" style="clear:both">
 	<h2>스터디 등록</h2>
+	<form>
 	<table>
 		<tr>
 			<td>과목</td>
@@ -180,10 +181,10 @@ ul, li {
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<form><td colspan="2"><input type="submit" value="등록하기"></td></form>
+			<td colspan="2"><input type="submit" value="등록하기"></td>
 		</tr>
 	</table>
-	
+	</form>
 </div>
 </body>
 </html>
