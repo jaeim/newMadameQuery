@@ -28,12 +28,11 @@ public class StudyGroupDAO {
 	public int addGroup(StudyGroup s, int memberId) throws SQLException{
 		int result = 0;	
 		String query1 = "INSERT INTO STUDYGROUP "
-					+ "VALUES (sequence_studygroup.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUES (sequence_studygroup.nextval, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		String query2 = "SELECT SEQUENCE_STUDYGROUP.CURRVAL as group_id FROM DUAL";
 		ResultSet rs = null;
-		
-		java.sql.Date created_date = new java.sql.Date(new java.util.Date().getTime());
-		Object[] param = new Object[] {created_date, s.getNumberOfUsers(), s.getGroupName(), s.getDescription(),
+
+		Object[] param = new Object[] {s.getNumberOfUsers(), s.getGroupName(), s.getDescription(),
 				s.getTerm(), s.getMeetingType(), s.getGenderType(), s.getGradeType(), s.getSubjectId(), memberId};
 		Object[] param2 = new Object[] {};
 		try {
@@ -196,17 +195,15 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	// StudyGroup의 속성을 수정
+	// StudyGroup의 속성을 수정 (StudyGroup을 수정 할 때 group_id와 created_date는 변경될 수 없다.)
 	public int updateGroup(StudyGroup group) {
 		int result = 0;
-		String query = "UPDATE studyGroup SET created_date=? , number_of_member=? "
+		String query = "UPDATE studyGroup SET number_of_member=? "
 				+ ", name=? , description=? , term=? , meeting_type=? "
 				+", gender_type=? , grade_type=? , subject_id=? , leader_id=? "
 				+ "WHERE group_id=?";
-		
-		java.sql.Date sqlDate = new java.sql.Date(group.getCreatedDate().getTime());
-		
-		Object [] param = new Object[] {sqlDate, group.getNumberOfUsers(),
+			
+		Object [] param = new Object[] {group.getNumberOfUsers(),
 				group.getGroupName(), group.getDescription(), group.getTerm(), group.getMeetingType()
 				, group.getGenderType(), group.getGradeType(), group.getSubjectId(), group.getLeaderId(), group.get_id()};
 		
@@ -226,12 +223,9 @@ public class StudyGroupDAO {
 	
 	public int applyToGroup(int groupId, int userId) {
 		int result = 0;
-		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved) values(?, ?, ?, ?)";
+		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved) values(?, ?, SYSDATE, ?)";
 		
-		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-		
-		Object [] param = new Object[] {userId, groupId, sqlDate, "0"};
+		Object [] param = new Object[] {userId, groupId, "0"};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
@@ -277,16 +271,12 @@ public class StudyGroupDAO {
 		String query;
 		Object [] param;
 		if(approved) {
-			query = "UPDATE applyList SET isApproved=? and approved_date=?";
-			
-			java.util.Date utilDate = new java.util.Date();
-			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-			
-			param = new Object[] {1, sqlDate};
+			query = "UPDATE applyList SET isApproved=?, approved_date=SYSDATE where member_id=? and group_id=?";
+			param = new Object[] {"1", userId, groupId};
 		}else {
 			// 차라리 삭제를 할까?
-			query = "UPDATE applyList SET isApproved=?";
-			param = new Object[] {0};
+			query = "UPDATE applyList SET isApproved=? where member_id=? and group_id=?";
+			param = new Object[] {"0", userId, groupId};
 		}
 		
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -305,7 +295,7 @@ public class StudyGroupDAO {
 	}
 	
 	//스터디그룹 목록 조회
-	public List<StudyGroup> getGroupList() throws SQLException {
+	public ArrayList<StudyGroup> getGroupList() throws SQLException {
 		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
 					+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup ORDER BY name";
 		jdbcUtil.setSqlAndParameters(query, null);
@@ -314,7 +304,7 @@ public class StudyGroupDAO {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs == null) {throw new AppException();}
 			
-			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 			
 			while (rs.next()) {
 				StudyGroup group = new StudyGroup();
@@ -346,7 +336,7 @@ public class StudyGroupDAO {
 	}
 			
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
-	public List<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
+	public ArrayList<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
 		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
 				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup "
 				+ "WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
@@ -357,7 +347,7 @@ public class StudyGroupDAO {
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs == null) {throw new AppException();}
-			List<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 				
 			while (rs.next()) {
 				StudyGroup group = new StudyGroup();
