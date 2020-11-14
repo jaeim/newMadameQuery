@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Post;
 import model.StudyGroup;
 import model.User;
 import model.service.ExistingException;
@@ -40,138 +41,73 @@ public class Main {
 //		u.setGrade("2");
 //		u.setGender(1);
 //		
-	// userCreate 실행
+		
+		//새로운 스터디그룹 생성
+		//StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+
+				
+		Manager manager = Manager.getInstance();
+		int result = 0;
+		
+		ArrayList<StudyGroup> list = null;
 //		try {
-//			System.out.println(member.userCreate(u));
+//			list = manager.getAllStudyGroup();
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+	
+		
+		
+//		StudyGroup s = new StudyGroup();
+//		s.set_id(list.get(0).get_id());
+//		s.setNumberOfUsers(10);
+//		s.setGroupName("성과사랑");
+//		s.setDescription("노트공유");
+//		s.setTerm(2);
+//		s.setMeetingType("oline");
+//		s.setGenderType("0");
+//		s.setGradeType("3");
+//		s.setSubjectId(1);
+//		s.setLeaderId(1);
+		
+
+//		Post post = new Post();
+//		post.setTitle("노트공유합니다");
+//		post.setContent("4주차 강의 노트 요약 ...");
+//		post.setRefMember(201);
+//		post.setRefGroup(611);
 //		
-		// existingUser 실행
 //		try {
-//			if(member.existingUser(u.getMember_id(), u.getPassword())) {
-//				System.out.println("존재함");
-//			}else {
-//				System.out.println("존재하지않음");
+//			System.out.println(manager.createPost(post));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		ArrayList<Post> postList = null;
+//		try {
+//			postList = manager.getAllPost(611);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(postList != null) {
+//			for(Post p : postList) {
+//				System.out.println(p.get_id() + ", " + p.getUserName());
 //			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
 //		}
-//		
-		// findUser 실행
-		User user = null;
+		
+		PostDAO postDAO = PostDAO.getInstance();
 		try {
-			user = member.findUser(221);
-			if(user == null) {
-				System.out.println("찾지못함");
-			}else {
-				System.out.println("찾음\n 이름:" + user.getName());
-			}
+			System.out.println(postDAO.existingPost(401));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		if(user != null) {
-//			user.setName("YHJ");
-//			user.setDepartment("Computer Science");
-//			user.setPhone("01011112222");
-//			user.setPassword("qwer");
-//		
-//			int result = 0;
-//			try {
-//				result = member.userInfoUpdate(user);
-//			
-//				System.out.println(result);
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
-		
-		// getMyGroup 실행
-//		ArrayList<StudyGroup> sList = new ArrayList<StudyGroup>();
-//		if(user != null) {
-//			try {
-//				sList = member.getMyGroup(user.getMember_id());
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		for(StudyGroup s : sList) {
-//			System.out.println(s.get_id() + ", " + s.getGroupName());
-//		}
-		
-		//새로운 스터디그룹 생성
-//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
-//		StudyGroup s = new StudyGroup();
-//		s.setCreatedDate(new java.util.Date());
-//		s.setNumberOfUsers(5);
-//		s.setGroupName("성과일상");
-//		s.setDescription("족보공유");
-//		s.setTerm(2);
-//		s.setMeetingType("oline");
-//		s.setGenderType("1");
-//		s.setGradeType("3");
-//		s.setSubjectId(1);
-		
-//		int result = 0;
-//		try {
-//			result = studyGroupDAO.addGroup(s, 1);
-//			System.out.println(result);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		
-		Manager manager = Manager.getInstance();
-//		int result = 0;
-//		try {
-//			result = manager.createStudyGroup(s, 201);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ExistingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println(result);
-		
-//		ArrayList<User> groupMember = null;
-//		try {
-//			System.out.println(manager.getNumberOfMemberInGroup(211));
-//			groupMember = manager.getAllMemberInGroup(211);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if(groupMember != null) {
-//			for(User u : groupMember) {
-//				System.out.println(u.getMember_id());
-//			}
-//		}
-	
-//		try {
-//			System.out.println(manager.removeStudyGroup(211));
-//		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-	//		e.printStackTrace();
-//		}
 	}
 }
