@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
@@ -169,6 +170,36 @@ public class MemberDAO {
 		}
 		return groupList;
 		
+	}
+	
+	//사용자가 팀장인 스터디그룹의 리스트 가져오기
+	public List<StudyGroup> getManageStudyList(int memberId){
+		
+		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+		String query ="SELECT name, number_of_member, term" 
+				+ "FROM studygroup"
+				+ "WHERE leader_id=?";
+		Object[] param = new Object[] {memberId};
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			while(rs.next()) {
+				StudyGroup sg = new StudyGroup();
+				
+				sg.setLeaderId(rs.getInt(memberId));
+				
+				groupList.add(sg);
+		}
+			jdbcUtil.commit();
+		}catch(Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}finally {
+			jdbcUtil.close();	
+		}
+		
+		return groupList;
 	}
 	
 }

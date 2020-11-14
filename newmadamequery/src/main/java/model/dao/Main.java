@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.Post;
 import model.StudyGroup;
@@ -15,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		MemberDAO member = MemberDAO.getInstance();
+//		MemberDAO member = MemberDAO.getInstance();
 		
 //		User u = new User();
 //		u.setEmail("yoo77hyeon@gmail.com");
@@ -46,10 +47,10 @@ public class Main {
 		//StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
 
 				
-		Manager manager = Manager.getInstance();
-		int result = 0;
+//		Manager manager = Manager.getInstance();
+//		int result = 0;
 		
-		ArrayList<StudyGroup> list = null;
+//		ArrayList<StudyGroup> list = null;
 //		try {
 //			list = manager.getAllStudyGroup();
 //		} catch (SQLException e) {
@@ -102,12 +103,14 @@ public class Main {
 //			}
 //		}
 		
-		PostDAO postDAO = PostDAO.getInstance();
-		try {
-			System.out.println(postDAO.existingPost(401));
-		} catch (SQLException e) {
+//		PostDAO postDAO = PostDAO.getInstance();
+//		try {
+//			System.out.println(postDAO.existingPost(401));
+//		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//			e.printStackTrace();
+//		}
+		
+		
 	}
 }
