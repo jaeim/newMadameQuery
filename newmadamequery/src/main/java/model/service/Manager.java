@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Comment;
 import model.Post;
 import model.StudyGroup;
+import model.Subject;
 import model.User;
 
 
@@ -37,8 +39,8 @@ public class Manager {
 	}
 	
 	public int createUser(User user) throws SQLException, ExistingException{
-		if(memberDAO.existingUser(user.getMember_id(), user.getPassword())) {
-			throw new ExistingException(user.getMember_id() + "는 존재하는 아이디임");
+		if(memberDAO.existingUser(user.getEmail(), user.getPassword())) {
+			throw new ExistingException(user.getEmail() + "는 존재하는 유저아이디임");
 		}
 		return memberDAO.userCreate(user);
 	}
@@ -213,5 +215,43 @@ public class Manager {
 		return postDAO.removePost(postId);
 	}
 	
+	public Comment findComment(int commentId) throws SQLException, NotFoundException{
+		Comment comment = commentDAO.getOneComment(commentId);
+		
+		if(comment == null) {throw new NotFoundException(commentId + "는 존재하지 않는 댓글입니다.");}
+		
+		return comment;
+	}
 	
+	public int numberOfComment(int postId) throws SQLException, NotFoundException{
+		if(!postDAO.existingPost(postId)) {throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");}
+	
+		return commentDAO.getCommentCount(postId);
+	}
+	
+	public ArrayList<Comment> getAllComment(int postId) throws SQLException, NotFoundException{
+		if(!postDAO.existingPost(postId)) {throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");}
+		
+		return commentDAO.getCommentList(postId);
+	}
+	
+	public int createComment(Comment comment) throws SQLException{
+		return commentDAO.createComment(comment);
+	}
+	
+	public int removeComment(int commentId) throws SQLException, NotFoundException{
+		if(!commentDAO.existingComment(commentId)) {throw new NotFoundException(commentId + "는 존재하지 않는 댓글입니다.");}
+		
+		return commentDAO.deleteComment(commentId);
+	}
+	
+	public int updateComment(Comment comment) throws SQLException, NotFoundException{
+		if(!commentDAO.existingComment(comment.getComment_id())) {throw new NotFoundException(comment.getComment_id() + "는 존재하지 않는 댓글입니다.");}
+	
+		return commentDAO.updateComment(comment);
+	}
+	
+	public ArrayList<Subject> getAllSubject() throws SQLException{
+		return subjectDAO.getAllSubject();
+	}
 }

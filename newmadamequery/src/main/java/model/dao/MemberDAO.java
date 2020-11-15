@@ -47,10 +47,10 @@ public class MemberDAO {
 		return result;
 	}
 	//로그인 (userId에 해당하는 사용자가 존재하는지 검사)
-	public boolean existingUser(int userId, String password) throws SQLException{
+	public boolean existingUser(String email, String password) throws SQLException{
 		boolean result = false;
-		String query = "SELECT * FROM MEMBER WHERE member_id=? and password=?";
-		jdbcUtil.setSqlAndParameters(query, new Object[] {userId, password});
+		String query = "SELECT * FROM MEMBER WHERE email=? and password=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {email, password});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();

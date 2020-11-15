@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.Comment;
 import model.Post;
 import model.StudyGroup;
+import model.Subject;
 import model.User;
 import model.service.ExistingException;
 import model.service.Manager;
@@ -47,7 +49,7 @@ public class Main {
 		//StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
 
 				
-//		Manager manager = Manager.getInstance();
+		Manager manager = Manager.getInstance();
 //		int result = 0;
 		
 //		ArrayList<StudyGroup> list = null;
@@ -111,6 +113,39 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
+		Comment comment = new Comment();
+		comment.setContent("네!");
+		comment.setPostId(401);
 		
+//		try {
+//			System.out.println(manager.createComment(comment));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+//		try {
+//			System.out.println(manager.numberOfComment(401));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		ArrayList<Subject> subList = null;
+		try {
+			subList = manager.getAllSubject();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(subList != null) {
+			for(Subject s : subList) {
+				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+			}
+		}
 	}
 }
