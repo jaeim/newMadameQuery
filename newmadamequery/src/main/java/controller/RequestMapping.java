@@ -27,16 +27,16 @@ public class RequestMapping {
     	//스터디관리(팀장)
 //    	mappings.put("/studyGroup/manageStudy", new StManagerStudyController());
 //    	mappings.put("/myGroup/manageFroup/delete", new DeleteStudyController());
-//    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyController());
-//    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyController());
+//    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyGroupController());
+//    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyGroupController());
 //    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
     	
     	//스터디관리(멤버)
 //    	mappings.put("/studyGroup/myStudy", new ListMyStudyController());
-//    	mappings.put("/studyGroup/myStudy/dropOut", new DropOutStudyController());
+//    	mappings.put("/studyGroup/myStudy/dropOut", new DropOutStudyGroupController());
     	
     	//스터디정보
-//    	mappings.put("/studyGroup/list", new ListStudyController());
+//    	mappings.put("/studyGroup/list", new ListStudyGroupController());
 //    	mappings.put("/studyGroup/view/", new ViewStudyController());
 //    	mappings.put("/studyGroup/apply", new ApplyController());
 //    	mappings.put("/studyGroup/search", new SearchController());

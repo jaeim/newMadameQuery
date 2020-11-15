@@ -15,18 +15,9 @@ public class StudyGroup {
 	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; //과목id
 	int leaderId;
+	
 	int refSubject;
 	int refLeader;
-	
-	Date postedDate; 
-	ArrayList<User> groupUsers;
-	
-
-	public StudyGroup() {
-		
-	}
-	
-	
 	
 	public int get_id() {
 		return _id;
@@ -180,29 +171,5 @@ public class StudyGroup {
 
 	public void setRefLeader(int refLeader) {
 		this.refLeader = refLeader;
-	}
-
-
-
-	public Date getPostedDate() {
-		return postedDate;
-	}
-
-
-
-	public void setPostedDate(Date postedDate) {
-		this.postedDate = postedDate;
-	}
-
-
-
-	public ArrayList<User> getGroupUsers() {
-		return groupUsers;
-	}
-
-
-
-	public void setGroupUsers(ArrayList<User> groupUsers) {
-		this.groupUsers = groupUsers;
 	}
 }

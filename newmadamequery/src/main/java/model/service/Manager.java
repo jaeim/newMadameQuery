@@ -12,7 +12,7 @@ import model.StudyGroup;
 import model.Subject;
 import model.User;
 
-
+// 현지
 public class Manager {
 	
 	private static Manager manager = new Manager();
@@ -38,8 +38,12 @@ public class Manager {
 		return manager;
 	}
 	
+	public boolean isLogin(String email, String password) throws SQLException{
+		return memberDAO.existingUser(email, password);
+	}
+	
 	public int createUser(User user) throws SQLException, ExistingException{
-		if(memberDAO.existingUser(user.getEmail(), user.getPassword())) {
+		if(isLogin(user.getEmail(), user.getPassword())) {
 			throw new ExistingException(user.getEmail() + "는 존재하는 유저아이디임");
 		}
 		return memberDAO.userCreate(user);
