@@ -13,12 +13,12 @@ public class StudyGroup {
 	String meetingType; // 만남의 방식
 	String genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
 	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
-	int subjectId; //과목id
+	int subjectId; 
 	int leaderId;
 	
-	int refSubject;// ref 변수의 의미는?
-	int refLeader;
-	
+//	int refSubject;//subjectid와 중복
+//	int refLeader;//leaderid와 중복
+//	
 	Date postedDate; 
 	ArrayList<User> groupUsers;
 	
@@ -177,25 +177,25 @@ public class StudyGroup {
 
 
 
-	public int getRefSubject() {
-		return refSubject;
-	}
-
-
-
-	public void setRefSubject(int refSubject) {
-		this.refSubject = refSubject;
-	}
-
-
-
-	public int getRefLeader() {
-		return refLeader;
-	}
-
-
-
-	public void setRefLeader(int refLeader) {
-		this.refLeader = refLeader;
-	}
+//	public int getRefSubject() {
+//		return refSubject;
+//	}
+//
+//
+//
+//	public void setRefSubject(int refSubject) {
+//		this.refSubject = refSubject;
+//	}
+//
+//
+//
+//	public int getRefLeader() {
+//		return refLeader;
+//	}
+//
+//
+//
+//	public void setRefLeader(int refLeader) {
+//		this.refLeader = refLeader;
+//	}
 }

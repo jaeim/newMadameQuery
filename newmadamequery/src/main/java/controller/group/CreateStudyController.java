@@ -7,6 +7,7 @@ import controller.Controller;
 import model.StudyGroup;
 import model.service.Manager;
 
+// 재임 : Main.java test 완료
 public class CreateStudyController implements Controller {
 
 	@Override

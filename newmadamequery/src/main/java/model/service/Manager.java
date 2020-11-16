@@ -168,11 +168,31 @@ public class Manager {
 	}
 	
 	// ok
-	public int applyToGroup(int groupId, int userId) throws SQLException, NotFoundException {
+	public int applyToGroup(int groupId, int userId) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
-		findUser(userId);
+		User user = findUser(userId);
+		StudyGroup studyGroup = findGroup(groupId);
+		
+		int isExistingUser = studyGroupDAO.findApplication(groupId, userId);
+		
+		if (isExistingUser != 0) {
+			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
+			throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
+		} else if (!studyGroup.getGenderType().equals("0")) {
+			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
+				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
+				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+			}		
+		} else if (!studyGroup.getGradeType().equals("0")) {
+			// studyGroup의 grade 이상인 학년은 가입 가능하도록 설정함
+			if (Integer.valueOf(user.getGrade()) < Integer.valueOf(studyGroup.getGradeType())) {
+				System.out.println("신청 조건에 맞지 않습니다." + "유저 학년: "
+						+ user.getGrade() + " 그룹 학년 : " + studyGroup.getGradeType());
+				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+			}
+		}
 		
 		return studyGroupDAO.applyToGroup(groupId, userId);
 	}

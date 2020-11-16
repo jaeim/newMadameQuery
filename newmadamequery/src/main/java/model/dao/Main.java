@@ -113,9 +113,9 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		Comment comment = new Comment();
-		comment.setContent("네!");
-		comment.setPostId(401);
+//		Comment comment = new Comment();
+//		comment.setContent("네!");
+//		comment.setPostId(401);
 		
 //		try {
 //			System.out.println(manager.createComment(comment));
@@ -170,19 +170,34 @@ public class Main {
 		
 
 		
-		ArrayList<Subject> subList = null;
+//		ArrayList<Subject> subList = null;
+//		try {
+//			subList = manager.getAllSubject();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(subList != null) {
+//			for(Subject s : subList) {
+//				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+//			}
+//		}
+		
+		//test manager.removeStudyGroup => ok
+//		try {
+//			manager.removeStudyGroup(631);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+		
 		try {
-			subList = manager.getAllSubject();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			manager.applyToGroup(641, 1);
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if(subList != null) {
-			for(Subject s : subList) {
-				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
-			}
-		}
-
 	}
 }

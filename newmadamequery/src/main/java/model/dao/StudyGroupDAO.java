@@ -256,7 +256,8 @@ public class StudyGroupDAO {
 		
 		try {
 			rs = jdbcUtil.executeQuery();
-			if(rs == null)
+			System.out.println(rs.getInt("MEMBER_ID"));
+			if(!rs.next())
 				result = 0;
 			result = 1;
 			jdbcUtil.commit();
@@ -305,7 +306,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 			
@@ -321,8 +322,8 @@ public class StudyGroupDAO {
 				group.setMeetingType(rs.getString("meeting_type"));
 				group.setGenderType(rs.getString("gender_type"));
 				group.setGradeType(rs.getString("grade_type"));
-				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));;
+				group.setSubjectId(rs.getInt("subject_id"));
+				group.setLeaderId(rs.getInt("leader_id"));;
 					 
 				groupList.add(group);
 			}
@@ -349,7 +350,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 				
 			while (rs.next()) {
@@ -364,8 +365,8 @@ public class StudyGroupDAO {
 				group.setMeetingType(rs.getString("meeting_type"));
 				group.setGenderType(rs.getString("gender_type"));
 				group.setGradeType(rs.getString("grade_type"));
-				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));
+				group.setSubjectId(rs.getInt("subject_id"));
+				group.setLeaderId(rs.getInt("leader_id"));
 				
 				groupList.add(group);
 			}
@@ -390,7 +391,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			ArrayList<User> memberList = new ArrayList<User>();
 				
 			while (rs.next()) {
@@ -465,8 +466,8 @@ public class StudyGroupDAO {
 				group.setMeetingType(rs.getString("meeting_type"));
 				group.setGenderType(rs.getString("gender_type"));
 				group.setGradeType(rs.getString("grade_type"));
-				group.setRefSubject(rs.getInt("subject_id"));
-				group.setRefLeader(rs.getInt("leader_id"));;
+				group.setSubjectId(rs.getInt("subject_id"));
+				group.setLeaderId(rs.getInt("leader_id"));;
 			}
 			jdbcUtil.commit();
 		}catch(Exception e) {
