@@ -15,9 +15,8 @@ public class StudyGroup {
 	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; //과목id
 	int leaderId;
-	int refSubject;// ref 변수의 의미는?
 	
-	int refSubject;
+	int refSubject;// ref 변수의 의미는?
 	int refLeader;
 	
 	Date postedDate; 
