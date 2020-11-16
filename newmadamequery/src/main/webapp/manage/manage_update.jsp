@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>manage update page</title>
 <!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
+
 <style>
 	body {
   margin: 0;
@@ -86,6 +87,28 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+
+#main{
+ 		text-align: center;
+ 		font-family: Arial;
+ 		border: 1px solid black;
+ 		margin-top: 50px;
+ 		width: 700px;
+ 		height: 30px;
+ 	 }
+ 	 
+ #list{
+ 		text-align: center;
+ 		font-family: Arial;
+ 		border: 1px solid black;
+ 		margin-bottom: 50px;
+ 		width: 700px;
+ 		height: 30px;
+ 		
+ }
+ tr{
+ 	
+ 	margin: 50px;}
 </style>
 </head>
 <body>
@@ -110,8 +133,38 @@ ul, li {
 		
 	</ul>
 </nav>
+<table id="main">
+		<tr>
+			<td>과목명</td>
+			<td><!-- 클릭한 스터디그룹의 과목명 받아오기 -->"데이터베이스 프로그래밍"</td>
+			<td>인원</td>
+			<td><!-- 클릭한 스터디그룹의 인원 받아오기 -->4</td>
+			<td>기간</td>
+			<td><!-- 클릭한 스터디그룹의 활동기간 받아오기 -->6개월 </td>
+		</tr>
+</table>
+<br>
 
-<!-- modify 참고하기  -->
-
+<div id="update">
+	<form> <!-- form 내용 전달해서 다시 저장하기 -->
+	<table id= "list">
+	<tr>
+		<td>이름</td>
+		<td>팀원 관리</td>
+		<td>팀장/멤버</td>
+	</tr>
+	
+	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
+	<tr>
+		<td><input type="text" value="구성원 이름" /></td>
+		<td><input type="button" value="삭제" /><input type="button" value="수락" /></td>
+		<td></td>
+	</tr>
+	
+	</table>
+	
+	<input type="submit" value="저장하기" onClick="location.href='manage_view.jsp'"> <!-- 버튼 위치 수정하기 -->
+</form>
+</div>
 </body>
 </html>

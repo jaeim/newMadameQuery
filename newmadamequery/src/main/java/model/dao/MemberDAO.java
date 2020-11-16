@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
@@ -46,10 +47,10 @@ public class MemberDAO {
 		return result;
 	}
 	//로그인 (userId에 해당하는 사용자가 존재하는지 검사)
-	public boolean existingUser(int userId, String password) throws SQLException{
+	public boolean existingUser(String email, String password) throws SQLException{
 		boolean result = false;
-		String query = "SELECT * FROM MEMBER WHERE member_id=? and password=?";
-		jdbcUtil.setSqlAndParameters(query, new Object[] {userId, password});
+		String query = "SELECT * FROM MEMBER WHERE email=? and password=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {email, password});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -169,6 +170,36 @@ public class MemberDAO {
 		}
 		return groupList;
 		
+	}
+	
+	//사용자가 팀장인 스터디그룹의 리스트 가져오기
+	public List<StudyGroup> getManageStudyList(int memberId){
+		
+		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+		String query ="SELECT name, number_of_member, term" 
+				+ "FROM studygroup"
+				+ "WHERE leader_id=?";
+		Object[] param = new Object[] {memberId};
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		
+			while(rs.next()) {
+				StudyGroup sg = new StudyGroup();
+				
+				sg.setLeaderId(rs.getInt(memberId));
+				
+				groupList.add(sg);
+		}
+			jdbcUtil.commit();
+		}catch(Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}finally {
+			jdbcUtil.close();	
+		}
+		
+		return groupList;
 	}
 	
 }

@@ -89,23 +89,42 @@ ul, li {
 	margin-top: 50px;
 }
  	#board{
- 		background-color: blue;
- 		width: 50%;
- 		height: 100px;
+ 		background-color: #C0EDFF;
+ 		width: 60%;
+ 		height: auto;
  		float: left;
- 		color: white;
+ 		color: black;
+ 		
+ 	}
+ 	
+ 	#boardContents2 {
+ 		border: 1px solid black;
  	}
  	#members{
  		background-color: green;
- 		width: 50%;
- 		height: 50px;
+ 		width: 300px;
+ 		height: 200px;
  		float: right;
  	}
  	#groupinfo {
  		background-color: pink;
- 		width: 50%;
- 		height: 50px;
+ 		width: 300px;
+ 		height: 200px;
  		float: right;
+ 		
+ 	}
+ 	#boardTitle, #memberTitle{
+ 		text-decoration: underline;
+ 		text-align: center;
+ 	}
+ 	#memberTable, #infoTable{
+ 		padding: auto;
+ 		text-align:center;
+ 		
+ 	}
+ 	#myComment {
+ 		width: 200px;
+		height: 50px;
  	}
 </style>
 </head>
@@ -135,13 +154,59 @@ ul, li {
 <div id="contents">
 	
 	<div id="board">
-		<h2>this is title/contents/comments</h2>
+		<h3 id="boardTitle">"제목"</h3>
+		<p>
+			<h3 id="boardContents1">게시글 내용</h3>
+			<h6 id="boardContents2"><pre>내용,,,,,
+			
+			</pre><br></h6>
+		</p>
+		<p>
+			<h3 id="commentsTitle">댓글</h3>
+			<div>
+				<input type="text" value="댓글을 입력하세요." id="myComment" />
+				<input type="button" value="추가" /> <!-- onClick 으로 댓글 추가 createComment()에서 text에 입력된 내용이 댓글 내용으로 -->
+			</div>
+			<br>
+			<%@include file="comments.jsp" %>
+		</p>
 	</div>
 	<div id="members">
-	
+		<h5 id="memberTitle">Group Members</h5>
+		<table id="memberTable">
+			<tr>
+				<th>이름</th>
+				<th>학과</th>
+				<th>학년</th>
+			</tr>
+			<tr>
+				<td>이현아</td>
+				<td>컴퓨터학과</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 	</div>
 	<div id="groupinfo">
-	
+	<h5 id="memberTitle">Group Info</h5>
+		<table id="infoTable">
+			<tr>
+				<td>과목 명</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>모집 인원</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>기간</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 	</div>
 </div>	
 </body>

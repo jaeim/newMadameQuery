@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+	//function showResult(){
+	
+		//alert("결과 보여주기");
+//	}
+</script>
 <meta charset="EUC-KR">
 <title>스터디그룹 검색</title>
 <style>
@@ -137,12 +143,14 @@ ul, li {
 	</pre>		
 </div>
 
+<form name="form1" method="POST" action="searchResult.jsp">
 <div id="add" style="clear:both">
 	<h2>스터디 검색</h2>
+	
 	<table>
 		<tr>
 			<td>과목</td>
-			<td><input type="text" value="과목명/주제를 입력해주세요." size=50></td>
+			<td><input type="text" placeholder="과목명/주제를 입력해주세요." size=50 name="subjectName"></td>
 		</tr>
 		
 		<tr>
@@ -178,11 +186,12 @@ ul, li {
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<form><td colspan="2"><input type="button" value="검색"></td></form>
+			<td colspan="2"><input type="submit" value="검색하기"/></td>
 		</tr>
 	</table>
 </div>
-
+</form>
 <!-- 조건에 맞는 스터디모임 검색 결과를 리스트로 보여주기 -->
+
 </body>
 </html>

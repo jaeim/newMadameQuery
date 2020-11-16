@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>마이페이지 - 내 정보 받아와서 보여주기 </title>
-<!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] -->
+<title>회원정보 수정 </title>
+
 <style>
-body {
+	body {
   margin: 0;
   padding: 0;
   font-family: Arial;
@@ -86,32 +86,30 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- #title {
+
+#title {
  		text-align: center;
  		font-size: 50px;
  		font-family: Arial;
- }
- #joinTable, #lectureTable{
+ 	}
+ 	#joinTable, #lectureTable{
  		text-align: center;
  		border: 1px solid black;
  		margin-left: auto;
  		margin-right: auto;
  		font-family: Arial;
- }
- #joinTable{
+ 	}
+ 	#joinTable{
  		width: 550px;
  		height: 500px;
- }
- #lectureTable, #tags{
+ 	}
+ 	#lectureTable, #tags{
  		border: 1px solid black;
  		width: 350px;
  		height: 100px;
  		margin-left: auto;
  		margin-right: auto;
- }
- #forUpdate, #forHome {
- 	diplay: inline;
- }
+ 	}
 </style>
 </head>
 <body>
@@ -138,7 +136,7 @@ ul, li {
 </nav>
 
 <div>
-	<p id="title">My Page</p>
+	<p id="title">UPDATE</p>
 	<table id="joinTable">
 		<tr>
 			<td>&nbsp;</td>
@@ -147,8 +145,8 @@ ul, li {
 		</tr>
 		<tr>
 			<td>ID</td>
-			<td><h5>받아온 id 값 출력.</h5></td>
-			<td>&nbsp;</td>
+			<td><input type="text" name="userId" value="아이디를 입력하세요."></td>
+			<td><input type="button" name="doublecheck" value="중복확인"></td>
 		</tr>
 		<tr>
 			<td>PASSWORD</td>
@@ -163,19 +161,70 @@ ul, li {
 		<tr>
 			<td>EMAIL</td>
 			<td>
-				<h5>받아온 email 값 출력</h5>
+				<input type="email" name="userEmail" value="이메일을입력하세요.">
+				<select name="emaillist">
+					<option value="naver">naver.com</option>
+					<option value="daum">hanmail.net</option>
+					<option value="gmail">gmail.com</option>
+				</select>
 			</td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>MAJOR</td>
-			<td><h5>자신의 전공 출력</h5></td>
+			<td>
+				<select name="majors">
+					<option>국어국문학과</option>
+					<option>국사학과</option>
+					<option>문예창작과</option>
+					<option>영어과</option>
+					<option>일본어과</option>
+					<option>프랑스어과</option>
+					<option>독일어과</option>
+					<option>중어중국학과</option>
+					<option>경영학과</option>
+					<option>경제학과</option>
+					<option>국제경영학과</option>
+					<option>아동학과</option>
+					<option>사회복지학과</option>
+					<option>문헌정보학과</option>
+					<option>세무회계학과</option>
+					<option>식품영양학과</option>
+					<option>보건관리학과</option>
+					<option>화학, 화장품학부</option>
+					<option>체육학과</option>
+					<option>토탈뷰티케어학과(야)</option>
+					<option>컴퓨터학과</option>
+					<option>정보통계학과</option>
+					<option>회화과</option>
+					<option>디지털공예과</option>
+					<option>큐레이터학과</option>
+					<option>피아노과</option>
+					<option>관현악과</option>
+					<option>성악과</option>
+					<option>패션디자인학과</option>
+					<option>시각&실내디자인학과</option>
+					<option>미디어디자인학과</option>
+					<option>약학과</option>
+				</select>
+			</td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>LECTURE</td>
 			<td colspan="2" rowspan="2">
-				<h5>내가 듣는 강의들 table로 출력.</h5>
+			<table id="lectureTable">
+				<tr>
+					<td>1</td>
+					<td>과목 이름</td>
+					<td><input type="button" value="delete"></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>과목이름</td>
+					<td><input type="button" value="delete"></td>
+				</tr>
+			</table>
 			
 			</td>
 		</tr>
@@ -186,7 +235,17 @@ ul, li {
 			<td>TAGS</td>
 			<td colspan="2" rowspan="3">
 				<div id="tags">
-					<h5>자신이 선택한 tag들 출력.</h5>
+				<input type="checkbox" name="tags" value="1" />철학
+				<input type="checkbox" name="tags" value="2" />IT기술
+				<input type="checkbox" name="tags" value="3" />언어
+				<input type="checkbox" name="tags" value="4" />미술
+				<input type="checkbox" name="tags" value="5" />영화
+				<input type="checkbox" name="tags" value="6" />역사
+				<input type="checkbox" name="tags" value="7" />인문
+				<input type="checkbox" name="tags" value="8" />심리
+				<input type="checkbox" name="tags" value="9" />여성학
+				<input type="checkbox" name="tags" value="10" />문학
+				<input type="checkbox" name="tags" value="11" />팀플
 				</div>
 			</td>
 		</tr>
@@ -202,10 +261,6 @@ ul, li {
 	</table>
 
 </div>
-<br>
-<div>
-<input type="button" id= "forHome"value="홈으로" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="수정하기" onClick="location.href='updateForm.jsp'"/><br> 
-</div>
+<br><input type="button" value="수정(완료)" onClick="location.href='myPage.jsp'"/>
 </body>
 </html>

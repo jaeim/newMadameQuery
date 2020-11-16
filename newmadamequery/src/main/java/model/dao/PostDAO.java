@@ -5,6 +5,7 @@ import model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PostDAO {
@@ -18,9 +19,30 @@ public class PostDAO {
 	public static PostDAO getInstance() {
 		return dao;
 	}
-
+	
+	public boolean existingPost(int postId) throws SQLException{
+		boolean result = false;
+		String query = "select * from POST where post_id=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			jdbcUtil.rollback();
+		} finally {
+			jdbcUtil.close();
+		}
+		
+		return result;
+	}
+	
 	//전체 게시글 보기
-	public List<Post> getPostList(int groupId) throws SQLException {
+	public ArrayList<Post> getPostList(int groupId) throws SQLException {
 		String query = "SELECT post_id, name, title, content, created_date, modified_date, member_id "
 				+ "FROM post JOIN member USING (member_id) "
 				+ "WHERE group_id = ? ORDER BY created_date DESC";
@@ -29,7 +51,7 @@ public class PostDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			List<Post> postList = new ArrayList<Post>();
+			ArrayList<Post> postList = new ArrayList<Post>();
 			
 			while (rs.next()) {
 				Post post = new Post();
@@ -53,6 +75,7 @@ public class PostDAO {
 		
 		return null;
 	}
+	
 	
 	//게시글 상세보기
 	public Post getOnePost(int postId) throws SQLException {

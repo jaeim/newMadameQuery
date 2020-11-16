@@ -8,11 +8,81 @@
 <!-- myStudy_view.jsp에서 글쓰기 버튼을 눌렀을 때 이동 (게시판에 글 쓰기) -->
 <style>
 	
+
+h1 {
+  margin: 2em 0 1.5em 0;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background:  #C0EDFF;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#main-menu > li {
+  float: left;
+  position: relative;
+}
+
+#main-menu > li > a {
+  font-size: 0.85rem;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: block;
+  padding: 14px 36px;
+  border-right: 1px solid rgba(0,0,0,0.15);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+#main-menu > li:nth-child(1) > a {
+  border-left: 1px solid rgba(0,0,0,0.15);
+}
+
+#sub-menu {
+  position: absolute;
+  background: white;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.15s ease-in;
+  font-family: Arial;
+}
+
+#sub-menu > li {
+  padding: 16px 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  
+}
+
+#sub-menu > li >  a {
+  color: black;
+  text-decoration: none;
+  font-family: Arial;
+}
+
+#main-menu > li:hover #sub-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+#sub-menu > li >  a:hover {
+ text-decoration: underline;
+}
+
 #addform{
  		border: 1px solid black;
  		padding: 10px;
- 		width: 40%;
- 		height: 170px;
+ 		width: 50%;
+ 		height: auto;
  		float: left;
  		
  }
@@ -31,15 +101,15 @@
  		height: 30px;
  }
  #members{
- 		background-color: green;
+ 		background-color: #DCEBFF;
  		width: 40%;
- 		height: 170px;
+ 		height: auto;
  		float: right;
  }
  #groupinfo {
- 		background-color: pink;
+ 		background-color: #FFEBF0;
  		width: 40%;
- 		height: 100px;
+ 		height: auto;
  		float: right;
  }
  	
@@ -67,20 +137,52 @@
 		
 	</ul>
 </nav>
+<br><br>
 
 <div id="addform">
 	
-	<input type="text" name="title" id="title">
-	<textarea name="contents" cols="40" rows="5" id="contents"></textarea>
+	<input type="text" name="title" id="title" placeholder="제목" />
+	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="내용을 입력하세요"></textarea>
 	<input type="button" name="submitB" id="submit" value="등록">
+	
 </div>
 
 <div id="members">
-	<h4>group members list</h4>
-</div>
-
-<div id="groupinfo">
-	<h4>group info(과목명/인원/기간)</h4>
-</div>
+		<h5 id="memberTitle">Group Members</h5>
+		<table id="memberTable">
+			<tr>
+				<th>이름</th>
+				<th>학과</th>
+				<th>학년</th>
+			</tr>
+			<tr>
+				<td>이현아</td>
+				<td>컴퓨터학과</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<div id="groupinfo">
+	<h5 id="memberTitle">Group Info</h5>
+		<table id="infoTable">
+			<tr>
+				<td>과목 명</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>모집 인원</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>기간</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

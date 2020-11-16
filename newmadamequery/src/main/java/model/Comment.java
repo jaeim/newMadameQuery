@@ -8,7 +8,8 @@ public class Comment {
 	private Date createdDate; //댓글 올린 날짜
 	private Date modifiedDate; //댓글 수정 날짜
 	private String content; // 댓글 내용
-	private int ref; //post_id
+	private int postId; //post_id
+	private int groupId;
 	
 	public Comment() {
 		super();
@@ -22,7 +23,7 @@ public class Comment {
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
 		this.content = content;
-		this.ref = ref;
+		this.postId = ref;
 	}
 	public int getComment_id() {
 		return comment_id;
@@ -54,15 +55,18 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getRef() {
-		return ref;
+	public int getPostId() {
+		return postId;
 	}
-	public void setRef(int ref) {
-		this.ref = ref;
+	public void setPostId(int ref) {
+		this.postId = ref;
 	}
-	
-	
-	
-	
-	
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
 }

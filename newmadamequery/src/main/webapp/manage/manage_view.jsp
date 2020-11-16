@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>스터디 그룹 관리 (리스트에서 출력해서 들어가면 그 스터디 그룹에 대한 정보 보여주기)</title>
+<title>스터디 그룹 관리 </title>
+<!-- (리스트에서 출력해서 들어가면 그 스터디 그룹에 대한 정보 보여주기), 삭제 및 수락 은 여기서  -->
 <style>
 body {
   margin: 0;
@@ -142,14 +143,25 @@ ul, li {
 			<td><!-- 클릭한 스터디그룹의 활동기간 받아오기 -->6개월 </td>
 		</tr>
 </table>
-<div>	&nbsp;
-</div>
+<br>
+
 <table id= "list">
+	<tr>
+		<td>이름</td>
+		<td>팀원 관리</td>
+		<td>팀장/멤버</td>
+	</tr>
+	
 	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
+	<tr>
+		<td>구성원 이름</td>
+		<td><input type="button" value="삭제" /><input type="button" value="수락" /></td>
+		<td></td>
+	</tr>
 </table>
 <div id="update">
 <form >
-	<input type="submit" value="수정하기"> <!-- 버튼 위치 수정하기 -->
+	<input type="submit" value="수정하기" onClick="location.href='manage_update.jsp'"> <!-- 버튼 위치 수정하기 -->
 </form></div>
 </body>
 </html>

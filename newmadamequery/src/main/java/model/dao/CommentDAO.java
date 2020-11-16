@@ -1,9 +1,12 @@
 package model.dao;
 
 import model.Comment;
+import model.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CommentDAO {
@@ -16,6 +19,28 @@ public class CommentDAO {
 	public static CommentDAO getInstance() {
 		return dao;
 	}
+	
+	public boolean existingComment(int commentId) throws SQLException{
+		boolean result = false;
+		String query = "select * from COMMENT where comment_id=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {commentId});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			jdbcUtil.rollback();
+		} finally {
+			jdbcUtil.close();
+		}
+		
+		return result;
+	}
+	
 	//댓글 하나를 가져옴
 	public Comment getOneComment(int comment_id) throws SQLException {
 		String query = "SELECT * FROM COMMT WHERE COMMENT_ID=?";
@@ -30,7 +55,7 @@ public class CommentDAO {
 				if(rs.getDate("modified_date") != null) {
 				comt.setModifiedDate(rs.getDate("modified_date"));
 				}
-				comt.setRef(rs.getInt("post_id"));
+				comt.setPostId(rs.getInt("post_id"));
 				
 				return comt;
 			}
@@ -64,16 +89,15 @@ public class CommentDAO {
 
 	}
 	
-	
 	//해당 게시글에 해당하는 댓글리스트를 가져옴
-	public List<Comment> getCommentList(int ref) throws SQLException{
+	public ArrayList<Comment> getCommentList(int ref) throws SQLException{
 		String query = "select * from commt where post_id=? " +
 				"order by created_date";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {ref});
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();	
-			List<Comment> commentList = new ArrayList<Comment>();
+			ArrayList<Comment> commentList = new ArrayList<Comment>();
 			while(rs.next()) {
 				Comment comt = new Comment();
 				comt.setComment_id(rs.getInt("comment_id"));
@@ -82,7 +106,7 @@ public class CommentDAO {
 				if(rs.getDate("modified_date") != null) {
 				comt.setModifiedDate(rs.getDate("modified_date"));
 				}
-				comt.setRef(rs.getInt("post_id"));
+				comt.setPostId(rs.getInt("post_id"));
 				
 				commentList.add(comt);
 			}
@@ -100,7 +124,7 @@ public class CommentDAO {
 	public int createComment(Comment comt) throws SQLException {
 		String query = "insert into commt (comment_id, created_date, content, post_id) "
 				+ "values (SEQUENCE_COMMENT.nextval, sysdate, ?, ?)";
-		Object[] param = new Object[] {comt.getContent(), comt.getRef()};
+		Object[] param = new Object[] {comt.getContent(), comt.getPostId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {				
@@ -157,18 +181,32 @@ public class CommentDAO {
 		}		
 		return 0;
 	}
+	
 	public static void main(String[] args) {
 		//commentDAO 테스트
-		CommentDAO dao = CommentDAO.getInstance();		
-		
+		CommentDAO dao = CommentDAO.getInstance();	
+		User user = null;
 		int comment_id = 1;
+		
+		Comment cmt = new Comment(comment_id, user, new java.util.Date(), new java.util.Date(), "감사합니다~", 401);
+		
+		//int comment_id, User userName, Date createdDate, Date modifiedDate, String content, int ref
+		
+	
+//		try {
+//			Comment comm = dao.getOneComment(1);
+//			System.out.println("댓글번호: " + comm.getComment_id() +
+//					" 작성날짜: " + comm.getCreatedDate() + " 내용: " + comm.getContent());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+
 		try {
-			Comment comm = dao.getOneComment(1);
-			System.out.println("댓글번호: " + comm.getComment_id() +
-					" 작성날짜: " + comm.getCreatedDate() + " 내용: " + comm.getContent());
-		} catch (SQLException e) {
+				int result = dao.createComment(cmt);
+				System.out.println("댓글 작성 날짜: " + cmt.getCreatedDate() +"\n댓글 내용: "+ cmt.getContent());
+			
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

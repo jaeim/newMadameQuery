@@ -94,21 +94,21 @@ ul, li {
  		color: white;
  	}
  	#board{
- 		background-color: blue;
+ 		background-color: #C0EDFF;
  		width: 50%;
- 		height: 100px;
+ 		height: 300px;
  		float: left;
  	}
  	#members{
- 		background-color: green;
- 		width: 50%;
- 		height: 50px;
+ 		background-color: #AAEBAA;
+ 		width: 400px;
+ 		height: auto;
  		float:right;
  	}
  	#groupinfo {
- 		background-color: pink;
- 		width: 50%;
- 		height: 50px;
+ 		background-color: #FFDFDC;
+ 		width: 400px;
+ 		height: auto;
  		float:right;
  	}
  	#addboard{
@@ -146,16 +146,50 @@ ul, li {
 		<h2>this is studygroup board</h2>
 	</div>
 	<div id="board">
-	
+		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
+		
+		
 	</div>
 	<div id="members">
-	
+		<h5 id="memberTitle">Group Members</h5>
+		<table id="memberTable">
+			<tr>
+				<th>이름</th>
+				<th>학과</th>
+				<th>학년</th>
+			</tr>
+			<tr>
+				<td>이현아</td>
+				<td>컴퓨터학과</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 	</div>
 	<div id="groupinfo">
-	
+	<h5 id="memberTitle">Group Info</h5>
+		<table id="infoTable">
+			<tr>
+				<td>과목 명</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>모집 인원</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>기간</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 	</div>
+	<br><br>
 	<div id= "addboard">
-		<button>글쓰기</button>
+		<input type="button" value="글쓰기" onClick="location.href='addStudyboard.jsp'"/>
 	</div>
 </div>
 </body>

@@ -16,6 +16,8 @@ public class StudyGroup {
 	int subjectId; //과목id
 	int leaderId;
 	int refSubject;// ref 변수의 의미는?
+	
+	int refSubject;
 	int refLeader;
 	
 	Date postedDate; 
@@ -42,7 +44,6 @@ public class StudyGroup {
 	public StudyGroup() {
 		
 	}
-	
 	
 	
 	public int get_id() {
@@ -197,29 +198,5 @@ public class StudyGroup {
 
 	public void setRefLeader(int refLeader) {
 		this.refLeader = refLeader;
-	}
-
-
-
-	public Date getPostedDate() {
-		return postedDate;
-	}
-
-
-
-	public void setPostedDate(Date postedDate) {
-		this.postedDate = postedDate;
-	}
-
-
-
-	public ArrayList<User> getGroupUsers() {
-		return groupUsers;
-	}
-
-
-
-	public void setGroupUsers(ArrayList<User> groupUsers) {
-		this.groupUsers = groupUsers;
 	}
 }
