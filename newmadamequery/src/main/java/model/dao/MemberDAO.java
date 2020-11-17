@@ -147,7 +147,7 @@ public class MemberDAO {
 			while(rs.next()) {
 				StudyGroup sg = new StudyGroup();
 				
-				sg.set_id(rs.getInt("group_id"));
+				sg.setGroupId(rs.getInt("group_id"));
 				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));

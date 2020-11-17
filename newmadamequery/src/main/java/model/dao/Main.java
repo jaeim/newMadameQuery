@@ -134,18 +134,50 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		ArrayList<Subject> subList = null;
+//		ArrayList<Subject> subList = null;
+//		try {
+//			subList = manager.getAllSubject();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(subList != null) {
+//			for(Subject s : subList) {
+//				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+//			}
+//		}
+		
+//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+//		ArrayList<Integer> myGroupIdList = null;
+//		try {
+//			myGroupIdList = studyGroupDAO.getMyGroupIdList(201);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(myGroupIdList != null) {
+//			for(int s : myGroupIdList) {
+//				System.out.println(s);
+//			}
+//		}
+		
+		ArrayList<StudyGroup> groupList = null;
 		try {
-			subList = manager.getAllSubject();
+			groupList = manager.getManageStudyGroupList(201);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(subList != null) {
-			for(Subject s : subList) {
-				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
-			}
+		if(groupList != null) {
+			for(StudyGroup s : groupList) {
+				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
 		}
+	}
 	}
 }

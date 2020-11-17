@@ -71,14 +71,14 @@ public class Manager {
 		int r1 = 0;
 		int r2 = 0;
 		
-		if(studyGroupDAO.existingGroup(group.get_id())) {
-			throw new ExistingException(group.get_id() + "는 존재하는 groupId 입니다.");
+		if(studyGroupDAO.existingGroup(group.getGroupId())) {
+			throw new ExistingException(group.getGroupId() + "는 존재하는 groupId 입니다.");
 		}
 		findUser(memberId);
 		
 		r1 = studyGroupDAO.addGroup(group, memberId);
 		if(r1 == 1) {
-			r2 = studyGroupDAO.addMemberInGroupMember(group.get_id(), memberId, "1");
+			r2 = studyGroupDAO.addMemberInGroupMember(group.getGroupId(), memberId, "1");
 		}
 		
 		if(r1 == 1 && r2 == 1)
@@ -87,7 +87,7 @@ public class Manager {
 	}
 	
 	// ok
-	public int removeStudyGroup(int groupId) throws SQLException, NotFoundException{
+	public int removeStudyGroup(int groupId) throws SQLException, NotFoundException, RemoveException{
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
@@ -95,20 +95,23 @@ public class Manager {
 		// StudyGroup을 참조 하고 있는 테이블 레코드 전부 삭제
 		result = studyGroupDAO.removeMemberInGroup(groupId, -1);
 		System.out.println("member :" + result);
-		result = studyGroupDAO.removeAllComment(groupId);
+		result = commentDAO.removeAllComment(groupId);
 		System.out.println("comment :" + result);
-		result = studyGroupDAO.removeAllPost(groupId);
+		result = postDAO.removeAllPost(groupId);
 		System.out.println("post :" + result);
 		result = studyGroupDAO.removeAllApply(groupId);
 		System.out.println("applys :" + result);
 		
-		return studyGroupDAO.removeGroup(groupId);
+		result = studyGroupDAO.removeGroup(groupId);
+		if(result == 0) {throw new RemoveException(groupId + "그룹 삭제가 실패하였습니다.");}
+		
+		return result;
 	}
 	
 	// ok
 	public int updateStudyGroup(StudyGroup group)  throws SQLException, NotFoundException {
-		if(!studyGroupDAO.existingGroup(group.get_id())) {
-			throw new NotFoundException(group.get_id() + "는 존재하지 않는 groupId 입니다.");
+		if(!studyGroupDAO.existingGroup(group.getGroupId())) {
+			throw new NotFoundException(group.getGroupId() + "는 존재하지 않는 groupId 입니다.");
 		}
 		
 		return studyGroupDAO.updateGroup(group);
@@ -180,13 +183,39 @@ public class Manager {
 		return studyGroupDAO.getGroupList();
 	}
 	
+	// ok
+	public ArrayList<StudyGroup> getMyStudyGroupList(int memberId) throws SQLException, NotFoundException {
+		ArrayList<Integer> groupIdList = studyGroupDAO.getMyGroupIdList(memberId);
+		
+		if(groupIdList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
+		
+		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+		for(int id : groupIdList) {
+			StudyGroup group = findGroup(id);
+			groupList.add(group);
+		}
+		
+		return groupList;
+	}
+	
+	public ArrayList<StudyGroup> getManageStudyGroupList(int memberId) throws SQLException, NotFoundException{
+ArrayList<Integer> groupIdList = studyGroupDAO.getManageGroupIdList(memberId);
+		
+		if(groupIdList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
+		
+		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+		for(int id : groupIdList) {
+			StudyGroup group = findGroup(id);
+			groupList.add(group);
+		}
+		
+		return groupList;
+	}
+	
 	public Post findPost(int postId) throws SQLException, NotFoundException{
 		Post post = postDAO.getOnePost(postId);
-		
 		if(post == null) {throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");}
-		
 		return post;
-		
 	}
 	
 	// ok

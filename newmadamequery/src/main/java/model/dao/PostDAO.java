@@ -192,4 +192,25 @@ public class PostDAO {
 		return 0;
 	}
 	
+	public int removeAllPost(int groupId) throws SQLException {
+		int result = 0;
+		String query = "DELETE FROM post WHERE group_id = ?";
+		Object [] param = new Object[] {groupId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+//			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.close();
+		}
+		
+		return result;	
+	}
+	
 }

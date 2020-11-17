@@ -10,7 +10,7 @@ import model.StudyGroup;
 import model.service.Manager;
 
 // 현지
-public class UpdateStudyGroupController implements Controller {
+public class UpdateStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,7 +27,7 @@ public class UpdateStudyGroupController implements Controller {
 		}
 		
 		StudyGroup group = new StudyGroup();
-		group.set_id(Integer.valueOf((String)request.getAttribute("groupId")));
+		group.setGroupId(Integer.valueOf((String)request.getAttribute("groupId")));
 		group.setGroupName((String)request.getAttribute("name"));
 		group.setCreatedDate((Date)request.getAttribute("createdDate"));
 		group.setNumberOfUsers(Integer.valueOf((String)request.getAttribute("numberOfUsers")));

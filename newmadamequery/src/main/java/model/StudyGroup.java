@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class StudyGroup {
 
-	int _id;
+	int groupId;
 	java.util.Date createdDate; // 생성일
 	int numberOfUsers ; // 스터디 그룹 인원
 	String groupName; //그룹명
@@ -16,17 +16,15 @@ public class StudyGroup {
 	int subjectId; //과목id
 	int leaderId;
 	
-	int refSubject;
-	int refLeader;
 	
-	public int get_id() {
-		return _id;
+	public int getGroupId() {
+		return groupId;
 	}
 
 
 
-	public void set_id(int _id) {
-		this._id = _id;
+	public void setGroupId(int _id) {
+		this.groupId = _id;
 	}
 
 
@@ -147,29 +145,5 @@ public class StudyGroup {
 
 	public void setLeaderId(int leaderId) {
 		this.leaderId = leaderId;
-	}
-
-
-
-	public int getRefSubject() {
-		return refSubject;
-	}
-
-
-
-	public void setRefSubject(int refSubject) {
-		this.refSubject = refSubject;
-	}
-
-
-
-	public int getRefLeader() {
-		return refLeader;
-	}
-
-
-
-	public void setRefLeader(int refLeader) {
-		this.refLeader = refLeader;
 	}
 }
