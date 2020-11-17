@@ -224,11 +224,11 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	public int applyToGroup(int groupId, int userId) {
+	public int applyToGroup(int groupId, int userId, String comments) {
 		int result = 0;
-		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved) values(?, ?, SYSDATE, ?)";
+		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved, commt) values(?, ?, SYSDATE, ?, ?)";
 		
-		Object [] param = new Object[] {userId, groupId, "0"};
+		Object [] param = new Object[] {userId, groupId, "0", comments};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		

@@ -168,7 +168,7 @@ public class Manager {
 	}
 	
 	// ok
-	public int applyToGroup(int groupId, int userId) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
+	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
@@ -194,7 +194,7 @@ public class Manager {
 			}
 		}
 		
-		return studyGroupDAO.applyToGroup(groupId, userId);
+		return studyGroupDAO.applyToGroup(groupId, userId, comments);
 	}
 	
 	// ok
@@ -221,8 +221,13 @@ public class Manager {
 	}
 	
 	// ok
-	public int createPost(Post post) throws SQLException{
-		return postDAO.addPost(post);
+	public int createPost(Post post) throws SQLException, AppException{
+		try {
+			int postId = postDAO.addPost(post);
+			return postId;
+		} catch (Exception e) {
+			throw new AppException("게시글 등록에 실패하였습니다.");
+		}	
 	}
 	
 	public int updatePost(Post post) throws SQLException, NotFoundException{
@@ -237,6 +242,7 @@ public class Manager {
 		if(!postDAO.existingPost(postId)){
 			throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");
 		}
+		commentDAO.deleteCommentByPost(postId);
 		
 		return postDAO.removePost(postId);
 	}

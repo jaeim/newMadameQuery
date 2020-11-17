@@ -11,7 +11,7 @@ public class DeleteStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String deleteId = request.getParameter("groupId");
+		String deleteId = request.getAttribute("groupId").toString();
 		
 		try {
 			Manager manager = Manager.getInstance();
@@ -20,6 +20,7 @@ public class DeleteStudyController implements Controller {
 			return "redirect:/studyGroup/manageStudy";
 			
 		} catch (Exception e) { // 예외 발생시 다시 manage_main.jsp로 forwarding
+			//alert(exception)
 			request.setAttribute("exception", e);
 			return "/manage/manage_main.jsp";
 		}

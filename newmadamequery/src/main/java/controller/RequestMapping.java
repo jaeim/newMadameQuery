@@ -3,6 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 import controller.group.*;
+import controller.post.*;
 
 public class RequestMapping {
     
@@ -47,10 +48,10 @@ public class RequestMapping {
     	//게시글
 //    	mappings.put("/post/list", new ListPostController();
     	mappings.put("/post/create/form", new ForwardController("/mystudy/addStudyboard.jsp"));
-//    	mappings.put("/post/create", new CreateController();
-//    	mappings.put("/post/update/form", new UpdateController();
-//    	mappings.put("/post/update", new UpdateController();
-//    	mappings.put("/post/delete", new DeleteController();
+    	mappings.put("/post/create", new CreatePostController());
+    	mappings.put("/post/update/form", new UpdatePostFormController());
+    	mappings.put("/post/update", new UpdatePostController());
+    	mappings.put("/post/delete", new DeletePostController());
 //    	mappings.put("/post/detail", new DetailPostController();
     	
     	

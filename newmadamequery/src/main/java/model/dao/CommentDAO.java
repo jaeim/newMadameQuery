@@ -186,7 +186,24 @@ public class CommentDAO {
 		}		
 		return 0;
 	}
-	
+	//해당 게시글에 엮인 댓글 모두 삭제
+	public int deleteCommentByPost(int postId) throws SQLException {
+		String query = "delete from commt where post_id=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
+
+		try {				
+			int result = jdbcUtil.executeUpdate();	// delete 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		}
+		finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;
+	}
 	
 	//댓글 수정
 	public int updateComment(Comment comt) throws SQLException {

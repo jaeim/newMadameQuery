@@ -9,8 +9,8 @@ public class Post {
 	private Date modifiedDate; //게시글 수정 날짜
 	private String userName; //글쓴이
 	private String content; // 게시글 내용
-	private int refMember; //member_id
-	private int refGroup; //group_id
+	private int member_id; //member_id
+	private int group_id; //group_id
 	
 	public Post() {
 		super();
@@ -25,8 +25,8 @@ public class Post {
 		this.modifiedDate = modifiedDate;
 		this.userName = userName;
 		this.content = content;
-		this.refMember = refMember;
-		this.refGroup = refGroup;
+		this.member_id = refMember;
+		this.group_id = refGroup;
 	}
 
 	public int get_id() {
@@ -77,21 +77,23 @@ public class Post {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public int getRefMember() {
-		return refMember;
+	public int getMember_id() {
+		return member_id;
 	}
 
-	public void setRefMember(int refMember) {
-		this.refMember = refMember;
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
 	}
 
-	public int getRefGroup() {
-		return refGroup;
+	public int getGroup_id() {
+		return group_id;
 	}
 
-	public void setRefGroup(int refGroup) {
-		this.refGroup = refGroup;
+	public void setGroup_id(int group_id) {
+		this.group_id = group_id;
 	}
+
+	
 
 	
 	

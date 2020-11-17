@@ -186,19 +186,19 @@ public class Main {
 		
 		//test manager.removeStudyGroup => ok
 //		try {
-//			manager.removeStudyGroup(631);
+//			manager.removeStudyGroup(801);
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
 //
-		
+//		
 //		try {
-//			manager.applyToGroup(641, 1);
+//			manager.applyToGroup(641, 1, "열심히 하겠습니다!!");
 //			
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		
+//		
 //		test code : getOneComment => ok 
 //		try {
 //			CommentDAO commentDAO = CommentDAO.getInstance();
@@ -279,6 +279,35 @@ public class Main {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+		// test code : getPostCount() 
+//		try {
+//			int ref = 611;
+//			PostDAO postDAO = PostDAO.getInstance();
+//			int count = postDAO.getPostCount(ref);
+//			System.out.println(count);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 		
+//		try {
+//			Post post = new Post();
+//			post.setTitle("공지사항입니다.");
+//			post.setContent("모임장소는 인b301호 입니다.");
+//			post.setRefGroup(611);
+//			post.setRefMember(201);
+//			
+//			PostDAO postDAO = PostDAO.getInstance();
+//			postDAO.addPost(post);
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		// 특정 게시글 삭제 test => ok
+//		try {
+//			manager.removePost(401);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 	}
 }
