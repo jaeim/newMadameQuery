@@ -178,6 +178,6 @@ public class Main {
 			for(StudyGroup s : groupList) {
 				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
 		}
-	}
+		}
 	}
 }

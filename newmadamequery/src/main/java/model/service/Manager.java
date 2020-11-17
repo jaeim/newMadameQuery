@@ -184,30 +184,17 @@ public class Manager {
 	}
 	
 	// ok
-	public ArrayList<StudyGroup> getMyStudyGroupList(int memberId) throws SQLException, NotFoundException {
-		ArrayList<Integer> groupIdList = studyGroupDAO.getMyGroupIdList(memberId);
-		
-		if(groupIdList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
-		
-		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-		for(int id : groupIdList) {
-			StudyGroup group = findGroup(id);
-			groupList.add(group);
-		}
+	public ArrayList<StudyGroup> getMyStudyGroupList(int memberId) throws SQLException, NotFoundException {		
+		ArrayList<StudyGroup> groupList = memberDAO.getMyGroupList(memberId);
+		if(groupList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
 		
 		return groupList;
 	}
 	
+	// ok
 	public ArrayList<StudyGroup> getManageStudyGroupList(int memberId) throws SQLException, NotFoundException{
-ArrayList<Integer> groupIdList = studyGroupDAO.getManageGroupIdList(memberId);
-		
-		if(groupIdList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
-		
-		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-		for(int id : groupIdList) {
-			StudyGroup group = findGroup(id);
-			groupList.add(group);
-		}
+		ArrayList<StudyGroup> groupList = memberDAO.getManageStudyList(memberId);
+		if(groupList == null) {throw new SQLException("나의 그룹 내역 조회 실패");}
 		
 		return groupList;
 	}

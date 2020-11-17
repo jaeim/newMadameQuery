@@ -133,8 +133,8 @@ public class MemberDAO {
 		return result;
 	}
 
-	
-	public ArrayList<StudyGroup> getMyGroup(int memberId) throws SQLException{
+	// 나의 스터디목록 조회
+	public ArrayList<StudyGroup> getMyGroupList(int memberId) throws SQLException{
 		
 		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 		
@@ -162,22 +162,23 @@ public class MemberDAO {
 				groupList.add(sg);
 		}
 			jdbcUtil.commit();
+			return groupList;
 		}catch(Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}finally {
 			jdbcUtil.close();	
 		}
-		return groupList;
+		return null;
 		
 	}
 	
 	//사용자가 팀장인 스터디그룹의 리스트 가져오기
-	public List<StudyGroup> getManageStudyList(int memberId){
+	public ArrayList<StudyGroup> getManageStudyList(int memberId) throws SQLException{
 		
 		ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-		String query ="SELECT name, number_of_member, term" 
-				+ "FROM studygroup"
+		String query ="SELECT * " 
+				+ "FROM studygroup "
 				+ "WHERE leader_id=?";
 		Object[] param = new Object[] {memberId};
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -187,11 +188,22 @@ public class MemberDAO {
 			while(rs.next()) {
 				StudyGroup sg = new StudyGroup();
 				
-				sg.setLeaderId(rs.getInt(memberId));
+				sg.setGroupId(rs.getInt("group_id"));
+				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setNumberOfUsers(rs.getInt("number_of_member"));
+				sg.setGroupName(rs.getString("name"));
+				sg.setDescription(rs.getString("description"));
+				sg.setTerm(rs.getInt("term"));
+				sg.setMeetingType(rs.getString("meeting_type"));
+				sg.setGenderType(rs.getString("gender_type"));
+				sg.setGradeType(rs.getString("grade_type"));
+				sg.setSubjectId(rs.getInt("subject_id"));
+				sg.setLeaderId(rs.getInt("leader_id"));
 				
 				groupList.add(sg);
 		}
 			jdbcUtil.commit();
+			return groupList;
 		}catch(Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
@@ -199,7 +211,7 @@ public class MemberDAO {
 			jdbcUtil.close();	
 		}
 		
-		return groupList;
+		return null;
 	}
 	
 }

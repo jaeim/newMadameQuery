@@ -295,61 +295,6 @@ public class StudyGroupDAO {
 		return null;
 	}
 	
-	// 나의 스터디그룹 아이디 조회 (팀원)
-	public ArrayList<Integer> getMyGroupIdList(int memberId) throws SQLException {
-		String query = "SELECT * FROM groupmember WHERE member_id=?";
-		jdbcUtil.setSqlAndParameters(query, new Object[] {memberId});
-			
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
-			
-			ArrayList<Integer> groupIdList = new ArrayList<Integer>();
-			
-			while (rs.next()) {
-				int id = rs.getInt("group_id");
-				
-				groupIdList.add(id);
-			}
-			jdbcUtil.commit();
-			return groupIdList;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-			
-		return null;
-	}
-	
-	// 내가 관리하는 스터디그룹 아이디 조회 (팀장)
-	public ArrayList<Integer> getManageGroupIdList(int memberId) throws SQLException {
-		String query = "SELECT * FROM groupmember WHERE member_id=? and isleader=1";
-		jdbcUtil.setSqlAndParameters(query, new Object[] {memberId});
-			
-		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
-			
-			ArrayList<Integer> groupIdList = new ArrayList<Integer>();
-			
-			while (rs.next()) {
-				int id = rs.getInt("group_id");
-				
-				groupIdList.add(id);
-			}
-			jdbcUtil.commit();
-			return groupIdList;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {
-			jdbcUtil.close();
-		}
-			
-		return null;
-	}
 			
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
