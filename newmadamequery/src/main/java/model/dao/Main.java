@@ -192,9 +192,91 @@ public class Main {
 //		}
 //
 		
+//		try {
+//			manager.applyToGroup(641, 1);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+//		test code : getOneComment => ok 
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			Comment comment = commentDAO.getOneComment(601);
+//			
+//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
+//			+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
+//			+ "\t\t" + comment.getMemeber_name());
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		// test code : getCommentList => ok
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			ArrayList<Comment> commentList = commentDAO.getCommentList(401);
+//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			for (Comment comment :  commentList) {		
+//				System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
+//				+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
+//				+ "\t\t" + comment.getMemeber_name());
+//			}		
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// test code : createComment => ok
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			Comment comment2 = new Comment();
+//			comment2.setContent("감사합니다^^");
+//			comment2.setPostId(401);
+//			comment2.setGroupId(611);
+//			comment2.setMember_id(201);
+//			int comment_id = commentDAO.createComment(comment2);
+//			System.out.println("새로 생성된 코멘트 id는 " + comment_id);
+//			System.out.println("------------------------------------------------------------------------------------------------");
+//			ArrayList<Comment> commentList = commentDAO.getCommentList(401);
+//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			for (Comment comment :  commentList) {		
+//				System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
+//				+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
+//				+ "\t\t" + comment.getMemeber_name());
+//			}			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// test code : deleteComment => ok
+//		try {
+//			int commentId = 631;
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			commentDAO.deleteComment(commentId);
+//			
+//			if(!commentDAO.existingComment(commentId)) {
+//				throw new NotFoundException(commentId + "는 존재하지 않는 groupId 입니다.");
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		 
+		
 		try {
-			manager.applyToGroup(641, 1);
+			CommentDAO commentDAO = CommentDAO.getInstance();
+			int comment_id = 651;
+			Comment c = commentDAO.getOneComment(651);
+			c.setContent("수정된 댓글입니다.");
+			c.setComment_id(comment_id);
+			commentDAO.updateComment(c);
 			
+			Comment comment = commentDAO.getOneComment(comment_id);
+			
+			System.out.println("comment_id\tcreated_date\tmodified_date\tcontent\tpost_id\tgroup_id\tmember_id\tmember_name");
+			System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
+			+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
+			+ "\t" + comment.getMemeber_name());	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
