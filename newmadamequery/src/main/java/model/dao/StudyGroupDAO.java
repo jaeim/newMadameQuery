@@ -270,6 +270,8 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
+	// 지원서 리스트
+	
 	public int manageApplication(int groupId, int userId, boolean approved) {
 		int result = 0;
 		String query;

@@ -26,7 +26,7 @@ public class ListStudyGroupController implements Controller {
 		
 		ArrayList<StudyGroup> groupList = manager.getAllStudyGroup();
 		
-		request.setAttribute("groupList", groupList);
+		request.setAttribute("studyGroupList", groupList);
 		
 		return "/study/studygroup_list.jsp";
 	}
