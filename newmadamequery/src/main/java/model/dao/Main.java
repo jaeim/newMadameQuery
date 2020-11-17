@@ -239,11 +239,11 @@ public class Main {
 //			System.out.println("새로 생성된 코멘트 id는 " + comment_id);
 //			System.out.println("------------------------------------------------------------------------------------------------");
 //			ArrayList<Comment> commentList = commentDAO.getCommentList(401);
-//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			System.out.println("comm_id\tcreated\t\tmodified\tcontent\t\tpost\tgroup\tmember\tname");
 //			for (Comment comment :  commentList) {		
-//				System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
-//				+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
-//				+ "\t\t" + comment.getMemeber_name());
+//				System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
+//				+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
+//				+ "\t" + comment.getMemeber_name());	
 //			}			
 //		} catch (Exception e) {
 //			e.printStackTrace();
@@ -262,24 +262,23 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		 
-		
-		try {
-			CommentDAO commentDAO = CommentDAO.getInstance();
-			int comment_id = 651;
-			Comment c = commentDAO.getOneComment(651);
-			c.setContent("수정된 댓글입니다.");
-			c.setComment_id(comment_id);
-			commentDAO.updateComment(c);
-			
-			Comment comment = commentDAO.getOneComment(comment_id);
-			
-			System.out.println("comment_id\tcreated_date\tmodified_date\tcontent\tpost_id\tgroup_id\tmember_id\tmember_name");
-			System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
-			+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
-			+ "\t" + comment.getMemeber_name());	
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			int comment_id = 651;
+//			Comment c = commentDAO.getOneComment(651);
+//			c.setContent("수정된 댓글입니다.");
+//			c.setComment_id(comment_id);
+//			commentDAO.updateComment(c);
+//			
+//			Comment comment = commentDAO.getOneComment(comment_id);
+//			
+//			System.out.println("comm_id\tcreated\t\tmodified\tcontent\t\tpost\tgroup\tmember\tname");
+//			System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
+//			+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
+//			+ "\t" + comment.getMemeber_name());	
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 }
