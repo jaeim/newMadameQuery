@@ -137,4 +137,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+newmadamequery/.classpath
+newmadamequery/.project
+
 # End of https://www.gitignore.io/api/java,eclipse,windows
