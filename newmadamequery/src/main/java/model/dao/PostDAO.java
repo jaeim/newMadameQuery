@@ -112,6 +112,8 @@ public class PostDAO {
 	
 	//게시글 등록
 	public int addPost(Post post) throws SQLException {
+		jdbcUtil.setAutoCommit(false);
+		
 		String query = "INSERT INTO post (post_id, title, content, created_date, member_id, group_id) "
 				+ "VALUES (SEQUENCE_POST.nextval, ?, ?, SYSDATE, ?, ?)";
 		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.getRefMember(), post.getRefGroup()};
@@ -140,6 +142,8 @@ public class PostDAO {
 	
 	//게시글 수정
 	public int updatePost(Post post) throws SQLException {
+		jdbcUtil.setAutoCommit(false);
+		
 		String query = "UPDATE post SET title = ?, content = ?, modified_date = SYSDATE "
 				+ "WHERE post_id = ?";
 		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.get_id()};
@@ -168,6 +172,8 @@ public class PostDAO {
 	
 	//게시글 삭제
 	public int removePost(int postId) throws SQLException {
+		jdbcUtil.setAutoCommit(false);
+		
 		String query = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
 		

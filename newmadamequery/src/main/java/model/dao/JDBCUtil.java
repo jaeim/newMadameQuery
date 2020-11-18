@@ -214,6 +214,14 @@ public class JDBCUtil {
 			ex.printStackTrace();
 		}
 	}
+	
+	public void setAutoCommit(boolean b) {
+		try {
+			conn.setAutoCommit(b);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	// DataSource 를 종료
 	public void shutdownPool() {
