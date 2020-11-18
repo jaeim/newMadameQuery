@@ -11,12 +11,12 @@ public class RequestMapping {
 
     public void initMapping() {
     	//메인화면
-    	mappings.put("/", new ForwardController("/user.mainPage.jsp"));
+    	mappings.put("/", new ForwardController("/user/mainPage.jsp"));
     	
     	//사용자
-    	mappings.put("/user/register/form", new ForwardController("/user.user_write.jsp"));
+    	mappings.put("/user/register/form", new ForwardController("/user/user_write.jsp"));
 //    	mappings.put("/user/register", new RegisterUserController());
-    	mappings.put("/user/login/form", new ForwardController("/user.login.jsp"));
+    	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
 //    	mappings.put("/user/login", new LoginController());
 //    	mappings.put("/user/logout", new LogoutController());
 //    	mappings.put("/user/view", new ViewUserController());
