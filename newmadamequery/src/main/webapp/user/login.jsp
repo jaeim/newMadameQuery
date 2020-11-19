@@ -187,7 +187,7 @@ ul, li {
 		<tr>
 			<td></td>
 			<td>
-				<input type="button" value="JOIN(회원가입)" onClick="location.href='user_write.jsp'">
+				<input type="button" value="JOIN(회원가입)" onClick="userCreate('<c:url value='/user/register/form'/>) ')">
 			</td>
 			<td></td>
 		</tr>
