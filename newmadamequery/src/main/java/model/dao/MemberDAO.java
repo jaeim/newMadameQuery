@@ -11,6 +11,7 @@ import org.apache.naming.java.javaURLContextFactory;
 
 import model.StudyGroup;
 import model.User;
+import model.service.AppException;
 
 public class MemberDAO {
 	
@@ -209,6 +210,45 @@ public class MemberDAO {
 			ex.printStackTrace();
 		}finally {
 			jdbcUtil.close();	
+		}
+		
+		return null;
+	}
+	
+	//내가 신청한 스터디그룹 목록
+	public ArrayList<User> getApplyList() {
+		String query = "SELECT name, apply_date, approved_date, isApproved "
+				+ "FROM studygroup JOIN applylist USING (group_id)";
+		jdbcUtil.setSqlAndParameters(query, null);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if(rs == null) {throw new AppException();}
+			
+			ArrayList<User> applyList = new ArrayList<User>();
+			
+			while (rs.next()) {
+				User apply = new User();
+				
+				apply.setStudyName(rs.getString("name"));
+				apply.setApplyDate(rs.getDate("apply_date"));
+				apply.setApplyDate(rs.getDate("approved_date"));
+				
+				String approved = rs.getString("isApproved");
+				if (approved.equals("1"))
+					apply.setApproved(true);
+				else
+					apply.setApproved(false);
+					 
+				applyList.add(apply);
+			}
+			jdbcUtil.commit();
+			return applyList;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
 		}
 		
 		return null;

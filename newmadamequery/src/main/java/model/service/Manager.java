@@ -274,4 +274,12 @@ public class Manager {
 	public ArrayList<Subject> getAllSubject() throws SQLException{
 		return subjectDAO.getAllSubject();
 	}
+	
+	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
+		ArrayList<User> applyList = memberDAO.getApplyList();
+		if(applyList == null) {throw new SQLException("나의 신청 현황 조회 실패");}
+		
+		return applyList;
+	}
+	
 }

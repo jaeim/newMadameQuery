@@ -13,7 +13,7 @@ public class RequestMapping {
     	//메인화면
     	mappings.put("/", new ForwardController("/user/mainPage.jsp"));
     	
-    	//사용자
+    	//사용자 -> 스터디 신청 현황 추가해야함
     	mappings.put("/user/register/form", new ForwardController("/user/user_write.jsp"));
 //    	mappings.put("/user/register", new RegisterUserController());
     	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
@@ -27,11 +27,12 @@ public class RequestMapping {
 //    	mappings.put("/studyGroup/myStudy", new ViewUserStudyGroupController());
     	
     	//스터디관리(팀장)
-//    	mappings.put("/studyGroup/manageStudy", new StManagerStudyController());
-    	mappings.put("/myGroup/manageFroup/delete", new DeleteStudyController());
-    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyController());
-    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyController());
-//    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
+//    	mappings.put("/studyGroup/manageStudyList", new ListManagerStudyController());
+//    	mappings.put("/studyGroup/manageStudy/", new ViewManagerStudyController());
+    	mappings.put("/myGroup/manageStudy", new DeleteStudyController());
+    	mappings.put("/myGroup/manageStudy/updateForm", new UpdateStudyController());
+    	mappings.put("/myGroup/manageStudy/update", new UpdateStudyController());
+    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
     	
     	//스터디관리(멤버)
     	mappings.put("/studyGroup/myStudy", new ListMyStudyController());
@@ -43,7 +44,7 @@ public class RequestMapping {
 //    	mappings.put("/studyGroup/apply", new ApplyController());
 //    	mappings.put("/studyGroup/search", new SearchController());
 //    	mappings.put("/studyGroup/createForm", new CreateController());
-//    	mappings.put("/studyGroup/create", new CreateStudyController());
+//    	mappings.put("/studyGroup/create", new ForwardStudyController("/study/addStudygroup.jsp));
     	
     	//게시글
 //    	mappings.put("/post/list", new ListPostController();

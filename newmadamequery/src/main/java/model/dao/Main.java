@@ -177,7 +177,26 @@ public class Main {
 		if(groupList != null) {
 			for(StudyGroup s : groupList) {
 				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
+			}
 		}
+		
+		
+		ArrayList<User> applyList = null;
+		try {
+			applyList = manager.getApplyList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
 		}
+		
+		if(applyList != null) {
+			for(User u : applyList) {
+				System.out.println("신청 목록 확인: " + u.getStudyName() + ", " + u.getApplyDate() + ", " 
+						+ u.getApprovedDate() + ", " + u.isApproved());
+			}
+		}
+		
+		
 	}
 }

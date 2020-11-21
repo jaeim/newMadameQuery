@@ -18,6 +18,12 @@ public class User {
 	private String department;
 	private String grade;
 	private int gender;
+	
+	//나의 신청현황 목록 보기위한 변수
+	private String StudyName;
+	private java.util.Date applyDate;
+	private java.util.Date approvedDate;
+	private boolean isApproved;
 
 	public User() { 
 		dob = null;
@@ -53,6 +59,16 @@ public class User {
 		this.grade = grade;
 		this.gender = gender;
 	}
+	
+	
+
+//	public User(String studyName, Date apply_date, Date approved_date, boolean isApproved) {
+//		super();
+//		StudyName = studyName;
+//		this.apply_date = apply_date;
+//		this.approved_date = approved_date;
+//		this.isApproved = isApproved;
+//	}
 
 //	public void update(User updateUser) {
 //        this.password = updateUser.password;
@@ -153,6 +169,38 @@ public class User {
 		this.grade = grade;
 	}
 
+	public String getStudyName() {
+		return StudyName;
+	}
+
+	public void setStudyName(String studyName) {
+		StudyName = studyName;
+	}
+
+	public java.util.Date getApplyDate() {
+		return applyDate;
+	}
+
+	public void setApplyDate(java.util.Date applyDate) {
+		this.applyDate = applyDate;
+	}
+
+	public java.util.Date getApprovedDate() {
+		return approvedDate;
+	}
+
+	public void setApprovedDate(java.util.Date approvedDate) {
+		this.approvedDate = approvedDate;
+	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
@@ -166,6 +214,8 @@ public class User {
         	return true;
         return false;
     }
+	
+	
 
 	@Override
 	public String toString() {
