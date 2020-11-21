@@ -28,12 +28,14 @@ public class MemberDAO {
 	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
 		int result = 0;
-		String query = "INSERT INTO MEMBER VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO MEMBER (member_id, email, password, name, dob, phone, "
+				+ "date_of_join, university, dep, grade, gender)"
+				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?)";
 		
 		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
-		java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
+		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
 		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob,
-				user.getPhone(), date_of_join, user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
+				user.getPhone(), user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {

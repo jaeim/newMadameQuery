@@ -31,17 +31,19 @@ public class User {
 		
 	}		// 기본 생성자
 
-	public User(int userId, String password, String name, String email, String phone, String university,
-			String department, String grade) {
+	public User(int userId, String password, String name, Date dob, String email, String phone, String university,
+			String department, String grade, int gender) {
 		super();
 		this.member_id = userId;
 		this.password = password;
 		this.name = name;
+		this.dob = dob;
 		this.email = email;
 		this.phone = phone;
 		this.university = university;
 		this.department = department;
 		this.grade = grade;
+		this.gender = gender;
 	}
 
 	public User(int member_id, String email, String password, String name, Date dob, String phone, Date date_of_join,
