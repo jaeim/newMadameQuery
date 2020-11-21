@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import ="java.util.*" %>
+<%@page import = "model. *" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
+<% 	//@SuppressWarnings("unchecked");
+	List<StudyGroup> groupList = (List<StudyGroup>)request.getAttribute("groupList");
+ %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,37 +123,35 @@ ul, li {
 		
 	</ul>
 </nav>
-	<!-- 자신이 팀장인 스터디 그룹 리스트 출력 -->
+	
 <br>
-<div >
 
-	<table id="groupList">
+<table>
+
+	<tr>
+		<th>스터디그룹 명 </th>
+		<th>인원</th>
+		<th>기간</th>
+	</tr>
+	
+	<c:forEach var="sg" items="${groupList} ">
 		<tr>
-			<th>과목 명</th>
-			<th>인원</th>
-			<th>기간</th>
+			<td>
+			<a href="<c:url value='/studyGroup/manageStudy'>
+						   <c:param name='groupId' value='${sg.groupId}'/>
+						 </c:url>">
+				  ${sg.groupName}</a>
+			</td>
+			<td>
+				${sg.numberOfUsers} 
+			</td>
+			<td>
+				${sg.term}
+			</td>
 		</tr>
-		<tr>
-			<td>ㄱ</td> <!-- 각 항목 선택 시 해당 스터디그룹 관리로 이동(manage_view.jsp) -->
-			<td>ㄴ</td>
-			<td>ㄷ</td>
-		</tr>
-		<tr>
-			<td>ㄹ</td>
-			<td>ㅁ</td>
-			<td>ㅂ</td>
-		</tr>
-		<tr>
-			<td>ㅅ</td>
-			<td>ㅇ</td>
-			<td>ㅈ</td>
-		</tr>
-		<tr>
-			<td>ㅊ</td>
-			<td>ㅋ</td>
-			<td>ㅌ</td>
-		</tr>
-	</table>
-</div>
+	</c:forEach>
+	
+</table>
+
 </body>
 </html>
