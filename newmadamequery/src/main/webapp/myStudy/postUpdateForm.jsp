@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>게시판에서 하나의 글 선택 시 - 글의 제목/내용/댓글 보여줌. 오른쪽에 member와 groupinfo는 그대로.</title>
+<title>게시글 수정 페이지</title>
+
 <style>
 	body {
   margin: 0;
@@ -85,46 +86,16 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-#contents{
-	margin-top: 50px;
+td{
+	border-right: 1px solid black;
+	width: 100px;
 }
-
-
- 	#board{
- 		background-color: #C0EDFF;
- 		width: 50%;
- 		height: auto;
- 		float: left;
- 		color: black;
- 		
- 	}
- 	
- 	#boardContents2 {
- 		border: 1px solid black;
- 	}
- 	#members{
- 		background-color: green;
- 		width: 300px;
- 		height: auto;
- 		float: right;
- 	}
- 	#groupinfo {
- 		background-color: pink;
- 		width: 300px;
- 		height: auto;
- 		float: right;
- 		
- 	}
- 	#boardTitle, #memberTitle{
- 		text-decoration: underline;
- 		text-align: center;
- 	}
- 	#memberTable, #infoTable{
- 		padding: auto;
- 		text-align:center;
- 		
- 	}
- 	<!-- height의 경우는 게시글의 목록 갯수에 따라 달라지도록, auto로 설정함.-->
+#onePost {
+	border: 1px solid black;
+	width: 700px;
+	height: auto;
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -150,55 +121,31 @@ ul, li {
 	</ul>
 </nav>
 
-<div id="contents">
-	
-	<div id="board">
-		<h3 id="boardTitle">"제목"</h3>
-		<p>
-			<h3 id="boardContents1">게시글 내용</h3>
-			<h6 id="boardContents2"><pre>내용,,,,,
-			
-			</pre><br></h6>
-		</p>
-	</div>
-	
-	<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
-			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			<tr>
-				<td>이현아</td>
-				<td>컴퓨터학과</td>    
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-</div>	
+<br><br>
+
+<!-- input type으로 바꾸기 > ${} 형식으로 바꾸기.  -->
+<div id="onePost">
+<h3></h3>
+	<table id="pTable">
+		<tr>
+			<td>제목</td>
+			<td><input type="text" value="제목 수정 "/></td>
+			<td>작성자</td>
+			<td>작성자이름</td>
+			<td>날짜</td>
+			<td>2020-11-23</td>
+		</tr>
+		<tr>
+			<td >내용</td>
+			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">게시글 내용 수정</textarea></td>
+			<!--  <td></td>
+			<td></td>
+			<td></td>
+			<td></td> -->
+		</tr>
+		
+	</table>
+	<input type="button" value="수정 완료" />
+</div>
 </body>
 </html>

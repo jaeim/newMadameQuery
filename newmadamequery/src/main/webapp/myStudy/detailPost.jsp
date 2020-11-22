@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>게시판에서 하나의 글 선택 시 - 글의 제목/내용/댓글 보여줌. 오른쪽에 member와 groupinfo는 그대로.</title>
+<title>게시글 상세보기</title>
 <style>
 	body {
   margin: 0;
@@ -85,50 +85,26 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-#contents{
-	margin-top: 50px;
+
+td{
+	border-right: 1px solid black;
+	width: 100px;
 }
 
-
- 	#board{
- 		background-color: #C0EDFF;
- 		width: 50%;
- 		height: auto;
- 		float: left;
- 		color: black;
- 		
- 	}
- 	
- 	#boardContents2 {
- 		border: 1px solid black;
- 	}
- 	#members{
- 		background-color: green;
- 		width: 300px;
- 		height: auto;
- 		float: right;
- 	}
- 	#groupinfo {
- 		background-color: pink;
- 		width: 300px;
- 		height: auto;
- 		float: right;
- 		
- 	}
- 	#boardTitle, #memberTitle{
- 		text-decoration: underline;
- 		text-align: center;
- 	}
- 	#memberTable, #infoTable{
- 		padding: auto;
- 		text-align:center;
- 		
- 	}
- 	<!-- height의 경우는 게시글의 목록 갯수에 따라 달라지도록, auto로 설정함.-->
+#comments, #onePost {
+	border: 1px solid black;
+	width: 700px;
+	height: auto;
+	text-align: center;
+}
+#pTable, #cmtTable{
+	margin-left: auto;
+    margin-right: auto;
+}
 </style>
 </head>
 <body>
-<nav>
+	<nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
 		<li><a href="#">MYSTUDY</a></li>
@@ -149,56 +125,57 @@ ul, li {
 		
 	</ul>
 </nav>
+<p></p>
 
-<div id="contents">
-	
-	<div id="board">
-		<h3 id="boardTitle">"제목"</h3>
-		<p>
-			<h3 id="boardContents1">게시글 내용</h3>
-			<h6 id="boardContents2"><pre>내용,,,,,
-			
-			</pre><br></h6>
-		</p>
-	</div>
-	
-	<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
+<div id="onePost">
+<h3></h3>
+	<table id="pTable">
+		<tr>
+			<td>제목</td>
+			<td>게시글 제목 </td>
+			<td>작성자</td>
+			<td>작성자이름</td>
+			<td>날짜</td>
+			<td>2020-11-23</td>
+		</tr>
+		<tr>
+			<td >내용</td>
+			<td colspan="5"> </td>
+			<!--  <td></td>
+			<td></td>
+			<td></td>
+			<td></td> -->
+		</tr>
+		
+	</table>
+	<%
+		//내가 게시한 글일 때만 수정하기 버튼 뜨게 하기
+	%>
+	<input type="button" value="수정하기" />
+</div>
+<br><br>
+<div id="comments">
+	<h3 style="display: inline;">Comments</h3>
+	<div id="newCommt">
+		<h6>사용자 이름</h6>
+		<textarea name="cmtContents" cols="30" rows="1"></textarea>
+		<input type="button" value="댓글쓰기" />
+		<br><br>
+		
+		<!-- 댓글 개수 만큼 댓글 보여주기 -->
+		<table id="cmtTable">
 			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			<tr>
+				<td>이름</td>
 				<td>이현아</td>
-				<td>컴퓨터학과</td>    
-				<td>3</td>
+				<td>날짜</td>
+				<td>2020-11-23</td>
 			</tr>
 			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
+				<td>내용</td>
+				<td colspan="3">좋은 것 같아요~</td>
 			</tr>
 		</table>
 	</div>
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-</div>	
+</div>
 </body>
 </html>
