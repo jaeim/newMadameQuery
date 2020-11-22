@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.group.*;
+import controller.post.DetailPostController;
+import controller.post.ListPostController;
+import controller.user.RegisterUserController;
+import controller.user.UpdateUserController;
 
 public class RequestMapping {
     
@@ -15,23 +19,24 @@ public class RequestMapping {
     	
     	//사용자 -> 스터디 신청 현황 추가해야함
     	mappings.put("/user/register/form", new ForwardController("/user/user_write.jsp"));
-//    	mappings.put("/user/register", new RegisterUserController());
+    	mappings.put("/user/register", new RegisterUserController());
     	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
 //    	mappings.put("/user/login", new LoginController());
 //    	mappings.put("/user/logout", new LogoutController());
 //    	mappings.put("/user/view", new ViewUserController());
 //    	mappings.put("/user/update/form", new UpdateUserController());
-//    	mappings.put("/user/update", new UpdateUserController());
+    	mappings.put("/user/update", new UpdateUserController());
     	
     	//스터디그룹
+    	//이건 없애도될듯 -> /studyGroup/myStudy(스터디그룹(멤버)와 겹침)
 //    	mappings.put("/studyGroup/myStudy", new ViewUserStudyGroupController());
     	
     	//스터디관리(팀장)
 //    	mappings.put("/studyGroup/manageStudyList", new ListManagerStudyController());
 //    	mappings.put("/studyGroup/manageStudy/", new ViewManagerStudyController());
-    	mappings.put("/myGroup/manageStudy", new DeleteStudyController());
-    	mappings.put("/myGroup/manageStudy/updateForm", new UpdateStudyController());
-    	mappings.put("/myGroup/manageStudy/update", new UpdateStudyController());
+    	mappings.put("/studyGroup/manageStudy/delete", new DeleteStudyController());
+    	mappings.put("/studyGroup/manageStudy/updateForm", new UpdateStudyController());
+    	mappings.put("/studyGroup/manageStudy/update", new UpdateStudyController());
     	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
     	
     	//스터디관리(멤버)
@@ -47,13 +52,13 @@ public class RequestMapping {
 //    	mappings.put("/studyGroup/create", new ForwardStudyController("/study/addStudygroup.jsp));
     	
     	//게시글
-//    	mappings.put("/post/list", new ListPostController();
+    	mappings.put("/post/list", new ListPostController());
+    	mappings.put("/post/detail", new DetailPostController());
     	mappings.put("/post/create/form", new ForwardController("/mystudy/addStudyboard.jsp"));
-//    	mappings.put("/post/create", new CreateController();
-//    	mappings.put("/post/update/form", new UpdateController();
-//    	mappings.put("/post/update", new UpdateController();
-//    	mappings.put("/post/delete", new DeleteController();
-//    	mappings.put("/post/detail", new DetailPostController();
+//    	mappings.put("/post/create", new CreateController());
+//    	mappings.put("/post/update/form", new UpdateController());
+//    	mappings.put("/post/update", new UpdateController());
+//    	mappings.put("/post/delete", new DeleteController());
     	
     	
     	//댓글

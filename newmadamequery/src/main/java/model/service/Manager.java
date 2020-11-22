@@ -206,7 +206,7 @@ public class Manager {
 	}
 	
 	// ok
-	public ArrayList<Post> getAllPost(int groupId) throws SQLException, NotFoundException{
+	public ArrayList<Post> getAllPost(int groupId) throws SQLException, NotFoundException {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
