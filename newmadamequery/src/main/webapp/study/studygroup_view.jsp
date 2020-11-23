@@ -86,14 +86,14 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- 	#board{
+ 	#groupInfo{
  		background-color:  #C0EDFF;
  		width: 50%;
  		height: 300px;
  		float: left;
  		color: black;
  	}
- 	#members{
+ 	#memberList{
  		background-color: green;
  		width: 50%;
  		height: 50px;
@@ -134,16 +134,32 @@ ul, li {
 	</ul>
 </nav>
 <br><br>
+
 <div>
 	
-	<div id="board">
-		<h4>스터디명</h4>&nbsp;&nbsp;&nbsp;<h4>인원</h4>&nbsp;&nbsp;&nbsp;<h4>기간</h4>
-		<h3> 시간</h3>
-		<h3>설명</h3>
+	<div id="groupInfo"> <!--  StudyGroup 하나의 객체 반환 -->
+		<table>
+			<c:forEach var="" items="" >
+				<tr>
+					<td>스터디 명 </td><td>${studyGroup.groupName} </td>
+					<td> 
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
-	<div id="members">
+	
+	<div id="memberList"> <!--  멤버의 수, 이름, 학과, 학년 보여주기  -->
+	
 		<!-- 멤버 수 가져와서 그 만큼 table tr 생성해서 보여주기 -->
 		<h5>그룹 멤버 정보 보여주기</h5>
+		<table>
+			<c:forEach var="" items="">
+				<tr>
+					<td></td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 	</div>
 	<div id="addToMember">
 		<%@include file="registerStudy.jsp" %>
