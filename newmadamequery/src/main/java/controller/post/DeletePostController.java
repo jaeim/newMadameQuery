@@ -24,18 +24,19 @@ public class DeletePostController implements Controller {
 				// 현재 로그인한 사용자가 삭제 권한이 있는 사용자이거나 관리자인 경우 -> 삭제 가능
 				manager.removePost(postId);
 				// (해당 스터디 그룹의 게시글 목록으로 fowarding?)
-				
+				return "";
 			}
 			// else (삭제 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
 			request.setAttribute("exception", 
 					new IllegalStateException("자신이 작성한 게시글만 삭제할 수 있습니다."));        		
 			// (해당 게시글의 상세보기로 포워딩?)
+			return "";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
+		return "";
 	}
 
 }
