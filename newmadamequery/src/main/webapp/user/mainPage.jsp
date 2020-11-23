@@ -113,7 +113,11 @@ ul, li {
 <nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/studyGroup/myStudy'>
+			<c:param name='userId' />
+			</c:url> ">MYSTUDY</a></li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="#">스터디 등록</a></li>
@@ -121,7 +125,7 @@ ul, li {
 				<li><a href="#">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="<c:url value='/studyGroup/myStudy'>
+		<li><a href="<c:url value='/studyGroup/manageStudyList'>
 			<c:param name='userId' />
 			</c:url> ">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>

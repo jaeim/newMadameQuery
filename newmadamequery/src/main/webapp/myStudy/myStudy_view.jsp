@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	@SuppressWarnings("unchecked") 
+	List<Post> postList = (List<Post>)request.getAttribute("postList");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +155,7 @@ ul, li {
 	</div>
 	<div id="board">
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
-		
+		<c:forEach var="post" items="${postList} ">
 		
 	</div>
 	<div id="members">
