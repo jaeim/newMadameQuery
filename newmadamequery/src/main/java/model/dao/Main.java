@@ -150,7 +150,6 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-<<<<<<< HEAD
 //manager.createStudyGroup test
 //		try {
 //			//test group
@@ -166,7 +165,7 @@ public class Main {
 //		} catch (Exception e) {
 //			
 //		}
-=======
+
 //		ArrayList<Subject> subList = null;
 //		try {
 //			subList = manager.getAllSubject();
@@ -205,14 +204,7 @@ public class Main {
 		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
-		
-<<<<<<< HEAD
-		
-		
-
-		
+		}		
 //		ArrayList<Subject> subList = null;
 //		try {
 //			subList = manager.getAllSubject();
@@ -352,7 +344,7 @@ public class Main {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
-=======
+
 		if(groupList != null) {
 			for(StudyGroup s : groupList) {
 				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
@@ -375,8 +367,5 @@ public class Main {
 						+ u.getApprovedDate() + ", " + u.isApproved());
 			}
 		}
-		
-		
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 }

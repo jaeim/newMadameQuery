@@ -175,15 +175,14 @@ public class PostDAO {
 	
 	//게시글 삭제
 	public int removePost(int postId) throws SQLException {
-<<<<<<< HEAD
+
 		String query2 = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query2, new Object[] {postId});
-=======
+
 		jdbcUtil.setAutoCommit(false);
 		
 		String query = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
@@ -205,8 +204,7 @@ public class PostDAO {
 		
 		return 0;
 	}
-	
-<<<<<<< HEAD
+
 	public int getPostCount(int ref) throws SQLException {
 		String query = "select count(*) as count from post where group_id=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {ref});
@@ -224,7 +222,8 @@ public class PostDAO {
 			jdbcUtil.close();
 		}
 		return 0;
-=======
+	}
+	
 	public int removeAllPost(int groupId) throws SQLException {
 		int result = 0;
 		String query = "DELETE FROM post WHERE group_id = ?";
@@ -244,7 +243,6 @@ public class PostDAO {
 		}
 		
 		return result;	
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 	
 }
