@@ -60,7 +60,7 @@ public class PostDAO {
 				post.setContent(rs.getNString("content"));
 				post.setCreatedDate(rs.getDate("created_date"));
 				post.setModifiedDate(rs.getDate("modified_date"));
-				post.setRefMember(rs.getInt("member_id"));
+				post.setMember_id(rs.getInt("member_id"));
 				
 				postList.add(post);
 			}
@@ -94,8 +94,8 @@ public class PostDAO {
 				post.setContent(rs.getNString("content"));
 				post.setCreatedDate(rs.getDate("created_date"));
 				post.setModifiedDate(rs.getDate("modified_date"));
-				post.setRefMember(rs.getInt("member_id"));
-				post.setRefGroup(rs.getInt("group_id"));
+				post.setMember_id(rs.getInt("member_id"));
+				post.setGroup_id(rs.getInt("group_id"));
 				
 				return post;
 			}
@@ -114,18 +114,23 @@ public class PostDAO {
 		
 		String query = "INSERT INTO post (post_id, title, content, created_date, member_id, group_id) "
 				+ "VALUES (SEQUENCE_POST.nextval, ?, ?, SYSDATE, ?, ?)";
-		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.getRefMember(), post.getRefGroup()};
-		jdbcUtil.setSqlAndParameters(query, param);
+		String query2 = "SELECT SEQUENCE_POST.CURRVAL AS POST_ID FROM DUAL";
+		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.getMember_id(), post.getGroup_id()};
+		Object[] param2 = new Object[] {};
 		
+		ResultSet rs = null;	
 		try {
+			jdbcUtil.setSqlAndParameters(query, param);
 			int result = jdbcUtil.executeUpdate();
 			
-			if (result != 1) {
-				jdbcUtil.rollback();
-			} else {
-				jdbcUtil.commit();
+			if (result > 0) { // 게시글 등록 성공
+				jdbcUtil.setSqlAndParameters(query2, param2);
+				rs = jdbcUtil.executeQuery();
+				if (rs.next()) {
+					result = rs.getInt("POST_ID");
+				}
 			}
-			
+			//삽입 실패시 0 반환 , 성공시 post_id 반환
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
@@ -170,10 +175,15 @@ public class PostDAO {
 	
 	//게시글 삭제
 	public int removePost(int postId) throws SQLException {
+<<<<<<< HEAD
+		String query2 = "DELETE FROM post WHERE post_id = ?";
+		jdbcUtil.setSqlAndParameters(query2, new Object[] {postId});
+=======
 		jdbcUtil.setAutoCommit(false);
 		
 		String query = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
@@ -196,6 +206,25 @@ public class PostDAO {
 		return 0;
 	}
 	
+<<<<<<< HEAD
+	public int getPostCount(int ref) throws SQLException {
+		String query = "select count(*) as count from post where group_id=?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {ref});
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();	
+			int count = 0;
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			return count;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return 0;
+=======
 	public int removeAllPost(int groupId) throws SQLException {
 		int result = 0;
 		String query = "DELETE FROM post WHERE group_id = ?";
@@ -215,6 +244,7 @@ public class PostDAO {
 		}
 		
 		return result;	
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 	
 }

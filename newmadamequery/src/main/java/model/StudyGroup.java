@@ -13,9 +13,40 @@ public class StudyGroup {
 	String meetingType; // 만남의 방식
 	String genderType; // 성별( 0: 상관없음, 1: 남성, 2: 여성)
 	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
-	int subjectId; //과목id
+	int subjectId; 
 	int leaderId;
 	
+<<<<<<< HEAD
+//	int refSubject;//subjectid와 중복
+//	int refLeader;//leaderid와 중복
+//	
+	Date postedDate; 
+	ArrayList<User> groupUsers;
+	
+	
+
+	
+	public StudyGroup(int numberOfUsers, String groupName, String description, int term, String meetingType,
+			String genderType, String gradeType, int subjectId) {
+		super();
+		this.numberOfUsers = numberOfUsers;
+		this.groupName = groupName;
+		this.description = description;
+		this.term = term;
+		this.meetingType = meetingType;
+		this.genderType = genderType;
+		this.gradeType = gradeType;
+		this.subjectId = subjectId;
+	}
+
+
+
+	public StudyGroup() {
+		
+	}
+	
+=======
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	
 	public int getGroupId() {
 		return groupId;
@@ -146,4 +177,31 @@ public class StudyGroup {
 	public void setLeaderId(int leaderId) {
 		this.leaderId = leaderId;
 	}
+<<<<<<< HEAD
+
+
+
+//	public int getRefSubject() {
+//		return refSubject;
+//	}
+//
+//
+//
+//	public void setRefSubject(int refSubject) {
+//		this.refSubject = refSubject;
+//	}
+//
+//
+//
+//	public int getRefLeader() {
+//		return refLeader;
+//	}
+//
+//
+//
+//	public void setRefLeader(int refLeader) {
+//		this.refLeader = refLeader;
+//	}
+=======
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 }

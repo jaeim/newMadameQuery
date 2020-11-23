@@ -5,6 +5,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.service.Manager;
+<<<<<<< HEAD
+
+// 재임 : Main.java test 완료
+public class DeleteStudyController implements Controller {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String deleteId = request.getAttribute("groupId").toString();
+		
+		try {
+			Manager manager = Manager.getInstance();
+			manager.removeStudyGroup(Integer.parseInt(deleteId));
+			// 성공시 다시 (팀장)스터디 그룹 목록화면으로 redirect
+			return "redirect:/studyGroup/manageStudy";
+			
+		} catch (Exception e) { // 예외 발생시 다시 manage_main.jsp로 forwarding
+			//alert(exception)
+			request.setAttribute("exception", e);
+			return "/manage/manage_main.jsp";
+		}
+		
+	}
+	
+=======
 import model.service.RemoveException;
 //현지
 public class DeleteStudyController implements Controller {
@@ -21,5 +45,6 @@ public class DeleteStudyController implements Controller {
 		request.setAttribute("result", result); // 삭제결과를 저장
 		return "redirect:/manage/manage_main.jsp";
 	}
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 
 }

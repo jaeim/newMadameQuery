@@ -44,7 +44,14 @@ public class StudyGroupDAO {
 			jdbcUtil.setSqlAndParameters(query2, param2);
 			rs = jdbcUtil.executeQuery();
 			if(rs.next()) {
+<<<<<<< HEAD
+				// 방금 생성한 스터디그룹의 group_id를 가져와 studyGroup객체에 저장
+//				s.setCreatedDate(created_date);
+				s.set_id(rs.getInt("group_id"));
+				s.setLeaderId(memberId);
+=======
 				key = rs.getInt("group_id");
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 			}
 			
 			jdbcUtil.commit();
@@ -179,11 +186,11 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	public int applyToGroup(int groupId, int userId) {
+	public int applyToGroup(int groupId, int userId, String comments) {
 		int result = 0;
-		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved) values(?, ?, SYSDATE, ?)";
+		String query = "INSERT INTO applyList (member_id, group_id, apply_date, isApproved, commt) values(?, ?, SYSDATE, ?, ?)";
 		
-		Object [] param = new Object[] {userId, groupId, "0"};
+		Object [] param = new Object[] {userId, groupId, "0", comments};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
@@ -211,7 +218,8 @@ public class StudyGroupDAO {
 		
 		try {
 			rs = jdbcUtil.executeQuery();
-			if(rs == null)
+			System.out.println(rs.getInt("MEMBER_ID"));
+			if(!rs.next())
 				result = 0;
 			result = 1;
 			jdbcUtil.commit();
@@ -262,7 +270,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 			
@@ -307,7 +315,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 				
 			while (rs.next()) {
@@ -348,7 +356,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs == null) {throw new AppException();}
+			if(!rs.next()) {throw new AppException();}
 			ArrayList<User> memberList = new ArrayList<User>();
 				
 			while (rs.next()) {

@@ -113,9 +113,9 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		Comment comment = new Comment();
-		comment.setContent("네!");
-		comment.setPostId(401);
+//		Comment comment = new Comment();
+//		comment.setContent("네!");
+//		comment.setPostId(401);
 		
 //		try {
 //			System.out.println(manager.createComment(comment));
@@ -133,7 +133,40 @@ public class Main {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+
+//		if(groupMember != null) {
+//			for(User u : groupMember) {
+//				System.out.println(u.getMember_id());
+//			}
+//		}
+//	
+//		try {
+//			System.out.println(manager.removeStudyGroup(211));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
+<<<<<<< HEAD
+//manager.createStudyGroup test
+//		try {
+//			//test group
+//			StudyGroup studyGroup = new StudyGroup(4,
+//					"데베프 스터디", "데베프 스터디 입니다.",
+//					6, "blended",
+//					"0", "0",
+//					1);
+//			//test member
+//			int memberId = 1;
+//			manager.createStudyGroup(studyGroup, memberId);
+//			
+//		} catch (Exception e) {
+//			
+//		}
+=======
 //		ArrayList<Subject> subList = null;
 //		try {
 //			subList = manager.getAllSubject();
@@ -173,7 +206,153 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		
+<<<<<<< HEAD
+		
+		
+
+		
+//		ArrayList<Subject> subList = null;
+//		try {
+//			subList = manager.getAllSubject();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(subList != null) {
+//			for(Subject s : subList) {
+//				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+//			}
+//		}
+		
+		//test manager.removeStudyGroup => ok
+//		try {
+//			manager.removeStudyGroup(801);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		
+//		try {
+//			manager.applyToGroup(641, 1, "열심히 하겠습니다!!");
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		test code : getOneComment => ok 
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			Comment comment = commentDAO.getOneComment(601);
+//			
+//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
+//			+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
+//			+ "\t\t" + comment.getMemeber_name());
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		// test code : getCommentList => ok
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			ArrayList<Comment> commentList = commentDAO.getCommentList(401);
+//			System.out.println("comment_id	created_date	modified_date	content \tpost_id\tgroup_id\tmember_id\tmember_name");
+//			for (Comment comment :  commentList) {		
+//				System.out.println(comment.getComment_id() + "		" + comment.getCreatedDate() + "	" + comment.getModifiedDate()
+//				+ "		" + comment.getContent() + "\t\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t\t" + comment.getMember_id()
+//				+ "\t\t" + comment.getMemeber_name());
+//			}		
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// test code : createComment => ok
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			Comment comment2 = new Comment();
+//			comment2.setContent("감사합니다^^");
+//			comment2.setPostId(401);
+//			comment2.setGroupId(611);
+//			comment2.setMember_id(201);
+//			int comment_id = commentDAO.createComment(comment2);
+//			System.out.println("새로 생성된 코멘트 id는 " + comment_id);
+//			System.out.println("------------------------------------------------------------------------------------------------");
+//			ArrayList<Comment> commentList = commentDAO.getCommentList(401);
+//			System.out.println("comm_id\tcreated\t\tmodified\tcontent\t\tpost\tgroup\tmember\tname");
+//			for (Comment comment :  commentList) {		
+//				System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
+//				+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
+//				+ "\t" + comment.getMemeber_name());	
+//			}			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// test code : deleteComment => ok
+//		try {
+//			int commentId = 631;
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			commentDAO.deleteComment(commentId);
+//			
+//			if(!commentDAO.existingComment(commentId)) {
+//				throw new NotFoundException(commentId + "는 존재하지 않는 groupId 입니다.");
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		 
+//		try {
+//			CommentDAO commentDAO = CommentDAO.getInstance();
+//			int comment_id = 651;
+//			Comment c = commentDAO.getOneComment(651);
+//			c.setContent("수정된 댓글입니다.");
+//			c.setComment_id(comment_id);
+//			commentDAO.updateComment(c);
+//			
+//			Comment comment = commentDAO.getOneComment(comment_id);
+//			
+//			System.out.println("comm_id\tcreated\t\tmodified\tcontent\t\tpost\tgroup\tmember\tname");
+//			System.out.println(comment.getComment_id() + "\t" + comment.getCreatedDate() + "\t" + comment.getModifiedDate()
+//			+ "\t" + comment.getContent() + "\t" + comment.getPostId() + "\t" + comment.getGroupId() + "\t" + comment.getMember_id()
+//			+ "\t" + comment.getMemeber_name());	
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// test code : getPostCount() 
+//		try {
+//			int ref = 611;
+//			PostDAO postDAO = PostDAO.getInstance();
+//			int count = postDAO.getPostCount(ref);
+//			System.out.println(count);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		
+//		try {
+//			Post post = new Post();
+//			post.setTitle("공지사항입니다.");
+//			post.setContent("모임장소는 인b301호 입니다.");
+//			post.setRefGroup(611);
+//			post.setRefMember(201);
+//			
+//			PostDAO postDAO = PostDAO.getInstance();
+//			postDAO.addPost(post);
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		// 특정 게시글 삭제 test => ok
+//		try {
+//			manager.removePost(401);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+=======
 		if(groupList != null) {
 			for(StudyGroup s : groupList) {
 				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
@@ -198,5 +377,6 @@ public class Main {
 		}
 		
 		
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 }

@@ -2,6 +2,8 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import controller.group.*;
+import controller.post.*;
 
 import controller.group.*;
 import controller.post.DetailPostController;
@@ -32,12 +34,20 @@ public class RequestMapping {
 //    	mappings.put("/studyGroup/myStudy", new ViewUserStudyGroupController());
     	
     	//스터디관리(팀장)
+<<<<<<< HEAD
+//    	mappings.put("/studyGroup/manageStudy", new StManagerStudyController());
+    	mappings.put("/myGroup/manageFroup/delete", new DeleteStudyController());
+//    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyGroupController());
+//    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyGroupController());
+//    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
+=======
 //    	mappings.put("/studyGroup/manageStudyList", new ListManagerStudyController());
 //    	mappings.put("/studyGroup/manageStudy/", new ViewManagerStudyController());
     	mappings.put("/studyGroup/manageStudy/delete", new DeleteStudyController());
     	mappings.put("/studyGroup/manageStudy/updateForm", new UpdateStudyController());
     	mappings.put("/studyGroup/manageStudy/update", new UpdateStudyController());
     	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
     	
     	//스터디관리(멤버)
     	mappings.put("/studyGroup/myStudy", new ListMyStudyController());
@@ -46,19 +56,32 @@ public class RequestMapping {
     	//스터디정보
     	mappings.put("/studyGroup/list", new ListStudyController());
 //    	mappings.put("/studyGroup/view/", new ViewStudyController());
-//    	mappings.put("/studyGroup/apply", new ApplyController());
+    	mappings.put("/studyGroup/apply", new ApplyStudyController());
 //    	mappings.put("/studyGroup/search", new SearchController());
+<<<<<<< HEAD
+    	mappings.put("/studyGroup/createForm", new ForwardController("/study/addStudygroup.jsp"));
+    	mappings.put("/studyGroup/create", new CreateStudyController());
+=======
 //    	mappings.put("/studyGroup/createForm", new CreateController());
 //    	mappings.put("/studyGroup/create", new ForwardStudyController("/study/addStudygroup.jsp));
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
     	
     	//게시글
     	mappings.put("/post/list", new ListPostController());
     	mappings.put("/post/detail", new DetailPostController());
     	mappings.put("/post/create/form", new ForwardController("/mystudy/addStudyboard.jsp"));
+<<<<<<< HEAD
+    	mappings.put("/post/create", new CreatePostController());
+    	mappings.put("/post/update/form", new UpdatePostFormController());
+    	mappings.put("/post/update", new UpdatePostController());
+    	mappings.put("/post/delete", new DeletePostController());
+//    	mappings.put("/post/detail", new DetailPostController();
+=======
 //    	mappings.put("/post/create", new CreateController());
 //    	mappings.put("/post/update/form", new UpdateController());
 //    	mappings.put("/post/update", new UpdateController());
 //    	mappings.put("/post/delete", new DeleteController());
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
     	
     	
     	//댓글

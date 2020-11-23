@@ -74,11 +74,17 @@ public class Manager {
 		if(studyGroupDAO.existingGroup(group.getGroupId())) {
 			throw new ExistingException(group.getGroupId() + "는 존재하는 groupId 입니다.");
 		}
+		
 		findUser(memberId);
 		
 		r1 = studyGroupDAO.addGroup(group, memberId);
 		if(r1 == 1) {
+<<<<<<< HEAD
+			// groupmember 테이블에 팀장 추가
+			r2 = studyGroupDAO.addMemberInGroupMember(group.get_id(), memberId, "1");
+=======
 			r2 = studyGroupDAO.addMemberInGroupMember(group.getGroupId(), memberId, "1");
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		}
 		
 		if(r1 == 1 && r2 == 1)
@@ -169,13 +175,33 @@ public class Manager {
 	}
 	
 	// ok
-	public int applyToGroup(int groupId, int userId) throws SQLException, NotFoundException {
+	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
-		findUser(userId);
+		User user = findUser(userId);
+		StudyGroup studyGroup = findGroup(groupId);
 		
-		return studyGroupDAO.applyToGroup(groupId, userId);
+		int isExistingUser = studyGroupDAO.findApplication(groupId, userId);
+		
+		if (isExistingUser != 0) {
+			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
+			throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
+		} else if (!studyGroup.getGenderType().equals("0")) {
+			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
+				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
+				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+			}		
+		} else if (!studyGroup.getGradeType().equals("0")) {
+			// studyGroup의 grade 이상인 학년은 가입 가능하도록 설정함
+			if (Integer.valueOf(user.getGrade()) < Integer.valueOf(studyGroup.getGradeType())) {
+				System.out.println("신청 조건에 맞지 않습니다." + "유저 학년: "
+						+ user.getGrade() + " 그룹 학년 : " + studyGroup.getGradeType());
+				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+			}
+		}
+		
+		return studyGroupDAO.applyToGroup(groupId, userId, comments);
 	}
 	
 	// ok
@@ -215,8 +241,13 @@ public class Manager {
 	}
 	
 	// ok
-	public int createPost(Post post) throws SQLException{
-		return postDAO.addPost(post);
+	public int createPost(Post post) throws SQLException, AppException{
+		try {
+			int postId = postDAO.addPost(post);
+			return postId;
+		} catch (Exception e) {
+			throw new AppException("게시글 등록에 실패하였습니다.");
+		}	
 	}
 	
 	public int updatePost(Post post) throws SQLException, NotFoundException{
@@ -231,6 +262,7 @@ public class Manager {
 		if(!postDAO.existingPost(postId)){
 			throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");
 		}
+		commentDAO.deleteCommentByPost(postId);
 		
 		return postDAO.removePost(postId);
 	}
