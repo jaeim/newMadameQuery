@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Application;
 import model.StudyGroup;
 import model.User;
 import model.service.AppException;
@@ -207,6 +208,41 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
+	//모든 지원서 가져오기
+	public ArrayList<Application> getAllApplication(int groupId) throws SQLException{
+		String query = "select * from applyList where group_id=? and isApproved=?";
+		
+		ResultSet rs = null;
+		Object [] param = new Object[] {groupId, 0};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+			ArrayList<Application> applyList = new ArrayList<Application>();
+			
+			while(rs.next()) {
+				Application apply = new Application();
+				apply.setMemberId(rs.getInt("member_id"));
+				apply.setGroupId(rs.getInt("group_id"));
+				apply.setApplyDate(rs.getDate("apply_date"));
+				apply.setIsApproved(rs.getString("isapproved"));
+				apply.setApprovedDate(rs.getDate("approved_date"));
+				apply.setComment(rs.getString("commt"));
+				
+				applyList.add(apply);
+			}
+			jdbcUtil.commit();
+			return applyList;
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return null;
+	}
+	
 	public int findApplication(int groupId, int userId) {
 		int result = 0;
 		String query = "select * from applyList where group_id=? and member_id=?";
@@ -232,8 +268,7 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	// 지원서 리스트
-	
+	// 지원서관리
 	public int manageApplication(int groupId, int userId, boolean approved) {
 		int result = 0;
 		String query;
@@ -356,7 +391,6 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(!rs.next()) {throw new AppException();}
 			ArrayList<User> memberList = new ArrayList<User>();
 				
 			while (rs.next()) {

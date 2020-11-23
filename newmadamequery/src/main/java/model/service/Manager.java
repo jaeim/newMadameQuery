@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Application;
 import model.Comment;
 import model.Post;
 import model.StudyGroup;
@@ -303,11 +304,19 @@ public class Manager {
 		return subjectDAO.getAllSubject();
 	}
 	
+	//나의 신청현황
 	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
 		ArrayList<User> applyList = memberDAO.getApplyList();
 		if(applyList == null) {throw new SQLException("나의 신청 현황 조회 실패");}
 		
 		return applyList;
+	}
+	
+	// 해당 그룹 지원서 반환 (단, isApproved가 0인 지원서에 대해서만 반환함)
+	public ArrayList<Application> getAllApplication(int groupId) throws NotFoundException, SQLException {
+		if(!studyGroupDAO.existingGroup(groupId)) {throw new NotFoundException();}
+		
+		return studyGroupDAO.getAllApplication(groupId);
 	}
 	
 }
