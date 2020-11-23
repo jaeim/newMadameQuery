@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class StudyGroup {
 
-	int _id;
+	int groupId;
 	java.util.Date createdDate; // 생성일
 	int numberOfUsers ; // 스터디 그룹 인원
 	String groupName; //그룹명
@@ -16,6 +16,7 @@ public class StudyGroup {
 	int subjectId; 
 	int leaderId;
 	
+<<<<<<< HEAD
 //	int refSubject;//subjectid와 중복
 //	int refLeader;//leaderid와 중복
 //	
@@ -44,15 +45,17 @@ public class StudyGroup {
 		
 	}
 	
+=======
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	
-	public int get_id() {
-		return _id;
+	public int getGroupId() {
+		return groupId;
 	}
 
 
 
-	public void set_id(int _id) {
-		this._id = _id;
+	public void setGroupId(int _id) {
+		this.groupId = _id;
 	}
 
 
@@ -174,6 +177,7 @@ public class StudyGroup {
 	public void setLeaderId(int leaderId) {
 		this.leaderId = leaderId;
 	}
+<<<<<<< HEAD
 
 
 
@@ -198,4 +202,6 @@ public class StudyGroup {
 //	public void setRefLeader(int refLeader) {
 //		this.refLeader = refLeader;
 //	}
+=======
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 }

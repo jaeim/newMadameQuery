@@ -150,6 +150,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
+<<<<<<< HEAD
 //manager.createStudyGroup test
 //		try {
 //			//test group
@@ -165,7 +166,49 @@ public class Main {
 //		} catch (Exception e) {
 //			
 //		}
+=======
+//		ArrayList<Subject> subList = null;
+//		try {
+//			subList = manager.getAllSubject();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(subList != null) {
+//			for(Subject s : subList) {
+//				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+//			}
+//		}
 		
+//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+//		ArrayList<Integer> myGroupIdList = null;
+//		try {
+//			myGroupIdList = studyGroupDAO.getMyGroupIdList(201);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(myGroupIdList != null) {
+//			for(int s : myGroupIdList) {
+//				System.out.println(s);
+//			}
+//		}
+		
+		ArrayList<StudyGroup> groupList = null;
+		try {
+			groupList = manager.getManageStudyGroupList(201);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
+		
+<<<<<<< HEAD
 		
 		
 
@@ -309,5 +352,31 @@ public class Main {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
+=======
+		if(groupList != null) {
+			for(StudyGroup s : groupList) {
+				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
+			}
+		}
+		
+		
+		ArrayList<User> applyList = null;
+		try {
+			applyList = manager.getApplyList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		if(applyList != null) {
+			for(User u : applyList) {
+				System.out.println("신청 목록 확인: " + u.getStudyName() + ", " + u.getApplyDate() + ", " 
+						+ u.getApprovedDate() + ", " + u.isApproved());
+			}
+		}
+		
+		
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 }

@@ -5,8 +5,6 @@ import model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class PostDAO {
 	private static PostDAO dao = new PostDAO();
@@ -112,6 +110,8 @@ public class PostDAO {
 	
 	//게시글 등록
 	public int addPost(Post post) throws SQLException {
+		jdbcUtil.setAutoCommit(false);
+		
 		String query = "INSERT INTO post (post_id, title, content, created_date, member_id, group_id) "
 				+ "VALUES (SEQUENCE_POST.nextval, ?, ?, SYSDATE, ?, ?)";
 		String query2 = "SELECT SEQUENCE_POST.CURRVAL AS POST_ID FROM DUAL";
@@ -145,6 +145,8 @@ public class PostDAO {
 	
 	//게시글 수정
 	public int updatePost(Post post) throws SQLException {
+		jdbcUtil.setAutoCommit(false);
+		
 		String query = "UPDATE post SET title = ?, content = ?, modified_date = SYSDATE "
 				+ "WHERE post_id = ?";
 		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.get_id()};
@@ -173,8 +175,15 @@ public class PostDAO {
 	
 	//게시글 삭제
 	public int removePost(int postId) throws SQLException {
+<<<<<<< HEAD
 		String query2 = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query2, new Object[] {postId});
+=======
+		jdbcUtil.setAutoCommit(false);
+		
+		String query = "DELETE FROM post WHERE post_id = ?";
+		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		
 		try {
 			int result = jdbcUtil.executeUpdate();
@@ -197,6 +206,7 @@ public class PostDAO {
 		return 0;
 	}
 	
+<<<<<<< HEAD
 	public int getPostCount(int ref) throws SQLException {
 		String query = "select count(*) as count from post where group_id=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {ref});
@@ -214,6 +224,27 @@ public class PostDAO {
 			jdbcUtil.close();
 		}
 		return 0;
+=======
+	public int removeAllPost(int groupId) throws SQLException {
+		int result = 0;
+		String query = "DELETE FROM post WHERE group_id = ?";
+		Object [] param = new Object[] {groupId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+//			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.close();
+		}
+		
+		return result;	
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
 	
 }

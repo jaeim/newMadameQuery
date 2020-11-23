@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import = "model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,15 +89,25 @@ ul, li {
  text-decoration: underline;
 }
  		
- 	#main{
+ 	#main1{
  		text-align: center;
  		font-family: Arial;
  		border: 1px solid black;
  		margin-top: 50px;
+ 		margin-bottom: 20px;
  		width: 700px;
  		height: 30px;
- 		 }
- 	#list{
+ 		}
+ 	#main2 {
+ 		text-align: center;
+ 		font-family: Arial;
+ 		border: 1px solid black;
+ 		margin-top: 10px;
+ 		margin-bottom: 20px;
+ 		width: 700px;
+ 		height: 30px;
+ 	}
+ 	#userlist{
  		text-align: center;
  		font-family: Arial;
  		border: 1px solid black;
@@ -104,11 +116,27 @@ ul, li {
  		height: 30px;
  		
  	}
+ 	td {
+ 		width: 170px;
+ 		bgcolor: "ffffff";
+ 		padding-left: 10;
+ 	}
  	tr{
- 	
- 	margin: 50px;}
- 	
+ 		border: 1px solid black;
+ 	}
+ 	mark{
+ 		background-color: #C0EDFF;
+ 	}
  </style>
+ 
+ <script>
+function memberDelete() {
+	return confirm("정말 삭제하시겠습니까?");		
+}
+function memberAccept() {
+	return confirm("멤버로 수락하시겠습니까?");
+}
+</script>
 </head>
 <body>
 	<nav>
@@ -132,36 +160,76 @@ ul, li {
 		
 	</ul>
 </nav>
+<%
+//확인을 위한 용도 
 
-<table id="main">
+	StudyGroup sg = new StudyGroup();
+	sg.setGroupId(501);
+%>
+<table id="main1">
 		<tr>
-			<td>과목명</td>
-			<td><!-- 클릭한 스터디그룹의 과목명 받아오기 -->"데이터베이스 프로그래밍"</td>
+			<td>스터디그룹 명</td>
+			<td> ${sg.groupName} </td>
 			<td>인원</td>
-			<td><!-- 클릭한 스터디그룹의 인원 받아오기 -->4</td>
+			<td> ${sg.numberOfUsers } </td>
 			<td>기간</td>
-			<td><!-- 클릭한 스터디그룹의 활동기간 받아오기 -->6개월 </td>
+			<td> ${sg.term }</td>
 		</tr>
 </table>
-<br>
 
-<table id= "list">
+<table id="main2">
+	<tr>
+		<td>subjectId(과목)</td>
+		<td>${sg.subjectId} </td>
+		<td>스터디 방식</td>
+		<td>${sg.meetingType} </td>
+	</tr>
+	<tr>
+		<td>개설 일자</td>
+		<td>${sg.createdDate }</td>
+		<td>성별</td>
+		<td>${sg.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
+	</tr>
+	<tr>
+		<td>팀장</td>
+		<td>${sg.leaderId }</td>
+		<td>학년</td>
+		<td>${sg.gradeType }</td>
+	</tr>
+	<tr>
+		<td>소개</td>
+		<td>${sg.description }</td>
+	</tr>
+</table>
+<table id= "userlist">
 	<tr>
 		<td>이름</td>
 		<td>팀원 관리</td>
-		<td>팀장/멤버</td>
 	</tr>
 	
 	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
-	<tr>
-		<td>구성원 이름</td>
-		<td><input type="button" value="삭제" /><input type="button" value="수락" /></td>
-		<td></td>
-	</tr>
+	
+	<c:forEach var="member" items="{sg.memberList}">
+		<tr>
+			<td>이름 출력</td>
+			<td>
+				<a href="<c:url value='/myGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
+				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
+					<c:param name='groupId' value='${sg.groupId }'/>
+					</c:url>" onClick= "return memberAccept(); ">수락</a>
+			</td>
+		</tr>
+	</c:forEach>
+	
 </table>
 <div id="update">
-<form >
-	<input type="submit" value="수정하기" onClick="location.href='manage_update.jsp'"> <!-- 버튼 위치 수정하기 -->
-</form></div>
+	
+	<mark>
+		<a href="<c:url value='/myGroup/mangeGroup/update/form' >
+		<c:param name='groupId' value='${sg.groupId}' />
+		</c:url> ">정보 수정</a>
+	</mark>
+	
+</div>
 </body>
 </html>
