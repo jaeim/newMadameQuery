@@ -156,7 +156,8 @@ ul, li {
 		<tr>
 			<td><a href= "<c:url value='/studyGroup/view' >
 				<c:param name="groupId" value='${groupList.groupId }' />
-				</c:url>">${groupList.groupName}</a></td>
+				</c:url>
+">${groupList.groupName}</a></td>
 			<td>${groupList.description}</td>
 			<td>${groupList.term }</td>
 		</tr>

@@ -22,11 +22,12 @@
 </head>
 <body>
 
-<% String sName = request.getParameter("subjectName");
+<% String sName = request.getParameter("groupName");
 	String num = request.getParameter("numOfMembers");
 	String term = request.getParameter("term");
 	System.out.println(sName + "\t" + num +"\t" + term);
 %>
+
 	<table id="searchResult">
 		<tr>
 			<th>°ú¸ñ ¸í</th>
