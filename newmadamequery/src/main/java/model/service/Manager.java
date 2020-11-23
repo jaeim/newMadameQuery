@@ -79,12 +79,8 @@ public class Manager {
 		
 		r1 = studyGroupDAO.addGroup(group, memberId);
 		if(r1 == 1) {
-<<<<<<< HEAD
 			// groupmember 테이블에 팀장 추가
-			r2 = studyGroupDAO.addMemberInGroupMember(group.get_id(), memberId, "1");
-=======
 			r2 = studyGroupDAO.addMemberInGroupMember(group.getGroupId(), memberId, "1");
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 		}
 		
 		if(r1 == 1 && r2 == 1)

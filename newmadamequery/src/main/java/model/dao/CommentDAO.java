@@ -3,7 +3,7 @@ package model.dao;
 import model.Comment;
 import model.User;
 import model.service.AppException;
-import oracle.net.aso.n;
+//import oracle.net.aso.n;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
