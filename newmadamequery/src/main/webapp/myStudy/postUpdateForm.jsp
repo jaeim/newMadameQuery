@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>게시글 수정 페이지</title>
-
+<script>
+	function postModify(){
+		
+		if(form.pTitle.value = ""){
+			alert("제목을 입력하십시오.");
+			form.name.focus();
+			return false;
+		}
+		if(form.pContents.value=""){
+			alert("내용을 입력하십시오.");
+			form.contents.focus();
+			return false;
+		}
+		form.submit();
+	}
+</script>
 <style>
 	body {
   margin: 0;
@@ -122,14 +140,18 @@ td{
 </nav>
 
 <br><br>
+<% //테스트를 위한 설정- failed
 
-<!-- input type으로 바꾸기 > ${} 형식으로 바꾸기.  -->
+	Post firstPost= new Post();
+	firstPost.set_id(411);
+	System.out.println(firstPost.getContent());
+%>
 <div id="onePost">
 <h3></h3>
 	<table id="pTable">
 		<tr>
 			<td>제목</td>
-			<td><input type="text" value="제목 수정 "/></td>
+			<td><input type="text" name="pTitle" value="${post.title}"/></td>
 			<td>작성자</td>
 			<td>작성자이름</td>
 			<td>날짜</td>
@@ -137,7 +159,7 @@ td{
 		</tr>
 		<tr>
 			<td >내용</td>
-			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">게시글 내용 수정</textarea></td>
+			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
 			<!--  <td></td>
 			<td></td>
 			<td></td>
@@ -145,7 +167,7 @@ td{
 		</tr>
 		
 	</table>
-	<input type="button" value="수정 완료" />
+	<input type="button" value="수정 완료" onClick="postModify()" />
 </div>
 </body>
 </html>

@@ -1,10 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title></title>
+<title>글쓰기 페이지 </title>
+<script>
+	function boardCreate(){
+		if(form.title.value =""){
+			alert("제목을 입력하십시오.");
+			form.title.focus();
+			return false;
+		}
+		if(form.contents.value=""){
+			alert("내용을 입력하십시오.");
+			form.contents.focus();
+			return false;
+		}
+		form.submit();
+	}
+</script>
 <!-- myStudy_view.jsp에서 글쓰기 버튼을 눌렀을 때 이동 (게시판에 글 쓰기) -->
 <style>
 	
@@ -140,11 +158,11 @@ ul, li {
 <br><br>
 
 <div id="addform">
-	
+<form name="form" method="POST" action="<c:url value='/post/create '/>">
 	<input type="text" name="title" id="title" placeholder="제목" />
 	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="내용을 입력하세요"></textarea>
-	<input type="button" name="submitB" id="submit" value="등록">
-	
+	<input type="button" name="submitB" id="submit" value="게시글 작성 " onClick="postCreate()" />
+</form>
 </div>
 
 <div id="members">

@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>게시글 상세보기</title>
+<script>
+	
+</script>
 <style>
 	body {
   margin: 0;
@@ -150,8 +156,11 @@ td{
 	</table>
 	<%
 		//내가 게시한 글일 때만 수정하기 버튼 뜨게 하기
+		
 	%>
-	<input type="button" value="수정하기" />
+	<input type="button" value="수정하기" onClick="<c:url value='/post/update/form' >
+		<c:param name="postId" value='${post.postId}' />
+		</c:url>"/>
 </div>
 <br><br>
 <div id="comments">
