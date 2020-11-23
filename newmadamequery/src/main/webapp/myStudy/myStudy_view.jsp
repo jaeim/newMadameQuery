@@ -156,7 +156,9 @@ ul, li {
 	<div id="board">
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		<c:forEach var="post" items="${postList} ">
-		
+			<tr>
+			</tr>
+		</c:forEach>
 	</div>
 	<div id="members">
 		<h5 id="memberTitle">Group Members</h5>
