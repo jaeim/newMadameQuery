@@ -227,12 +227,13 @@ public class Main {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		// test code : createComment => ok
+		
+//		 test code : createComment => ok
 //		try {
 //			CommentDAO commentDAO = CommentDAO.getInstance();
 //			Comment comment2 = new Comment();
 //			comment2.setContent("감사합니다^^");
-//			comment2.setPostId(401);
+//			comment2.setPostId(611);
 //			comment2.setGroupId(611);
 //			comment2.setMember_id(201);
 //			int comment_id = commentDAO.createComment(comment2);
@@ -279,6 +280,7 @@ public class Main {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+		
 		// test code : getPostCount() 
 //		try {
 //			int ref = 611;
@@ -289,12 +291,13 @@ public class Main {
 //			// TODO: handle exception
 //		}
 		
+		 // test code => create post
 //		try {
 //			Post post = new Post();
 //			post.setTitle("공지사항입니다.");
 //			post.setContent("모임장소는 인b301호 입니다.");
-//			post.setRefGroup(611);
-//			post.setRefMember(201);
+//			post.setGroup_id(611);
+//			post.setMember_id(201);
 //			
 //			PostDAO postDAO = PostDAO.getInstance();
 //			postDAO.addPost(post);
@@ -303,11 +306,26 @@ public class Main {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
-		// 특정 게시글 삭제 test => ok
+		
+		
+//		 delete post 특정 게시글 삭제 test => ok
 //		try {
-//			manager.removePost(401);
+//			manager.removePost(611);
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
+		
+		//test code : update post => ok
+		try {
+			Post post = new Post();
+			post.setTitle("수정 공지사항이요.");
+			post.setContent("수정하였습니다.");
+			post.set_id(601);
+			//그룹:611 / 멤버:201	
+			PostDAO postDAO = PostDAO.getInstance();
+			postDAO.updatePost(post);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }

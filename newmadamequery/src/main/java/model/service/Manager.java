@@ -234,7 +234,6 @@ public class Manager {
 		if(!postDAO.existingPost(post.get_id())){
 			throw new NotFoundException(post.get_id() + "는 존재하지 않는 게시물입니다.");
 		}
-		
 		return postDAO.updatePost(post);
 	}
 	
