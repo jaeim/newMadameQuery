@@ -161,17 +161,30 @@ td{
 	<input type="button" value="수정하기" onClick="<c:url value='/post/update/form' >
 		<c:param name="postId" value='${post.postId}' />
 		</c:url>"/>
+	<input type="button" value="삭제하기" onClick="<c:url value='/post/delete' >
+		<c:param name='' value=''/>
+		</c:url>
+	"/>
 </div>
 <br><br>
 <div id="comments">
 	<h3 style="display: inline;">Comments</h3>
 	<div id="newCommt">
-		<h6>사용자 이름</h6>
+		<h6>${member.userId }</h6>
 		<textarea name="cmtContents" cols="30" rows="1"></textarea>
-		<input type="button" value="댓글쓰기" />
+		<input type="button" value="댓글쓰기" onClick= "<c:url value='/comment/register' >"  />
+			
+				<c:param name='username' value = '${user.name }' />
+				<c:param name='date' value= '${comment.createdDate }' />
+				<c:param name= 'commentText' value='${comment.content }' />
+			</c:url>
 		<br><br>
 		
 		<!-- 댓글 개수 만큼 댓글 보여주기 -->
+		<c:forEach var="commentList" items="" > <!-- comment  -->
+			
+		</c:forEach>
+		
 		<table id="cmtTable">
 			<tr>
 				<td>이름</td>

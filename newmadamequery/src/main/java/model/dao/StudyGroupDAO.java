@@ -44,14 +44,14 @@ public class StudyGroupDAO {
 			jdbcUtil.setSqlAndParameters(query2, param2);
 			rs = jdbcUtil.executeQuery();
 			if(rs.next()) {
-<<<<<<< HEAD
+
 				// 방금 생성한 스터디그룹의 group_id를 가져와 studyGroup객체에 저장
 //				s.setCreatedDate(created_date);
 				s.set_id(rs.getInt("group_id"));
 				s.setLeaderId(memberId);
-=======
+
 				key = rs.getInt("group_id");
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
+
 			}
 			
 			jdbcUtil.commit();

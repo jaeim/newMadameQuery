@@ -5,6 +5,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>게시판에서 하나의 글 선택 시 - 글의 제목/내용/댓글 보여줌. 오른쪽에 member와 groupinfo는 그대로.</title>
+<!-- 확인 후, 삭제 예정 -->
+
 <style>
 	body {
   margin: 0;
