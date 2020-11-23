@@ -31,7 +31,6 @@ public class UpdatePostFormController implements Controller{
 			// else (수정 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
 			request.setAttribute("exception", 
 					new IllegalStateException("자신이 작성한 게시글만 수정할 수 있습니다."));        		
-			// 현아님이 detailpost.jsp (특정 게시글 상세보기) 구현한 후 forwarding ?? redirection??
 			return "/mystudy/detailPost.jsp";
 		} catch (Exception e) {
 			request.setAttribute("exception", e);

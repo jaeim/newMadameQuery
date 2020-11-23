@@ -23,8 +23,11 @@ public class DeletePostController implements Controller {
 					UserSessionUtils.isLoginUser("admin", session)) {
 				// 현재 로그인한 사용자가 삭제 권한이 있는 사용자이거나 관리자인 경우 -> 삭제 가능
 				manager.removePost(postId);
+
 				// @@(해당 스터디 그룹의 게시글 목록으로 redirect?)
-				
+
+				return "";
+
 			}
 			// else (삭제 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지와 post??를 전달
 			request.setAttribute("exception", 
@@ -32,11 +35,10 @@ public class DeletePostController implements Controller {
 			return "/mystudy/detailPost.jsp";
 			
 		} catch (Exception e) {
-			// 오류 메세지를 포워딩?
+			// 오류 메세지를 포워딩
 			request.setAttribute("exception", e);
 			return "/mystudy/detailPost.jsp";
 		}
-		
 		
 	}
 

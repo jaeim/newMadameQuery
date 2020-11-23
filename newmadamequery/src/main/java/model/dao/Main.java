@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.Application;
 import model.Comment;
 import model.Post;
 import model.StudyGroup;
@@ -195,16 +196,16 @@ public class Main {
 //			}
 //		}
 		
-		ArrayList<StudyGroup> groupList = null;
-		try {
-			groupList = manager.getManageStudyGroupList(201);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+//		ArrayList<StudyGroup> groupList = null;
+//		try {
+//			groupList = manager.getManageStudyGroupList(201);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}		
 //		ArrayList<Subject> subList = null;
 //		try {
 //			subList = manager.getAllSubject();
@@ -350,6 +351,7 @@ public class Main {
 //			// TODO: handle exception
 //		}
 
+
 		
 		//test code : update post => ok
 //		try {
@@ -386,9 +388,65 @@ public class Main {
 //						+ u.getApprovedDate() + ", " + u.isApproved());
 //			}
 
+
+//		if(groupList != null) {
+//			for(StudyGroup s : groupList) {
+//				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
+//			}
+
+//		}
+
+//		ArrayList<User> applyList = null;
+//		try {
+//			applyList = manager.getApplyList();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		if(applyList != null) {
+//			for(User u : applyList) {
+//				System.out.println("신청 목록 확인: " + u.getStudyName() + ", " + u.getApplyDate() + ", " 
+//						+ u.getApprovedDate() + ", " + u.isApproved());
+//			}
 //		}
 		
-		
-		
+//		ArrayList<Application> list = null;
+//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+//		System.out.println("dao 테스트");
+//		try {
+//			list = studyGroupDAO.getAllApplication(501);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		if(list != null) {
+//			for(Application a : list) {
+//				System.out.println(a.getMemberId());
+//			}
+//		}
+//		else {
+//			System.out.println("list is null");
+//		}
+//		
+//		ArrayList<User> memberList = null;
+//		try {
+//			memberList = manager.getAllMemberInGroup(611);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(memberList != null) {
+//			for(User a : memberList) {
+//				System.out.println(a.getMember_id());
+//			}
+//		}
+
 	}
 }
