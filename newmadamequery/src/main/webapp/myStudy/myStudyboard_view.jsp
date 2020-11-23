@@ -5,6 +5,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>게시판에서 하나의 글 선택 시 - 글의 제목/내용/댓글 보여줌. 오른쪽에 member와 groupinfo는 그대로.</title>
+<!-- 확인 후, 삭제 예정 -->
+
 <style>
 	body {
   margin: 0;
@@ -88,28 +90,32 @@ ul, li {
 #contents{
 	margin-top: 50px;
 }
+
+
  	#board{
  		background-color: #C0EDFF;
- 		width: 60%;
+ 		width: 50%;
  		height: auto;
  		float: left;
  		color: black;
- 		
+
  	}
- 	
+ 	#addP {
+ 		float: right;
+ 	}	
  	#boardContents2 {
  		border: 1px solid black;
  	}
  	#members{
  		background-color: green;
  		width: 300px;
- 		height: 200px;
+ 		height: auto;
  		float: right;
  	}
  	#groupinfo {
  		background-color: pink;
  		width: 300px;
- 		height: 200px;
+ 		height: auto;
  		float: right;
  		
  	}
@@ -122,10 +128,7 @@ ul, li {
  		text-align:center;
  		
  	}
- 	#myComment {
- 		width: 200px;
-		height: 50px;
- 	}
+ 	<!-- height의 경우는 게시글의 목록 갯수에 따라 달라지도록, auto로 설정함.-->
 </style>
 </head>
 <body>
@@ -161,16 +164,11 @@ ul, li {
 			
 			</pre><br></h6>
 		</p>
-		<p>
-			<h3 id="commentsTitle">댓글</h3>
-			<div>
-				<input type="text" value="댓글을 입력하세요." id="myComment" />
-				<input type="button" value="추가" /> <!-- onClick 으로 댓글 추가 createComment()에서 text에 입력된 내용이 댓글 내용으로 -->
-			</div>
-			<br>
-			<%@include file="comments.jsp" %>
-		</p>
+		<input type="button" value="게시글 작성" id="addP"/>
+		<a href="<c:url value='/myStudy/addStudyboard.jsp' />">게시글 작성</a>
+			
 	</div>
+	
 	<div id="members">
 		<h5 id="memberTitle">Group Members</h5>
 		<table id="memberTable">
@@ -181,7 +179,7 @@ ul, li {
 			</tr>
 			<tr>
 				<td>이현아</td>
-				<td>컴퓨터학과</td>
+				<td>컴퓨터학과</td>    
 				<td>3</td>
 			</tr>
 			<tr>

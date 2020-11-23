@@ -158,7 +158,7 @@ ul, li {
 
 <div>
 	<p id="title">LOGIN</p>
-	<form name="form" method= "POST" action="<c:url value='user/login/' /> ">
+	<form name="form" method= "POST" action="<c:url value='/user/login/' /> ">
 		<table id= "logintable">
 		<tr>
 			<td></td>
@@ -187,7 +187,7 @@ ul, li {
 		<tr>
 			<td></td>
 			<td>
-				<input type="button" value="JOIN(회원가입)" onClick="location.href='user_write.jsp'">
+				<input type="button" value="JOIN(회원가입)" onClick="userCreate('<c:url value='/user/register/form'/>) ')">
 			</td>
 			<td></td>
 		</tr>

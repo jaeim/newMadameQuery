@@ -165,11 +165,46 @@ public class Main {
 //		} catch (Exception e) {
 //			
 //		}
-		
-		
-		
 
+//		ArrayList<Subject> subList = null;
+//		try {
+//			subList = manager.getAllSubject();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(subList != null) {
+//			for(Subject s : subList) {
+//				System.out.println(s.getSubjectId() + ", " + s.getName() + ", " + s.getTerm());
+//			}
+//		}
 		
+//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+//		ArrayList<Integer> myGroupIdList = null;
+//		try {
+//			myGroupIdList = studyGroupDAO.getMyGroupIdList(201);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(myGroupIdList != null) {
+//			for(int s : myGroupIdList) {
+//				System.out.println(s);
+//			}
+//		}
+		
+		ArrayList<StudyGroup> groupList = null;
+		try {
+			groupList = manager.getManageStudyGroupList(201);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 //		ArrayList<Subject> subList = null;
 //		try {
 //			subList = manager.getAllSubject();
@@ -314,18 +349,43 @@ public class Main {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
+
 		
 		//test code : update post => ok
+//		try {
+//			Post post = new Post();
+//			post.setTitle("수정 공지사항이요.");
+//			post.setContent("수정하였습니다.");
+//			post.set_id(601);
+//			//그룹:611 / 멤버:201	
+//			PostDAO postDAO = PostDAO.getInstance();
+//			postDAO.updatePost(post);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//
+//
+//		if(groupList != null) {
+//			for(StudyGroup s : groupList) {
+//				System.out.println(s.getGroupId() + ", " + s.getLeaderId() + ", " + s.getGroupName());
+//			}
+//		}
+//		
+		
+		ArrayList<User> applyList = null;
 		try {
-			Post post = new Post();
-			post.setTitle("수정 공지사항이요.");
-			post.setContent("수정하였습니다.");
-			post.set_id(601);
-			//그룹:611 / 멤버:201	
-			PostDAO postDAO = PostDAO.getInstance();
-			postDAO.updatePost(post);
-		} catch (Exception e) {
-			// TODO: handle exception
+			applyList = manager.getApplyList();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		if(applyList != null) {
+			for(User u : applyList) {
+				System.out.println("신청 목록 확인: " + u.getStudyName() + ", " + u.getApplyDate() + ", " 
+						+ u.getApprovedDate() + ", " + u.isApproved());
+			}
+
 		}
 	}
 }

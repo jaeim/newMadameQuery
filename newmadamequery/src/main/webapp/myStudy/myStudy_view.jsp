@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	//@SuppressWarnings("unchecked") 
+	//List<Post> postList = (List<Post>)request.getAttribute("postList");
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,6 +107,13 @@ ul, li {
  		width: 50%;
  		height: 300px;
  		float: left;
+ 		text-align: center;
+ 		 	}
+ 	#boardT {
+ 		width: 400px;
+ 		height: auto;
+ 		text-align: center;
+ 		margin: auto;
  	}
  	#members{
  		background-color: #AAEBAA;
@@ -116,6 +132,9 @@ ul, li {
  		width: 50%;
  		height: 50px;
  		text-align: right;
+ 	}
+ 	tr, td{
+ 		border-bottom: 1px solid black;
  	}
 </style>
 </head>
@@ -143,12 +162,30 @@ ul, li {
 </nav>
 <div>
 	<div id="name">
-		<h2>this is studygroup board</h2>
+		<h2>스터디 그룹 명</h2>
 	</div>
 	<div id="board">
+	<table id="boardT">
+		<tr>
+			<td width="200">제목</td>
+			<td width="100">글쓴이</td>
+			<td width= "80">일시</td>
+			
+		</tr>
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		
-		
+		<c:forEach var="post" items="${postList} ">
+			<tr>
+				<td><a href="<c:url value='/post/detail'>
+					<c:param name='postId' value="${post.postId }" />
+					</c:url>">${post.title}</a>
+				</td>
+				<td>${post.userName}</td>
+				<td>${post.createdDate }</td>
+				
+			</tr>
+		</c:forEach>
+		</table>
 	</div>
 	<div id="members">
 		<h5 id="memberTitle">Group Members</h5>
@@ -170,6 +207,7 @@ ul, li {
 			</tr>
 		</table>
 	</div>
+	
 	<div id="groupinfo">
 	<h5 id="memberTitle">Group Info</h5>
 		<table id="infoTable">
@@ -189,7 +227,7 @@ ul, li {
 	</div>
 	<br><br>
 	<div id= "addboard">
-		<input type="button" value="글쓰기" onClick="location.href='addStudyboard.jsp'"/>
+		<button><a href="<c:url value='/post/create/form' />">글쓰기</a></button>
 	</div>
 </div>
 </body>

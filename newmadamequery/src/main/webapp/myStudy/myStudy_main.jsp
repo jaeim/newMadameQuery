@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	List<StudyGroup> groupList = (List<StudyGroup>) request.getAttribute("groupList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,17 +122,29 @@ ul, li {
 		
 	</ul>
 </nav>
-<div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 -->
+<div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 , 어떤 정보 가져올건지 정하고 table 다시만들기-->
 	<table id="groupList">
 		<tr>
-			<th>과목 명</th>
-			<th>게시판 이동</th>
+			<th>스터디그룹 명</th>
+			<th>과목 명 </th>
+			<th>팀장 이름</th>
+			<th>인원 수</th>
 		</tr>
 		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
-		<tr>
-			<td>알고리즘</td>
-			<td>&nbsp;</td>
-		</tr>
+		<c:forEach var="group" items="${groupList}">
+			<tr>
+				<td>
+					<a href="<c:url value='/post/list'>
+						   <c:param name='commId' value='${group.username}'/>
+						   <c:param name='commId' value='${group.date}'/>
+						   <c:param name='commId' value='${group.postname}'/>
+						 </c:url>">${group.name} </a>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</c:forEach>
 	</table>
 </div>
 </body>

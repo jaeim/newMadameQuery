@@ -3,7 +3,7 @@ package model.dao;
 import model.Comment;
 import model.User;
 import model.service.AppException;
-import oracle.net.aso.n;
+//import oracle.net.aso.n;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -224,6 +224,29 @@ public class CommentDAO {
 			jdbcUtil.close();	// resource 반환
 		}		
 		return 0;
+	}
+	
+	public int removeAllComment(int groupId) {
+		int result = 0;
+		
+		//COMMT 테이블에 group_id 컬럼이 존재하지 않음
+		String query = "DELETE FROM commt WHERE group_id=?";
+		Object [] param = new Object[] {groupId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+//			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.close();
+		}
+		
+		return result;
 	}
 	
 	public static void main(String[] args) {

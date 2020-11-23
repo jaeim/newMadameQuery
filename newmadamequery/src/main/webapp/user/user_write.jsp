@@ -4,6 +4,69 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+
+<script>
+	function userCreate(){
+		if(form.userId.value == ""){
+			
+			alert("사용자의 id를 입력하십시오.");
+			form.userId.focus();
+			return false;
+		}
+		if(form.password.value == ""){
+			
+			alert("비밀번호를 입력하십시오.");
+			form.password.focus();
+			return false;
+		}
+		if(form.password.value != form.password2.value){
+			alert("비밀번호가 일치하지 않습니다.");
+			form.password2.focus();
+			return false;
+		}
+		if (form.name.value == "") {
+			alert("이름을 입력하십시오.");
+			form.name.focus();
+			return false;
+		}
+		if(form.email.value=""){
+			
+			alert("이메일을 입력하십시오.");
+			form.email.focus();
+			return false;
+		}
+		if(form.university.value ==""){
+			
+			alert("대학명을 입력하십시오.");
+			form.univerisity.focus();
+			return false;
+		}
+		if(form.department.value == ""){
+			alert("소속 학과명을 선택하십시오.");
+			form.department.focus();
+			return false;
+		}
+		if(form.gender.value == ""){
+			alert("성별을 선택하십시오.");
+			form.gender.focus();
+			return false;
+		}
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
+		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+		if(phoneExp.test(form.phone.value)==false) {
+			alert("전화번호 형식이 올바르지 않습니다.");
+			form.phone.focus();
+			return false;
+		}
+		form.submit();
+		
+	}
+</script>
 <title>회원가입</title>
 <style>
 	body {
@@ -108,7 +171,12 @@ ul, li {
  		margin-left: auto;
  		margin-right: auto;
  	}
-
+#joinDiv {
+	border: 1px solid black;
+	text-align: center;
+	width: 450px;
+	height: 500px;
+}
 </style>
 </head>
 <body>
@@ -126,53 +194,52 @@ ul, li {
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
+				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
+				<li><a href="http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
 			</ul>
 		</li>
 		
 	</ul>
 </nav>
+<br><br>
 
-<div>
-	<p id="title">JOIN</p>
-	<table id="joinTable">
+<div id="joinDiv">
+	
+	<h1>Join With Us!</h1>
+	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
+	<table>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td>사용자 id: </td>
+			<td><input type="text" name="userId"></td>
 		</tr>
 		<tr>
-			<td>ID</td>
-			<td><input type="text" name="userId" value="아이디를 입력하세요."></td>
-			<td><input type="button" name="doublecheck" value="중복확인"></td>
+			<td>비밀번호: </td>
+			<td><input type="password" name="password"></td>
 		</tr>
 		<tr>
-			<td>PASSWORD</td>
-			<td><input type="text" name="userPass" value="비밀번호를 입력하세요."></td>
-			<td>&nbsp;</td>
+			<td>비밀번호 확인: </td>
+			<td><input type="password" name="password2"></td>
 		</tr>
 		<tr>
-			<td>CHECK PASS</td>
-			<td><input type="text" name="checkPass" value="비밀번호를 다시 입력해주세요."></td>
-			<td>&nbsp;</td>
+			<td>이름: </td>
+			<td><input type="text" name="name"></td>
 		</tr>
 		<tr>
-			<td>EMAIL</td>
+			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td><input type="text" name="phone"></td>
+		</tr>
+		<tr>
+			<td>이메일 주소: </td>
+			<td><input type="text" name="email"></td>
+		</tr>
+		<tr>
+			<td>소속 학교 명: </td>
+			<td><input type="text" name="university"></td>
+		</tr>
+		<tr>
+			<td>소속 학과명: </td>
 			<td>
-				<input type="email" name="userEmail" value="이메일을입력하세요.">
-				<select name="emaillist">
-					<option value="naver">naver.com</option>
-					<option value="daum">hanmail.net</option>
-					<option value="gmail">gmail.com</option>
-				</select>
-			</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>MAJOR</td>
-			<td>
-				<select name="majors">
+				<select name="department">
 					<option>국어국문학과</option>
 					<option>국사학과</option>
 					<option>문예창작과</option>
@@ -207,58 +274,35 @@ ul, li {
 					<option>약학과</option>
 				</select>
 			</td>
-			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>LECTURE</td>
-			<td colspan="2" rowspan="2">
-			<table id="lectureTable">
-				<tr>
-					<td>1</td>
-					<td>과목 이름</td>
-					<td><input type="button" value="delete"></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>과목이름</td>
-					<td><input type="button" value="delete"></td>
-				</tr>
-			</table>
-			
-			</td>
+			<td>학년</td>
+			<td><select name="grade">
+				<option>1학년</option>
+				<option>2학년</option>
+				<option>3학년</option>
+				<option>4학년</option>
+				<option>5학년 이상</option>
+			</select></td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
+			<td>성별</td>
+			<td><select name="gender">
+				<option>남자</option>
+				<option>여자</option>
+			</select></td>
 		</tr>
-		<tr>
-			<td>TAGS</td>
-			<td colspan="2" rowspan="3">
-				<div id="tags">
-				<input type="checkbox" name="tags" value="1" />철학
-				<input type="checkbox" name="tags" value="2" />IT기술
-				<input type="checkbox" name="tags" value="3" />언어
-				<input type="checkbox" name="tags" value="4" />미술
-				<input type="checkbox" name="tags" value="5" />영화
-				<input type="checkbox" name="tags" value="6" />역사
-				<input type="checkbox" name="tags" value="7" />인문
-				<input type="checkbox" name="tags" value="8" />심리
-				<input type="checkbox" name="tags" value="9" />여성학
-				<input type="checkbox" name="tags" value="10" />문학
-				<input type="checkbox" name="tags" value="11" />팀플
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		
 	</table>
-
+	<br>
+	<table style="width: 100%">
+		  <tr>
+			<td align="left">
+			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
+			</td>
+		  </tr>
+	    </table>
+	 <br>
+	</form>
 </div>
 </body>
 </html>

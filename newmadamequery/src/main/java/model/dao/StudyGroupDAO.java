@@ -26,7 +26,8 @@ public class StudyGroupDAO {
 	
 	//스터디 그룹 생성
 	public int addGroup(StudyGroup s, int memberId) throws SQLException{
-		int result = 0;	
+		int result = 0;
+		int key = 0;
 		String query1 = "INSERT INTO STUDYGROUP "
 					+ "VALUES (sequence_studygroup.nextval, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		String query2 = "SELECT SEQUENCE_STUDYGROUP.CURRVAL as group_id FROM DUAL";
@@ -43,10 +44,14 @@ public class StudyGroupDAO {
 			jdbcUtil.setSqlAndParameters(query2, param2);
 			rs = jdbcUtil.executeQuery();
 			if(rs.next()) {
+
 				// 방금 생성한 스터디그룹의 group_id를 가져와 studyGroup객체에 저장
 //				s.setCreatedDate(created_date);
-				s.set_id(rs.getInt("group_id"));
+				s.setGroupId(rs.getInt("group_id"));
 				s.setLeaderId(memberId);
+
+				key = rs.getInt("group_id");
+
 			}
 			
 			jdbcUtil.commit();
@@ -58,7 +63,7 @@ public class StudyGroupDAO {
 		} finally {		
 			jdbcUtil.close();	
 		}		
-		return result;
+		return key;
 	}
 	
 	public int addMemberInGroupMember(int group_id, int member_id, String isLeader) {
@@ -83,49 +88,6 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	public int removeAllPost(int groupId) throws SQLException {
-		int result = 0;
-		String query = "DELETE FROM post WHERE group_id = ?";
-		Object [] param = new Object[] {groupId};
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		
-		try {
-			result = jdbcUtil.executeUpdate();
-//			if(result != 1) {throw new AppException();}
-			jdbcUtil.commit();
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.close();
-		}
-		
-		return result;	
-	}
-	
-	public int removeAllComment(int groupId) {
-		int result = 0;
-		
-		//COMMT 테이블에 group_id 컬럼이 존재하지 않음
-		String query = "DELETE FROM commt WHERE group_id=?";
-		Object [] param = new Object[] {groupId};
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		
-		try {
-			result = jdbcUtil.executeUpdate();
-//			if(result != 1) {throw new AppException();}
-			jdbcUtil.commit();
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.close();
-		}
-		
-		return result;
-	}
 	
 	public int removeAllApply(int groupId) {
 		int result = 0;
@@ -208,7 +170,7 @@ public class StudyGroupDAO {
 			
 		Object [] param = new Object[] {group.getNumberOfUsers(),
 				group.getGroupName(), group.getDescription(), group.getTerm(), group.getMeetingType()
-				, group.getGenderType(), group.getGradeType(), group.getSubjectId(), group.getLeaderId(), group.get_id()};
+				, group.getGenderType(), group.getGradeType(), group.getSubjectId(), group.getLeaderId(), group.getGroupId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
@@ -300,7 +262,7 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	//스터디그룹 목록 조회
+	//모든 스터디그룹 목록 조회
 	public ArrayList<StudyGroup> getGroupList() throws SQLException {
 		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
 					+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup ORDER BY name";
@@ -315,7 +277,7 @@ public class StudyGroupDAO {
 			while (rs.next()) {
 				StudyGroup group = new StudyGroup();
 					
-				group.set_id(rs.getInt("group_id"));
+				group.setGroupId(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
 				group.setNumberOfUsers(rs.getInt("number_of_member"));
 				group.setGroupName(rs.getString("name"));
@@ -340,6 +302,7 @@ public class StudyGroupDAO {
 			
 		return null;
 	}
+	
 			
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
@@ -358,7 +321,7 @@ public class StudyGroupDAO {
 			while (rs.next()) {
 				StudyGroup group = new StudyGroup();
 					
-				group.set_id(rs.getInt("group_id"));
+				group.setGroupId(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
 				group.setNumberOfUsers(rs.getInt("number_of_member"));
 				group.setGroupName(rs.getString("name"));
@@ -459,7 +422,7 @@ public class StudyGroupDAO {
 			if(rs.next()){
 				group = new StudyGroup();
 				
-				group.set_id(rs.getInt("group_id"));
+				group.setGroupId(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
 				group.setNumberOfUsers(rs.getInt("number_of_member"));
 				group.setGroupName(rs.getString("name"));

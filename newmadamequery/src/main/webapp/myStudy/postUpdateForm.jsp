@@ -1,18 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@page import ="java.util.*" %>
-<%@page import = "model. *" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
-<% 	//@SuppressWarnings("unchecked");
-	List<StudyGroup> groupList = (List<StudyGroup>)request.getAttribute("groupList");
- %>
-
+<%@page import="java.util.*" %>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>스터디 그룹 메인 (자신이 팀장인 스터디 그룹 리스트 출력)</title>
+<title>게시글 수정 페이지</title>
+<script>
+	function postModify(){
+		
+		if(form.pTitle.value = ""){
+			alert("제목을 입력하십시오.");
+			form.name.focus();
+			return false;
+		}
+		if(form.pContents.value=""){
+			alert("내용을 입력하십시오.");
+			form.contents.focus();
+			return false;
+		}
+		form.submit();
+	}
+</script>
 <style>
 	body {
   margin: 0;
@@ -93,14 +104,18 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-
-#groupList{
-	text-align: center;
+td{
+	border-right: 1px solid black;
+	width: 100px;
+}
+#onePost {
 	border: 1px solid black;
-	width : 700px;
-	height: 400px;
+	width: 700px;
+	height: auto;
+	text-align: center;
 }
 </style>
+</head>
 <body>
 <nav>
 	<ul id="main-menu">
@@ -123,35 +138,36 @@ ul, li {
 		
 	</ul>
 </nav>
-	
-<br>
 
-<table>
+<br><br>
+<% //테스트를 위한 설정- failed
 
-	<tr>
-		<th>스터디그룹 명 </th>
-		<th>인원</th>
-		<th>기간</th>
-	</tr>
-	
-	<c:forEach var="sg" items="${groupList} ">
+	Post firstPost= new Post();
+	firstPost.set_id(411);
+	System.out.println(firstPost.getContent());
+%>
+<div id="onePost">
+<h3></h3>
+	<table id="pTable">
 		<tr>
-			<td>
-			<a href="<c:url value='/studyGroup/manageStudy'>
-						   <c:param name='groupId' value='${sg.groupId}'/>
-						 </c:url>">
-				  ${sg.groupName}</a>
-			</td>
-			<td>
-				${sg.numberOfUsers} 
-			</td>
-			<td>
-				${sg.term}
-			</td>
+			<td>제목</td>
+			<td><input type="text" name="pTitle" value="${post.title}"/></td>
+			<td>작성자</td>
+			<td>작성자이름</td>
+			<td>날짜</td>
+			<td>2020-11-23</td>
 		</tr>
-	</c:forEach>
-	
-</table>
-
+		<tr>
+			<td >내용</td>
+			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
+			<!--  <td></td>
+			<td></td>
+			<td></td>
+			<td></td> -->
+		</tr>
+		
+	</table>
+	<input type="button" value="수정 완료" onClick="postModify()" />
+</div>
 </body>
 </html>

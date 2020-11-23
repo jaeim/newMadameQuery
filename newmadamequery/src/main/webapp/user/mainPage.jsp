@@ -6,7 +6,17 @@
 <meta charset="EUC-KR">
 <title>mainPage</title>
 <!-- 메인 화면  (가장 처음 뜨는 화면 & 로그인 후 뜨는 화면.) -->
+<script language="Javascript" >
+	
+function toLogin(targetUri){
+	form.action = targetUri;
+	form.submit();
+}
 
+function userCreate(targetUri) {
+	form.action = targetUri;
+	form.submit();
+</script>
 <style>
 	body {
   margin: 0;
@@ -88,32 +98,26 @@ ul, li {
  text-decoration: underline;
 }
 
- 	#mainDiv , td{
- 		border: 1px solid black;
- 		text-align: center;
- 		
- 	}
- 	#mainDiv {
- 		margin: 100px;
- 		clear:both;
- 		width: 80%;
- 		height: 500px;
- 		border-spacing: 50px;
- 	}
- 	td {
- 		margin : 50px;
- 		width: 200px;
- 		height: 100px;
- 		
- 	}
- 	
+ #first{
+ 	border: 1px solid black;
+ 	text-align: center;
+ }
+
+
+ 
 </style>
 </head>
 <body>
+
+
 <nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/studyGroup/myStudy'>
+			<c:param name='userId' />
+			</c:url> ">MYSTUDY</a></li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="#">스터디 등록</a></li>
@@ -121,50 +125,29 @@ ul, li {
 				<li><a href="#">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
+		<li><a href="<c:url value='/studyGroup/manageStudyList'>
+			<c:param name='userId' />
+			</c:url> ">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
+				<li> <a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
+				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
 			</ul>
 		</li>
 		
 	</ul>
 </nav>
 
-<table id="mainDiv">
-	<tr>
-		<td class="a">
-			<div id= "login">
-				<table>
-                <tr>
-                    <td bgcolor="white">아이디</td>
-                    <td><input type="text" name="id" maxlength="50"></td>
-                </tr>
-                <tr>
-                    <td bgcolor="white">비밀번호</td>
-                    <td><input type="password" name="password" maxlength="50"></td>
-                </tr>
-            </table>
-            <br>
-            <input type="submit" value="로그인"/>
-            <input type="button" value="회원가입"  />
 
-		</div>
-		</td>
-		<td>
-			<div id="notice">
-				<h5>notice 출력</h5>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<div id="boards">
-				<h5>studygroup board 게시판 출력</h5>
-			</div>
-		</td>
-	</tr>
-</table>
+
+	<!-- 사용자 아이디: <input type="text" style="width:150" name="userId"> <br>
+	비밀번호 : <input type="password" style="width: 150" name="password" ><br> -->
+<br><br>
+<div id="fisrt">
+
+	<input type="button" value="로그인" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
+	<input type="button" value="회원가입" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br>
+</div>
+
 </body>
 </html>

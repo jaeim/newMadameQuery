@@ -9,7 +9,8 @@ import controller.Controller;
 import model.StudyGroup;
 import model.service.Manager;
 
-public class ListStudyGroupController implements Controller {
+//현지
+public class ListStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
