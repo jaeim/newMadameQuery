@@ -27,7 +27,7 @@ public class DetailPostController implements Controller {
 			request.setAttribute("numOfComm", numOfComm);	
 			request.setAttribute("commList", commList);
 			
-			return "/mystudy/detalPost.jsp";	
+			return "/mystudy/detailPost.jsp";	
 		} catch (NotFoundException e) {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);

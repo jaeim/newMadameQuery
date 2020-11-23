@@ -282,8 +282,13 @@ public class Manager {
 		return commentDAO.getCommentList(postId);
 	}
 	
-	public int createComment(Comment comment) throws SQLException{
-		return commentDAO.createComment(comment);
+	public int createComment(Comment comment) throws SQLException, AppException{
+		try {
+			int comment_id = commentDAO.createComment(comment);
+			return comment_id;
+		} catch (Exception e) {
+			throw new AppException("댓글 등록에 실패하였습니다.");
+		}
 	}
 	
 	public int removeComment(int commentId) throws SQLException, NotFoundException{

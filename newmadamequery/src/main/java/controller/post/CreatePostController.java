@@ -23,13 +23,13 @@ public class CreatePostController implements Controller {
 		post.setGroup_id(groupId);
 		try {
 			Manager manager = Manager.getInstance();
-			manager.createPost(post);
-			// (게시글 목록?)
-			return "redirect:/mystudy/mystudy_view";
+			int post_id = manager.createPost(post);
+			// @@(게시글 상세보기화면으로 post 리다이렉션(쿼리값은??)
+			
 		} catch (Exception e) {
 			request.setAttribute("exception", e);
 			request.setAttribute("post", post);
-			// (게시글 등록폼)
+			// 게시글 등록폼
 			return "/mystudy/addStudyboard.jsp";
 		}
 		
