@@ -336,7 +336,8 @@ public class Manager {
 	//나의 신청현황
 	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
 		ArrayList<User> applyList = memberDAO.getApplyList();
-		if(applyList == null) {throw new SQLException("나의 신청 현황 조회 실패");}
+		
+		if(applyList == null) {throw new NotFoundException("나의 신청 현황 조회 실패");}
 		
 		return applyList;
 	}
