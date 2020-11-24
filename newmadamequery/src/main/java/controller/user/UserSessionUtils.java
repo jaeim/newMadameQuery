@@ -7,6 +7,7 @@ public class UserSessionUtils {
     /* 현재 로그인한 사용자의 ID를 구함 */
     public static String getLoginUserId(HttpSession session) {
         String userId = (String)session.getAttribute(USER_SESSION_KEY);
+        // email이 아니라 PK를 반환
         return userId;
     }
 

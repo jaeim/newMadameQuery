@@ -13,19 +13,22 @@ import model.service.Manager;
 public class UpdatePostFormController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int postId = (int)(request.getAttribute("postId"));
+//		int postId = (int)(request.getAttribute("postId"));
+		int postId = Integer.parseInt(request.getParameter("postId"));
 		try {
 			Manager manager = Manager.getInstance();
 			Post post = manager.findPost(postId);
 			// 해당 게시글을 수정할 권한이 있는지 확인
 			// writer는 해당 post 작성자의 memberId임
-			int writer = (int) request.getAttribute("memberId");
+//			int writer = (int) request.getAttribute("memberId");
+			int writer = Integer.parseInt(request.getParameter("memberId"));
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(Integer.toString(writer), session) ||
 					UserSessionUtils.isLoginUser("admin", session)) {
 				// 현재 로그인한 사용자가 수정 할 권한이 있는 사용자이거나 관리자인 경우 -> 수정 가능
 				request.setAttribute("post", post);
-				// @@전달 받은 post 객체를 attribute에 저장 하고 form.jsp로 forwarding
+				// 전달 받은 post 객체를 attribute에 저장 하고 form.jsp로 forwarding
+				return "/myStudy/postUpdateForm.jsp";
 
 			}
 			// else (수정 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
