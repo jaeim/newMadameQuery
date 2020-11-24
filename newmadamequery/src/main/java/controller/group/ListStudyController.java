@@ -17,17 +17,17 @@ public class ListStudyController implements Controller {
 		// TODO Auto-generated method stub
 		Manager manager = Manager.getInstance();
 		
-		String email = (String) request.getSession().getAttribute("email");
-		String password = (String) request.getSession().getAttribute("password");
-		
-		if(!manager.isLogin(email, password)) {
-			return "redirect:/user/login.jsp ";
-		}
-		
-		
+//		String email = (String) request.getSession().getAttribute("email");
+//		String password = (String) request.getSession().getAttribute("password");
+//		
+//		if(!manager.isLogin(email, password)) {
+//			return "redirect:/user/login.jsp ";
+//		}
+//		
+//		
 		ArrayList<StudyGroup> groupList = manager.getAllStudyGroup();
 		
-		request.setAttribute("studyGroupList", groupList);
+		request.setAttribute("groupList", groupList);
 		
 		return "/study/studygroup_list.jsp";
 	}

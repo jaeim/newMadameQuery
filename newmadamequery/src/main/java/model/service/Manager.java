@@ -131,8 +131,10 @@ public class Manager {
 		if(!studyGroupDAO.existingGroup(group.getGroupId())) {
 			throw new NotFoundException(group.getGroupId() + "는 존재하지 않는 groupId 입니다.");
 		}
+		int result = studyGroupDAO.updateGroup(group);
+		if(result == 0) {throw new SQLException();}
 		
-		return studyGroupDAO.updateGroup(group);
+		return result;
 	}
 	
 	// ok
@@ -160,6 +162,14 @@ public class Manager {
 		}
 		
 		return studyGroupDAO.getAllMemberInGroup(groupId);
+	}
+	
+	public int removeMemberInGroup(int groupId, int memberId) throws SQLException, NotFoundException {
+		if(!studyGroupDAO.existingGroup(groupId)) {
+			throw new NotFoundException();
+		}
+		
+		return studyGroupDAO.removeMemberInGroup(groupId, memberId);
 	}
 	
 	// ok

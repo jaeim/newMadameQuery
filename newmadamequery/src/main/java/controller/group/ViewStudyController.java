@@ -26,6 +26,6 @@ public class ViewStudyController implements Controller{
 		}
 		
 		request.setAttribute("StudyGroup", group);
-		return "/study/studygroup_list/studygroup_view.jsp";
+		return "/study/studygroup_view.jsp";
 	}
 }

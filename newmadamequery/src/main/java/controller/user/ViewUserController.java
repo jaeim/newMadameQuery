@@ -9,8 +9,10 @@ import model.User;
 import model.service.Manager;
 import model.service.NotFoundException;
 
+// 현지
 public class ViewUserController implements Controller{
 
+	@SuppressWarnings("static-access")
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 
+// 현지
 public class LogoutController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

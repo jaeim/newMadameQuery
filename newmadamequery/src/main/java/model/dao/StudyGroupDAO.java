@@ -45,14 +45,11 @@ public class StudyGroupDAO {
 			jdbcUtil.setSqlAndParameters(query2, param2);
 			rs = jdbcUtil.executeQuery();
 			if(rs.next()) {
-<<<<<<< HEAD
 				// 방금 생성한 스터디그룹의 group_id를 가져와 studyGroup객체에 저장
 //				s.setCreatedDate(created_date);
 				s.setGroupId(rs.getInt("group_id"));
 				s.setLeaderId(memberId);
-=======
 				key = rs.getInt("group_id");
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 			}
 			
 			jdbcUtil.commit();
@@ -134,7 +131,7 @@ public class StudyGroupDAO {
 	}
 	
 	// group에 속해 있는 member 삭제
-	public int removeMemberInGroup(int groupId, int memberId) {
+	public int removeMemberInGroup(int groupId, int memberId) throws SQLException{
 		int result = 0;
 		String query;
 		Object [] param;
