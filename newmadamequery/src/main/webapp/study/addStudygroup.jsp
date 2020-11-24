@@ -191,6 +191,10 @@ ul, li {
 	
 	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">
+		<c:if test= "${creationFailed }">
+			<font color="red"><c:out value="${exception. getMessage()}" /></font>
+		</c:if>
+		
 		<table id= "addGroup">
 			<tr>
 				<td>과목</td>
@@ -217,7 +221,9 @@ ul, li {
 			</tr>
 			<tr>
 				<td>스터디 그룹 명</td>
-				<td><input type="text" name="groupName" value="ex)알고리즘" onFocus="this.value='' " /></td>
+				<td><input type="text" name="groupName" onFocus="this.value='' " 
+					<c:if test="${creationFailed }"> value="${studyGroup.groupName }"</c:if>
+					/></td>
 				<td>기간</td>
 				<td><select name="term">
 					<option>1개월</option>
@@ -230,7 +236,9 @@ ul, li {
 			</tr>
 			<tr>
 				<td>소개</td>
-				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">간단한 소개글을 입력하세요</textarea> </td>
+				<td colspan="3"><input type="text" name="description" width="200" onFocus="this.value='' "
+					<c:if test="${creationFaild }">value="${studyGroup.description }" </c:if>
+				/> </td>
 			</tr>
 			<tr>
 				<td>스터디 방식</td>
