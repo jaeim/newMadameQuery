@@ -13,6 +13,7 @@ import model.User;
 import model.service.ExistingException;
 import model.service.Manager;
 import model.service.NotFoundException;
+import model.service.PasswordMismatchException;
 
 public class Main {
 
@@ -447,6 +448,25 @@ public class Main {
 //				System.out.println(a.getMember_id());
 //			}
 //		}
-
+		
+		boolean result = false;
+		try {
+			result = manager.login("20170953@dongduk.ac.kr", "12345");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("email 주소가 없음");
+			e.printStackTrace();
+		} catch (PasswordMismatchException e) {
+			// TODO Auto-generated catch block
+			System.out.println("비밀번호 오류");
+			e.printStackTrace();
+		}
+		
+		if(result) {
+			System.out.println("로그인 성공");
+		}else {System.out.println("로그인 실패");}
 	}
 }

@@ -26,6 +26,7 @@ public class RegisterCommentController implements Controller {
 		try {
 			Manager manager = Manager.getInstance();
 			int comment_id = manager.createComment(comment);
+			return "";
 			// @@게시글 상세 보기 화면 요청 uri?(postId는 어떻게 전달?) or detailPost.jsp에 댓글리스트 속성 저장? 
 			
 		} catch (Exception e) {

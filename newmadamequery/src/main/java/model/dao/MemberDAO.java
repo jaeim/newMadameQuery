@@ -24,7 +24,7 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return md;
 	}
-	
+		
 	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
 		int result = 0;
@@ -88,6 +88,40 @@ public class MemberDAO {
 			if(rs.next()) {
 				user = new User(
 						userId,
+						rs.getString("email"),
+						rs.getString("password"),
+						rs.getString("name"),
+						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getString("phone"),
+						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getString("univ"),
+						rs.getString("dep"),
+						rs.getString("grade"),
+						rs.getInt("gender"));			
+			}
+			jdbcUtil.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			jdbcUtil.rollback();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return user;
+	}
+	
+	public User findUser(String email) throws SQLException{
+		String query = "SELECT *"
+				+ "FROM MEMBER "
+				+ "WHERE email=?";
+		
+		jdbcUtil.setSqlAndParameters(query, new Object[] {email});
+		ResultSet rs = null;
+		User user = null;
+		try {
+			rs = jdbcUtil.executeQuery();
+			if(rs.next()) {
+				user = new User(
+						rs.getInt("member_id"),
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
