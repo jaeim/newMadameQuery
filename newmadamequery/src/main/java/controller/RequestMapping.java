@@ -36,11 +36,11 @@ public class RequestMapping {
     	//스터디관리(팀장)
 //    	mappings.put("/studyGroup/manageStudy", new StManagerStudyController());
     	mappings.put("/myGroup/manageFroup/delete", new DeleteStudyController());
-//    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyGroupController());
-//    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyGroupController());
-//    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
-//    	mappings.put("/studyGroup/manageStudyList", new ListManagerStudyController());
-//    	mappings.put("/studyGroup/manageStudy/", new ViewManagerStudyController());
+    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyController());
+    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyController());
+    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
+    	mappings.put("/studyGroup/manageStudyList", new ListManageStudyController());
+    	mappings.put("/studyGroup/manageStudy/", new ViewManageStudyController());
     	mappings.put("/studyGroup/manageStudy/delete", new DeleteStudyController());
     	mappings.put("/studyGroup/manageStudy/updateForm", new UpdateStudyController());
     	mappings.put("/studyGroup/manageStudy/update", new UpdateStudyController());
@@ -52,7 +52,7 @@ public class RequestMapping {
     	
     	//스터디정보
     	mappings.put("/studyGroup/list", new ListStudyController());
-//    	mappings.put("/studyGroup/view/", new ViewStudyController());
+    	mappings.put("/studyGroup/view/", new ViewStudyController());
     	mappings.put("/studyGroup/apply", new ApplyStudyController());
 //    	mappings.put("/studyGroup/search", new SearchController());
 
