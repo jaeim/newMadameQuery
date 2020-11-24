@@ -24,6 +24,7 @@ public class CreatePostController implements Controller {
 		try {
 			Manager manager = Manager.getInstance();
 			int post_id = manager.createPost(post);
+			return "";
 			// @@(게시글 상세보기화면으로 post 리다이렉션(쿼리값은??)
 			
 		} catch (Exception e) {

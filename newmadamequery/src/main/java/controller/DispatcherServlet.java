@@ -28,7 +28,7 @@ public class DispatcherServlet extends HttpServlet {
         Controller controller = rm.findController(servletPath);
         try {
             String uri = controller.execute(request, response);
-            
+            System.err.println(uri);
             if (uri == null)
             	return;
 

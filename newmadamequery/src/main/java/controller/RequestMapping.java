@@ -9,8 +9,8 @@ import controller.comment.*;
 import controller.group.*;
 import controller.post.DetailPostController;
 import controller.post.ListPostController;
-import controller.user.RegisterUserController;
-import controller.user.UpdateUserController;
+import controller.user.*;
+
 
 public class RequestMapping {
     
@@ -24,8 +24,8 @@ public class RequestMapping {
     	mappings.put("/user/register/form", new ForwardController("/user/user_write.jsp"));
     	mappings.put("/user/register", new RegisterUserController());
     	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
-//    	mappings.put("/user/login", new LoginController());
-//    	mappings.put("/user/logout", new LogoutController());
+    	mappings.put("/user/login", new LoginController());
+    	mappings.put("/user/logout", new LogoutController());
 //    	mappings.put("/user/view", new ViewUserController());
 //    	mappings.put("/user/update/form", new UpdateUserController());
     	mappings.put("/user/update", new UpdateUserController());

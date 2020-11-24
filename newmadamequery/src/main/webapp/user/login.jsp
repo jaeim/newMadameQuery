@@ -167,7 +167,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td>ID</td>
-			<td colspan="2"><input type="text" name="userId" placeholder="아이디를 입력하세요."></td>
+			<td colspan="2"><input type="text" name="email" placeholder="이메일을 입력하세요."></td>
 		</tr>
 		<tr>
 			<td></td>

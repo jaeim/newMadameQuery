@@ -38,6 +38,16 @@ public class Manager {
 	public static Manager getInstance() {
 		return manager;
 	}
+	//ok
+	public boolean login(String email, String password) throws SQLException, NotFoundException, PasswordMismatchException{
+		User user = findUser(email);
+		if(user == null) {throw new NotFoundException();}
+
+		if (!user.matchPassword(password)) {
+			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+		}
+		return true;
+	}
 	
 	public boolean isLogin(String email, String password) throws SQLException{
 		return memberDAO.existingUser(email, password);
@@ -65,6 +75,11 @@ public class Manager {
 				throw new NotFoundException(userId + "는 존재하지 않는 아이디입니다.");
 			}		
 			return user;
+	}
+	
+	public User findUser(String email) throws SQLException{
+		User user = memberDAO.findUser(email);		
+		return user;
 	}
 	
 	//ok
