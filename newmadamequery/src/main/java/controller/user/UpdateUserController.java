@@ -21,11 +21,11 @@ public class UpdateUserController implements Controller {
 
 			Manager manager = Manager.getInstance();
 			// memberId를 setAttribute로 보내야함
-			User user = (User) manager.findUser((int) (request.getAttribute("memberId")));
+			User user = (User) manager.findUser((int)(request.getAttribute("memberId")));
 			request.setAttribute("user", user);
 
 			HttpSession session = request.getSession();
-			// 로그인할때 이메일 사용하니까 이메일을 매개변수로 보내야하는거 아닌가?
+			// 로그인할때 이메일 사용하니까 이메일을 매개변수로 보냄
 			if (UserSessionUtils.isLoginUser(email, session) || UserSessionUtils.isLoginUser("admin", session)) {
 				return "/user/updateForm.jsp";
 			}
