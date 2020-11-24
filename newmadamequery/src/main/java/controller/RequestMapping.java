@@ -27,7 +27,6 @@ public class RequestMapping {
     	mappings.put("/user/login", new LoginController());
     	mappings.put("/user/logout", new LogoutController());
 //    	mappings.put("/user/view", new ViewUserController());
-//    	mappings.put("/user/update/form", new UpdateUserController());
     	mappings.put("/user/update", new UpdateUserController());
     	
     	//스터디그룹
