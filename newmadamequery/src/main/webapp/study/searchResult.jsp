@@ -6,38 +6,24 @@
 <head>
 <meta charset="EUC-KR">
 <title>스터디 그룹 검색 결과</title>
-<!--  입력한 결과를 받아와서 db에서 검색 후, 존재하는 결과 출력(현재: request 전달만 구현) -->
+<!--  조건에 맞는 스터디 검색해서 list로 출력해주기  -->
 
 <style>
-	#searchResult {
-		
-		text-align: center;
-		border-collapse: collapse;
-		
-	}
-	tr{
-		border-bottom: 1px  solid navy;
-	}
+	
 </style>
 </head>
 <body>
 
-<% String sName = request.getParameter("subjectName");
-	String num = request.getParameter("numOfMembers");
-	String term = request.getParameter("term");
-	System.out.println(sName + "\t" + num +"\t" + term);
-%>
-	<table id="searchResult">
-		<tr>
-			<th>과목 명</th>
-			<th>인원</th>
-			<th>기간</th>
-		</tr>
-		<tr> <!-- 여기에 StudyGroup의 정보 받아와서 출력 -->
-			<td><%=sName %></td>
-			<td><%=num %></td>
-			<td><%=term %></td>
-		</tr>
-	</table>
+	<!-- 내가 선택한 조건을 보여주기  -->
+	<div id="myChoice">
+			
+		
+	</div>
+	
+	<div id ="result">
+		<table>
+			
+		</table>
+	</div>
 </body>
 </html>

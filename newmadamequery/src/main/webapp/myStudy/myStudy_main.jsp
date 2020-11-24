@@ -125,11 +125,11 @@ ul, li {
 <div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 , 어떤 정보 가져올건지 정하고 table 다시만들기-->
 	<table id="groupList">
 		<tr>
-			<th>스터디그룹 명</th>
-			<th>과목 명 </th>
-			<th>팀장 이름</th>
+			<th>스터디 그룹 명</th>
 			<th>인원 수</th>
+			<th>날짜 </th>
 		</tr>
+		
 		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
@@ -138,11 +138,11 @@ ul, li {
 						   <c:param name='commId' value='${group.username}'/>
 						   <c:param name='commId' value='${group.date}'/>
 						   <c:param name='commId' value='${group.postname}'/>
-						 </c:url>">${group.name} </a>
-				</td>
-				<td></td>
-				<td></td>
-				<td></td>
+						 </c:url>">${group.groupName} </a> 
+				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
+				<td>${group.numberOfUsers }</td>
+				<td>${group.createdDate}</td>
+				
 			</tr>
 		</c:forEach>
 	</table>

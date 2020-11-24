@@ -20,6 +20,7 @@ public class StudyGroup {
 	
 	public StudyGroup(int numberOfUsers, String groupName, String description, int term, String meetingType,
 			String genderType, String gradeType, int subjectId) {
+		
 		super();
 		this.numberOfUsers = numberOfUsers;
 		this.groupName = groupName;
