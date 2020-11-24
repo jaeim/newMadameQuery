@@ -29,16 +29,8 @@ public class RequestMapping {
     	mappings.put("/user/view", new ViewUserController());
     	mappings.put("/user/update", new UpdateUserController());
     	
-    	//스터디그룹
-    	//이건 없애도될듯 -> /studyGroup/myStudy(스터디그룹(멤버)와 겹침)
-//    	mappings.put("/studyGroup/myStudy", new ViewUserStudyGroupController());
     	
     	//스터디관리(팀장)
-//    	mappings.put("/studyGroup/manageStudy", new StManagerStudyController());
-    	mappings.put("/myGroup/manageFroup/delete", new DeleteStudyController());
-    	mappings.put("/myGroup/manageGroup/updateForm", new UpdateStudyController());
-    	mappings.put("/myGroup/manageGroup/update", new UpdateStudyController());
-    	mappings.put("/studyGroup/manageStudy/applyAccept", new ApplyAcceptStudyController());
     	mappings.put("/studyGroup/manageStudyList", new ListManageStudyController());
     	mappings.put("/studyGroup/manageStudy/", new ViewManageStudyController());
     	mappings.put("/studyGroup/manageStudy/delete", new DeleteStudyController());
@@ -70,12 +62,6 @@ public class RequestMapping {
     	mappings.put("/post/update/form", new UpdatePostFormController());
     	mappings.put("/post/update", new UpdatePostController());
     	mappings.put("/post/delete", new DeletePostController());
-//    	mappings.put("/post/detail", new DetailPostController();
-//    	mappings.put("/post/create", new CreateController());
-//    	mappings.put("/post/update/form", new UpdateController());
-//    	mappings.put("/post/update", new UpdateController());
-//    	mappings.put("/post/delete", new DeleteController());
-
     	
     	
     	//댓글
