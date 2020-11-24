@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import controller.group.*;
 import controller.post.*;
-
+import controller.*;
+import controller.comment.*;
 import controller.group.*;
 import controller.post.DetailPostController;
 import controller.post.ListPostController;
@@ -79,8 +80,8 @@ public class RequestMapping {
     	
     	
     	//댓글
-//    	mappings.put("/comment/register", new RegisterCommentController());
-//    	mappings.put("/comment/delete", new DeleteCommentController());
+    	mappings.put("/comment/register", new RegisterCommentController());
+    	mappings.put("/comment/delete", new DeleteCommentController());
     	
     }
 
