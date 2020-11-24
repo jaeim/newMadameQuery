@@ -26,7 +26,7 @@ public class RequestMapping {
     	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
     	mappings.put("/user/login", new LoginController());
     	mappings.put("/user/logout", new LogoutController());
-//    	mappings.put("/user/view", new ViewUserController());
+    	mappings.put("/user/view", new ViewUserController());
     	mappings.put("/user/update", new UpdateUserController());
     	
     	//스터디그룹
@@ -48,7 +48,7 @@ public class RequestMapping {
     	
     	//스터디관리(멤버)
     	mappings.put("/studyGroup/myStudy", new ListMyStudyController());
-//    	mappings.put("/studyGroup/myStudy/dropOut", new DropOutStudyGroupController());
+    	mappings.put("/studyGroup/myStudy/dropOut", new DropoutStudyController());
     	
     	//스터디정보
     	mappings.put("/studyGroup/list", new ListStudyController());
@@ -59,8 +59,8 @@ public class RequestMapping {
     	mappings.put("/studyGroup/createForm", new ForwardController("/study/addStudygroup.jsp"));
     	mappings.put("/studyGroup/create", new CreateStudyController());
 
-//    	mappings.put("/studyGroup/createForm", new CreateController());
-//    	mappings.put("/studyGroup/create", new ForwardStudyController("/study/addStudygroup.jsp));
+    	mappings.put("/studyGroup/createForm", new CreateStudyController());
+    	mappings.put("/studyGroup/create", new ForwardController("/study/addStudygroup.jsp"));
 
     	//게시글
     	mappings.put("/post/list", new ListPostController());
