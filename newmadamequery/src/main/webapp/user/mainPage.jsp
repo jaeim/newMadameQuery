@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%@page import="java.util.*, model.*" %>
- <%@page import ="controller. *" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="java.util.*, model.*, controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@page import ="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>mainPage</title>
-<!-- ¸ŞÀÎ È­¸é  (°¡Àå Ã³À½ ¶ß´Â È­¸é & ·Î±×ÀÎ ÈÄ ¶ß´Â È­¸é.) -->
+<!-- ë©”ì¸ í™”ë©´  (ê°€ì¥ ì²˜ìŒ ëœ¨ëŠ” í™”ë©´ & ë¡œê·¸ì¸ í›„ ëœ¨ëŠ” í™”ë©´.) -->
 <script language="Javascript" >
 	
 function toLogin(targetUri){
@@ -20,6 +19,7 @@ function toLogin(targetUri){
 function userCreate(targetUri) {
 	form.action = targetUri;
 	form.submit();
+}
 </script>
 <style>
 	body {
@@ -98,9 +98,6 @@ ul, li {
   visibility: visible;
 }
 
-#sub-menu > li >  a:hover {
- text-decoration: underline;
-}
 
  #first{
  	border: 1px solid black;
@@ -116,53 +113,38 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
+		<li><a href="<c:url value='/'/>">HOME</a></li>
 		<li><a href="<c:url value='/studyGroup/myStudy'>
 			<c:param name='userId' />
 			</c:url> ">MYSTUDY</a></li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="<c:url value='/studyGroup/create/form' />">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="<c:url value='/studyGroup/list' />">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="<c:url value='/studyGroup/search' /> ">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="<c:url value='/studyGroup/list' /> ">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
 			<c:param name='userId' />
-			</c:url> ">MANAGE</a></li>
-		 <!--  	<li>LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">·Î±×ÀÎ</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">È¸¿ø°¡ÀÔ</a></li>
-			</ul>
-		</li>-->
-		
+			</c:url> ">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 
-
-
-	 »ç¿ëÀÚ ¾ÆÀÌµğ: ${user.name }<br>
 <br><br>
-<div id="fisrt">
-	
-<!-- <input type="button" value="·Î±×ÀÎ" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
-	 <input type="button" value="È¸¿ø°¡ÀÔ" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
 
-<%
-	HttpSession httpSession = request.getSession(true);
-	String user = (String)httpSession.getAttribute("USER_SESSION_KEY"); // ?? Àü´ŞÀÌ ¾È´ë,,, ¿Ö ¾È´ë,,,, 
-
-%>
-<%=user
-//Àü´ŞÀÌ ¾ÈµÊ....null Ãâ·ÂµÊ
-%>
-
-
-<a href="<c:url value='/user/view' />">¸¶ÀÌÆäÀÌÁö</a>
+<div>
+	<a href="<c:url value= '/user/login' />" style="text-decoration:none;">ë¡œê·¸ì¸</a>
+</div>
+<div>
+	<a href="<c:url value= '/user/register/form'/>" style="text-decoration:none;">íšŒì›ê°€ì…</a>
 </div>
 
+<%
+	UserSessionUtils utils = new UserSessionUtils();
+	if(utils.hasLogined(session)){
+   		int userId = Integer.valueOf(utils.getLoginUserId(session));
+	}
+%>
 </body>
 </html>
