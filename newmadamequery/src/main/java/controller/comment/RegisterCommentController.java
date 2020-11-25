@@ -17,10 +17,14 @@ public class RegisterCommentController implements Controller {
 //		int groupId = (int)(request.getAttribute("groupId"));
 //		int member_id = (int)(request.getAttribute("membe_id"));
 //		int postId = (int)(request.getAttribute("postId"));
-		HttpSession session = request.getSession();
-		int member_id = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
-		int groupId = Integer.parseInt(request.getParameter("groupId"));
+		
+//		HttpSession session = request.getSession();
+//		int member_id = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
+		int member_id = 201;
+		int groupId = 611;
+//		int groupId = Integer.parseInt(request.getParameter("groupId"));
 		int postId = Integer.parseInt(request.getParameter("postId"));
+//		int postId = 411;
 		
 		Comment comment = new Comment();
 		
@@ -33,13 +37,14 @@ public class RegisterCommentController implements Controller {
 			Manager manager = Manager.getInstance();
 			int comment_id = manager.createComment(comment);
 			// @@detailPost.jsp에 댓글리스트 속성 저장..?
-			int numOfComm = manager.numberOfComment(postId);
-			ArrayList<Comment> commList = manager.getAllComment(postId);
+//			int numOfComm = manager.numberOfComment(postId);
+//			ArrayList<Comment> commList = manager.getAllComment(postId);
+//			
+//			request.setAttribute("numOfComm", numOfComm);	
+//			request.setAttribute("commList", commList);
 			
-			request.setAttribute("numOfComm", numOfComm);	
-			request.setAttribute("commList", commList);
-			
-			return "/mystudy/detailPost.jsp";			
+//			return "/mystudy/detailPost.jsp";
+			return "redirect:/post/detail?postId=" + postId;
 		} catch (Exception e) {
 			// 오류 메세지를 포워딩
 			request.setAttribute("exception", e);

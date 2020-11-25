@@ -159,7 +159,7 @@ td{
 		
 	%>
 	<input type="button" value="수정하기" onClick="<c:url value='/post/update/form' >
-		<c:param name="postId" value='${post.postId}' />
+		<c:param name="postId" value='${post._id}' />
 		</c:url>"/>
 	<input type="button" value="삭제하기" onClick="<c:url value='/post/delete' >
 		<c:param name='' value=''/>
