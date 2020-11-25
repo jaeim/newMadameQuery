@@ -24,7 +24,7 @@ public class ApplyListController implements Controller {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 
-			return "/mystudy/mystudy_main.jsp";
+			return "/myStudy/mystudy_main.jsp";
 		}
 
 	}
