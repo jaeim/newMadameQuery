@@ -142,8 +142,6 @@ ul, li {
 
 <%
 	System.out.println(request.getAttribute("member_id"));
-
 %>
-
 </body>
 </html>
