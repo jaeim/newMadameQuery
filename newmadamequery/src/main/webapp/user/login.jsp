@@ -126,16 +126,9 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' />
-			</c:url> ">MANAGE</a>
+			<c:param name='userId' /></c:url> ">MANAGE</a>
 		</li>
-		 <!--  <li>LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
-		</li>-->
-		
+			
 	</ul>
 </nav>
 <!-- login form  -->
