@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,8 +157,6 @@ ul, li {
 <%=user
 //전달이 안됨....null 출력됨
 %>
-
-
 <a href="<c:url value='/user/view' />">마이페이지</a>
 </div>
 
