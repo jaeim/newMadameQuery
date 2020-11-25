@@ -5,7 +5,7 @@
 <%@page import ="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="EUC-KR">
 <title>mainPage</title>
 
@@ -141,7 +141,18 @@ ul, li {
 </div>
 
 <%
-	System.out.println(request.getAttribute("member_id"));
+	//System.out.println(request.getAttribute("member_id"));
+	String userId = String.valueOf(request.getAttribute("member_id"));
 %>
+
+
+ <c:if test= "${member_id ne null }" >
+ 	member_id :<c:out value="${member_id}" />
+	<a href="<c:url value='/user/view' >
+		<c:param name="userId" value="String.valueOf(${member_id})" />
+		</c:url> ">마이페이지로 이동</a>
+</c:if>
+
+<h6>test용 (id: 20181003@dongduk.ac.kr / pw: 2424)</h6>
 </body>
 </html>

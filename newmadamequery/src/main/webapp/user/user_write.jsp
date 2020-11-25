@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*, model.*, controller.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +9,10 @@
 
 <script>
 	function userCreate(){
-		if(form.userId.value == ""){
+	if(form.email.value=""){
 			
-			alert("사용자의 id를 입력하십시오.");
-			form.userId.focus();
+			alert("아이디를 입력하십시오.");
+			form.email.focus();
 			return false;
 		}
 		if(form.password.value == ""){
@@ -29,12 +31,7 @@
 			form.name.focus();
 			return false;
 		}
-		if(form.email.value=""){
-			
-			alert("이메일을 입력하십시오.");
-			form.email.focus();
-			return false;
-		}
+		
 		if(form.university.value ==""){
 			
 			alert("대학명을 입력하십시오.");
@@ -192,12 +189,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
-				<li><a href="http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -210,31 +201,27 @@ ul, li {
 	<table>
 		<tr>
 			<td>사용자 id: </td>
-			<td><input type="text" name="userId"></td>
+			<td><input type="text" name="email" /></td>
 		</tr>
 		<tr>
 			<td>비밀번호: </td>
-			<td><input type="password" name="password"></td>
+			<td><input type="password" name="password" /></td>
 		</tr>
 		<tr>
 			<td>비밀번호 확인: </td>
-			<td><input type="password" name="password2"></td>
+			<td><input type="password" name="password2" /></td>
 		</tr>
 		<tr>
 			<td>이름: </td>
-			<td><input type="text" name="name"></td>
+			<td><input type="text" name="name" /></td>
 		</tr>
 		<tr>
 			<td>휴대폰 번호 (ex.010-1234-5678)</td>
-			<td><input type="text" name="phone"></td>
-		</tr>
-		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email"></td>
+			<td><input type="text" name="phone" /></td>
 		</tr>
 		<tr>
 			<td>소속 학교 명: </td>
-			<td><input type="text" name="university"></td>
+			<td><input type="text" name="university" /></td>
 		</tr>
 		<tr>
 			<td>소속 학과명: </td>
@@ -269,7 +256,7 @@ ul, li {
 					<option>관현악과</option>
 					<option>성악과</option>
 					<option>패션디자인학과</option>
-					<option>시각&실내디자인학과</option>
+					<option>시각,실내디자인학과</option>
 					<option>미디어디자인학과</option>
 					<option>약학과</option>
 				</select>
@@ -282,14 +269,14 @@ ul, li {
 				<option>2학년</option>
 				<option>3학년</option>
 				<option>4학년</option>
-				<option>5학년 이상</option>
+				<option>5학년</option>
 			</select></td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td><select name="gender">
-				<option>남자</option>
-				<option>여자</option>
+				<option value="1">남자</option>
+				<option value="2">여지</option>
 			</select></td>
 		</tr>
 	</table>

@@ -26,7 +26,7 @@ public class LoginController implements Controller {
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user.getMember_id());
             
             request.setAttribute("member_id", user.getMember_id());
-            return "redirect:/user/mainPage.jsp";	
+            return "/user/mainPage.jsp";	
 		} catch (Exception e) {
 			
 			if(e instanceof NotFoundException) {request.setAttribute("notFound", true);}

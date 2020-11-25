@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    <%@page import="java.util.*, model.*" %> 
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@page import="java.util.*, model.*" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%
+    	User user = (User) request.getAttribute("user");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,7 +147,7 @@ ul, li {
 	<table>
 		<tr>
 			<td>사용자 id: </td>
-			<td>${user.member_id }</td>
+			<td>${user.email }</td>
 		</tr>
 		<tr>
 			<td>이름: </td>
