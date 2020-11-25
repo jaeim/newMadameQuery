@@ -158,7 +158,7 @@ ul, li {
 
 <div>
 	<p id="title">LOGIN</p>
-	<form name="form" method= "POST" action="<c:url value='/user/login/' /> ">
+	<form name="form" method= "POST" action="<c:url value='/user/login'/>">
 		<table id= "logintable">
 		<tr>
 			<td></td>
@@ -180,7 +180,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="login" class="button" value="LOGIN" onClick =login() ></td>
+			<td><input type="submit" name="login" class="button" value="LOGIN" onClick=login() ></td>
 			<td></td>
 		</tr>
 		

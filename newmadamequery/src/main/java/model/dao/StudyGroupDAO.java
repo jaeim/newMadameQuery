@@ -337,14 +337,20 @@ public class StudyGroupDAO {
 	
 			
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
-	public ArrayList<StudyGroup> searchGroupList(String name, int term, int numOfMem) throws SQLException {
-		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
-				+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup "
-				+ "WHERE name=? AND term=? AND number_of_member=? ORDER BY name";
-		Object[] param = new Object[] {name, term, numOfMem};
+	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
+		String query = "SELECT * FROM studygroup "
+				+ "WHERE term=? AND number_of_member=? AND meeting_type=? AND gender_type=? AND grade_type=? ORDER BY name";
+		
+		if(term == -1) { term = null; }
+		if(numOfMem == -1) {numOfMem = null; }
+		if(meeting_type.length() < 2 && Integer.valueOf(meeting_type) == -1) { meeting_type = null; }
+		if(Integer.valueOf(gender_type) == -1) { gender_type = null; }
+		if(Integer.valueOf(grade_type) == -1) { grade_type = null; }
+		
+		Object[] param = new Object[] {term, numOfMem, meeting_type, gender_type, grade_type};
 			
 		jdbcUtil.setSqlAndParameters(query, param);
-			
+			     
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(!rs.next()) {throw new AppException();}

@@ -469,18 +469,30 @@ public class Main {
 //			System.out.println("로그인 성공");
 //		}else {System.out.println("로그인 실패");}
 		
-		int result = 0;
+//		int result = 0;
+//		try {
+//			result = manager.removeMemberInGroup(611, 221);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(result == 1) {System.out.println("멤버삭제성공");}
+//		else{System.out.println("멤버삭제실패");}
+	
+		User user = null;
 		try {
-			result = manager.removeMemberInGroup(611, 221);
+			user = manager.findUser("20170953@dongduk.ac.kr");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(result == 1) {System.out.println("멤버삭제성공");}
-		else{System.out.println("멤버삭제실패");}
+		if(user != null) {
+			System.out.println(user.getMember_id() + ", " + user.getName());
+		}
 	}
 }

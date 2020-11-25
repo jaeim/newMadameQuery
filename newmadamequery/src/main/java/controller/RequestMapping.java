@@ -47,7 +47,7 @@ public class RequestMapping {
     	mappings.put("/studyGroup/list", new ListStudyController());
     	mappings.put("/studyGroup/view/", new ViewStudyController());
     	mappings.put("/studyGroup/apply", new ApplyStudyController());
-    	mappings.put("/studyGroup/createForm", new ForwardController("/study/addStudygroup.jsp"));
+    	mappings.put("/studyGroup/create/form", new ForwardController("/study/addStudygroup.jsp"));
     	mappings.put("/studyGroup/create", new CreateStudyController());
 //    	mappings.put("/studyGroup/search", new SearchController());
 

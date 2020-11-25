@@ -146,14 +146,14 @@ public class Manager {
 		return group;
 	}
 	
-	// ok
-	public ArrayList<StudyGroup> searchStudyGroups (String name, int term, int numOfMem) throws SQLException {
-		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(name, term, numOfMem);
-	
-		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
-		
-		return groupList;
-	}
+//	// ok
+//	public ArrayList<StudyGroup> searchStudyGroups (String name, int term, int numOfMem) throws SQLException {
+//		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(name, term, numOfMem);
+//	
+//		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+//		
+//		return groupList;
+//	}
 	
 	// ok
 	public ArrayList<User> getAllMemberInGroup (int groupId) throws SQLException, NotFoundException{

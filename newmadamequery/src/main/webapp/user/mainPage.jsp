@@ -130,8 +130,8 @@ ul, li {
 			</c:url> ">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li> <a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
+				<li> <a href="/user/login.jsp">로그인</a></li>
+				<li> <a href = "/user/user_write.jsp">회원가입</a></li>
 			</ul>
 		</li>
 		
