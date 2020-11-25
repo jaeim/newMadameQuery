@@ -26,10 +26,10 @@ public class CreateStudyController implements Controller {
 //			manager.createStudyGroup(studyGroup, Integer.parseInt(request.getParameter("userId")));
 			// session을 통해 user의 PK 구함
 			HttpSession session = request.getSession();
-			int userId = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
+			int userId = UserSessionUtils.getLoginUserId(session);
 			manager.createStudyGroup(studyGroup, userId);
 			
-			return "redirect:/study/studygroup_list.jsp";
+			return "redirect:/studyGroup/list";
 			
 		} catch (Exception e) { // 예외 발생 시 입력 form으로 forwarding
 			//실패한 경우 exception 객체에 저장된 오류 메시지를 출력 in /study/addStudygroup.jsp

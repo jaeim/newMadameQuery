@@ -16,7 +16,7 @@ public class ApplyStudyController implements Controller {
 //		int groupId = (int)(request.getAttribute("groupId"));
 //		int userId = (int)(request.getAttribute("userId"));
 		HttpSession session = request.getSession();
-		int userId = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
+		int userId = UserSessionUtils.getLoginUserId(session);
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
 				
 		String comments = request.getParameter("comments");
@@ -26,7 +26,7 @@ public class ApplyStudyController implements Controller {
 			manager.applyToGroup(groupId, userId, comments);
 			
 //			return "redirect:/studyGroup/list";
-			return "redirect:/studyGroup/view";
+			return "redirect:/studyGroup/view?groupId=" + groupId;
 		} catch (Exception e) {
 			//신청이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 in /study/studygroup_list/studygroup_view.jsp
 			//alert(exception)

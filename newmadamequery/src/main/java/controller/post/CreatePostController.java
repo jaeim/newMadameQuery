@@ -19,7 +19,7 @@ public class CreatePostController implements Controller {
 		int groupId = Integer.parseInt(request.getParameter("groupId"));
 		
 		HttpSession session = request.getSession();
-		int memberId = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
+		int memberId = UserSessionUtils.getLoginUserId(session);
 		
 		Post post = new Post();
 		
@@ -32,7 +32,7 @@ public class CreatePostController implements Controller {
 			int post_id = manager.createPost(post);
 			// @@ 게시글 목록으로 리다이렉션  + groupId도 같이 쿼리로??
 			// (리다이렉션이니 ListPostController에서 request.getParameter하여 groupId 못찾으니까?)
-			return "redirect:/post/list";
+			return "redirect:/post/list?groupId=" + groupId;
 			
 		} catch (Exception e) {
 			request.setAttribute("exception", e);

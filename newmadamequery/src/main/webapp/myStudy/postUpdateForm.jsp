@@ -140,11 +140,10 @@ td{
 </nav>
 
 <br><br>
-<% //테스트를 위한 설정- failed
-
-	Post firstPost= new Post();
-	firstPost.set_id(411);
-	System.out.println(firstPost.getContent());
+<% //테스트를 위한 설정- failed>
+	//Post firstPost= new Post();
+	//firstPost.set_id(411);
+	//System.out.println(firstPost.getContent());
 %>
 <div id="onePost">
 <h3></h3>
