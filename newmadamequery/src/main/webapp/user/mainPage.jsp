@@ -113,7 +113,7 @@ ul, li {
 </head>
 <body>
 
-<!--  
+
 <nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
@@ -131,25 +131,38 @@ ul, li {
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
 			<c:param name='userId' />
-			</c:url> ">MANAGE</a>
-		</li>
-		 
+			</c:url> ">MANAGE</a></li>
+		 <!--  	<li>LOGIN & JOIN</a>
+			<ul id="sub-menu">
+				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
+				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
+			</ul>
+		</li>-->
 		
 	</ul>
-</nav>-->
+</nav>
 
-<br>
 
+
+	 사용자 아이디: ${user.name }<br>
+<br><br>
+<div id="fisrt">
 	
-	 <div style="width: 90px; height: 20px; border: 1px solid black; text-align: center;">
-	 	<a href="<c:url value='/user/login/form' />" style="text-decoration:none">로그인</a>
-	 </div>
-	  <br><br>
-	<div style="width: 90px; height: 20px; border: 1px solid black; text-align: center;">
-		<a href="<c:url value='/user/register/form' />" style="text-decoration:none">회원가입</a>
-	</div>
-</body>	
+<!-- <input type="button" value="로그인" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
+	 <input type="button" value="회원가입" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
 
+<%
+	HttpSession httpSession = request.getSession(true);
+	String user = (String)httpSession.getAttribute("USER_SESSION_KEY"); // ?? 전달이 안대,,, 왜 안대,,,, 
+
+%>
+<%=user
+//전달이 안됨....null 출력됨
+%>
+
+
+<a href="<c:url value='/user/view' />">마이페이지</a>
+</div>
 
 </body>
 </html>
