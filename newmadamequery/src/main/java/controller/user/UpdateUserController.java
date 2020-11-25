@@ -25,8 +25,16 @@ public class UpdateUserController implements Controller {
 			request.setAttribute("user", user);
 
 			HttpSession session = request.getSession();
+			
+			int userId;
+			if(UserSessionUtils.hasLogined(session)) {
+				userId = UserSessionUtils.getLoginUserId(session);
+			}else {
+				return "redirect:/user/login.jsp";
+			}
+			
 			// 로그인할때 이메일 사용하니까 이메일을 매개변수로 보냄
-			if (UserSessionUtils.isLoginUser(email, session) || UserSessionUtils.isLoginUser("admin", session)) {
+			if (UserSessionUtils.isLoginUser(userId, session)) {
 				return "/user/updateForm.jsp";
 			}
 
