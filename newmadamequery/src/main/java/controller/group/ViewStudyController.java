@@ -25,7 +25,7 @@ public class ViewStudyController implements Controller{
 			return ""; // 오류페이지로 이동
 		}
 		
-		request.setAttribute("StudyGroup", group);
+		request.setAttribute("studyGroup", group);
 		return "/study/studygroup_view.jsp";
 	}
 }

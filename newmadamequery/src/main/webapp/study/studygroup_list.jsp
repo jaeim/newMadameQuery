@@ -148,18 +148,18 @@ ul, li {
 <!-- 모든 스터디 그룹을 리스트로 보여주기 -->
 <table id="allList">
 	<tr> 
-		<th>스터디그룹 명 ( ${groupList.groupName} )</th>
-		<th>소개 ( ${groupList.description})</th>
+		<th>스터디그룹 명 </th>
+		<th>소개</th>
 		<th>기간</th>
 	</tr>
-	<c:forEach var="groupList" items="studyGroupList"> <!-- List<StudyGroup>이 반환됨. -->
+	<c:forEach var="group" items="${groupList}"> <!-- List<StudyGroup>이 반환됨. -->
 		<tr>
 			<td><a href= "<c:url value='/studyGroup/view' >
-				<c:param name="groupId" value='${groupList.groupId }' />
+				<c:param name="groupId" value='${group.groupId}' />
 				</c:url>
-">${groupList.groupName}</a></td>
-			<td>${groupList.description}</td>
-			<td>${groupList.term }</td>
+">${group.groupName}</a></td>
+			<td>${group.description}</td>
+			<td>${group.term}</td>
 		</tr>
 	</c:forEach>
 </table>

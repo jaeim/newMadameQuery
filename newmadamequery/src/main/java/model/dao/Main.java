@@ -483,16 +483,32 @@ public class Main {
 //		if(result == 1) {System.out.println("멤버삭제성공");}
 //		else{System.out.println("멤버삭제실패");}
 	
-		User user = null;
+//		User user = null;
+//		try {
+//			user = manager.findUser("20170953@dongduk.ac.kr");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(user != null) {
+//			System.out.println(user.getMember_id() + ", " + user.getName());
+//		}
+		ArrayList<StudyGroup> groupList = null;
 		try {
-			user = manager.findUser("20170953@dongduk.ac.kr");
+			groupList = manager.getAllStudyGroup();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(user != null) {
-			System.out.println(user.getMember_id() + ", " + user.getName());
+		if(groupList != null) {
+			for(StudyGroup s: groupList) {
+				System.out.println("멤버명수 : " + s.getGroupUsers().size());
+			}
 		}
 	}
 }
