@@ -158,7 +158,7 @@ ul, li {
 
 <div>
 	<p id="title">LOGIN</p>
-	<form name="form" method= "POST" action="<c:url value='/user/login/' /> ">
+	<form name="form" method= "POST" action="<c:url value='/user/login' /> ">
 		<table id= "logintable">
 		<tr>
 			<td></td>
