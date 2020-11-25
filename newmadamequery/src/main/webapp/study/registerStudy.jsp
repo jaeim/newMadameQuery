@@ -33,7 +33,7 @@
 	
 
 <div id="registerForm">
-<form name="form" method="POST" action="<c:url value='/studygroup/apply '/>">
+<form name="form" method="POST" action="<c:url value='/studygroup/apply'/>">
 	<h5 id="userName">여기에 사용자 이름을 가져옴.</h5><br>
 	<textarea cols="30" rows="5" value="코멘트를 작성하세요." name="comments"></textarea><br><br>
 	<input type="button" value="팀원 신청하기" id="submitB" onClick=applyMember() /><br> 

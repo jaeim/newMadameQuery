@@ -27,12 +27,12 @@ public class DetailPostController implements Controller {
 			request.setAttribute("numOfComm", numOfComm);	
 			request.setAttribute("commList", commList);
 			
-			return "/mystudy/detailPost.jsp";	
+			return "/myStudy/detailPost.jsp";	
 		} catch (NotFoundException e) {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 			
-			return "/mystudy/mystudy_view.jsp"; //게시물 없으면 게시글 목록 페이지로 이동
+			return "/myStudy/mystudy_view.jsp"; //게시물 없으면 게시글 목록 페이지로 이동
 		}
 	}
 }

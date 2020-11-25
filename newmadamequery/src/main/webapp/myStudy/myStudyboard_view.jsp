@@ -165,7 +165,7 @@ ul, li {
 			</pre><br></h6>
 		</p>
 		<input type="button" value="게시글 작성" id="addP"/>
-		<a href="<c:url value='/myStudy/addStudyboard.jsp' />">게시글 작성</a>
+		<a href="<c:url value='/post/create/form' />">게시글 작성</a>
 			
 	</div>
 	

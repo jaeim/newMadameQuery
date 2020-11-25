@@ -21,12 +21,12 @@ public class ListPostController implements Controller {
 			
 			request.setAttribute("postList", postList);
 			
-			return "/mystudy/mystudy_view.jsp";
+			return "/myStudy/mystudy_view.jsp";
 		} catch (NotFoundException e) {
 	        request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 			
-			return "/mystudy/addStudyboard.jsp"; //보여줄 스터디그룹 목록 없으면 스터디그룹 추가 페이지로 이동
+			return "/myStudy/addStudyboard.jsp"; //보여줄 스터디그룹 목록 없으면 스터디그룹 추가 페이지로 이동
 		}
 		
 	}

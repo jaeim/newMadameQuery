@@ -1,34 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<!DOCTYPE html>
+<%@page contentType="text/html; charset=euc-kr" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>로그인</title>
+<title>사용자 관리(UserMan3)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
-	// function 작성
-	function login(){
-		if(form.userId.value= "") {
+function login() {
+	if (form.email.value == "") {
+		alert("사용자 ID를 입력하십시오.");
+		form.userId.focus();
+		return false;
+	} 
+	if (form.password.value == "") {
+		alert("비밀번호를 입력하십시오.");
+		form.password.focus();
+		return false;
+	}		
+	form.submit();
+}
 
-			alert("사용자 ID를 입력하세요.");
-			form.userId.focus();
-			return false;
-		}
-		if(form.password.value=""){
-			alert("비밀번호를 입력하십시오.");
-			form.password.focus();
-			return false;
-		}
-		form.submit();
-		
-	}
-	
-	function userCreate(targetUri) {
-		form.action = targetUri;
-		form.submit();
-	}
+function userCreate(targetUri) {
+	form.action = targetUri;
+	form.submit();
+}
 </script>
 <style>
 	body {
@@ -110,93 +106,80 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- 	#logintable{
- 		border: 1px solid #C0EDFF;
- 		text-align: center;
- 		margin: auto;
- 		padding: 0;
- 		font-size: 20px;
- 		font-family: Arial;
- 		width: 600px;
- 		height: 300px;
- 		table-layout: fixed;
- 	}
- 	#title{
- 		text-align: center;
- 		font-size: 50px;
- 		font-family: Arial;
- 	}
-	.button{
-		background-color: #C0EDFF;
-		width:200px;
-	}
 </style>
 </head>
-
 <body>
+
 <nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/studyGroup/myStudy'>
+			<c:param name='userId' />
+			</c:url> ">MYSTUDY</a></li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
 				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
+		<li><a href="<c:url value='/studyGroup/manageStudyList'>
+			<c:param name='userId' />
+			</c:url> ">MANAGE</a>
+		</li>
+		 <!--  <li>LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
+				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
+				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
 			</ul>
-		</li>
+		</li>-->
 		
 	</ul>
 </nav>
-
-<div>
-	<p id="title">LOGIN</p>
-	<form name="form" method= "POST" action="<c:url value='/user/login'/>">
-		<table id= "logintable">
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>ID</td>
-			<td colspan="2"><input type="text" name="email" placeholder="이메일을 입력하세요."></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>PASSWORD</td>
-			<td colspan="2"><input type="text" name="password" placeholder="비밀번호를 입력하세요."></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="submit" name="login" class="button" value="LOGIN" onClick=login() ></td>
-			<td></td>
-		</tr>
-		
-		<tr>
-			<td></td>
+<!-- login form  -->
+<form name="form" method="POST" action="<c:url value='/user/login' />">
+  <table>
+	<tr>
+	  <td ></td>
+	  <td>
+	    <table>
+		  <tr>
+			<td>&nbsp;&nbsp;<b>사용자 관리 - 로그인</b>&nbsp;&nbsp;</td>
+		  </tr>
+	    </table>  
+	    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+        <c:if test="${loginFailed}">
+	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
+	    </c:if>
+	    <br>	  
+	    <table >
+	  	  <tr >
+			<td >사용자 ID</td>
 			<td>
-				<input type="button" value="JOIN(회원가입)" onClick="userCreate('<c:url value='/user/register/form'/>) ')">
+				<input type="text" style="width:240" name="email">
 			</td>
-			<td></td>
-		</tr>
-		</table>
-	
-	
-	</form>
+		  </tr>
+	  	  <tr >
+			<td >비밀번호</td>
+			<td >
+				<input type="password" style="width:240" name="password">
+			</td>
+		  </tr>
+	    </table>
+	    <br>	  
+		<table>
+		  <tr>
+			<td>
+			<input type="submit" value="로그인" onClick="login()"> &nbsp;
+			</td>						
+		  </tr>
+	    </table>
+	  </td>	  
+	</tr>
 
-</div>
-	
+  </table>  
+</form>
 </body>
 </html>
