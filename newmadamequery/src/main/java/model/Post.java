@@ -3,7 +3,7 @@ package model;
 import java.util.*;
 
 public class Post {
-	private int _id; // 게시글 id
+	private int postId; // 게시글 id
 	private String title; // 게시글 제목
 	private Date createdDate; //게시글 올린 날짜
 	private Date modifiedDate; //게시글 수정 날짜
@@ -16,10 +16,10 @@ public class Post {
 		super();
 	}
 	
-	public Post(int _id, String title, Date createdDate, Date modifiedDate, String userName, String content,
+	public Post(int postId, String title, Date createdDate, Date modifiedDate, String userName, String content,
 			int refMember, int refGroup) {
 		super();
-		this._id = _id;
+		this.postId = postId;
 		this.title = title;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
@@ -29,12 +29,12 @@ public class Post {
 		this.group_id = refGroup;
 	}
 
-	public int get_id() {
-		return _id;
+	public int getPostId() {
+		return postId;
 	}
 	
-	public void set_id(int _id) {
-		this._id = _id;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	
 	public String getTitle() {

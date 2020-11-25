@@ -54,7 +54,7 @@ public class PostDAO {
 			while (rs.next()) {
 				Post post = new Post();
 				
-				post.set_id(rs.getInt("post_id"));
+				post.setPostId(rs.getInt("post_id"));
 				post.setUserName(rs.getString("name"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getNString("content"));
@@ -149,7 +149,7 @@ public class PostDAO {
 		
 		String query = "UPDATE post SET title = ?, content = ?, modified_date = SYSDATE "
 				+ "WHERE post_id = ?";
-		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.get_id()};
+		Object[] param = new Object[] {post.getTitle(), post.getContent(), post.getPostId()};
 		jdbcUtil.setSqlAndParameters(query, param);
 		
 		try {

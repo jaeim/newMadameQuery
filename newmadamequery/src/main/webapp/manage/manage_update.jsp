@@ -281,7 +281,7 @@ ul, li {
 		<tr>
 			<td><!-- 멤버 이름 출력 --></td>
 			<td>
-				<a href="<c:url value='/myGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
+				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
 					<c:param name='groupId' value='${sg.groupId }'/>
 					</c:url>" onClick= "return memberAccept(); ">수락</a>

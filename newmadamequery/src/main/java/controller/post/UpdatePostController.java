@@ -13,7 +13,7 @@ public class UpdatePostController implements Controller{
 		Post post = new Post();
 		post.setTitle(request.getParameter("title"));
 		post.setContent(request.getParameter("content"));
-		post.set_id((int)request.getAttribute("postId"));
+		post.setPostId((int)request.getAttribute("postId"));
 		
 		Manager manager = Manager.getInstance();
 		try {

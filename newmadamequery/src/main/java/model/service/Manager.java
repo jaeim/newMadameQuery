@@ -273,8 +273,8 @@ public class Manager {
 	}
 	
 	public int updatePost(Post post) throws SQLException, NotFoundException{
-		if(!postDAO.existingPost(post.get_id())){
-			throw new NotFoundException(post.get_id() + "는 존재하지 않는 게시물입니다.");
+		if(!postDAO.existingPost(post.getPostId())){
+			throw new NotFoundException(post.getPostId() + "는 존재하지 않는 게시물입니다.");
 		}
 		return postDAO.updatePost(post);
 	}
