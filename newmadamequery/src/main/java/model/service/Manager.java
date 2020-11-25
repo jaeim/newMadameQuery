@@ -142,6 +142,8 @@ public class Manager {
 		StudyGroup group = studyGroupDAO.findGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
+		ArrayList<User> userList = getAllMemberInGroup(groupId);
+		group.setGroupUsers(userList);
 		
 		return group;
 	}
@@ -227,8 +229,15 @@ public class Manager {
 	}
 	
 	// ok
-	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException{
-		return studyGroupDAO.getGroupList();
+	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
+		ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
+		
+		for(StudyGroup group : groupList) {
+			ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
+			group.setGroupUsers(memberList);
+		}
+		
+		return groupList;
 	}
 	
 	// ok

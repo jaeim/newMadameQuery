@@ -302,7 +302,7 @@ public class StudyGroupDAO {
 			
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(!rs.next()) {throw new AppException();}
+			//if(!rs.next()) {throw new AppException();}
 			
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 			
