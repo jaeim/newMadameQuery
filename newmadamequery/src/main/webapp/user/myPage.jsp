@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*, model.*" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%
+    	User user = (User) request.getAttribute("user");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,73 +144,51 @@ ul, li {
 
 <div>
 	<p id="title">My Page</p>
-	<table id="joinTable">
+	<table>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td>사용자 id: </td>
+			<td>${user.email }</td>
 		</tr>
 		<tr>
-			<td>ID</td>
-			<td><h5>받아온 id 값 출력.</h5></td>
-			<td>&nbsp;</td>
+			<td>이름: </td>
+			<td>${user.name }</td>
 		</tr>
 		<tr>
-			<td>PASSWORD</td>
-			<td><input type="text" name="userPass" value="비밀번호를 입력하세요."></td>
-			<td>&nbsp;</td>
+			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td>${user.phone }</td>
 		</tr>
 		<tr>
-			<td>CHECK PASS</td>
-			<td><input type="text" name="checkPass" value="비밀번호를 다시 입력해주세요."></td>
-			<td>&nbsp;</td>
+			<td>이메일 주소: </td>
+			<td>${user.email }</td>
 		</tr>
 		<tr>
-			<td>EMAIL</td>
+			<td>소속 학교 명: </td>
+			<td>${user.university }</td>
+		</tr>
+		<tr>
+			<td>소속 학과명: </td>
 			<td>
-				<h5>받아온 email 값 출력</h5>
-			</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>MAJOR</td>
-			<td><h5>자신의 전공 출력</h5></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>LECTURE</td>
-			<td colspan="2" rowspan="2">
-				<h5>내가 듣는 강의들 table로 출력.</h5>
-			
+				${user.department }
 			</td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
+			<td>학년</td>
+			<td>${user.grade }</td>
 		</tr>
 		<tr>
-			<td>TAGS</td>
-			<td colspan="2" rowspan="3">
-				<div id="tags">
-					<h5>자신이 선택한 tag들 출력.</h5>
-				</div>
-			</td>
+			<td>성별</td>
+			<td>${user.gender }</td>
 		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		
 	</table>
-
 </div>
 <br>
 <div>
 <input type="button" id= "forHome"value="홈으로" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="수정하기" onClick="location.href='updateForm.jsp'"/><br> 
+<input type="button" id="forUpdate" value="수정하기" onClick="<c:url value= '/user/update/form' >
+	<c:param name="member_id" value="${user.member_id }" />
+	</c:url>
+	
+"/><br> 
 </div>
 </body>
 </html>

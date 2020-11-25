@@ -3,6 +3,9 @@
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,15 +141,15 @@ td{
 	<table id="pTable">
 		<tr>
 			<td>제목</td>
-			<td>게시글 제목 </td>
+			<td>${post.title } </td>
 			<td>작성자</td>
-			<td>작성자이름</td>
+			<td>${post.userName }</td>
 			<td>날짜</td>
-			<td>2020-11-23</td>
+			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
 			<td >내용</td>
-			<td colspan="5"> </td>
+			<td colspan="5">${post.content}</td>
 			<!--  <td></td>
 			<td></td>
 			<td></td>
@@ -158,35 +161,49 @@ td{
 		//내가 게시한 글일 때만 수정하기 버튼 뜨게 하기
 		
 	%>
-	<input type="button" value="수정하기" onClick="<c:url value='/post/update/form' >
-		<c:param name="postId" value='${post._id}' />
-		</c:url>"/>
-	<input type="button" value="삭제하기" onClick="<c:url value='/post/delete' >
-		<c:param name='' value=''/>
-		</c:url>
-	"/>
+	<br><br>
+	
+	<button onClick="<c:url value='/post/update/form' >
+		<c:param name="postId" value='${post.postId}' />
+			</c:url>"> 수정하기 </button>
+	&nbsp;&nbsp;
+	<button onClick= "<c:url value='/post/delete' />">삭제하기</button>
+	
+	
 </div>
 <br><br>
 <div id="comments">
-	<h3 style="display: inline;">Comments</h3>
+	<h3>Comments</h3>
+	
 	<div id="newCommt">
 		<h6>${member.userId }</h6>
 		<textarea name="cmtContents" cols="30" rows="1"></textarea>
-		<input type="button" value="댓글쓰기" onClick= "<c:url value='/comment/register' >"  />
+		<input type="button" value="댓글쓰기" onClick= "<c:url value='/comment/register' > 
 			
 				<c:param name='username' value = '${user.name }' />
 				<c:param name='date' value= '${comment.createdDate }' />
 				<c:param name= 'commentText' value='${comment.content }' />
-			</c:url>
-		<br><br>
+			</c:url>"  />
+		
 		
 		<!-- 댓글 개수 만큼 댓글 보여주기 -->
-		<c:forEach var="commentList" items="" > <!-- comment  -->
-			
-		</c:forEach>
-		
+		<br>
 		<table id="cmtTable">
-			<tr>
+			
+			<%-- <c:forEach var="cmtList" items="${commentList}" >
+				<tr >
+					<td>이름</td> 
+					<td>이현아</td>
+					<td>날짜</td>
+					<td>2020-11-23</td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td colspan="3">좋은 것 같아요~</td>
+				</tr>
+			</c:forEach>--%>
+			
+		<tr>
 				<td>이름</td>
 				<td>이현아</td>
 				<td>날짜</td>
@@ -195,6 +212,12 @@ td{
 			<tr>
 				<td>내용</td>
 				<td colspan="3">좋은 것 같아요~</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align:right"><a href="<c:url value='/comment/delete'>
+					<c:param name='commentId' value= '${comment.comment_id}'/>
+					</c:url>">삭제</a>
+				</td>
 			</tr>
 		</table>
 	</div>

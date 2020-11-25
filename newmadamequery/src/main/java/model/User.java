@@ -6,7 +6,7 @@ import java.util.Date;
  * 사용자 관리를 위한 user dto. USERINFO 테이블과 대응됨
  */
 public class User {
-	
+
 	private int member_id;
 	private String email;
 	private String password;
@@ -18,33 +18,18 @@ public class User {
 	private String department;
 	private String grade;
 	private int gender;
-	
-	//나의 신청현황 목록 보기위한 변수
+
+	// 나의 신청현황 목록 보기위한 변수
 	private String StudyName;
 	private java.util.Date applyDate;
 	private java.util.Date approvedDate;
 	private boolean isApproved;
 
-	public User() { 
+	public User() {
 		dob = null;
 		date_of_join = null;
-		
-	}		// 기본 생성자
 
-	public User(int userId, String password, String name, Date dob, String email, String phone, String university,
-			String department, String grade, int gender) {
-		super();
-		this.member_id = userId;
-		this.password = password;
-		this.name = name;
-		this.dob = dob;
-		this.email = email;
-		this.phone = phone;
-		this.university = university;
-		this.department = department;
-		this.grade = grade;
-		this.gender = gender;
-	}
+	} // 기본 생성자
 
 	public User(int member_id, String email, String password, String name, Date dob, String phone, Date date_of_join,
 			String university, String department, String grade, int gender) {
@@ -61,8 +46,35 @@ public class User {
 		this.grade = grade;
 		this.gender = gender;
 	}
-	
-	
+
+	public User(String email, String password, String name, Date dob, String phone, String university,
+			String department, String grade, int gender) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.dob = dob;
+		this.phone = phone;
+		this.university = university;
+		this.department = department;
+		this.grade = grade;
+		this.gender = gender;
+	}
+
+	public User(int member_id, String email, String password, String name, Date dob, String phone, String university,
+			String department, String grade, int gender) {
+		super();
+		this.member_id = member_id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.dob = dob;
+		this.phone = phone;
+		this.university = university;
+		this.department = department;
+		this.grade = grade;
+		this.gender = gender;
+	}
 
 //	public User(String studyName, Date apply_date, Date approved_date, boolean isApproved) {
 //		super();
@@ -80,8 +92,8 @@ public class User {
 //        this.university = updateUser.university;
 //		this.department = updateUser.department;
 //		this.grade = updateUser.grade;
-//    }
-	
+//}
+
 	public int getMember_id() {
 		return member_id;
 	}
@@ -146,11 +158,10 @@ public class User {
 		this.phone = phone;
 	}
 
-	
 	public String getUniversity() {
 		return university;
 	}
-	
+
 	public void setUniversity(String university) {
 		this.university = university;
 	}
@@ -210,19 +221,18 @@ public class User {
 		}
 		return this.password.equals(password);
 	}
-	
+
 	public boolean isSameUser(int userid) {
-        if(this.member_id == member_id)
-        	return true;
-        return false;
-    }
-	
-	
+		if (this.member_id == member_id)
+			return true;
+		return false;
+	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + member_id + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
-				+ phone + ", university=" + university + ", department=" + department + ", grade=" + grade + "]";
+		return "User [userId=" + member_id + ", password=" + password + ", name=" + name + ", email=" + email
+				+ ", phone=" + phone + ", university=" + university + ", department=" + department + ", grade=" + grade
+				+ "]";
 	}
 
 }

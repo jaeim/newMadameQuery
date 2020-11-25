@@ -35,6 +35,6 @@ public class ViewManageStudyController implements Controller{
 		request.setAttribute("applyList", applyList);
 		request.setAttribute("groupMemberList", groupMemberList);
 		
-		return "/manage/manage_main/manage_view.jsp";
+		return "/manage/manage_view.jsp";
 	}
 }

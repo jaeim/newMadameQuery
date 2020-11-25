@@ -1,11 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>회원정보 수정 </title>
-
+<script>
+	function userModify(){
+		
+		if (form.password.value == "") {
+			alert("비밀번호를 입력하십시오.");
+			form.password.focus();
+			return false;
+		}
+		if (form.password.value != form.password2.value) {
+			alert("비밀번호가 일치하지 않습니다.");
+			form.name.focus();
+			return false;
+		}
+		if (form.name.value == "") {
+			alert("이름을 입력하십시오.");
+			form.name.focus();
+			return false;
+		}
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
+		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+		if(phoneExp.test(form.phone.value)==false) {
+			alert("전화번호 형식이 올바르지 않습니다.");
+			form.phone.focus();
+			return false;
+		}
+		form.submit();
+	}
+</script>
 <style>
 	body {
   margin: 0;
@@ -137,130 +171,51 @@ ul, li {
 
 <div>
 	<p id="title">UPDATE</p>
-	<table id="joinTable">
+	<form name="form" method="POST" action="/user/update/">
+	<table>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td>사용자 id: </td>
+			<td>${user.member_id }</td>
 		</tr>
 		<tr>
-			<td>ID</td>
-			<td><input type="text" name="userId" value="아이디를 입력하세요."></td>
-			<td><input type="button" name="doublecheck" value="중복확인"></td>
+			<td>비밀번호: </td>
+			<td><input type="password" name="password" value="${user.password}"></td>
 		</tr>
 		<tr>
-			<td>PASSWORD</td>
-			<td><input type="text" name="userPass" value="비밀번호를 입력하세요."></td>
-			<td>&nbsp;</td>
+			<td>비밀번호: </td>
+			<td><input type="password" name="password2" value="${user.password}"></td>
 		</tr>
 		<tr>
-			<td>CHECK PASS</td>
-			<td><input type="text" name="checkPass" value="비밀번호를 다시 입력해주세요."></td>
-			<td>&nbsp;</td>
+			<td>이름: </td>
+			<td><input type="text" name="name" value="${user.name }"></td>
 		</tr>
 		<tr>
-			<td>EMAIL</td>
-			<td>
-				<input type="email" name="userEmail" value="이메일을입력하세요.">
-				<select name="emaillist">
-					<option value="naver">naver.com</option>
-					<option value="daum">hanmail.net</option>
-					<option value="gmail">gmail.com</option>
-				</select>
-			</td>
-			<td>&nbsp;</td>
+			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td><input type="text" name="phone" value="${user.phone }" ></td>
 		</tr>
 		<tr>
-			<td>MAJOR</td>
-			<td>
-				<select name="majors">
-					<option>국어국문학과</option>
-					<option>국사학과</option>
-					<option>문예창작과</option>
-					<option>영어과</option>
-					<option>일본어과</option>
-					<option>프랑스어과</option>
-					<option>독일어과</option>
-					<option>중어중국학과</option>
-					<option>경영학과</option>
-					<option>경제학과</option>
-					<option>국제경영학과</option>
-					<option>아동학과</option>
-					<option>사회복지학과</option>
-					<option>문헌정보학과</option>
-					<option>세무회계학과</option>
-					<option>식품영양학과</option>
-					<option>보건관리학과</option>
-					<option>화학, 화장품학부</option>
-					<option>체육학과</option>
-					<option>토탈뷰티케어학과(야)</option>
-					<option>컴퓨터학과</option>
-					<option>정보통계학과</option>
-					<option>회화과</option>
-					<option>디지털공예과</option>
-					<option>큐레이터학과</option>
-					<option>피아노과</option>
-					<option>관현악과</option>
-					<option>성악과</option>
-					<option>패션디자인학과</option>
-					<option>시각&실내디자인학과</option>
-					<option>미디어디자인학과</option>
-					<option>약학과</option>
-				</select>
-			</td>
-			<td>&nbsp;</td>
+			<td>이메일 주소: </td>
+			<td><input type="text" name="email" value="${user.email }" ></td>
 		</tr>
 		<tr>
-			<td>LECTURE</td>
-			<td colspan="2" rowspan="2">
-			<table id="lectureTable">
-				<tr>
-					<td>1</td>
-					<td>과목 이름</td>
-					<td><input type="button" value="delete"></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>과목이름</td>
-					<td><input type="button" value="delete"></td>
-				</tr>
-			</table>
-			
-			</td>
+			<td>소속 학교 명: </td>
+			<td><input type="text" name="university" value="${user.university }" ></td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
+			<td>소속 학과명: </td>
+			<td><input type="text" name="department" value="${user.department }" ></td>
 		</tr>
 		<tr>
-			<td>TAGS</td>
-			<td colspan="2" rowspan="3">
-				<div id="tags">
-				<input type="checkbox" name="tags" value="1" />철학
-				<input type="checkbox" name="tags" value="2" />IT기술
-				<input type="checkbox" name="tags" value="3" />언어
-				<input type="checkbox" name="tags" value="4" />미술
-				<input type="checkbox" name="tags" value="5" />영화
-				<input type="checkbox" name="tags" value="6" />역사
-				<input type="checkbox" name="tags" value="7" />인문
-				<input type="checkbox" name="tags" value="8" />심리
-				<input type="checkbox" name="tags" value="9" />여성학
-				<input type="checkbox" name="tags" value="10" />문학
-				<input type="checkbox" name="tags" value="11" />팀플
-				</div>
-			</td>
+			<td>학년</td>
+			<td><input type="text" name="grade" value="${user.grade }" ></td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
-			
+			<td>성별</td>
+			<td><inpyt type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			
-		</tr>
-		
 	</table>
-
+</form>
 </div>
-<br><input type="button" value="수정(완료)" onClick="location.href='myPage.jsp'"/>
+<br><input type="button" value="수정(완료)" onClick="userModify()"/>
 </body>
 </html>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import model.StudyGroup;
 import model.service.Manager;
+import model.service.NotFoundException;
 
 // 현지
 public class UpdateStudyController implements Controller {
@@ -23,7 +24,7 @@ public class UpdateStudyController implements Controller {
 			StudyGroup group = manager.findGroup(groupId);
 			
 			request.setAttribute("studyGroup", group);
-			return "redirect:/manage/manage_main/manage_update.jsp";
+			return "redirect:/manage/manage_update.jsp";
 		}
 		
 		StudyGroup group = new StudyGroup();
@@ -39,13 +40,15 @@ public class UpdateStudyController implements Controller {
 		group.setSubjectId(Integer.valueOf((String)request.getAttribute("subjectId")));
 		group.setLeaderId(Integer.valueOf((String)request.getAttribute("leaderId")));
 		
-		int result = manager.updateStudyGroup(group);
-		if(result == 1) {
-			return "redirect:/manage/manage_main/manage_view.jsp";
+		int result = 0;
+		try {
+			result = manager.updateStudyGroup(group);
+		}catch(Exception e) {
+			return ""; // 오류페이지(스터디그룹이 없거나, 업데이트 실패 시)
 		}
-		
-		// return 오류페이지
-		return null;
+	
+		// 업데이트 성공
+		return "redirect:/manage/manage_view.jsp";
 	}
 
 }

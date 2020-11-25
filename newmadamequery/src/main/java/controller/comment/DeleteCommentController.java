@@ -23,8 +23,7 @@ public class DeleteCommentController implements Controller {
 //			int writer = (int) request.getAttribute("member_id");
 			int writer = Integer.parseInt(request.getParameter("member_id"));
 			HttpSession session = request.getSession();
-			if (UserSessionUtils.isLoginUser(Integer.toString(writer), session) ||
-					UserSessionUtils.isLoginUser("admin", session)) {
+			if (UserSessionUtils.isLoginUser(writer, session)) {
 				// 현재 로그인한 사용자가 삭제 권한이 있는 사용자이거나 관리자인 경우 -> 삭제 가능
 				manager.removeComment(comment_id);
 				// @@해당 게시글 상세보기로 새로운 댓글리스트 저장하여 포워딩? // 중복이 심한데 리다이렉션은 안되는지..?

@@ -131,8 +131,10 @@ public class Manager {
 		if(!studyGroupDAO.existingGroup(group.getGroupId())) {
 			throw new NotFoundException(group.getGroupId() + "는 존재하지 않는 groupId 입니다.");
 		}
+		int result = studyGroupDAO.updateGroup(group);
+		if(result == 0) {throw new SQLException();}
 		
-		return studyGroupDAO.updateGroup(group);
+		return result;
 	}
 	
 	// ok
@@ -140,18 +142,20 @@ public class Manager {
 		StudyGroup group = studyGroupDAO.findGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
+		ArrayList<User> userList = getAllMemberInGroup(groupId);
+		group.setGroupUsers(userList);
 		
 		return group;
 	}
 	
-	// ok
-	public ArrayList<StudyGroup> searchStudyGroups (String name, int term, int numOfMem) throws SQLException {
-		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(name, term, numOfMem);
-	
-		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
-		
-		return groupList;
-	}
+//	// ok
+//	public ArrayList<StudyGroup> searchStudyGroups (String name, int term, int numOfMem) throws SQLException {
+//		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(name, term, numOfMem);
+//	
+//		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+//		
+//		return groupList;
+//	}
 	
 	// ok
 	public ArrayList<User> getAllMemberInGroup (int groupId) throws SQLException, NotFoundException{
@@ -160,6 +164,14 @@ public class Manager {
 		}
 		
 		return studyGroupDAO.getAllMemberInGroup(groupId);
+	}
+	
+	public int removeMemberInGroup(int groupId, int memberId) throws SQLException, NotFoundException {
+		if(!studyGroupDAO.existingGroup(groupId)) {
+			throw new NotFoundException();
+		}
+		
+		return studyGroupDAO.removeMemberInGroup(groupId, memberId);
 	}
 	
 	// ok
@@ -217,8 +229,15 @@ public class Manager {
 	}
 	
 	// ok
-	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException{
-		return studyGroupDAO.getGroupList();
+	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
+		ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
+		
+		for(StudyGroup group : groupList) {
+			ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
+			group.setGroupUsers(memberList);
+		}
+		
+		return groupList;
 	}
 	
 	// ok
@@ -263,8 +282,8 @@ public class Manager {
 	}
 	
 	public int updatePost(Post post) throws SQLException, NotFoundException{
-		if(!postDAO.existingPost(post.get_id())){
-			throw new NotFoundException(post.get_id() + "는 존재하지 않는 게시물입니다.");
+		if(!postDAO.existingPost(post.getPostId())){
+			throw new NotFoundException(post.getPostId() + "는 존재하지 않는 게시물입니다.");
 		}
 		return postDAO.updatePost(post);
 	}
@@ -326,7 +345,8 @@ public class Manager {
 	//나의 신청현황
 	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
 		ArrayList<User> applyList = memberDAO.getApplyList();
-		if(applyList == null) {throw new SQLException("나의 신청 현황 조회 실패");}
+		
+		if(applyList == null) {throw new NotFoundException("나의 신청 현황 조회 실패");}
 		
 		return applyList;
 	}

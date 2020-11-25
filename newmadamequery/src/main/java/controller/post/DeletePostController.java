@@ -19,8 +19,8 @@ public class DeletePostController implements Controller {
 			// writer는 해당 post 작성자의 memberId임
 			int writer = (int) request.getAttribute("member_id");
 			HttpSession session = request.getSession();
-			if (UserSessionUtils.isLoginUser(Integer.toString(writer), session) ||
-					UserSessionUtils.isLoginUser("admin", session)) {
+						
+			if (UserSessionUtils.isLoginUser(writer, session)) {
 				// 현재 로그인한 사용자가 삭제 권한이 있는 사용자이거나 관리자인 경우 -> 삭제 가능
 				manager.removePost(postId);
 				// @@(해당 스터디 그룹의 게시글 목록으로 redirect?=>groupId를 전달해야하나??)

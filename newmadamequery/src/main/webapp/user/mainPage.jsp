@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@page import="java.util.*, model.*, controller.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import ="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="EUC-KR">
 <title>mainPage</title>
-<!-- ¸ŞÀÎ È­¸é  (°¡Àå Ã³À½ ¶ß´Â È­¸é & ·Î±×ÀÎ ÈÄ ¶ß´Â È­¸é.) -->
+
 <script language="Javascript" >
 	
 function toLogin(targetUri){
@@ -16,6 +19,7 @@ function toLogin(targetUri){
 function userCreate(targetUri) {
 	form.action = targetUri;
 	form.submit();
+}
 </script>
 <style>
 	body {
@@ -94,9 +98,6 @@ ul, li {
   visibility: visible;
 }
 
-#sub-menu > li >  a:hover {
- text-decoration: underline;
-}
 
  #first{
  	border: 1px solid black;
@@ -112,42 +113,47 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
+		<li><a href="<c:url value='/'/>">HOME</a></li>
 		<li><a href="<c:url value='/studyGroup/myStudy'>
-			<c:param name='userId' />
+			<c:param name='userId' value="${member_id }" />
 			</c:url> ">MYSTUDY</a></li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="<c:url value='/studyGroup/search' /> ">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="<c:url value='/studyGroup/list' /> ">ìŠ¤í„°ë”” ëª©ë¡ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
 			<c:param name='userId' />
-			</c:url> ">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="http://localhost:8080/newmadamequery/user/login.jsp">·Î±×ÀÎ</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">È¸¿ø°¡ÀÔ</a></li>
-			</ul>
+			</c:url> ">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
 
-
-
-	<!-- »ç¿ëÀÚ ¾ÆÀÌµğ: <input type="text" style="width:150" name="userId"> <br>
-	ºñ¹Ğ¹øÈ£ : <input type="password" style="width: 150" name="password" ><br> -->
 <br><br>
-<div id="fisrt">
 
-	<input type="button" value="·Î±×ÀÎ" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
-	<input type="button" value="È¸¿ø°¡ÀÔ" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br>
+<div>
+	<a href="<c:url value= '/user/login' />" style="text-decoration:none;">ë¡œê·¸ì¸</a>
+</div>
+<div>
+	<a href="<c:url value= '/user/register/form'/>" style="text-decoration:none;">íšŒì›ê°€ì…</a>
 </div>
 
+<%
+	//System.out.println(request.getAttribute("member_id"));
+	String userId = String.valueOf(request.getAttribute("member_id"));
+%>
+
+
+ <c:if test= "${member_id ne null }" >
+ 	member_id :<c:out value="${member_id}" />
+	<a href="<c:url value='/user/view' >
+		<c:param name="userId" value="String.valueOf(${member_id})" />
+		</c:url> ">ë§ˆì´í˜ì´ì§€ë¡œ ì´ë™</a>
+</c:if>
+
+
+<h6>testìš© (id: 20181003@dongduk.ac.kr / pw: 2424)</h6>
 </body>
 </html>

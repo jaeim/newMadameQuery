@@ -16,11 +16,11 @@ public class RegisterUserController implements Controller {
 	    java.util.Date utilDate = df.parse(request.getParameter("birthday"));
 		
 		User user = new User(
-				Integer.parseInt(request.getParameter("userId")),
+				//Integer.parseInt(request.getParameter("userId")),
 				request.getParameter("password"),
+				request.getParameter("email"),
 				request.getParameter("name"),
 				utilDate,
-				request.getParameter("email"),
 				request.getParameter("phone"),
 				request.getParameter("university"),
 				request.getParameter("department"),

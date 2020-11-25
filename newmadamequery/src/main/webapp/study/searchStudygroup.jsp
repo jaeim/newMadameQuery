@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.*" %>    
+<%@page import="model.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <script>
-	//function showResult(){
 	
-		//alert("결과 보여주기");
-//	}
 </script>
 <meta charset="EUC-KR">
 <title>스터디그룹 검색</title>
@@ -96,11 +96,6 @@ ul, li {
 			font-family: Arial;
 			font-size: 15px;
 		}
-		#add, table{
-			text-align:center;
-			margin: auto;
-			
-		}
 		table{
 			border: 2px solid black;
 			width: 700px;
@@ -108,7 +103,9 @@ ul, li {
 			font-family: Arial;
 
 		}
+		#searchGroup {
 		
+		}
 		
 	</style>
 </head>
@@ -143,55 +140,94 @@ ul, li {
 	</pre>		
 </div>
 
-<form name="form1" method="POST" action="searchResult.jsp">
-<div id="add" style="clear:both">
-	<h2>스터디 검색</h2>
+
+<div id="search">
+	<h2 style="text-align: center;">스터디 검색</h2>
 	
-	<table>
-		<tr>
-			<td>과목</td>
-			<td><input type="text" placeholder="과목명/주제를 입력해주세요." size=50 name="subjectName"></td>
-		</tr>
-		
-		<tr>
-			<td>인원</td>
-			<td>
-				<select name="numOfMembers">
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-					<option>8</option>
-					<option>9</option>
-					<option>10명 이상</option>
-				</select>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>기간</td>
-			<td>
-				<select name="term">
+	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
+	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />">
+		<table id= "searchGroup">
+			<tr>
+				<td>과목</td>
+				<td> 
+					<select id="subject"></select>
+				</td>
+				
+				<!-- numberOfUsers, groupName, description, term,  
+				meetingType,genderType,gradeType, subjectId -->
+				<td>인원 수 </td>
+				<td>
+					<select name="numberOfUsers">
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>10명 이상</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>스터디 그룹 명</td>
+				<td><input type="text" name="groupName" value="ex)알고리즘" onFocus="this.value='' " /></td>
+				<td>기간</td>
+				<td><select name="term">
 					<option>1개월</option>
 					<option>3개월</option>
 					<option>6개월</option>
 					<option>6개월 이상</option>
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="검색하기"/></td>
-		</tr>
-	</table>
+				
+				</td>
+			</tr>
+			<tr>
+				<td>소개</td>
+				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">간단한 소개글을 입력하세요</textarea> </td>
+			</tr>
+			<tr>
+				<td>스터디 방식</td>
+				<td><select name="meetingType">
+					<option>online</option>
+					<option>offline</option>
+					<option>병행</option>
+				</select></td>
+				<td>성별</td>
+				<td>
+					<select name="genderType">
+						<option>0(상관없음)</option>
+						<option>1(남성)</option>
+						<option>2(여성)</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>학년</td>
+				<td>
+					<select name="gradeType">
+						<option>0(상관없음)</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+					</select>
+				</td>
+				<td>팀장</td>
+				<td>userId (자신의  userId 가져오기)</td>
+			</tr>
+		</table>
+		<br><br>
+		<input type="button" id="createB" value="검색하기" onClick="<c:url value= '/studyGroup/search '>
+			<c:param name="studyName" value="${studyGroup.groupName }" />
+			<c:param name="memberNumber" value="${studyGroup.numberOfUser }" />
+			<c:param name="span" value="${studyGroup.term}" />
+			</c:url>" />
+		
+		<br><br>
+	</form>
 </div>
-</form>
-<!-- 조건에 맞는 스터디모임 검색 결과를 리스트로 보여주기 -->
 
 </body>
 </html>

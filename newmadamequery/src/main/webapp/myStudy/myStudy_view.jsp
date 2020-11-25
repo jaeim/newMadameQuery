@@ -164,6 +164,7 @@ ul, li {
 	<div id="name">
 		<h2>스터디 그룹 명</h2>
 	</div>
+	
 	<div id="board">
 	<table id="boardT">
 		<tr>
@@ -187,6 +188,8 @@ ul, li {
 		</c:forEach>
 		</table>
 	</div>
+	
+	<!-- DAO, controller 상의 후 추가 or 삭제 -->
 	<div id="members">
 		<h5 id="memberTitle">Group Members</h5>
 		<table id="memberTable">
@@ -195,6 +198,7 @@ ul, li {
 				<th>학과</th>
 				<th>학년</th>
 			</tr>
+			
 			<tr>
 				<td>이현아</td>
 				<td>컴퓨터학과</td>
