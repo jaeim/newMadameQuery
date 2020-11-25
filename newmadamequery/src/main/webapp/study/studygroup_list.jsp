@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	
+	@SuppressWarnings("unchecked") 
+	List<StudyGroup> groupList = (List<StudyGroup>)request.getAttribute("groupList");
 %>
 <!DOCTYPE html>
 <html>
@@ -128,13 +129,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
-		
 	</ul>
 </nav>
 
@@ -145,21 +139,22 @@ ul, li {
 	(모든 스터디 그룹 보여주기)
 	</pre>		
 </div>
+
 <!-- 모든 스터디 그룹을 리스트로 보여주기 -->
 <table id="allList">
 	<tr> 
-		<th>스터디그룹 명 ( ${groupList.groupName} )</th>
-		<th>소개 ( ${groupList.description})</th>
+		<th>스터디그룹 명 </th>
+		<th>소개 </th>
 		<th>기간</th>
 	</tr>
-	<c:forEach var="groupList" items="studyGroupList"> <!-- List<StudyGroup>이 반환됨. -->
+	
+	<c:forEach var="gl" items="${groupList }">
 		<tr>
 			<td><a href= "<c:url value='/studyGroup/view' >
-				<c:param name="groupId" value='${groupList.groupId }' />
-				</c:url>
-">${groupList.groupName}</a></td>
-			<td>${groupList.description}</td>
-			<td>${groupList.term }</td>
+				<c:param name="groupId" value="${gl.groupId }" />
+				</c:url>">${gl.groupName}</a></td>
+			<td>${gl.description}</td>
+			<td>${gl.term }</td>
 		</tr>
 	</c:forEach>
 </table>

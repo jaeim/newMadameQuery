@@ -167,12 +167,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -268,7 +262,7 @@ ul, li {
 					</select>
 				</td>
 				<td>팀장</td>
-				<td>userId (자신의  userId 가져오기)</td>
+				<td>${member_id }</td>
 			</tr>
 		</table>
 		<br><br>

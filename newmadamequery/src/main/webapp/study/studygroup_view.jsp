@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*" %>
+<%@page import="model.*, controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%
+	//request.setAttribute("StudyGroup", group);
+	//StudyGroup group= (StudyGroup) request.getAttribute("StudyGroup"); //하나의 객체를 받아옴.
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,8 +98,8 @@ ul, li {
  		border: 1px solid black;
  		
  		background-color:  #C0EDFF;
- 		width: 50%;
- 		height: 300px;
+ 		width: 500px;
+ 		height: 400px;
  		float: left;
  		color: black;
  	}
@@ -104,6 +108,7 @@ ul, li {
  		text-align: center;
  	}
  	#memberList{
+ 		border: 1px solid black;
  		text-align: center;
  		background-color: green;
  		width: 50%;
@@ -133,12 +138,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -149,35 +148,33 @@ ul, li {
 	<div> <!--  StudyGroup 하나의 객체 반환 -->
 		<table id="groupInfo">
 			<tr>
-				<td width="100" colspan="2">스터디명</td>
-				<td width="100" colspan="2">${studyGroup.groupName}</td>
+				<td colspan="2">스터디명</td>
+				<td colspan="2">${StudyGroup.groupName }</td>
 			</tr>
 			<tr>
-				<td width="100" colspan="2">소개</td>
-				<td width="100"colspan="2">${studyGroup.description}</td>
+				<td colspan="2">소개</td>
+				<td colspan="2">${StudyGroup.description}</td>
 			</tr>
 			<tr>
-				<td width="50">스터디 방식</td>
-				<td>${studyGroup.meetingType }</td>
-				<td width="50">성별</td>
-				<td>${studyGroup.genderType }</td>
+				<td >스터디 방식</td>
+				<td>${StudyGroup.meetingType }</td>
+				<td>성별</td>
+				<td>${StudyGroup.genderType }</td>
 			</tr>
 			<tr>
-				<td width="50">학년</td>
-				<td>${studyGroup.gradeType}</td>
-				<td width="50">기간</td>
-				<td>${studyGroup.term }</td>
+				<td>학년</td>
+				<td>${StudyGroup.gradeType}</td>
+				<td>기간</td>
+				<td>${StudyGroup.term }</td>
 			</tr>
 			
 		</table>
 	</div>
 	
-	<!-- StudyGroup -> groupUser를 가져오면 될 듯  -->
+	<!--  StudyGroup -> groupUser를 가져오면 될 듯 -->
 	
-	<div > <!--  멤버의 수, 이름, 학과, 학년 보여주기  -->
+	<div > <!--  멤버의 수, 이름, 학과, 학년 보여주기 -->
 	
-		<!-- 멤버 수 가져와서 그 만큼 table tr 생성해서 보여주기 -->
-		
 		<table id="memberList">
 			<caption>GroupMembers</caption>
 			<tr>
@@ -185,12 +182,11 @@ ul, li {
 				<th>학과</th>
 				<th>학년</th>
 			</tr>
-			<!-- user 수 만큼 출력됨. -->
-			<c:forEach var="sgUsers" items="${studyGroup.groupUsers}">
+			<c:forEach var="sg" items="${StudyGroup.groupUsers}">
 				<tr>
-					<td>&nbsp;${sgUsers.name}</td>
-					<td>&nbsp;${sgUser.department }</td>
-					<td>&nbsp;${sgUsers.grade }</td>
+					<td>${sg.name}</td>
+					<td>${sg.department }</td>
+					<td>${sg.grade }</td>
 				</tr>
 			</c:forEach>
 		</table>

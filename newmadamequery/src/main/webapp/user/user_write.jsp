@@ -209,7 +209,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td>비밀번호 확인: </td>
-			<td><input type="password" name="password2" /></td>
+			<td><input type="password2" name="password2" /></td>
 		</tr>
 		<tr>
 			<td>이름: </td>
@@ -256,7 +256,7 @@ ul, li {
 					<option>관현악과</option>
 					<option>성악과</option>
 					<option>패션디자인학과</option>
-					<option>시각,실내디자인학과</option>
+					<option>시각실내디자인학과</option>
 					<option>미디어디자인학과</option>
 					<option>약학과</option>
 				</select>

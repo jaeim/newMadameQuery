@@ -115,7 +115,7 @@ ul, li {
 	<ul id="main-menu">
 		<li><a href="<c:url value='/'/>">HOME</a></li>
 		<li><a href="<c:url value='/studyGroup/myStudy'>
-			<c:param name='userId' />
+			<c:param name='userId' value="${member_id }" />
 			</c:url> ">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
@@ -152,6 +152,7 @@ ul, li {
 		<c:param name="userId" value="String.valueOf(${member_id})" />
 		</c:url> ">마이페이지로 이동</a>
 </c:if>
+
 
 <h6>test용 (id: 20181003@dongduk.ac.kr / pw: 2424)</h6>
 </body>
