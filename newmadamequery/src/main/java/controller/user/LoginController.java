@@ -25,6 +25,7 @@ public class LoginController implements Controller {
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user.getMember_id());
             
+            request.setAttribute("member_id", user.getMember_id());
             return "redirect:/user/mainPage.jsp";	
 		} catch (Exception e) {
 			

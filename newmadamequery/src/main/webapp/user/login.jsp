@@ -126,9 +126,10 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' /></c:url> ">MANAGE</a>
+			<c:param name='userId' />
+			</c:url> ">MANAGE</a>
 		</li>
-			
+		
 	</ul>
 </nav>
 <!-- login form  -->
@@ -162,7 +163,7 @@ ul, li {
 		  </tr>
 	    </table>
 	    <br>	  
-	    <table>
+	<table>
 		  <tr>
 			<td>
 			<input type="submit" value="·Î±×ÀÎ" onClick="login()"> &nbsp;

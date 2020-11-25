@@ -142,7 +142,7 @@ ul, li {
 
 
 <div id="search">
-	<h2 style="text-align: center;">스터디 등록</h2>
+	<h2 style="text-align: center;">스터디 검색</h2>
 	
 	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />">

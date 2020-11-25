@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@page import="java.util.*, model.*, controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import ="javax.servlet.http.HttpSession" %>
@@ -8,7 +8,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>mainPage</title>
-<!-- 메인 화면  (가장 처음 뜨는 화면 & 로그인 후 뜨는 화면.) -->
+
 <script language="Javascript" >
 	
 function toLogin(targetUri){
@@ -121,7 +121,7 @@ ul, li {
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
 				<li><a href="<c:url value='/studyGroup/search' /> ">스터디 검색</a></li>
-				<li><a href="<c:url value='/studyGroup/list' /> ">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/list' /> ">스터디 목록 보기</a></li>
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
@@ -141,10 +141,9 @@ ul, li {
 </div>
 
 <%
-	UserSessionUtils utils = new UserSessionUtils();
-	if(utils.hasLogined(session)){
-   		int userId = Integer.valueOf(utils.getLoginUserId(session));
-	}
+	System.out.println(request.getAttribute("member_id"));
+
 %>
+
 </body>
 </html>
