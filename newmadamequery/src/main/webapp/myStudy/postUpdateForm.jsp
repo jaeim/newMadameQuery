@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>게시글 수정 페이지</title>
 <script>
 	function postModify(){
@@ -123,9 +123,9 @@ td{
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">���͵� ���</a></li>
-				<li><a href="#">���͵� �˻�</a></li>
-				<li><a href="#">���͵� �׷� ����</a></li>
+				<li><a href="#">스터디 등록</a></li>
+				<li><a href="#">스터디 검색</a></li>
+				<li><a href="#">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
@@ -140,10 +140,6 @@ td{
 </nav>
 
 <br><br>
-<% //�׽�Ʈ�� ���� ����- failed>
-	//Post firstPost= new Post();
-	//firstPost.set_id(411);
-	//System.out.println(firstPost.getContent());
 <% //테스트를 위한 설정- failed
 
 	Post firstPost= new Post();
@@ -162,7 +158,7 @@ td{
 			<td>2020-11-23</td>
 		</tr>
 		<tr>
-			<td >����</td>
+			<td >내용</td>
 			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
 			<!--  <td></td>
 			<td></td>
