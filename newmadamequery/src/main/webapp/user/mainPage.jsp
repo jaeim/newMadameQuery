@@ -4,21 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>mainPage</title>
 <!-- 메인 화면  (가장 처음 뜨는 화면 & 로그인 후 뜨는 화면.) -->
-<script language="Javascript" >
-	
-function toLogin(targetUri){
-	form.action = targetUri;
-	form.submit();
-}
 
-function userCreate(targetUri) {
-	form.action = targetUri;
-	form.submit();
-}
-</script>
 <style>
 	body {
   margin: 0;
@@ -128,28 +117,25 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			</c:url> ">MANAGE</a></li>
-		 <!--  	<li>LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
-		</li>-->
-		
+			</c:url> ">MANAGE</a>
+		</li>
 	</ul>
 </nav>
-
-
 
 	 사용자 이름: ${user.name }<br>
 <br><br>
 <div id="fisrt">
 	
-<!-- <input type="button" value="로그인" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
-	 <input type="button" value="회원가입" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
+<a href="<c:url value='/user/login/form' />">로그인</a>
+<a href="<c:url value='/user/register/form' />">회원가입</a>
 
-${user.member_id }
-<a href="<c:url value='/user/view' />">마이페이지</a>
+<c:if test= "${user.member_id ne null }" >
+ 	<c:out value="${user.member_id}" />
+ 	<br>
+	<a href="<c:url value='/user/view' >
+		<c:param name="userId" value="String.valueOf(${user.member_id})" />
+		</c:url> ">마이페이지로 이동</a>
+</c:if>
 </div>
 
 </body>
