@@ -28,20 +28,20 @@ public class UpdateStudyController implements Controller {
 			
 			request.setAttribute("groupMemberList", groupMemberList);
 			request.setAttribute("studyGroup", group);
-			return "redirect:/manage/manage_update.jsp";
+			return "/manage/manage_update.jsp";
 		}
 		
 		StudyGroup group = new StudyGroup();
 		group.setGroupId(Integer.valueOf((String)request.getAttribute("groupId")));
-		group.setGroupName((String)request.getAttribute("name"));
-		group.setCreatedDate((Date)request.getAttribute("createdDate"));
-		group.setNumberOfUsers(Integer.valueOf((String)request.getAttribute("numberOfUsers")));
-		group.setDescription((String)request.getAttribute("description"));
+		group.setGroupName((String)request.getAttribute("groupName"));
+//		group.setCreatedDate((Date)request.getAttribute("createdDate"));
+//		group.setNumberOfUsers(Integer.valueOf((String)request.getAttribute("numberOfUsers")));
+//		group.setDescription((String)request.getAttribute("description"));
 		group.setTerm(Integer.valueOf((String)request.getAttribute("term")));
 		group.setMeetingType((String)request.getAttribute("meetingType"));
 		group.setGenderType((String)request.getAttribute("genderType"));
 		group.setGenderType((String)request.getAttribute("gradeType"));
-		group.setSubjectId(Integer.valueOf((String)request.getAttribute("subjectId")));
+//		group.setSubjectId(Integer.valueOf((String)request.getAttribute("subjectId")));
 		group.setLeaderId(Integer.valueOf((String)request.getAttribute("leaderId")));
 		
 		int result = 0;

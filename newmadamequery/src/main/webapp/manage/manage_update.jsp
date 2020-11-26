@@ -199,15 +199,11 @@ ul, li {
 
 <%
 //확인을 위한 용도 
-	
 	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
 	System.out.println(group.getGroupName());
-	//StudyGroup sg = new StudyGroup();
-	//sg.setGroupId(501);
-	//밑에서 나중에 sg -> StudyGroup.~로 바꿀 것.
 %>
 
-<form name="form" method="POST" action="<c:url value='/myGroup/manageGroup/update' />">
+<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update' />">
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
@@ -237,7 +233,7 @@ ul, li {
 		<td>개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
 		<td>성별</td>
-		<td><select name="meetingType">
+		<td><select name="genderType">
 				<option value="0">상관 없음</option>
 				<option value="1">남자</option>
 				<option value="2">여자</option>
@@ -251,14 +247,14 @@ ul, li {
 					<c:forEach var="member" items="${groupMemberList}">
 						<option value="${member.member_id}"
 							<c:if test="${member.member_id eq studyGroup.leaderId}">selected="selected"</c:if>
-							>${member.userId}</option>
+							>${member.member_id}</option>
 					</c:forEach>
 				</select>
 		
 		</td>
 		<td>학년</td>
 		<td>
-			<select name="grade">
+			<select name="gradeType">
 				<option value="0">상관 없음</option>
 				<option value="1">1학년</option>
 				<option value="2">2학년</option>
@@ -281,7 +277,7 @@ ul, li {
 	
 	<c:forEach var="member" items="${groupMemberList}">
 		<tr>
-			<td><!-- 멤버 이름 출력 --></td>
+			<td>${member.name}</td>
 			<td>
 				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>

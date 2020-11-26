@@ -91,9 +91,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -125,9 +125,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -185,7 +185,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
@@ -226,7 +226,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
