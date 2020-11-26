@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import = "model.*" %>
+<%@page import = "model.*" import="java.util.ArrayList" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -162,43 +162,44 @@ function memberAccept() {
 </nav>
 <%
 //확인을 위한 용도 
-
-	StudyGroup sg = new StudyGroup();
-	sg.setGroupId(501);
+	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
+	System.out.println(group.getGroupId() + ", " + group.getGroupName());
+	ArrayList<Application> applyList = (ArrayList<Application>)request.getAttribute("applyList");
+	ArrayList<User> groupMemberList = (ArrayList<User>)request.getAttribute("groupMemberList");
 %>
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
-			<td> ${sg.groupName} </td>
+			<td> ${studyGroup.groupName} </td>
 			<td>인원</td>
-			<td> ${sg.numberOfUsers } </td>
+			<td> ${studyGroup.numberOfUsers} </td>
 			<td>기간</td>
-			<td> ${sg.term }</td>
+			<td> ${studyGroup.term }</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
 		<td>subjectId(과목)</td>
-		<td>${sg.subjectId} </td>
+		<td>${studyGroup.subjectId} </td>
 		<td>스터디 방식</td>
-		<td>${sg.meetingType} </td>
+		<td>${studyGroup.meetingType} </td>
 	</tr>
 	<tr>
 		<td>개설 일자</td>
-		<td>${sg.createdDate }</td>
+		<td>${studyGroup.createdDate }</td>
 		<td>성별</td>
-		<td>${sg.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
+		<td>${studyGroup.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
 	</tr>
 	<tr>
 		<td>팀장</td>
-		<td>${sg.leaderId }</td>
+		<td>${studyGroup.leaderId }</td>
 		<td>학년</td>
-		<td>${sg.gradeType }</td>
+		<td>${studyGroup.gradeType }</td>
 	</tr>
 	<tr>
 		<td>소개</td>
-		<td>${sg.description }</td>
+		<td>${studyGroup.description }</td>
 	</tr>
 </table>
 <table id= "userlist">
@@ -209,13 +210,13 @@ function memberAccept() {
 	
 	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
 	
-	<c:forEach var="member" items="{sg.memberList}">
+	<c:forEach var="member" items="${groupMemberList}">
 		<tr>
-			<td>이름 출력</td>
+			<td>${member.name}</td>
 			<td>
 				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${sg.groupId }'/>
+					<c:param name='groupId' value='${studyGroup.groupId }'/>
 					</c:url>" onClick= "return memberAccept(); ">수락</a>
 			</td>
 		</tr>
@@ -226,7 +227,7 @@ function memberAccept() {
 	
 	<mark>
 		<a href="<c:url value='/studyGroup/mangeGroup/update/form' >
-		<c:param name='groupId' value='${sg.groupId}' />
+		<c:param name='groupId' value='${studyGroup.groupId}' />
 		</c:url> ">정보 수정</a>
 	</mark>
 	
