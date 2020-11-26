@@ -19,11 +19,12 @@ public class CreateStudyController implements Controller {
 				Integer.parseInt(request.getParameter("term")), request.getParameter("meetingType").toString(),
 				request.getParameter("genderType").toString(), request.getParameter("gradeType").toString(),
 				Integer.parseInt(request.getParameter("subjectId")));
-		
+//		StudyGroup studyGroup = new StudyGroup(4, "데베프스터디", "데베프 스터디입니다.", 3, "online",
+//				"0", "0", 1);
+//		int userId = 201;
 		try {
 			Manager manager = Manager.getInstance();
-//			manager.createStudyGroup(studyGroup, (int)(request.getAttribute("memberId")));
-//			manager.createStudyGroup(studyGroup, Integer.parseInt(request.getParameter("userId")));
+//			manager.createStudyGroup(studyGroup, Integer.parseInt(request.getParameter("userId")));	
 			// session을 통해 user의 PK 구함
 			HttpSession session = request.getSession();
 			int userId = UserSessionUtils.getLoginUserId(session);

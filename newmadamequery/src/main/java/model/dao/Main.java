@@ -4,6 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
+import com.sun.corba.se.impl.orb.ParserTable.TestAcceptor1;
+
 import model.Application;
 import model.Comment;
 import model.Post;
@@ -512,22 +516,24 @@ public class Main {
 //			}
 //		}
 		
-		ArrayList<StudyGroup> groupList = null;
-		try {
-			user = manager.findUser("20170953@dongduk.ac.kr");
-			groupList = manager.searchStudyGroups(-1, -1, "혼합", "-1", "-1");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ArrayList<StudyGroup> groupList = null;
+//		try {
+//			user = manager.findUser("20170953@dongduk.ac.kr");
+//			groupList = manager.searchStudyGroups(-1, -1, "혼합", "-1", "-1");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(user != null) {
+//			System.out.println(user.getMember_id() + ", " + user.getName());
+//		if(groupList != null) {
+//			for(StudyGroup s : groupList) {
+//				System.out.println(s.getGroupId());
+//				}
+//			}
+//		}
 		
-		if(user != null) {
-			System.out.println(user.getMember_id() + ", " + user.getName());
-		if(groupList != null) {
-			for(StudyGroup s : groupList) {
-				System.out.println(s.getGroupId());
-				}
-			}
-		}
+		
 	}
 }

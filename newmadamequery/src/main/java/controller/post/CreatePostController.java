@@ -13,16 +13,18 @@ import model.service.Manager;
 public class CreatePostController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//groupId,memberId 
-//		int groupId = (int)(request.getAttribute("groupId"));
-//		int memberId = (int)(request.getAttribute("memberId"));
 		int groupId = Integer.parseInt(request.getParameter("groupId"));
-		
+	
 		HttpSession session = request.getSession();
 		int memberId = UserSessionUtils.getLoginUserId(session);
 		
 		Post post = new Post();
 		
+//		int groupId = 1011;
+//		int memberId = 201;
+//		post.setTitle("※공지사항");
+//		post.setContent("수요일 오후 6시 군자역 스타벅스!");
+				
 		post.setTitle(request.getParameter("title"));
 		post.setContent(request.getParameter("content"));
 		post.setMember_id(memberId);

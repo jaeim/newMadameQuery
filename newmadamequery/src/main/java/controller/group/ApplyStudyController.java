@@ -13,13 +13,15 @@ public class ApplyStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		int groupId = (int)(request.getAttribute("groupId"));
-//		int userId = (int)(request.getAttribute("userId"));
 		HttpSession session = request.getSession();
 		int userId = UserSessionUtils.getLoginUserId(session);
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
 				
 		String comments = request.getParameter("comments");
+		
+//		int userId = 1;
+//		int groupId = 1011;
+//		String comments = "안녕하세요~! 데베프 스터디 신청합니다.";
 		
 		try {
 			Manager manager = Manager.getInstance();

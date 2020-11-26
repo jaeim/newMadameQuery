@@ -12,7 +12,7 @@ public class DeleteStudyController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int deleteId = Integer.valueOf(request.getParameter("groupId"));
-		
+//		int deleteId = 1001;
 		try {
 			Manager manager = Manager.getInstance();
 			manager.removeStudyGroup(deleteId);

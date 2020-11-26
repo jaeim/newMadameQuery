@@ -13,14 +13,13 @@ import model.service.Manager;
 public class UpdatePostFormController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		int postId = (int)(request.getAttribute("postId"));
 		int postId = Integer.parseInt(request.getParameter("postId"));
+//		int postId = 801;
 		try {
 			Manager manager = Manager.getInstance();
 			Post post = manager.findPost(postId);
 			// 해당 게시글을 수정할 권한이 있는지 확인
 			// writer는 해당 post 작성자의 memberId임
-//			int writer = (int) request.getAttribute("memberId");
 			int writer = Integer.parseInt(request.getParameter("memberId"));
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(writer, session)) {
@@ -30,7 +29,7 @@ public class UpdatePostFormController implements Controller{
 				return "/myStudy/postUpdateForm.jsp";
 
 			}
-			// else (수정 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
+			//else (수정 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
 			request.setAttribute("exception", 
 					new IllegalStateException("자신이 작성한 게시글만 수정할 수 있습니다."));        		
 			return "/mystudy/detailPost.jsp";

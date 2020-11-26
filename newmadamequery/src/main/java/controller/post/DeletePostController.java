@@ -12,13 +12,14 @@ import model.service.Manager;
 public class DeletePostController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		int postId = (int)(request.getAttribute("postId"));
+//		int postId = 601;
+//		int groupId = 611;
 		int postId = Integer.parseInt(request.getParameter("postId"));
 		int groupId = Integer.parseInt(request.getParameter("groupId"));
 		try {
 			Manager manager = Manager.getInstance();
 			// 해당 게시글을 삭제할 권한이 있는지 확인
-			// writer는 해당 post 작성자의 memberId임
+//			 writer는 해당 post 작성자의 memberId임
 			int writer = (int) request.getAttribute("member_id");
 			HttpSession session = request.getSession();
 						

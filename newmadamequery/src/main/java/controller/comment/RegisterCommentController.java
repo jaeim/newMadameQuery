@@ -18,16 +18,17 @@ public class RegisterCommentController implements Controller {
 //		int member_id = (int)(request.getAttribute("membe_id"));
 //		int postId = (int)(request.getAttribute("postId"));
 		
-//		HttpSession session = request.getSession();
-//		int member_id = Integer.parseInt(UserSessionUtils.getLoginUserId(session));
+		HttpSession session = request.getSession();
+		int member_id = UserSessionUtils.getLoginUserId(session);
+		int groupId = Integer.parseInt(request.getParameter("groupId"));
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		/* 테스트
+		int postId = 411;
 		int member_id = 201;
 		int groupId = 611;
-//		int groupId = Integer.parseInt(request.getParameter("groupId"));
-		int postId = Integer.parseInt(request.getParameter("postId"));
-//		int postId = 411;
-		
+		*/
 		Comment comment = new Comment();
-		
+		//comment.setContent("테스트에요.");
 		comment.setContent(request.getParameter("content"));
 		comment.setGroupId(groupId);
 		comment.setMember_id(member_id);
