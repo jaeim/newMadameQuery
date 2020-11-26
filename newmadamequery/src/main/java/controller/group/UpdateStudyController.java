@@ -1,5 +1,6 @@
 package controller.group;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.StudyGroup;
+import model.User;
 import model.service.Manager;
 import model.service.NotFoundException;
 
@@ -22,7 +24,9 @@ public class UpdateStudyController implements Controller {
 		if(request.getMethod().equals("GET")) {
 			int groupId = Integer.valueOf((String)request.getParameter("groupId"));
 			StudyGroup group = manager.findGroup(groupId);
+			ArrayList<User> groupMemberList = manager.getAllMemberInGroup(groupId);
 			
+			request.setAttribute("groupMemberList", groupMemberList);
 			request.setAttribute("studyGroup", group);
 			return "redirect:/manage/manage_update.jsp";
 		}
