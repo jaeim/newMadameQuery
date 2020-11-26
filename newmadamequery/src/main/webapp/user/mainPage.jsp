@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>mainPage</title>
-<!-- 메인 화면  (가장 처음 뜨는 화면 & 로그인 후 뜨는 화면.) -->
 
 <style>
 	body {
@@ -112,21 +111,20 @@ ul, li {
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			</c:url> ">MANAGE</a>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
 	</ul>
 </nav>
-
-	 사용자 이름: ${user.name }<br>
-<br><br>
+사용자 이름: ${user.name }
+<br>
+<br>
 <div id="fisrt">
 	
-<a href="<c:url value='/user/login/form' />">로그인</a>
+<a href="<c:url value='/user/login/form' />">로그인</a> <br>
 <a href="<c:url value='/user/register/form' />">회원가입</a>
 
 <c:if test= "${user.member_id ne null }" >

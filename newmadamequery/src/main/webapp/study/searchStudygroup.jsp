@@ -194,7 +194,7 @@ ul, li {
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" value="검색하기" >
+		<input type="submit" value="검색하기" >
 	</form>
 </div>
 </body>
