@@ -1,11 +1,11 @@
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>´ñ±Û layout</title>
+<title>ëŒ“ê¸€ layout</title>
 <style>
 		table{
 			border-collapse: collapse;
@@ -17,12 +17,12 @@
 <div>
 	<table id="comments">
 	<% 
-		int n = 4 ; //dao.getCommentCount()·Î °¡Á®¿Â °³¼ö ¸¸Å­ tr »ı¼º
+		int n = 4 ; //dao.getCommentCount()ë¡œ ê°€ì ¸ì˜¨ ê°œìˆ˜ ë§Œí¼ tr ìƒì„±
 		int i = 0;
 	for(i = 0; i<n ; i++){%>
 	<tr>
-		<td>ÀÛ¼ºÀÚ :<%=i+1 %></td> <!-- ÀÛ¼ºÀÚ ÀÌ¸§ -->
-		<td>´ñ±Û ³»¿ë: <%=i+1 %></td> <!-- ´ñ±Û ³»¿ë -->
+		<td>ì‘ì„±ì :<%=i+1 %></td> <!-- ì‘ì„±ì ì´ë¦„ -->
+		<td>ëŒ“ê¸€ ë‚´ìš©: <%=i+1 %></td> <!-- ëŒ“ê¸€ ë‚´ìš© -->
 	</tr>
 	<%} %>
 	</table>

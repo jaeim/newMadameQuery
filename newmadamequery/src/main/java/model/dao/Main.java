@@ -4,10 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import com.sun.corba.se.impl.orb.ParserTable.TestAcceptor1;
-
 import model.Application;
 import model.Comment;
 import model.Post;
@@ -534,6 +530,21 @@ public class Main {
 //			}
 //		}
 		
+		ArrayList<StudyGroup> groupList = null;
+		try {
+			System.out.println("dao 수행");
+			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
+			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		if(groupList == null) {System.out.println("groupList is null");}
+		if(groupList != null) {
+			for(StudyGroup s : groupList) {
+				System.out.println(s.getGroupId());
+			}
+		}
 	}
 }

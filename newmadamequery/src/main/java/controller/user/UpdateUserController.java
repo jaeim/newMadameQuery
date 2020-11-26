@@ -30,7 +30,7 @@ public class UpdateUserController implements Controller {
 			if(UserSessionUtils.hasLogined(session)) {
 				userId = UserSessionUtils.getLoginUserId(session);
 			}else {
-				return "redirect:/user/login.jsp";
+				return "redirect:/user/login";
 			}
 			
 			// 로그인할때 이메일 사용하니까 이메일을 매개변수로 보냄

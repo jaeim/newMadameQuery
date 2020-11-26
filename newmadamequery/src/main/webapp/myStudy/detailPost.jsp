@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>°Ô½Ã±Û »ó¼¼º¸±â</title>
+<title>ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°</title>
 <script>
 	
 </script>
@@ -119,16 +119,16 @@ td{
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -140,15 +140,15 @@ td{
 <h3></h3>
 	<table id="pTable">
 		<tr>
-			<td>Á¦¸ñ</td>
+			<td>ì œëª©</td>
 			<td>${post.title } </td>
-			<td>ÀÛ¼ºÀÚ</td>
+			<td>ìž‘ì„±ìž</td>
 			<td>${post.userName }</td>
-			<td>³¯Â¥</td>
+			<td>ë‚ ì§œ</td>
 			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
-			<td >³»¿ë</td>
+			<td >ë‚´ìš©</td>
 			<td colspan="5">${post.content}</td>
 			<!--  <td></td>
 			<td></td>
@@ -158,16 +158,16 @@ td{
 		
 	</table>
 	<%
-		//³»°¡ °Ô½ÃÇÑ ±ÛÀÏ ¶§¸¸ ¼öÁ¤ÇÏ±â ¹öÆ° ¶ß°Ô ÇÏ±â
+		//ë‚´ê°€ ê²Œì‹œí•œ ê¸€ì¼ ë•Œë§Œ ìˆ˜ì •í•˜ê¸° ë²„íŠ¼ ëœ¨ê²Œ í•˜ê¸°
 		
 	%>
 	<br><br>
 	
 	<button onClick="<c:url value='/post/update/form' >
 		<c:param name="postId" value='${post.postId}' />
-			</c:url>"> ¼öÁ¤ÇÏ±â </button>
+			</c:url>"> ìˆ˜ì •í•˜ê¸° </button>
 	&nbsp;&nbsp;
-	<button onClick= "<c:url value='/post/delete' />">»èÁ¦ÇÏ±â</button>
+	<button onClick= "<c:url value='/post/delete' />">ì‚­ì œí•˜ê¸°</button>
 	
 	
 </div>
@@ -178,7 +178,7 @@ td{
 	<div id="newCommt">
 		<h6>${member.userId }</h6>
 		<textarea name="cmtContents" cols="30" rows="1"></textarea>
-		<input type="button" value="´ñ±Û¾²±â" onClick= "<c:url value='/comment/register' > 
+		<input type="button" value="ëŒ“ê¸€ì“°ê¸°" onClick= "<c:url value='/comment/register' > 
 			
 				<c:param name='username' value = '${user.name }' />
 				<c:param name='date' value= '${comment.createdDate }' />
@@ -186,37 +186,37 @@ td{
 			</c:url>"  />
 		
 		
-		<!-- ´ñ±Û °³¼ö ¸¸Å­ ´ñ±Û º¸¿©ÁÖ±â -->
+		<!-- ëŒ“ê¸€ ê°œìˆ˜ ë§Œí¼ ëŒ“ê¸€ ë³´ì—¬ì£¼ê¸° -->
 		<br>
 		<table id="cmtTable">
 			
 			<%-- <c:forEach var="cmtList" items="${commentList}" >
 				<tr >
-					<td>ÀÌ¸§</td> 
-					<td>ÀÌÇö¾Æ</td>
-					<td>³¯Â¥</td>
+					<td>ì´ë¦„</td> 
+					<td>ì´í˜„ì•„</td>
+					<td>ë‚ ì§œ</td>
 					<td>2020-11-23</td>
 				</tr>
 				<tr>
-					<td>³»¿ë</td>
-					<td colspan="3">ÁÁÀº °Í °°¾Æ¿ä~</td>
+					<td>ë‚´ìš©</td>
+					<td colspan="3">ì¢‹ì€ ê²ƒ ê°™ì•„ìš”~</td>
 				</tr>
 			</c:forEach>--%>
 			
 		<tr>
-				<td>ÀÌ¸§</td>
-				<td>ÀÌÇö¾Æ</td>
-				<td>³¯Â¥</td>
+				<td>ì´ë¦„</td>
+				<td>ì´í˜„ì•„</td>
+				<td>ë‚ ì§œ</td>
 				<td>2020-11-23</td>
 			</tr>
 			<tr>
-				<td>³»¿ë</td>
-				<td colspan="3">ÁÁÀº °Í °°¾Æ¿ä~</td>
+				<td>ë‚´ìš©</td>
+				<td colspan="3">ì¢‹ì€ ê²ƒ ê°™ì•„ìš”~</td>
 			</tr>
 			<tr>
 				<td colspan="4" style="text-align:right"><a href="<c:url value='/comment/delete'>
 					<c:param name='commentId' value= '${comment.comment_id}'/>
-					</c:url>">»èÁ¦</a>
+					</c:url>">ì‚­ì œ</a>
 				</td>
 			</tr>
 		</table>

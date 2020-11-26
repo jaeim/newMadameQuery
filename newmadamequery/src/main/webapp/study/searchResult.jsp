@@ -1,29 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%request.setCharacterEncoding("EUC-KR"); %> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("UTF-8"); %> 
+<%@page import="java.util.*" %>    
+<%@page import="model.*, controller. *" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	List<StudyGroup> searchList = (List<StudyGroup>)request.getAttribute("searchList");
+	// ë°›ì•„ì˜¤ëŠ” ë¦¬ìŠ¤íŠ¸ ì´ë¦„ ìˆ˜ì • 
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>½ºÅÍµğ ±×·ì °Ë»ö °á°ú</title>
-<!--  Á¶°Ç¿¡ ¸Â´Â ½ºÅÍµğ °Ë»öÇØ¼­ list·Î Ãâ·ÂÇØÁÖ±â  -->
+<meta charset="UTF-8">
+<title>ìŠ¤í„°ë”” ê·¸ë£¹ ê²€ìƒ‰ ê²°ê³¼</title>
+<style>
+	#resultTable, tr{
+		border: 1px solid black;
+		width: auto;
+		height: auto;
+		margin: 0;
+		text-align: center;
+	}
+</style>
 
 <style>
 	
 </style>
 </head>
 <body>
-
-	<!-- ³»°¡ ¼±ÅÃÇÑ Á¶°ÇÀ» º¸¿©ÁÖ±â  -->
-	<div id="myChoice">
-			
-		
-	</div>
 	
 	<div id ="result">
-		<table>
-			
-		</table>
+	<table id="resultTable">
+	<tr>
+		<td>&nbsp;</td>
+		<td>ìŠ¤í„°ë”” ë°©ì‹</td>
+		<td>ê¸°ê°„</td>
+		<td>ì„±ë³„</td>
+		<td>í•™ë…„</td>
+	</tr>
+	
+	<c:forEach var="sl" items="${searchList}" varStatus= "status"> 
+		<tr>
+			<td><c:out value="${status.count}" /></td>
+			<td>${sl.meetingType }</td>
+			<td>${sl.term}ê°œì›” </td>
+			<td>${sl.genderType }</td>
+			<td>${sl.gradeType }í•™ë…„</td>
+		</tr>
+	</c:forEach>
+	</table>
 	</div>
 </body>
 </html>

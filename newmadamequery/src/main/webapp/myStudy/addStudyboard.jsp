@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,23 +7,23 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>±Û¾²±â ÆäÀÌÁö </title>
+<title>ê¸€ì“°ê¸° í˜ì´ì§€ </title>
 <script>
 	function boardCreate(){
 		if(form.title.value =""){
-			alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ì œëª©ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.title.focus();
 			return false;
 		}
 		if(form.contents.value=""){
-			alert("³»¿ëÀ» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.contents.focus();
 			return false;
 		}
 		form.submit();
 	}
 </script>
-<!-- myStudy_view.jsp¿¡¼­ ±Û¾²±â ¹öÆ°À» ´­·¶À» ¶§ ÀÌµ¿ (°Ô½ÃÆÇ¿¡ ±Û ¾²±â) -->
+<!-- myStudy_view.jspì—ì„œ ê¸€ì“°ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ ì´ë™ (ê²Œì‹œíŒì— ê¸€ ì“°ê¸°) -->
 <style>
 	
 
@@ -140,16 +140,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
@@ -159,9 +159,9 @@ ul, li {
 
 <div id="addform">
 <form name="form" method="POST" action="<c:url value='/post/create'/>">
-	<input type="text" name="title" id="title" placeholder="Á¦¸ñ" />
-	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea>
-	<input type="button" name="submitB" id="submit" value="°Ô½Ã±Û ÀÛ¼º " onClick="postCreate()" />
+	<input type="text" name="title" id="title" placeholder="ì œëª©" />
+	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”"></textarea>
+	<input type="button" name="submitB" id="submit" value="ê²Œì‹œê¸€ ì‘ì„± " onClick="postCreate()" />
 </form>
 </div>
 
@@ -169,13 +169,13 @@ ul, li {
 		<h5 id="memberTitle">Group Members</h5>
 		<table id="memberTable">
 			<tr>
-				<th>ÀÌ¸§</th>
-				<th>ÇĞ°ú</th>
-				<th>ÇĞ³â</th>
+				<th>ì´ë¦„</th>
+				<th>í•™ê³¼</th>
+				<th>í•™ë…„</th>
 			</tr>
 			<tr>
-				<td>ÀÌÇö¾Æ</td>
-				<td>ÄÄÇ»ÅÍÇĞ°ú</td>
+				<td>ì´í˜„ì•„</td>
+				<td>ì»´í“¨í„°í•™ê³¼</td>
 				<td>3</td>
 			</tr>
 			<tr>
@@ -189,15 +189,15 @@ ul, li {
 	<h5 id="memberTitle">Group Info</h5>
 		<table id="infoTable">
 			<tr>
-				<td>°ú¸ñ ¸í</td>
+				<td>ê³¼ëª© ëª…</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>¸ğÁı ÀÎ¿ø</td>
+				<td>ëª¨ì§‘ ì¸ì›</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>±â°£</td>
+				<td>ê¸°ê°„</td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>

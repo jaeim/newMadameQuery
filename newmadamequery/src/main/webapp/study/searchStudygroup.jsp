@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,8 @@
 <script>
 	
 </script>
-<meta charset="EUC-KR">
-<title>╫╨ем╣П╠в╥Л ╟к╩Ж</title>
+<meta charset="UTF-8">
+<title>Л┼╓М└╟К■■Й╥╦Кё╧ Й╡─Л┐┴</title>
 <style>
 	body {
   margin: 0;
@@ -116,17 +116,12 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
-			</ul>
+		<li><a href="#">MANAGE</a>
 		</li>
 		
 	</ul>
@@ -135,99 +130,72 @@ ul, li {
 <div id="intro">
 	<pre>
 	StudyGroup
-	©Ьго╢б ╫╨ем╣П ╦Пюсю╩ ╟к╩Жгь╨╦╪╪©Д.
-	╫╨ем╣П ╦Пюс ╟к╩Жю╩ ю╖гя а╤╟гю╩ ют╥б ╧в ╪╠ецго╪╪©Д.
+	Л⌡░М∙≤К┼■ Л┼╓М└╟К■■ К╙╗Л·└Л²└ Й╡─Л┐┴М∙╢КЁ╢Л└╦Л ■.
+	Л┼╓М└╟К■■ К╙╗Л·└ Й╡─Л┐┴Л²└ Л°└М∙° Л║╟Й╠╢Л²└ Л·┘К═╔ К╟▐ Л└═М┐²М∙≤Л└╦Л ■.
 	</pre>		
 </div>
 
 
 <div id="search">
-	<h2 style="text-align: center;">╫╨ем╣П ╟к╩Ж</h2>
+	<h2 style="text-align: center;">Л┼╓М└╟К■■ Й╡─Л┐┴</h2>
 	
-	<!-- ╦П╣Г ╣╔юлем╦╕ ют╥бго╣╣╥о  : ╩У╥н©Н ╣╔юлем╦╕ еКгь ╩У╥н©Н ╫╨ем╣П╦╕ цъ╟║гя╢ы. (╦╤д║ х╦©Ь╟║ют╟З ╨Я╫а)-->
-	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />">
-		<table id= "searchGroup">
+	<!-- К╙╗К⌠═ К█╟Л²╢М└╟К╔╪ Л·┘К═╔М∙≤К▐└К║²  : Л┐┬К║°Л ╢ К█╟Л²╢М└╟К╔╪ М├╣М∙╢ Л┐┬К║°Л ╢ Л┼╓М└╟К■■К╔╪ Л╤■Й╟─М∙°К▀╓. (К╖┬Л╧≤ М ▄Л⌡░Й╟─Л·┘ЙЁ╪ К╧└Л┼╥)-->
+	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />" >
+		<table>
 			<tr>
-				<td>╟З╦Я</td>
-				<td> 
-					<select id="subject"></select>
-				</td>
-				
-				<!-- numberOfUsers, groupName, description, term,  
-				meetingType,genderType,gradeType, subjectId -->
-				<td>юн©Ь ╪Ж </td>
+				<td>Л┼╓М└╟К■■ К╟╘Л▀²</td>
 				<td>
-					<select name="numberOfUsers">
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						<option>10╦М юл╩С</option>
+					<select name="meetingType">
+						<option value="-1" selected>-Л└═М┐²Л∙┬М∙╗-</option>
+						<option value="online">online</option>
+						<option value="offline">offline</option>
+						<option value="blended">blended</option>
+					</select>r
+					
+				</td>
+			</tr>
+			<tr>
+				<td>Й╦╟Й╟└</td>
+				<td>
+					<select name="term">
+						<option value="-1" selected>-Л└═М┐²Л∙┬М∙╗-</option>
+						<option value="1">1Й╟°Л⌡■</option>
+						<option value="2">3Й╟°Л⌡■</option>
+						<option value="3">6Й╟°Л⌡■</option>
+						<option value="4">6Й╟°Л⌡■ Л²╢Л┐│</option>
+						<option value="0">Л┐│Й╢─Л≈├Л²▄</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>╫╨ем╣П ╠в╥Л ╦М</td>
-				<td><input type="text" name="groupName" value="ex)╬к╟М╦╝аР" onFocus="this.value='' " /></td>
-				<td>╠Б╟ё</td>
-				<td><select name="term">
-					<option>1╟Ё©Ы</option>
-					<option>3╟Ё©Ы</option>
-					<option>6╟Ё©Ы</option>
-					<option>6╟Ё©Ы юл╩С</option>
-				</select>
-				
-				</td>
-			</tr>
-			<tr>
-				<td>╪р╟Ё</td>
-				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">╟ё╢эгя ╪р╟Ё╠шю╩ ют╥бго╪╪©Д</textarea> </td>
-			</tr>
-			<tr>
-				<td>╫╨ем╣П ╧Ф╫д</td>
-				<td><select name="meetingType">
-					<option>online</option>
-					<option>offline</option>
-					<option>╨╢гЮ</option>
-				</select></td>
-				<td>╪╨╨╟</td>
+				<td>Л└╠КЁ└</td>
 				<td>
 					<select name="genderType">
-						<option>0(╩С╟Э╬Ью╫)</option>
-						<option>1(Ё╡╪╨)</option>
-						<option>2(©╘╪╨)</option>
+						<option value="-1" selected>-Л└═М┐²Л∙┬М∙╗- </option>
+						<option value="1">К┌╗Л└╠</option>
+						<option value="2">Л≈╛Л└╠</option>
+						<option value="0">Л┐│Й╢─Л≈├Л²▄</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>гпЁБ</td>
+				<td>М∙≥К┘└</td>
 				<td>
 					<select name="gradeType">
-						<option>0(╩С╟Э╬Ью╫)</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option value="-1" selected>-Л└═М┐²Л∙┬М∙╗-</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">4М∙≥К┘└ Л²╢Л┐│</option>
+						<option value="0">Л┐│Й╢─Л≈├Л²▄</option>
 					</select>
 				</td>
-				<td>фююЕ</td>
-				<td>userId (юз╫еюг  userId ╟║а╝©ю╠Б)</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="╟к╩Жго╠Б" onClick="<c:url value= '/studyGroup/search '>
-			<c:param name="studyName" value="${studyGroup.groupName }" />
-			<c:param name="memberNumber" value="${studyGroup.numberOfUser }" />
-			<c:param name="span" value="${studyGroup.term}" />
-			</c:url>" />
-		
-		<br><br>
+		<input type="button" value="Й╡─Л┐┴М∙≤Й╦╟" >
 	</form>
 </div>
-
 </body>
 </html>

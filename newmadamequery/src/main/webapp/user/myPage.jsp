@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@page import="java.util.*, model.*" %> 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%
-    	User user = (User) request.getAttribute("user");
-    %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@page import="java.util.*, model.*" %> 
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>¸¶ÀÌÆäÀÌÁö - ³» Á¤º¸ ¹Þ¾Æ¿Í¼­ º¸¿©ÁÖ±â </title>
-<!-- [USERMAN1 - user_modify.jsp, user_view.jsp Âü°íÇÒ °Í.] -->
+<title>ë§ˆì´íŽ˜ì´ì§€ - ë‚´ ì •ë³´ ë°›ì•„ì™€ì„œ ë³´ì—¬ì£¼ê¸° </title>
+<!-- [USERMAN1 - user_modify.jsp, user_view.jsp ì°¸ê³ í•  ê²ƒ.] -->
 <style>
 body {
   margin: 0;
@@ -126,16 +124,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -146,45 +144,45 @@ ul, li {
 	<p id="title">My Page</p>
 	<table>
 		<tr>
-			<td>»ç¿ëÀÚ id: </td>
+			<td>ï¿½ï¿½ï¿½ï¿½ï¿½ id: </td>
 			<td>${user.email }</td>
 		</tr>
 		<tr>
-			<td>ÀÌ¸§: </td>
+			<td>ì´ë¦„: </td>
 			<td>${user.name }</td>
 		</tr>
 		<tr>
-			<td>ÈÞ´ëÆù ¹øÈ£ (ex.010-1234-5678)</td>
+			<td>íœ´ëŒ€í° ë²ˆí˜¸ (ex.010-1234-5678)</td>
 			<td>${user.phone }</td>
 		</tr>
 		<tr>
-			<td>ÀÌ¸ÞÀÏ ÁÖ¼Ò: </td>
+			<td>ì´ë©”ì¼ ì£¼ì†Œ: </td>
 			<td>${user.email }</td>
 		</tr>
 		<tr>
-			<td>¼Ò¼Ó ÇÐ±³ ¸í: </td>
+			<td>ì†Œì† í•™êµ ëª…: </td>
 			<td>${user.university }</td>
 		</tr>
 		<tr>
-			<td>¼Ò¼Ó ÇÐ°ú¸í: </td>
+			<td>ì†Œì† í•™ê³¼ëª…: </td>
 			<td>
 				${user.department }
 			</td>
 		</tr>
 		<tr>
-			<td>ÇÐ³â</td>
+			<td>í•™ë…„</td>
 			<td>${user.grade }</td>
 		</tr>
 		<tr>
-			<td>¼ºº°</td>
+			<td>ì„±ë³„</td>
 			<td>${user.gender }</td>
 		</tr>
 	</table>
 </div>
 <br>
 <div>
-<input type="button" id= "forHome"value="È¨À¸·Î" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="¼öÁ¤ÇÏ±â" onClick="<c:url value= '/user/update/form' >
+<input type="button" id= "forHome"value="í™ˆìœ¼ë¡œ" onClick="location.href='mainPage.jsp'" />
+<input type="button" id="forUpdate" value="ìˆ˜ì •í•˜ê¸°" onClick="<c:url value= '/user/update/form' >
 	<c:param name="member_id" value="${user.member_id }" />
 	</c:url>
 	

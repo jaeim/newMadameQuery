@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,17 +7,17 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>╟т╫ц╠ш ╪Жа╓ фДюлаЖ</title>
+<title>Й╡▄Л▀°Й╦─ Л┬≤Л═∙ М▌≤Л²╢Л╖─</title>
 <script>
 	function postModify(){
 		
 		if(form.pTitle.value = ""){
-			alert("а╕╦Яю╩ ют╥бго╫й╫ц©ю.");
+			alert("Л═°К╙╘Л²└ Л·┘К═╔М∙≤Л▀╜Л▀°Л≤╓.");
 			form.name.focus();
 			return false;
 		}
 		if(form.pContents.value=""){
-			alert("Ё╩©Кю╩ ют╥бго╫й╫ц©ю.");
+			alert("К┌╢Л ╘Л²└ Л·┘К═╔М∙≤Л▀╜Л▀°Л≤╓.");
 			form.contents.focus();
 			return false;
 		}
@@ -123,16 +123,16 @@ td{
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">О©╫О©╫О©╫м╣О©╫ О©╫О©╫О©╫</a></li>
+				<li><a href="#">О©╫О©╫О©╫м╣О©╫ О©╫к╩О©╫</a></li>
+				<li><a href="#">О©╫О©╫О©╫м╣О©╫ О©╫в╥О©╫ О©╫О©╫О©╫О©╫</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
+				<li><a href="#">К║°Й╥╦Л²╦</a></li>
+				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
 			</ul>
 		</li>
 		
@@ -140,24 +140,29 @@ td{
 </nav>
 
 <br><br>
-<% //ев╫╨ф╝╦╕ ю╖гя ╪Ёа╓- failed>
+<% //О©╫в╫О©╫ф╝О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫- failed>
 	//Post firstPost= new Post();
 	//firstPost.set_id(411);
 	//System.out.println(firstPost.getContent());
+<% //М┘▄Л┼╓М┼╦К╔╪ Л°└М∙° Л└╓Л═∙- failed
+
+	Post firstPost= new Post();
+	firstPost.setPostId(411);
+	System.out.println(firstPost.getContent());
 %>
 <div id="onePost">
 <h3></h3>
 	<table id="pTable">
 		<tr>
-			<td>а╕╦Я</td>
+			<td>Л═°К╙╘</td>
 			<td><input type="text" name="pTitle" value="${post.title}"/></td>
-			<td>юш╪╨юз</td>
-			<td>юш╪╨юзюл╦╖</td>
-			<td>Ё╞б╔</td>
+			<td>Л·▒Л└╠Л·░</td>
+			<td>Л·▒Л└╠Л·░Л²╢К╕└</td>
+			<td>К┌═Л╖°</td>
 			<td>2020-11-23</td>
 		</tr>
 		<tr>
-			<td >Ё╩©К</td>
+			<td >О©╫О©╫О©╫О©╫</td>
 			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
 			<!--  <td></td>
 			<td></td>
@@ -166,7 +171,7 @@ td{
 		</tr>
 		
 	</table>
-	<input type="button" value="╪Жа╓ ©о╥А" onClick="postModify()" />
+	<input type="button" value="Л┬≤Л═∙ Л≥└Кё▄" onClick="postModify()" />
 </div>
 </body>
 </html>
