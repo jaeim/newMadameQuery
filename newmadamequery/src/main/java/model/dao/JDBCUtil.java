@@ -1,6 +1,8 @@
 package model.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
@@ -49,9 +51,9 @@ public class JDBCUtil {
 	}
 
 	// sql 및 Object[] 변수 setter
-	public void setSqlAndParameters(String sql, Object[] parameters) {
+	public void setSqlAndParameters(String sql, Object[] param) {
 		this.sql = sql;
-		this.parameters = parameters;
+		this.parameters = param;
 		this.resultSetType = ResultSet.TYPE_FORWARD_ONLY;
 		this.resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
 	}

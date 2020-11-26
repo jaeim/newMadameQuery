@@ -484,8 +484,38 @@ public class Main {
 //		else{System.out.println("멤버삭제실패");}
 	
 		User user = null;
+//		User user = null;
+//		try {
+//			user = manager.findUser("20170953@dongduk.ac.kr");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(user != null) {
+//			System.out.println(user.getMember_id() + ", " + user.getName());
+//		}
+//		ArrayList<StudyGroup> groupList = null;
+//		try {
+//			groupList = manager.getAllStudyGroup();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(groupList != null) {
+//			for(StudyGroup s: groupList) {
+//				System.out.println("멤버명수 : " + s.getGroupUsers().size());
+//			}
+//		}
+		
+		ArrayList<StudyGroup> groupList = null;
 		try {
 			user = manager.findUser("20170953@dongduk.ac.kr");
+			groupList = manager.searchStudyGroups(-1, -1, "혼합", "-1", "-1");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -493,6 +523,11 @@ public class Main {
 		
 		if(user != null) {
 			System.out.println(user.getMember_id() + ", " + user.getName());
+		if(groupList != null) {
+			for(StudyGroup s : groupList) {
+				System.out.println(s.getGroupId());
+				}
+			}
 		}
 	}
 }

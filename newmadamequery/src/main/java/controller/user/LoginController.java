@@ -26,7 +26,7 @@ public class LoginController implements Controller {
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, user.getMember_id());
 //            System.out.println(session.getAttribute(UserSessionUtils.USER_SESSION_KEY));
             
-            request.setAttribute("member_id", user.getMember_id());
+            request.setAttribute("user", user);
             return "/user/mainPage.jsp";	
 		} catch (Exception e) {
 			

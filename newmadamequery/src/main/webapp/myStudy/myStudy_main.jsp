@@ -19,7 +19,7 @@
   font-family: Arial;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
   overflow-x: hidden;  
 }
@@ -135,9 +135,7 @@ ul, li {
 			<tr>
 				<td>
 					<a href="<c:url value='/post/list'>
-						   <c:param name='commId' value='${group.username}'/>
-						   <c:param name='commId' value='${group.date}'/>
-						   <c:param name='commId' value='${group.postname}'/>
+						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
 				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
 				<td>${group.numberOfUsers }</td>
