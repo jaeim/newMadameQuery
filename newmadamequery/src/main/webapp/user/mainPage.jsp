@@ -149,14 +149,7 @@ ul, li {
 <!-- <input type="button" value="로그인" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
 	 <input type="button" value="회원가입" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
 
-<%
-	HttpSession httpSession = request.getSession(true);
-	String user = (String)httpSession.getAttribute("USER_SESSION_KEY"); // ?? 전달이 안대,,, 왜 안대,,,, 
-
-%>
-<%=user
-//전달이 안됨....null 출력됨
-%>
+${user.member_id }
 <a href="<c:url value='/user/view' />">마이페이지</a>
 </div>
 
