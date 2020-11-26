@@ -171,7 +171,7 @@ ul, li {
 
 <div>
 	<p id="title">UPDATE</p>
-	<form name="form" method="POST" action="/user/update/">
+	<form name="form" method="POST" action="<c: url value='/user/update/'">
 	<table>
 		<tr>
 			<td>사용자 id: </td>
@@ -211,11 +211,11 @@ ul, li {
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><inpyt type="text" name="gender" value="${user.gender }" ></td>
+			<td><input type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
 	</table>
 </form>
 </div>
-<br><input type="button" value="수정(완료)" onClick="userModify()"/>
+<br><input type="button" value="수정(완료)" onClick="userModify()" />
 </body>
 </html>
