@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>mainPage</title>
-<!-- ¸ÞÀÎ È­¸é  (°¡Àå Ã³À½ ¶ß´Â È­¸é & ·Î±×ÀÎ ÈÄ ¶ß´Â È­¸é.) -->
+<!-- ë©”ì¸ í™”ë©´  (ê°€ìž¥ ì²˜ìŒ ëœ¨ëŠ” í™”ë©´ & ë¡œê·¸ì¸ í›„ ëœ¨ëŠ” í™”ë©´.) -->
 <script language="Javascript" >
 	
 function toLogin(targetUri){
@@ -116,23 +117,22 @@ ul, li {
 		<li><a href="#">HOME</a></li>
 		<li><a href="<c:url value='/studyGroup/myStudy'>
 			<c:param name='userId' />
-			</c:url> ">MYSTUDY</a></li>
+			</c:url>">MYSTUDY</a></li>
 		
 	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="<c:url value='/studyGroup/create/form' />">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="<c:url value='/studyGroup/list' />">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' />
 			</c:url> ">MANAGE</a></li>
 		 <!--  	<li>LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">·Î±×ÀÎ</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">È¸¿ø°¡ÀÔ</a></li>
+				<li> <a href="<c:url value='/user/login/form' />">ë¡œê·¸ì¸</a></li>
+				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>-->
 		
@@ -141,24 +141,15 @@ ul, li {
 
 
 
-	 »ç¿ëÀÚ ¾ÆÀÌµð: ${user.name }<br>
+	 ì‚¬ìš©ìž ì´ë¦„: ${user.name }<br>
 <br><br>
 <div id="fisrt">
 	
-<!-- <input type="button" value="·Î±×ÀÎ" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
-	 <input type="button" value="È¸¿ø°¡ÀÔ" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
+<!-- <input type="button" value="ë¡œê·¸ì¸" onClick = "toLogin(<c:url value='/user/login/form'/>))" > <br><br>
+	 <input type="button" value="íšŒì›ê°€ìž…" onClick ="userCreate('<c:url value='/user/register/form'/>) ')"> <br> -->
 
-<%
-	HttpSession httpSession = request.getSession(true);
-	String user = (String)httpSession.getAttribute("USER_SESSION_KEY"); // ?? Àü´ÞÀÌ ¾È´ë,,, ¿Ö ¾È´ë,,,, 
-
-%>
-<%=user
-//Àü´ÞÀÌ ¾ÈµÊ....null Ãâ·ÂµÊ
-%>
-
-
-<a href="<c:url value='/user/view' />">¸¶ÀÌÆäÀÌÁö</a>
+${user.member_id }
+<a href="<c:url value='/user/view' />">ë§ˆì´íŽ˜ì´ì§€</a>
 </div>
 
 </body>

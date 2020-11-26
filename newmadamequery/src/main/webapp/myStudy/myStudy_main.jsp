@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>³»°¡ ¼ÓÇÑ ½ºÅÍµğ±×·ì ¸®½ºÆ® Ãâ·Â</title>
-<!--  ÇÏ³ªÀÇ ½ºÅÍµğ¸¦ ¼±ÅÃÇÒ °æ¿ì myStudy_view.jsp·Î ÀÌµ¿ (Á¤º¸ Àü´Ş)-->
+<title>ë‚´ê°€ ì†í•œ ìŠ¤í„°ë””ê·¸ë£¹ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥</title>
+<!--  í•˜ë‚˜ì˜ ìŠ¤í„°ë””ë¥¼ ì„ íƒí•  ê²½ìš° myStudy_view.jspë¡œ ì´ë™ (ì •ë³´ ì „ë‹¬)-->
 <style>
 	body {
   margin: 0;
@@ -19,7 +19,7 @@
   font-family: Arial;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
   overflow-x: hidden;  
 }
@@ -107,39 +107,37 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
 	</ul>
 </nav>
-<div> <!-- ³»°¡ ¼ÓÇÑ ½ºÅÍµğ ±×·ìÀÇ ¸®½ºÆ® °¡Á®¿Í¼­ º¸¿©ÁÖ±â , ¾î¶² Á¤º¸ °¡Á®¿Ã°ÇÁö Á¤ÇÏ°í table ´Ù½Ã¸¸µé±â-->
+<div> <!-- ë‚´ê°€ ì†í•œ ìŠ¤í„°ë”” ê·¸ë£¹ì˜ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì™€ì„œ ë³´ì—¬ì£¼ê¸° , ì–´ë–¤ ì •ë³´ ê°€ì ¸ì˜¬ê±´ì§€ ì •í•˜ê³  table ë‹¤ì‹œë§Œë“¤ê¸°-->
 	<table id="groupList">
 		<tr>
-			<th>½ºÅÍµğ ±×·ì ¸í</th>
-			<th>ÀÎ¿ø ¼ö</th>
-			<th>³¯Â¥ </th>
+			<th>ìŠ¤í„°ë”” ê·¸ë£¹ ëª…</th>
+			<th>ì¸ì› ìˆ˜</th>
+			<th>ë‚ ì§œ </th>
 		</tr>
 		
-		<% // ½ºÅÍµğ ±×·ìÀÇ ¸®½ºÆ® ¸¸Å­ tr »ı¼º %>
+		<% // ìŠ¤í„°ë”” ê·¸ë£¹ì˜ ë¦¬ìŠ¤íŠ¸ ë§Œí¼ tr ìƒì„± %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
-					<a href="<c:url value='/post/list'>
-						   <c:param name='commId' value='${group.username}'/>
-						   <c:param name='commId' value='${group.date}'/>
-						   <c:param name='commId' value='${group.postname}'/>
+					<a href="<c:url value='/studyGroup/manageStudy'>
+						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
-				</td> <!-- ½ºÅÍµğ±×·ì ¸í Å¬¸¯ ½Ã¿¡ ÇØ´ç ½ºÅÍµğ±×·ìÀÇ °Ô½ÃÆÇÀ¸·Î ÀÌµ¿ -->
+				</td> <!-- ìŠ¤í„°ë””ê·¸ë£¹ ëª… í´ë¦­ ì‹œì— í•´ë‹¹ ìŠ¤í„°ë””ê·¸ë£¹ì˜ ê²Œì‹œíŒìœ¼ë¡œ ì´ë™ -->
 				<td>${group.numberOfUsers }</td>
 				<td>${group.createdDate}</td>
 				

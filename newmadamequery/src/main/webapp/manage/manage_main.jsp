@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import ="java.util.*" %>
 <%@page import = "model. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 <% 	//@SuppressWarnings("unchecked");
-	List<StudyGroup> groupList = (List<StudyGroup>)request.getAttribute("groupList");
+	ArrayList<StudyGroup> groupList = (ArrayList<StudyGroup>)request.getAttribute("groupList");
  %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>½ºÅÍµð ±×·ì ¸ÞÀÎ (ÀÚ½ÅÀÌ ÆÀÀåÀÎ ½ºÅÍµð ±×·ì ¸®½ºÆ® Ãâ·Â)</title>
+<title>ìŠ¤í„°ë”” ê·¸ë£¹ ë©”ì¸ (ìžì‹ ì´ íŒ€ìž¥ì¸ ìŠ¤í„°ë”” ê·¸ë£¹ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥)</title>
 <style>
 	body {
   margin: 0;
@@ -108,16 +108,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -129,12 +129,12 @@ ul, li {
 <table>
 
 	<tr>
-		<th>½ºÅÍµð±×·ì ¸í </th>
-		<th>ÀÎ¿ø</th>
-		<th>±â°£</th>
+		<th>ìŠ¤í„°ë””ê·¸ë£¹ ëª… </th>
+		<th>ì¸ì›</th>
+		<th>ê¸°ê°„</th>
 	</tr>
 	
-	<c:forEach var="sg" items="${groupList} ">
+	<c:forEach var="sg" items="${groupList}">
 		<tr>
 			<td>
 			<a href="<c:url value='/studyGroup/manageStudy'>

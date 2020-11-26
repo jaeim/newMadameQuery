@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>½ºÅÍµğ±×·ì info º¸¿©ÁÖ´Â È­¸é</title>
-<!-- menu/ STUDYGROUP / ½ºÅÍÆ¼ ±×·ì º¸±â -> ÇÏ³ªÀÇ ½ºÅÍµğ±×·ì ¼±ÅÃ ½Ã º¸¿©Áö´Â È­¸é. -->
+<title>ìŠ¤í„°ë””ê·¸ë£¹ info ë³´ì—¬ì£¼ëŠ” í™”ë©´</title>
+<!-- menu/ STUDYGROUP / ìŠ¤í„°í‹° ê·¸ë£¹ ë³´ê¸° -> í•˜ë‚˜ì˜ ìŠ¤í„°ë””ê·¸ë£¹ ì„ íƒ ì‹œ ë³´ì—¬ì§€ëŠ” í™”ë©´. -->
 
 <style>
 body {
@@ -127,16 +127,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
@@ -146,46 +146,46 @@ ul, li {
 
 <div>
 	
-	<div> <!--  StudyGroup ÇÏ³ªÀÇ °´Ã¼ ¹İÈ¯ -->
+	<div> <!--  StudyGroup í•˜ë‚˜ì˜ ê°ì²´ ë°˜í™˜ -->
 		<table id="groupInfo">
 			<tr>
-				<td width="100" colspan="2">½ºÅÍµğ¸í</td>
+				<td width="100" colspan="2">ìŠ¤í„°ë””ëª…</td>
 				<td width="100" colspan="2">${studyGroup.groupName}</td>
 			</tr>
 			<tr>
-				<td width="100" colspan="2">¼Ò°³</td>
+				<td width="100" colspan="2">ì†Œê°œ</td>
 				<td width="100"colspan="2">${studyGroup.description}</td>
 			</tr>
 			<tr>
-				<td width="50">½ºÅÍµğ ¹æ½Ä</td>
+				<td width="50">ìŠ¤í„°ë”” ë°©ì‹</td>
 				<td>${studyGroup.meetingType }</td>
-				<td width="50">¼ºº°</td>
+				<td width="50">ì„±ë³„</td>
 				<td>${studyGroup.genderType }</td>
 			</tr>
 			<tr>
-				<td width="50">ÇĞ³â</td>
+				<td width="50">í•™ë…„</td>
 				<td>${studyGroup.gradeType}</td>
-				<td width="50">±â°£</td>
+				<td width="50">ê¸°ê°„</td>
 				<td>${studyGroup.term }</td>
 			</tr>
 			
 		</table>
 	</div>
 	
-	<!-- StudyGroup -> groupUser¸¦ °¡Á®¿À¸é µÉ µí  -->
+	<!-- StudyGroup -> groupUserë¥¼ ê°€ì ¸ì˜¤ë©´ ë  ë“¯  -->
 	
-	<div > <!--  ¸â¹öÀÇ ¼ö, ÀÌ¸§, ÇĞ°ú, ÇĞ³â º¸¿©ÁÖ±â  -->
+	<div > <!--  ë©¤ë²„ì˜ ìˆ˜, ì´ë¦„, í•™ê³¼, í•™ë…„ ë³´ì—¬ì£¼ê¸°  -->
 	
-		<!-- ¸â¹ö ¼ö °¡Á®¿Í¼­ ±× ¸¸Å­ table tr »ı¼ºÇØ¼­ º¸¿©ÁÖ±â -->
+		<!-- ë©¤ë²„ ìˆ˜ ê°€ì ¸ì™€ì„œ ê·¸ ë§Œí¼ table tr ìƒì„±í•´ì„œ ë³´ì—¬ì£¼ê¸° -->
 		
 		<table id="memberList">
 			<caption>GroupMembers</caption>
 			<tr>
-				<th>ÀÌ¸§</th>
-				<th>ÇĞ°ú</th>
-				<th>ÇĞ³â</th>
+				<th>ì´ë¦„</th>
+				<th>í•™ê³¼</th>
+				<th>í•™ë…„</th>
 			</tr>
-			<!-- user ¼ö ¸¸Å­ Ãâ·ÂµÊ. -->
+			<!-- user ìˆ˜ ë§Œí¼ ì¶œë ¥ë¨. -->
 			<c:forEach var="sgUsers" items="${studyGroup.groupUsers}">
 				<tr>
 					<td>&nbsp;${sgUsers.name}</td>
@@ -203,6 +203,6 @@ ul, li {
 </div>
 <br><br>
 
-<!-- <button onClick="location.href='studygroup_list.jsp'">GoBack</button>  ´Ù½Ã µÇµ¹¾Æ °¡±â ¹öÆ° -->
+<!-- <button onClick="location.href='studygroup_list.jsp'">GoBack</button>  ë‹¤ì‹œ ë˜ëŒì•„ ê°€ê¸° ë²„íŠ¼ -->
 </body>
 </html>

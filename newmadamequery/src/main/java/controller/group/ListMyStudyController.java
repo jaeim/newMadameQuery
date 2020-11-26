@@ -37,7 +37,7 @@ public class ListMyStudyController implements Controller {
 		}
 		
 		//성공
-		return "/mystudy/mystudy_main.jsp";
+		return "/myStudy/myStudy_main.jsp";
 	}
 
 }

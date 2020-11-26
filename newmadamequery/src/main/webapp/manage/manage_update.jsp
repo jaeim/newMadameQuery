@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>manage update page</title>
-<!-- manage_view.jsp¿¡¼­ '¼öÁ¤'Å¬¸¯½Ã ÀÌµ¿ -½ºÅÍµğ ±×·ìÀÇ Á¤º¸ ¼öÁ¤ ÆäÀÌÁö -->
+<!-- manage_view.jspì—ì„œ 'ìˆ˜ì •'í´ë¦­ì‹œ ì´ë™ -ìŠ¤í„°ë”” ê·¸ë£¹ì˜ ì •ë³´ ìˆ˜ì • í˜ì´ì§€ -->
 
 <style>
 	body {
@@ -156,12 +156,12 @@ ul, li {
 <script>
 	function groupModify() {
 		if(form.groupName.value ==""){
-			alert("½ºÅÍµğ ±×·ì ¸íÀ» ÀÔ·ÂÇÏ½Ã¿À.");
+			alert("ìŠ¤í„°ë”” ê·¸ë£¹ ëª…ì„ ì…ë ¥í•˜ì‹œì˜¤.");
 			form.groupName.focus();
 			return false;
 		}
 		if(form.description.value == ""){
-			alert("±×·ì ¼Ò°³¸¦ ÀÛ¼ºÇÏ½Ê½Ã¿À.");
+			alert("ê·¸ë£¹ ì†Œê°œë¥¼ ì‘ì„±í•˜ì‹­ì‹œì˜¤.");
 			form.description.focus();
 			return false;
 		}
@@ -181,16 +181,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
@@ -198,54 +198,54 @@ ul, li {
 </nav>
 
 <%
-//È®ÀÎÀ» À§ÇÑ ¿ëµµ 
+//í™•ì¸ì„ ìœ„í•œ ìš©ë„ 
 
 	StudyGroup sg = new StudyGroup();
 	sg.setGroupId(501);
-	//¹Ø¿¡¼­ ³ªÁß¿¡ sg -> StudyGroup.~·Î ¹Ù²Ü °Í.
+	//ë°‘ì—ì„œ ë‚˜ì¤‘ì— sg -> StudyGroup.~ë¡œ ë°”ê¿€ ê²ƒ.
 %>
 
 <form name="form" method="POST" action="<c:url value='/myGroup/manageGroup/update' />">
 <table id="main1">
 		<tr>
-			<td>½ºÅÍµğ±×·ì ¸í</td>
+			<td>ìŠ¤í„°ë””ê·¸ë£¹ ëª…</td>
 			<td> <input type="text" name="groupName" value="${sg.groupName} " ></td>
-			<td>ÀÎ¿ø</td>
+			<td>ì¸ì›</td>
 			<td> ${sg.numberOfUsers } </td>
-			<td>±â°£</td>
+			<td>ê¸°ê°„</td>
 			<td> <input type="text" name="term" value="${sg.term }"></td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
-		<td>subjectId(°ú¸ñ)</td>
+		<td>subjectId(ê³¼ëª©)</td>
 		<td>${sg.subjectId} </td>
-		<td>½ºÅÍµğ ¹æ½Ä</td>
+		<td>ìŠ¤í„°ë”” ë°©ì‹</td>
 		<td> <!-- online, offline, both-->
 			<select name="meetingType">
 				<option value="0">Online</option>
 				<option value="1">Offline</option>
-				<option value="2">On & Off(È¥ÇÕ)</option>
+				<option value="2">On & Off(í˜¼í•©)</option>
 			</select>
-			<!-- ±âÁ¸ÀÇ µ¥ÀÌÅÍ °¡Á®¿Í¼­ selected Ç¥½ÃÇÏ±â -->
+			<!-- ê¸°ì¡´ì˜ ë°ì´í„° ê°€ì ¸ì™€ì„œ selected í‘œì‹œí•˜ê¸° -->
 		</td>
 	</tr>
 	<tr>
-		<td>°³¼³ ÀÏÀÚ</td>
+		<td>ê°œì„¤ ì¼ì</td>
 		<td>${sg.createdDate }</td>
-		<td>¼ºº°</td>
+		<td>ì„±ë³„</td>
 		<td><select name="meetingType">
-				<option value="0">»ó°ü ¾øÀ½</option>
-				<option value="1">³²ÀÚ</option>
-				<option value="2">¿©ÀÚ</option>
+				<option value="0">ìƒê´€ ì—†ìŒ</option>
+				<option value="1">ë‚¨ì</option>
+				<option value="2">ì—¬ì</option>
 			</select></td>
 	</tr>
 	<tr>
-		<td>ÆÀÀå</td>
+		<td>íŒ€ì¥</td>
 		<td>
 			<select name="leaderId">
-					<option value="">¾øÀ½</option>
+					<option value="">ì—†ìŒ</option>
 					<c:forEach var="member" items="${sg.memberList}">
 						<option value="${member.userId}"
 							<c:if test="${member.userId eq sg.leaderId}">selected="selected"</c:if>
@@ -254,14 +254,14 @@ ul, li {
 				</select>
 		
 		</td>
-		<td>ÇĞ³â</td>
+		<td>í•™ë…„</td>
 		<td>
 			<select name="grade">
-				<option value="0">»ó°ü ¾øÀ½</option>
-				<option value="1">1ÇĞ³â</option>
-				<option value="2">2ÇĞ³â</option>
-				<option value="3">3ÇĞ³â</option>
-				<option value="4">4ÇĞ³â</option>
+				<option value="0">ìƒê´€ ì—†ìŒ</option>
+				<option value="1">1í•™ë…„</option>
+				<option value="2">2í•™ë…„</option>
+				<option value="3">3í•™ë…„</option>
+				<option value="4">4í•™ë…„</option>
 			</select>
 		</td>
 	</tr>
@@ -271,20 +271,20 @@ ul, li {
 
 <table id= "userlist">
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÆÀ¿ø °ü¸®</td>
+		<td>ì´ë¦„</td>
+		<td>íŒ€ì› ê´€ë¦¬</td>
 	</tr>
 	
-	<%  //if()...±× ½ºÅÍµğ±×·ìÀÇ ÆÀ¿ø °¡Á®¿Í¼­ ÆÀ¿ø ¼ö ¸¸Å­ <tr> »ı¼ºÇØ¼­ list Ãâ·Â. %>
+	<%  //if()...ê·¸ ìŠ¤í„°ë””ê·¸ë£¹ì˜ íŒ€ì› ê°€ì ¸ì™€ì„œ íŒ€ì› ìˆ˜ ë§Œí¼ <tr> ìƒì„±í•´ì„œ list ì¶œë ¥. %>
 	
 	<c:forEach var="member" items="{sg.memberList}">
 		<tr>
-			<td><!-- ¸â¹ö ÀÌ¸§ Ãâ·Â --></td>
+			<td><!-- ë©¤ë²„ ì´ë¦„ ì¶œë ¥ --></td>
 			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> »èÁ¦</a>
+				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> ì‚­ì œ</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
 					<c:param name='groupId' value='${sg.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">¼ö¶ô</a>
+					</c:url>" onClick= "return memberAccept(); ">ìˆ˜ë½</a>
 			</td>
 			
 			
@@ -294,8 +294,8 @@ ul, li {
 </table>
 <br>
 <div id="buttons">
-	<input type="button" value="ÀúÀåÇÏ±â" onClick="groupModify()"> &nbsp;
-	<input type="button" value="µ¹¾Æ°¡±â" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
+	<input type="button" value="ì €ì¥í•˜ê¸°" onClick="groupModify()"> &nbsp;
+	<input type="button" value="ëŒì•„ê°€ê¸°" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
 		<c:param name="groupId" value="${sg.groupId}" />
 		</c:url>'')">
 </div>

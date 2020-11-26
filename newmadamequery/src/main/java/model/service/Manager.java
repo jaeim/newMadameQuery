@@ -142,18 +142,20 @@ public class Manager {
 		StudyGroup group = studyGroupDAO.findGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
+		ArrayList<User> userList = getAllMemberInGroup(groupId);
+		group.setGroupUsers(userList);
 		
 		return group;
 	}
 	
-//	// ok
-//	public ArrayList<StudyGroup> searchStudyGroups (String name, int term, int numOfMem) throws SQLException {
-//		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(name, term, numOfMem);
-//	
-//		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
-//		
-//		return groupList;
-//	}
+	// ok
+	public ArrayList<StudyGroup> searchStudyGroups (int term, int numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
+		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(term, numOfMem, meeting_type, gender_type, grade_type);
+	
+		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+		
+		return groupList;
+	}
 	
 	// ok
 	public ArrayList<User> getAllMemberInGroup (int groupId) throws SQLException, NotFoundException{
@@ -227,8 +229,15 @@ public class Manager {
 	}
 	
 	// ok
-	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException{
-		return studyGroupDAO.getGroupList();
+	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
+		ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
+		
+		for(StudyGroup group : groupList) {
+			ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
+			group.setGroupUsers(memberList);
+		}
+		
+		return groupList;
 	}
 	
 	// ok

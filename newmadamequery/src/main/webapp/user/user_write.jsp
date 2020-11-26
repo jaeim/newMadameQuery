@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,57 +9,57 @@
 	function userCreate(){
 		if(form.userId.value == ""){
 			
-			alert("������� id�� �Է��Ͻʽÿ�.");
+			alert("사용자의 id를 입력하십시오.");
 			form.userId.focus();
 			return false;
 		}
 		if(form.password.value == ""){
 			
-			alert("��й�ȣ�� �Է��Ͻʽÿ�.");
+			alert("비밀번호를 입력하십시오.");
 			form.password.focus();
 			return false;
 		}
 		if(form.password.value != form.password2.value){
-			alert("��й�ȣ�� ��ġ���� �ʽ��ϴ�.");
+			alert("비밀번호가 일치하지 않습니다.");
 			form.password2.focus();
 			return false;
 		}
 		if (form.name.value == "") {
-			alert("�̸��� �Է��Ͻʽÿ�.");
+			alert("이름을 입력하십시오.");
 			form.name.focus();
 			return false;
 		}
 		if(form.email.value=""){
 			
-			alert("�̸����� �Է��Ͻʽÿ�.");
+			alert("이메일을 입력하십시오.");
 			form.email.focus();
 			return false;
 		}
 		if(form.university.value ==""){
 			
-			alert("���и��� �Է��Ͻʽÿ�.");
+			alert("대학명을 입력하십시오.");
 			form.univerisity.focus();
 			return false;
 		}
 		if(form.department.value == ""){
-			alert("�Ҽ� �а����� �����Ͻʽÿ�.");
+			alert("소속 학과명을 선택하십시오.");
 			form.department.focus();
 			return false;
 		}
 		if(form.gender.value == ""){
-			alert("������ �����Ͻʽÿ�.");
+			alert("성별을 선택하십시오.");
 			form.gender.focus();
 			return false;
 		}
 		//var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 //		if(emailExp.test(form.email.value)==false) {
-//			alert("�̸��� ������ �ùٸ��� �ʽ��ϴ�.");
+//			alert("이메일 형식이 올바르지 않습니다.");
 //			form.email.focus();
 //			return false;
 //		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
-			alert("��ȭ��ȣ ������ �ùٸ��� �ʽ��ϴ�.");
+			alert("전화번호 형식이 올바르지 않습니다.");
 			form.phone.focus();
 			return false;
 		}
@@ -67,7 +67,7 @@
 		
 	}
 </script>
-<title>ȸ������</title>
+<title>회원가입</title>
 <style>
 	body {
   margin: 0;
@@ -186,16 +186,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">���͵� ���</a></li>
-				<li><a href="#">���͵� �˻�</a></li>
-				<li><a href="#">���͵� �׷� ����</a></li>
+				<li><a href="#">스터디 등록</a></li>
+				<li><a href="#">스터디 검색</a></li>
+				<li><a href="#">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">�α���</a></li>
-				<li><a href="http://localhost:8080/newmadamequery/user/user_write.jsp">ȸ������</a></li>
+				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
+				<li><a href="http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
 			</ul>
 		</li>
 		
@@ -209,87 +209,87 @@ ul, li {
 	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
 	<table>
 		<tr>
-			<td>����� id: </td>
+			<td>사용자 id: </td>
 			<td><input type="text" name="userId"></td>
 		</tr>
 		<tr>
-			<td>��й�ȣ: </td>
+			<td>비밀번호: </td>
 			<td><input type="password" name="password"></td>
 		</tr>
 		<tr>
-			<td>��й�ȣ Ȯ��: </td>
+			<td>비밀번호 확인: </td>
 			<td><input type="password" name="password2"></td>
 		</tr>
 		<tr>
-			<td>�̸�: </td>
+			<td>이름: </td>
 			<td><input type="text" name="name"></td>
 		</tr>
 		<tr>
-			<td>�޴��� ��ȣ (ex.010-1234-5678)</td>
+			<td>휴대폰 번호 (ex.010-1234-5678)</td>
 			<td><input type="text" name="phone"></td>
 		</tr>
 		<tr>
-			<td>�̸��� �ּ�: </td>
+			<td>이메일 주소: </td>
 			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
-			<td>�Ҽ� �б� ��: </td>
+			<td>소속 학교 명: </td>
 			<td><input type="text" name="university"></td>
 		</tr>
 		<tr>
-			<td>�Ҽ� �а���: </td>
+			<td>소속 학과명: </td>
 			<td>
 				<select name="department">
-					<option>������а�</option>
-					<option>�����а�</option>
-					<option>����â�۰�</option>
-					<option>�����</option>
-					<option>�Ϻ����</option>
-					<option>���������</option>
-					<option>���Ͼ��</option>
-					<option>�߾��߱��а�</option>
-					<option>�濵�а�</option>
-					<option>�����а�</option>
-					<option>�����濵�а�</option>
-					<option>�Ƶ��а�</option>
-					<option>��ȸ�����а�</option>
-					<option>���������а�</option>
-					<option>����ȸ���а�</option>
-					<option>��ǰ�����а�</option>
-					<option>���ǰ����а�</option>
-					<option>ȭ��, ȭ��ǰ�к�</option>
-					<option>ü���а�</option>
-					<option>��Ż��Ƽ�ɾ��а�(��)</option>
-					<option>��ǻ���а�</option>
-					<option>��������а�</option>
-					<option>ȸȭ��</option>
-					<option>�����а�����</option>
-					<option>ť�������а�</option>
-					<option>�ǾƳ��</option>
-					<option>�����ǰ�</option>
-					<option>���ǰ�</option>
-					<option>�мǵ������а�</option>
-					<option>�ð�&�ǳ��������а�</option>
-					<option>�̵��������а�</option>
-					<option>���а�</option>
+					<option>국어국문학과</option>
+					<option>국사학과</option>
+					<option>문예창작과</option>
+					<option>영어과</option>
+					<option>일본어과</option>
+					<option>프랑스어과</option>
+					<option>독일어과</option>
+					<option>중어중국학과</option>
+					<option>경영학과</option>
+					<option>경제학과</option>
+					<option>국제경영학과</option>
+					<option>아동학과</option>
+					<option>사회복지학과</option>
+					<option>문헌정보학과</option>
+					<option>세무회계학과</option>
+					<option>식품영양학과</option>
+					<option>보건관리학과</option>
+					<option>화학, 화장품학부</option>
+					<option>체육학과</option>
+					<option>토탈뷰티케어학과(야)</option>
+					<option>컴퓨터학과</option>
+					<option>정보통계학과</option>
+					<option>회화과</option>
+					<option>디지털공예과</option>
+					<option>큐레이터학과</option>
+					<option>피아노과</option>
+					<option>관현악과</option>
+					<option>성악과</option>
+					<option>패션디자인학과</option>
+					<option>시각&실내디자인학과</option>
+					<option>미디어디자인학과</option>
+					<option>약학과</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
-			<td>�г�</td>
+			<td>학년</td>
 			<td><select name="grade">
-				<option>1�г�</option>
-				<option>2�г�</option>
-				<option>3�г�</option>
-				<option>4�г�</option>
-				<option>5�г� �̻�</option>
+				<option>1학년</option>
+				<option>2학년</option>
+				<option>3학년</option>
+				<option>4학년</option>
+				<option>5학년 이상</option>
 			</select></td>
 		</tr>
 		<tr>
-			<td>����</td>
+			<td>성별</td>
 			<td><select name="gender">
-				<option>����</option>
-				<option>����</option>
+				<option>남자</option>
+				<option>여자</option>
 			</select></td>
 		</tr>
 	</table>
@@ -297,7 +297,7 @@ ul, li {
 	<table style="width: 100%">
 		  <tr>
 			<td align="left">
-			<input type="button" value="ȸ�� ����" onClick="userCreate()"> &nbsp;
+			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
 			</td>
 		  </tr>
 	    </table>

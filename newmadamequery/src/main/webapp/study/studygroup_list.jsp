@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>╫╨ем╣П ╠в╥Л ╨╦╠Б</title>
+<title>Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</title>
 
 <style>
 	body {
@@ -122,16 +122,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
+				<li><a href="#">К║°Й╥╦Л²╦</a></li>
+				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
 			</ul>
 		</li>
 		
@@ -141,25 +141,25 @@ ul, li {
 <div id="intro">
 	<pre>
 	StudyGroup
-	╦╤ю╫©║ ╦б╢б ╫╨ем╣П╦╕ цё╬ф╨╦╪╪©Д!
-	(╦П╣Г ╫╨ем╣П ╠в╥Л ╨╦©╘аж╠Б)
+	К╖┬Л²▄Л≈░ К╖·К┼■ Л┼╓М└╟К■■К╔╪ Л╟╬Л∙└КЁ╢Л└╦Л ■!
+	(К╙╗К⌠═ Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Л≈╛Лё╪Й╦╟)
 	</pre>		
 </div>
-<!-- ╦П╣Г ╫╨ем╣П ╠в╥Лю╩ ╦╝╫╨ф╝╥н ╨╦©╘аж╠Б -->
+<!-- К╙╗К⌠═ Л┼╓М└╟К■■ Й╥╦Кё╧Л²└ К╕╛Л┼╓М┼╦К║° КЁ╢Л≈╛Лё╪Й╦╟ -->
 <table id="allList">
 	<tr> 
-		<th>╫╨ем╣П╠в╥Л ╦М ( ${groupList.groupName} )</th>
-		<th>╪р╟Ё ( ${groupList.description})</th>
-		<th>╠Б╟ё</th>
+		<th>Л┼╓М└╟К■■Й╥╦Кё╧ К╙┘ </th>
+		<th>Л├▄Й╟°</th>
+		<th>Й╦╟Й╟└</th>
 	</tr>
-	<c:forEach var="groupList" items="studyGroupList"> <!-- List<StudyGroup>юл ╧щх╞╣й. -->
+	<c:forEach var="group" items="${groupList}"> <!-- List<StudyGroup>Л²╢ К╟≤М≥≤К░╗. -->
 		<tr>
 			<td><a href= "<c:url value='/studyGroup/view' >
-				<c:param name="groupId" value='${groupList.groupId }' />
+				<c:param name="groupId" value='${group.groupId}' />
 				</c:url>
-">${groupList.groupName}</a></td>
-			<td>${groupList.description}</td>
-			<td>${groupList.term }</td>
+">${group.groupName}</a></td>
+			<td>${group.description}</td>
+			<td>${group.term}</td>
 		</tr>
 	</c:forEach>
 </table>

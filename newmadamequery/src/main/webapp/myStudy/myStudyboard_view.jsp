@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>°Ô½ÃÆÇ¿¡¼­ ÇÏ³ªÀÇ ±Û ¼±ÅÃ ½Ã - ±ÛÀÇ Á¦¸ñ/³»¿ë/´ñ±Û º¸¿©ÁÜ. ¿À¸¥ÂÊ¿¡ member¿Í groupinfo´Â ±×´ë·Î.</title>
-<!-- È®ÀÎ ÈÄ, »èÁ¦ ¿¹Á¤ -->
+<title>ê²Œì‹œíŒì—ì„œ í•˜ë‚˜ì˜ ê¸€ ì„ íƒ ì‹œ - ê¸€ì˜ ì œëª©/ë‚´ìš©/ëŒ“ê¸€ ë³´ì—¬ì¤Œ. ì˜¤ë¥¸ìª½ì— memberì™€ groupinfoëŠ” ê·¸ëŒ€ë¡œ.</title>
+<!-- í™•ì¸ í›„, ì‚­ì œ ì˜ˆì • -->
 
 <style>
 	body {
@@ -128,7 +128,7 @@ ul, li {
  		text-align:center;
  		
  	}
- 	<!-- heightÀÇ °æ¿ì´Â °Ô½Ã±ÛÀÇ ¸ñ·Ï °¹¼ö¿¡ µû¶ó ´Þ¶óÁöµµ·Ï, auto·Î ¼³Á¤ÇÔ.-->
+ 	<!-- heightì˜ ê²½ìš°ëŠ” ê²Œì‹œê¸€ì˜ ëª©ë¡ ê°¯ìˆ˜ì— ë”°ë¼ ë‹¬ë¼ì§€ë„ë¡, autoë¡œ ì„¤ì •í•¨.-->
 </style>
 </head>
 <body>
@@ -138,16 +138,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -157,15 +157,15 @@ ul, li {
 <div id="contents">
 	
 	<div id="board">
-		<h3 id="boardTitle">"Á¦¸ñ"</h3>
+		<h3 id="boardTitle">"ì œëª©"</h3>
 		<p>
-			<h3 id="boardContents1">°Ô½Ã±Û ³»¿ë</h3>
-			<h6 id="boardContents2"><pre>³»¿ë,,,,,
+			<h3 id="boardContents1">ê²Œì‹œê¸€ ë‚´ìš©</h3>
+			<h6 id="boardContents2"><pre>ë‚´ìš©,,,,,
 			
 			</pre><br></h6>
 		</p>
-		<input type="button" value="°Ô½Ã±Û ÀÛ¼º" id="addP"/>
-		<a href="<c:url value='/post/create/form' />">°Ô½Ã±Û ÀÛ¼º</a>
+		<input type="button" value="ê²Œì‹œê¸€ ìž‘ì„±" id="addP"/>
+		<a href="<c:url value='/post/create/form' />">ê²Œì‹œê¸€ ìž‘ì„±</a>
 			
 	</div>
 	
@@ -173,13 +173,13 @@ ul, li {
 		<h5 id="memberTitle">Group Members</h5>
 		<table id="memberTable">
 			<tr>
-				<th>ÀÌ¸§</th>
-				<th>ÇÐ°ú</th>
-				<th>ÇÐ³â</th>
+				<th>ì´ë¦„</th>
+				<th>í•™ê³¼</th>
+				<th>í•™ë…„</th>
 			</tr>
 			<tr>
-				<td>ÀÌÇö¾Æ</td>
-				<td>ÄÄÇ»ÅÍÇÐ°ú</td>    
+				<td>ì´í˜„ì•„</td>
+				<td>ì»´í“¨í„°í•™ê³¼</td>    
 				<td>3</td>
 			</tr>
 			<tr>
@@ -193,15 +193,15 @@ ul, li {
 	<h5 id="memberTitle">Group Info</h5>
 		<table id="infoTable">
 			<tr>
-				<td>°ú¸ñ ¸í</td>
+				<td>ê³¼ëª© ëª…</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>¸ðÁý ÀÎ¿ø</td>
+				<td>ëª¨ì§‘ ì¸ì›</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>±â°£</td>
+				<td>ê¸°ê°„</td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>

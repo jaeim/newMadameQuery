@@ -1,39 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>È¸¿øÁ¤º¸ ¼öÁ¤ </title>
+<title>íšŒì›ì •ë³´ ìˆ˜ì • </title>
 <script>
 	function userModify(){
 		
 		if (form.password.value == "") {
-			alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.password.focus();
 			return false;
 		}
 		if (form.password.value != form.password2.value) {
-			alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			form.name.focus();
 			return false;
 		}
 		if (form.name.value == "") {
-			alert("ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.name.focus();
 			return false;
 		}
 		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		if(emailExp.test(form.email.value)==false) {
-			alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+			alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			form.email.focus();
 			return false;
 		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
-			alert("ÀüÈ­¹øÈ£ Çü½ÄÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
+			alert("ì „í™”ë²ˆí˜¸ í˜•ì‹ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			form.phone.focus();
 			return false;
 		}
@@ -153,16 +153,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
@@ -174,48 +174,48 @@ ul, li {
 	<form name="form" method="POST" action="/user/update/">
 	<table>
 		<tr>
-			<td>»ç¿ëÀÚ id: </td>
+			<td>ì‚¬ìš©ì id: </td>
 			<td>${user.member_id }</td>
 		</tr>
 		<tr>
-			<td>ºñ¹Ğ¹øÈ£: </td>
+			<td>ë¹„ë°€ë²ˆí˜¸: </td>
 			<td><input type="password" name="password" value="${user.password}"></td>
 		</tr>
 		<tr>
-			<td>ºñ¹Ğ¹øÈ£: </td>
+			<td>ë¹„ë°€ë²ˆí˜¸: </td>
 			<td><input type="password" name="password2" value="${user.password}"></td>
 		</tr>
 		<tr>
-			<td>ÀÌ¸§: </td>
+			<td>ì´ë¦„: </td>
 			<td><input type="text" name="name" value="${user.name }"></td>
 		</tr>
 		<tr>
-			<td>ÈŞ´ëÆù ¹øÈ£ (ex.010-1234-5678)</td>
+			<td>íœ´ëŒ€í° ë²ˆí˜¸ (ex.010-1234-5678)</td>
 			<td><input type="text" name="phone" value="${user.phone }" ></td>
 		</tr>
 		<tr>
-			<td>ÀÌ¸ŞÀÏ ÁÖ¼Ò: </td>
+			<td>ì´ë©”ì¼ ì£¼ì†Œ: </td>
 			<td><input type="text" name="email" value="${user.email }" ></td>
 		</tr>
 		<tr>
-			<td>¼Ò¼Ó ÇĞ±³ ¸í: </td>
+			<td>ì†Œì† í•™êµ ëª…: </td>
 			<td><input type="text" name="university" value="${user.university }" ></td>
 		</tr>
 		<tr>
-			<td>¼Ò¼Ó ÇĞ°ú¸í: </td>
+			<td>ì†Œì† í•™ê³¼ëª…: </td>
 			<td><input type="text" name="department" value="${user.department }" ></td>
 		</tr>
 		<tr>
-			<td>ÇĞ³â</td>
+			<td>í•™ë…„</td>
 			<td><input type="text" name="grade" value="${user.grade }" ></td>
 		</tr>
 		<tr>
-			<td>¼ºº°</td>
+			<td>ì„±ë³„</td>
 			<td><inpyt type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
 	</table>
 </form>
 </div>
-<br><input type="button" value="¼öÁ¤(¿Ï·á)" onClick="userModify()"/>
+<br><input type="button" value="ìˆ˜ì •(ì™„ë£Œ)" onClick="userModify()"/>
 </body>
 </html>

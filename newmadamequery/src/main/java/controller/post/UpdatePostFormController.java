@@ -21,8 +21,7 @@ public class UpdatePostFormController implements Controller{
 			// writer는 해당 post 작성자의 memberId임
 			int writer = (int) request.getAttribute("memberId");
 			HttpSession session = request.getSession();
-			if (UserSessionUtils.isLoginUser(Integer.toString(writer), session) ||
-					UserSessionUtils.isLoginUser("admin", session)) {
+			if (UserSessionUtils.isLoginUser(writer, session)) {
 				// 현재 로그인한 사용자가 수정 할 권한이 있는 사용자이거나 관리자인 경우 -> 수정 가능
 				request.setAttribute("post", post);
 				// @@전달 받은 post 객체를 attribute에 저장 하고 form.jsp로 forwarding
