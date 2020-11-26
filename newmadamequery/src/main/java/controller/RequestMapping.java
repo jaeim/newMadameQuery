@@ -18,9 +18,10 @@ public class RequestMapping {
 
     public void initMapping() {
     	//메인화면
-    	mappings.put("/", new ForwardController("/user/mainPage.jsp"));
+    	mappings.put("/", new ForwardController("index.jsp"));
     	
     	//사용자
+    	mappings.put("/user/mainPage", new ForwardController("/user/mainPage.jsp"));
     	mappings.put("/user/register/form", new ForwardController("/user/user_write.jsp"));
     	mappings.put("/user/register", new RegisterUserController());
     	mappings.put("/user/login/form", new ForwardController("/user/login.jsp"));
