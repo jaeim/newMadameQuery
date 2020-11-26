@@ -71,7 +71,6 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {
-    	System.out.println("uri: " + uri);
         return mappings.get(uri);
     }
 }

@@ -29,7 +29,7 @@ public class MemberDAO {
 	public int userCreate(User user) throws SQLException {
 		int result = 0;
 		String query = "INSERT INTO MEMBER (member_id, email, password, name, phone, "
-				+ "dob, date_of_join, university, dep, grade, gender)"
+				+ "dob, date_of_join, univ, dep, grade, gender)"
 				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, sysdate, sysdate, ?, ?, ?, ?)";
 		
 		//java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
@@ -57,7 +57,8 @@ public class MemberDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs != null) {
+			
+			if(rs.next()) {
 				result = true;
 			}
 			jdbcUtil.commit();

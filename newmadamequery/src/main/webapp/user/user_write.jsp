@@ -8,19 +8,24 @@
 
 <script>
 	function userCreate(){
-		if(form.email.value == ""){
-			
+		if(form.email.value == "") {
 			alert("이메일을 입력하십시오.");
 			form.email.focus();
 			return false;
 		}
-		if(form.password.value == ""){
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
+		if(form.password.value == "") {
 			
 			alert("비밀번호를 입력하십시오.");
 			form.password.focus();
 			return false;
 		}
-		if(form.password.value != form.password2.value){
+		if(form.password.value != form.password2.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			form.password2.focus();
 			return false;
@@ -30,34 +35,34 @@
 			form.name.focus();
 			return false;
 		}
-		if(form.university.value ==""){
-			
-			alert("대학명을 입력하십시오.");
-			form.univerisity.focus();
-			return false;
-		}
-		if(form.department.value == ""){
-			alert("소속 학과명을 선택하십시오.");
-			form.department.focus();
-			return false;
-		}
-		if(form.gender.value == ""){
-			alert("성별을 선택하십시오.");
+		if(form.phone.value == "") {
+			alert("전화번호를 입력하십시오.");
 			form.gender.focus();
 			return false;
 		}
-		//var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-//		if(emailExp.test(form.email.value)==false) {
-//			alert("이메일 형식이 올바르지 않습니다.");
-//			form.email.focus();
-//			return false;
-//		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
 			alert("전화번호 형식이 올바르지 않습니다.");
 			form.phone.focus();
 			return false;
 		}
+		if(form.university.value =="") {
+			
+			alert("대학명을 입력하십시오.");
+			form.univerisity.focus();
+			return false;
+		}
+		if(form.department.value == "") {
+			alert("소속 학과명을 선택하십시오.");
+			form.department.focus();
+			return false;
+		}
+		if(form.gender.value == "") {
+			alert("성별을 선택하십시오.");
+			form.gender.focus();
+			return false;
+		}
+
 		form.submit();
 		
 	}
@@ -292,7 +297,7 @@ ul, li {
 	<table style="width: 100%">
 		  <tr>
 			<td align="left">
-			<input type="submit" value="회원 가입" onClick="userCreate()"> &nbsp;
+			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
 			</td>
 		  </tr>
 	    </table>
