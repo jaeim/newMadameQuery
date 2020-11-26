@@ -336,6 +336,7 @@ public class StudyGroupDAO {
 	}
 	
 			
+	
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		String query = "SELECT * FROM studygroup "
