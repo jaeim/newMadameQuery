@@ -182,7 +182,6 @@ ul, li {
 						<option value="1">남성</option>
 						<option value="2">여성</option>
 						<option value="3">상관없음</option>
-						<option value="">기타</option>
 					</select>
 				</td>
 			</tr>
@@ -196,8 +195,8 @@ ul, li {
 						<option>3</option>
 						<option>4</option>
 						<option value= "5">4학년 이상</option>
-						<option value="-1"></option>
-						<option value="">기타</option>
+						
+						
 					</select>
 				</td>
 			</tr>
