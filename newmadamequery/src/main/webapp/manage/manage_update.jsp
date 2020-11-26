@@ -8,7 +8,12 @@
 <meta charset="EUC-KR">
 <title>manage update page</title>
 <!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
-
+<scipt>
+	function groupModify(){
+	
+		form.submit();
+	}
+</scipt>
 <style>
 	body {
   margin: 0;
@@ -203,15 +208,25 @@ ul, li {
 	System.out.println(group.getGroupName());
 %>
 
-<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update' />">
+<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update' />" >
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
-			<td> <input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
+			<td><input type="text" name="name" value="${studyGroup.groupName} " ></td>
 			<td>인원</td>
-			<td> ${studyGroup.numberOfUsers} </td>
+			<td>${studyGroup.numberOfUsers } </td>
 			<td>기간</td>
-			<td> <input type="text" name="term" value="${studyGroup.term }"></td>
+			<td>
+				<select name="term">
+						<c:set var= "term" value="${studyGroup.term}" />
+						<option value="-1" <c:if test="${term eq '-1'}"> selected </c:if>>-선택안함-</option> 
+						<option value="1" <c:if test="${term eq '1'}"> selected </c:if>>1개월</option> 
+						<option value="2" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
+						<option value="3" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
+						<option value="4" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
+						<option value="0" <c:if test="${term eq '0'}"> selected </c:if>>상관 없음</option> 
+				</select>
+			</td>
 		</tr>
 </table>
 
@@ -220,23 +235,26 @@ ul, li {
 		<td>subjectId(과목)</td>
 		<td>${studyGroup.subjectId} </td>
 		<td>스터디 방식</td>
-		<td> <!-- online, offline, both-->
-			<select name="meetingType">
-				<option value="0">Online</option>
-				<option value="1">Offline</option>
-				<option value="2">On & Off(혼합)</option>
-			</select>
-			<!-- 기존의 데이터 가져와서 selected 표시하기 -->
-		</td>
+				<td> <!-- online, offline, blended-->
+					<select>
+						<c:set var="meetingT" value="${studyGroup.meetingType }" />
+						<option value="-1" <c:if test="${meetingT eq '-1'}"> selected </c:if>>-선택안함-</option> 
+						<option value="online" <c:if test="${meetingT eq 'online'}"> selected </c:if>>online</option> 
+						<option value="offline" <c:if test="${meetingT eq 'offline'}"> selected </c:if>>offline</option> 
+						<option value="blended" <c:if test="${meetingT eq 'blended'}"> selected </c:if>>blended</option> 
+					</select>
+				</td>
 	</tr>
 	<tr>
 		<td>개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
 		<td>성별</td>
 		<td><select name="genderType">
-				<option value="0">상관 없음</option>
-				<option value="1">남자</option>
-				<option value="2">여자</option>
+				<c:set var="gender" value="${studyGroup.genderType }" />
+				<option value="-1" <c:if test="${gender eq '-1'}">selected</c:if>>-선택안함-</option>
+				<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
+				<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
+				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
 			</select></td>
 	</tr>
 	<tr>
@@ -246,20 +264,23 @@ ul, li {
 					<option value="">없음</option>
 					<c:forEach var="member" items="${groupMemberList}">
 						<option value="${member.member_id}"
-							<c:if test="${member.member_id eq studyGroup.leaderId}">selected="selected"</c:if>
+							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
 							>${member.member_id}</option>
 					</c:forEach>
-				</select>
+			</select>
 		
 		</td>
 		<td>학년</td>
 		<td>
 			<select name="gradeType">
-				<option value="0">상관 없음</option>
-				<option value="1">1학년</option>
-				<option value="2">2학년</option>
-				<option value="3">3학년</option>
-				<option value="4">4학년</option>
+					<c:set var="grade" value="${studyGroup.genderType}" />
+					<option value="-1" <c:if test="${grade eq '-1'}">selected</c:if>>-선택안함-</option>
+					<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
+					<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
+					<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
+					<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
+					<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
+					<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>
 		</td>
 	</tr>
@@ -292,10 +313,11 @@ ul, li {
 </table>
 <br>
 <div id="buttons">
-	<input type="button" value="저장하기" onClick="groupModify()"> &nbsp;
+	<input type="submit" value="저장하기" onClick="groupModify()"> &nbsp;
+	
 	<input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
 		<c:param name="groupId" value="${studyGroup.groupId}" />
-		</c:url>'')">
+		</c:url>)">
 </div>
 </form>
 
