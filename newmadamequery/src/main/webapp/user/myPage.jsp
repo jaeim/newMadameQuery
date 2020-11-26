@@ -192,7 +192,7 @@ function home(targetUri) {
 	</table>
 	<a href="<c:url value= '/user/mainPage' />">홈으로</a>
 	<a href="<c:url value= '/user/update/form' >
-	<c:param name='member_id' value='${user.member_id }' />
+	<c:param name='userId' value='${user.member_id }' />
 	</c:url>">수정하기</a>	
 </div>
 <br>

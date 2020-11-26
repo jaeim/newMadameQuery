@@ -148,14 +148,14 @@ public class MemberDAO {
 	public int userInfoUpdate(User user) throws SQLException {
 		int result = 0;
 		String query = "UPDATE MEMBER "
-				+ "SET email=?, password=?, name=?, dob=?, phone=?, "
+				+ "SET email=?, password=?, name=?, phone=?, "
 				+ "univ=?, dep=?, grade=?, gender=?"
 				+ "WHERE member_id=?";
 		
-		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
+		//java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
 		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
 		
-		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob, user.getPhone(), 
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), user.getPhone(), 
 				user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender(), user.getMember_id()};
 		jdbcUtil.setSqlAndParameters(query, param);
 		
