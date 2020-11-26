@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("EUC-KR"); %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>½ºÅÍµð ±×·ì °Ë»ö °á°ú</title>
-<!--  Á¶°Ç¿¡ ¸Â´Â ½ºÅÍµð °Ë»öÇØ¼­ list·Î Ãâ·ÂÇØÁÖ±â  -->
+<title>ìŠ¤í„°ë”” ê·¸ë£¹ ê²€ìƒ‰ ê²°ê³¼</title>
+<!--  ì¡°ê±´ì— ë§žëŠ” ìŠ¤í„°ë”” ê²€ìƒ‰í•´ì„œ listë¡œ ì¶œë ¥í•´ì£¼ê¸°  -->
 
 <style>
 	
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<!-- ³»°¡ ¼±ÅÃÇÑ Á¶°ÇÀ» º¸¿©ÁÖ±â  -->
+	<!-- ë‚´ê°€ ì„ íƒí•œ ì¡°ê±´ì„ ë³´ì—¬ì£¼ê¸°  -->
 	<div id="myChoice">
 			
 		

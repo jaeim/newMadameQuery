@@ -513,12 +513,15 @@ public class Main {
 		
 		ArrayList<StudyGroup> groupList = null;
 		try {
-			groupList = manager.searchStudyGroups(-1, -1, "혼합", "-1", "-1");
+			System.out.println("dao 수행");
+			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
+			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		if(groupList == null) {System.out.println("groupList is null");}
 		if(groupList != null) {
 			for(StudyGroup s : groupList) {
 				System.out.println(s.getGroupId());

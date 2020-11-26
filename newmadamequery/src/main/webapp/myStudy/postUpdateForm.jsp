@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,17 +7,17 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>°Ô½Ã±Û ¼öÁ¤ ÆäÀÌÁö</title>
+<title>ê²Œì‹œê¸€ ìˆ˜ì • íŽ˜ì´ì§€</title>
 <script>
 	function postModify(){
 		
 		if(form.pTitle.value = ""){
-			alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ì œëª©ì„ ìž…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.name.focus();
 			return false;
 		}
 		if(form.pContents.value=""){
-			alert("³»¿ëÀ» ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+			alert("ë‚´ìš©ì„ ìž…ë ¥í•˜ì‹­ì‹œì˜¤.");
 			form.contents.focus();
 			return false;
 		}
@@ -123,16 +123,16 @@ td{
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -140,25 +140,25 @@ td{
 </nav>
 
 <br><br>
-<% //Å×½ºÆ®¸¦ À§ÇÑ ¼³Á¤- failed
+<% //í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ì„¤ì •- failed
 
 	Post firstPost= new Post();
-	firstPost.set_id(411);
+	firstPost.setPostId(411);
 	System.out.println(firstPost.getContent());
 %>
 <div id="onePost">
 <h3></h3>
 	<table id="pTable">
 		<tr>
-			<td>Á¦¸ñ</td>
+			<td>ì œëª©</td>
 			<td><input type="text" name="pTitle" value="${post.title}"/></td>
-			<td>ÀÛ¼ºÀÚ</td>
-			<td>ÀÛ¼ºÀÚÀÌ¸§</td>
-			<td>³¯Â¥</td>
+			<td>ìž‘ì„±ìž</td>
+			<td>ìž‘ì„±ìžì´ë¦„</td>
+			<td>ë‚ ì§œ</td>
 			<td>2020-11-23</td>
 		</tr>
 		<tr>
-			<td >³»¿ë</td>
+			<td >ë‚´ìš©</td>
 			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
 			<!--  <td></td>
 			<td></td>
@@ -167,7 +167,7 @@ td{
 		</tr>
 		
 	</table>
-	<input type="button" value="¼öÁ¤ ¿Ï·á" onClick="postModify()" />
+	<input type="button" value="ìˆ˜ì • ì™„ë£Œ" onClick="postModify()" />
 </div>
 </body>
 </html>

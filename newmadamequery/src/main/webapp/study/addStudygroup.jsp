@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
@@ -7,48 +7,48 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>╫╨ем╣П ╠в╥Л ╣Н╥о</title>
+<title>Л┼╓М└╟К■■ Й╥╦Кё╧ К⌠╠К║²</title>
 <script>
 	function addStudyGroup(){
 		<!-- numberOfUsers, groupName, description, term,  
 		meetingType,genderType,gradeType, subjectId -->
 		if(form.groupName.value == ""){
 			
-			alert("╫╨ем╣П╠в╥Л ╦Мю╩ ют╥бго╫й╫ц©ю.");
+			alert("Л┼╓М└╟К■■Й╥╦Кё╧ К╙┘Л²└ Л·┘К═╔М∙≤Л▀╜Л▀°Л≤╓.");
 			form.groupName.focus();
 			return false;
 		}
 		if(form.numberOfUsers.value ==""){
-			alert("юн©Ь╪Ж╦╕ ╪╠ецго╫й╫ц©ю.");
+			alert("Л²╦Л⌡░Л┬≤К╔╪ Л└═М┐²М∙≤Л▀╜Л▀°Л≤╓.");
 			form.numberOfUser.focus();
 			return false;
 		}
 		if(form.description.value == ""){
-			alert("╪р╟Ё╠шю╩ ют╥бго╫й╫ц©ю.");
+			alert("Л├▄Й╟°Й╦─Л²└ Л·┘К═╔М∙≤Л▀╜Л▀°Л≤╓.");
 			form.description.focus();
 			return fase;
 		}
 		if(form.term.value=""){
-			alert("╫╨ем╣П ╠Б╟ёю╩ ╪╠ецго╫й╫ц©ю.");
+			alert("Л┼╓М└╟К■■ Й╦╟Й╟└Л²└ Л└═М┐²М∙≤Л▀╜Л▀°Л≤╓.");
 			form.term.focus();
 			return false;
 		}
 		if(form.meetingType.value ==""){
-			alert("╫╨ем╣П ╧Ф╫дю╩ ╪╠ецго╫й╫ц©ю.");
+			alert("Л┼╓М└╟К■■ К╟╘Л▀²Л²└ Л└═М┐²М∙≤Л▀╜Л▀°Л≤╓.");
 			form.meetingType.focus();
 			return false;
 		}
 		if(form.genderType.value ==""){
-			alert("╪╨╨╟ю╩ ╪╠ецго╫й╫ц©ю.");
+			alert("Л└╠КЁ└Л²└ Л└═М┐²М∙≤Л▀╜Л▀°Л≤╓.");
 			form.genderType.focus();
 			return false;
 		}
 		if(form.gradeType.value == ""){
-			alert("гпЁБю╩ ╪╠ецго╫й╫ц©ю.");
+			alert("М∙≥К┘└Л²└ Л└═М┐²М∙≤Л▀╜Л▀°Л≤╓.");
 			form.gradeType.focus();
 			return false;
 		}
-		//╟З╦Я цЁ╦╝ - цъ╟║го╠Б
+		//ЙЁ╪К╙╘ Л╡≤К╕╛ - Л╤■Й╟─М∙≤Й╦╟
 		form.submit();
 	}
 </script>
@@ -161,16 +161,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
+				<li><a href="#">К║°Й╥╦Л²╦</a></li>
+				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
 			</ul>
 		</li>
 		
@@ -181,15 +181,15 @@ ul, li {
 <div id="intro">
 	<pre>
 	StudyGroup
-	╫╨ем╣П ╣Н╥о хд, ╦╤ю╫©║ ╣Е╢б фю©Ью╩ цё╬ф╨╦╪╪©Д.
-	╫╨ем╣П ╣Н╥ою╩ ю╖гя а╤╟гю╩ ют╥б ╧в ╪╠ецгьаж╪╪©Д.
+	Л┼╓М└╟К■■ К⌠╠К║² М⌡└, К╖┬Л²▄Л≈░ К⌠°К┼■ М▄─Л⌡░Л²└ Л╟╬Л∙└КЁ╢Л└╦Л ■.
+	Л┼╓М└╟К■■ К⌠╠К║²Л²└ Л°└М∙° Л║╟Й╠╢Л²└ Л·┘К═╔ К╟▐ Л└═М┐²М∙╢Лё╪Л└╦Л ■.
 	</pre>		
 </div>
 	
 <div id="add">
-	<h2 style="text-align: center;">╫╨ем╣П ╣Н╥о</h2>
+	<h2 style="text-align: center;">Л┼╓М└╟К■■ К⌠╠К║²</h2>
 	
-	<!-- ╦П╣Г ╣╔юлем╦╕ ют╥бго╣╣╥о  : ╩У╥н©Н ╣╔юлем╦╕ еКгь ╩У╥н©Н ╫╨ем╣П╦╕ цъ╟║гя╢ы. (╦╤д║ х╦©Ь╟║ют╟З ╨Я╫а)-->
+	<!-- К╙╗К⌠═ К█╟Л²╢М└╟К╔╪ Л·┘К═╔М∙≤К▐└К║²  : Л┐┬К║°Л ╢ К█╟Л²╢М└╟К╔╪ М├╣М∙╢ Л┐┬К║°Л ╢ Л┼╓М└╟К■■К╔╪ Л╤■Й╟─М∙°К▀╓. (К╖┬Л╧≤ М ▄Л⌡░Й╟─Л·┘ЙЁ╪ К╧└Л┼╥)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">
 		<c:if test= "${creationFailed }">
 			<font color="red"><c:out value="${exception. getMessage()}" /></font>
@@ -197,14 +197,14 @@ ul, li {
 		
 		<table id= "addGroup">
 			<tr>
-				<td>╟З╦Я</td>
+				<td>ЙЁ╪К╙╘</td>
 				<td> 
 					<select id="subject"></select>
 				</td>
 				
 				<!-- numberOfUsers, groupName, description, term,  
 				meetingType,genderType,gradeType, subjectId -->
-				<td>юн©Ь ╪Ж </td>
+				<td>Л²╦Л⌡░ Л┬≤ </td>
 				<td>
 					<select name="numberOfUsers">
 						<option>3</option>
@@ -215,64 +215,64 @@ ul, li {
 						<option>8</option>
 						<option>9</option>
 						<option>10</option>
-						<option>10╦М юл╩С</option>
+						<option>10К╙┘ Л²╢Л┐│</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>╫╨ем╣П ╠в╥Л ╦М</td>
+				<td>Л┼╓М└╟К■■ Й╥╦Кё╧ К╙┘</td>
 				<td><input type="text" name="groupName" onFocus="this.value='' " 
 					<c:if test="${creationFailed }"> value="${studyGroup.groupName }"</c:if>
 					/></td>
-				<td>╠Б╟ё</td>
+				<td>Й╦╟Й╟└</td>
 				<td><select name="term">
-					<option>1╟Ё©Ы</option>
-					<option>3╟Ё©Ы</option>
-					<option>6╟Ё©Ы</option>
-					<option>6╟Ё©Ы юл╩С</option>
+					<option>1Й╟°Л⌡■</option>
+					<option>3Й╟°Л⌡■</option>
+					<option>6Й╟°Л⌡■</option>
+					<option>6Й╟°Л⌡■ Л²╢Л┐│</option>
 				</select>
 				
 				</td>
 			</tr>
 			<tr>
-				<td>╪р╟Ё</td>
+				<td>Л├▄Й╟°</td>
 				<td colspan="3"><input type="text" name="description" width="200" onFocus="this.value='' "
 					<c:if test="${creationFaild }">value="${studyGroup.description }" </c:if>
 				/> </td>
 			</tr>
 			<tr>
-				<td>╫╨ем╣П ╧Ф╫д</td>
+				<td>Л┼╓М└╟К■■ К╟╘Л▀²</td>
 				<td><select name="meetingType">
 					<option>online</option>
 					<option>offline</option>
-					<option>╨╢гЮ</option>
+					<option>КЁ▒М√┴</option>
 				</select></td>
-				<td>╪╨╨╟</td>
+				<td>Л└╠КЁ└</td>
 				<td>
 					<select name="genderType">
-						<option>0(╩С╟Э╬Ью╫)</option>
-						<option>1(Ё╡╪╨)</option>
-						<option>2(©╘╪╨)</option>
+						<option>0(Л┐│Й╢─Л≈├Л²▄)</option>
+						<option>1(К┌╗Л└╠)</option>
+						<option>2(Л≈╛Л└╠)</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>гпЁБ</td>
+				<td>М∙≥К┘└</td>
 				<td>
 					<select name="gradeType">
-						<option>0(╩С╟Э╬Ью╫)</option>
+						<option>0(Л┐│Й╢─Л≈├Л²▄)</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
 					</select>
 				</td>
-				<td>фююЕ</td>
-				<td>userId (юз╫еюг  userId ╟║а╝©ю╠Б)</td>
+				<td>М▄─Л·╔</td>
+				<td>userId (Л·░Л▀═Л²≤  userId Й╟─Л═╦Л≤╓Й╦╟)</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="╩Щ╪╨го╠Б" onClick=addStudyGroup() />
+		<input type="button" id="createB" value="Л┐²Л└╠М∙≤Й╦╟" onClick=addStudyGroup() />
 		<br><br>
 	</form>
 	

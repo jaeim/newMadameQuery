@@ -1,20 +1,20 @@
-<%@page contentType="text/html; charset=euc-kr" %>
+<%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-<title>»ç¿ëÀÚ °ü¸®(UserMan3)</title>
+<title>ì‚¬ìš©ì ê´€ë¦¬(UserMan3)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!--<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">-->
 <script>
 function login() {
 	if (form.email.value == "") {
-		alert("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ì‚¬ìš©ì IDë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.userId.focus();
 		return false;
 	} 
 	if (form.password.value == "") {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ê½Ã¿À.");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œì˜¤.");
 		form.password.focus();
 		return false;
 	}		
@@ -120,9 +120,9 @@ ul, li {
 	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="<c:url value='/studyGroup/create/form' />">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="<c:url value='/studyGroup/list' />">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
@@ -131,8 +131,8 @@ ul, li {
 		</li>
 		 <!--  <li>LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">·Î±×ÀÎ</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">È¸¿ø°¡ÀÔ</a></li>
+				<li> <a href="<c:url value='/user/login/form' />">ë¡œê·¸ì¸</a></li>
+				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>-->
 		
@@ -146,23 +146,23 @@ ul, li {
 	  <td>
 	    <table>
 		  <tr>
-			<td>&nbsp;&nbsp;<b>»ç¿ëÀÚ °ü¸® - ·Î±×ÀÎ</b>&nbsp;&nbsp;</td>
+			<td>&nbsp;&nbsp;<b>ì‚¬ìš©ì ê´€ë¦¬ - ë¡œê·¸ì¸</b>&nbsp;&nbsp;</td>
 		  </tr>
 	    </table>  
-	    <!-- ·Î±×ÀÎÀÌ ½ÇÆĞÇÑ °æ¿ì exception °´Ã¼¿¡ ÀúÀåµÈ ¿À·ù ¸Ş½ÃÁö¸¦ Ãâ·Â -->
+	    <!-- ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í•œ ê²½ìš° exception ê°ì²´ì— ì €ì¥ëœ ì˜¤ë¥˜ ë©”ì‹œì§€ë¥¼ ì¶œë ¥ -->
         <c:if test="${loginFailed}">
 	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>
 	    <br>	  
 	    <table >
 	  	  <tr >
-			<td >»ç¿ëÀÚ ID</td>
+			<td >ì‚¬ìš©ì ID</td>
 			<td>
 				<input type="text" style="width:240" name="email">
 			</td>
 		  </tr>
 	  	  <tr >
-			<td >ºñ¹Ğ¹øÈ£</td>
+			<td >ë¹„ë°€ë²ˆí˜¸</td>
 			<td >
 				<input type="password" style="width:240" name="password">
 			</td>
@@ -172,7 +172,7 @@ ul, li {
 	<table>
 		  <tr>
 			<td>
-			<input type="submit" value="·Î±×ÀÎ" onClick="login()"> &nbsp;
+			<input type="submit" value="ë¡œê·¸ì¸" onClick="login()"> &nbsp;
 			</td>						
 		  </tr>
 	    </table>

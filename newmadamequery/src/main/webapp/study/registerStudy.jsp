@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>½ºÅÍµğ ±×·ìÀÇ ¸â¹ö·Î ½ÅÃ»ÇÏ±â</title>
+<title>ìŠ¤í„°ë”” ê·¸ë£¹ì˜ ë©¤ë²„ë¡œ ì‹ ì²­í•˜ê¸°</title>
 <script>
 	function applyMember(){
 		if(form.comments.value ==""){
-			alert("ÄÚ¸àÆ®¸¦ ÀÛ¼ºÇÏ½Ê½Ã¿À.")
+			alert("ì½”ë©˜íŠ¸ë¥¼ ì‘ì„±í•˜ì‹­ì‹œì˜¤.")
 			form.comments.focus();
 			return false;
 		}
 		form.submit();
 	}
 </script>
-<!-- studygroup_view.jsp¿¡ include µÇ¾î µé¾î°¡´Â Æû Çü½ÄÀÓ -->
+<!-- studygroup_view.jspì— include ë˜ì–´ ë“¤ì–´ê°€ëŠ” í¼ í˜•ì‹ì„ -->
 <style>
 	#registerForm {
 		text-align: center;
@@ -34,11 +34,11 @@
 
 <div id="registerForm">
 <form name="form" method="POST" action="<c:url value='/studygroup/apply'/>">
-	<h5 id="userName">¿©±â¿¡ »ç¿ëÀÚ ÀÌ¸§À» °¡Á®¿È.</h5><br>
-	<textarea cols="30" rows="5" value="ÄÚ¸àÆ®¸¦ ÀÛ¼ºÇÏ¼¼¿ä." name="comments"></textarea><br><br>
-	<input type="button" value="ÆÀ¿ø ½ÅÃ»ÇÏ±â" id="submitB" onClick=applyMember() /><br> 
+	<h5 id="userName">ì—¬ê¸°ì— ì‚¬ìš©ì ì´ë¦„ì„ ê°€ì ¸ì˜´.</h5><br>
+	<textarea cols="30" rows="5" value="ì½”ë©˜íŠ¸ë¥¼ ì‘ì„±í•˜ì„¸ìš”." name="comments"></textarea><br><br>
+	<input type="button" value="íŒ€ì› ì‹ ì²­í•˜ê¸°" id="submitB" onClick=applyMember() /><br> 
 	
-	<!-- ¹öÆ° Å¬¸¯ ½Ã : StudyGroupDAO.applyToGroup () ½ÅÃ», alert-ÇØ¼­ "½ÅÃ» ¿Ï·áµÇ¾ú½À´Ï´Ù."-->
+	<!-- ë²„íŠ¼ í´ë¦­ ì‹œ : StudyGroupDAO.applyToGroup () ì‹ ì²­, alert-í•´ì„œ "ì‹ ì²­ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."-->
 </form>
 </div>
 </body>

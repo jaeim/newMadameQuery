@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,8 +13,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title> ½ºÅÍµð °Ô½ÃÆÇ ()</title>
-<!-- ³»°¡ ¼ÓÇÑ ½ºÅÍµð- °Ô½ÃÆÇ (³»°¡ ¼ÓÇÑ °¢°¢ÀÇ ½ºÅÍµð ±×·ì °Ô½ÃÆÇ) -->
+<title> ìŠ¤í„°ë”” ê²Œì‹œíŒ ()</title>
+<!-- ë‚´ê°€ ì†í•œ ìŠ¤í„°ë””- ê²Œì‹œíŒ (ë‚´ê°€ ì†í•œ ê°ê°ì˜ ìŠ¤í„°ë”” ê·¸ë£¹ ê²Œì‹œíŒ) -->
 <style>
 	body {
   margin: 0;
@@ -145,16 +145,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -162,18 +162,18 @@ ul, li {
 </nav>
 <div>
 	<div id="name">
-		<h2>½ºÅÍµð ±×·ì ¸í</h2>
+		<h2>ìŠ¤í„°ë”” ê·¸ë£¹ ëª…</h2>
 	</div>
 	
 	<div id="board">
 	<table id="boardT">
 		<tr>
-			<td width="200">Á¦¸ñ</td>
-			<td width="100">±Û¾´ÀÌ</td>
-			<td width= "80">ÀÏ½Ã</td>
+			<td width="200">ì œëª©</td>
+			<td width="100">ê¸€ì“´ì´</td>
+			<td width= "80">ì¼ì‹œ</td>
 			
 		</tr>
-		<!--  ¸ðµç °Ô½Ã±Û °¡Á®¿À±â / List<Post> getPostList () ÀÌ¿ëÇØ¼­  table »ý¼º-->
+		<!--  ëª¨ë“  ê²Œì‹œê¸€ ê°€ì ¸ì˜¤ê¸° / List<Post> getPostList () ì´ìš©í•´ì„œ  table ìƒì„±-->
 		
 		<c:forEach var="post" items="${postList} ">
 			<tr>
@@ -189,19 +189,19 @@ ul, li {
 		</table>
 	</div>
 	
-	<!-- DAO, controller »óÀÇ ÈÄ Ãß°¡ or »èÁ¦ -->
+	<!-- DAO, controller ìƒì˜ í›„ ì¶”ê°€ or ì‚­ì œ -->
 	<div id="members">
 		<h5 id="memberTitle">Group Members</h5>
 		<table id="memberTable">
 			<tr>
-				<th>ÀÌ¸§</th>
-				<th>ÇÐ°ú</th>
-				<th>ÇÐ³â</th>
+				<th>ì´ë¦„</th>
+				<th>í•™ê³¼</th>
+				<th>í•™ë…„</th>
 			</tr>
 			
 			<tr>
-				<td>ÀÌÇö¾Æ</td>
-				<td>ÄÄÇ»ÅÍÇÐ°ú</td>
+				<td>ì´í˜„ì•„</td>
+				<td>ì»´í“¨í„°í•™ê³¼</td>
 				<td>3</td>
 			</tr>
 			<tr>
@@ -216,22 +216,22 @@ ul, li {
 	<h5 id="memberTitle">Group Info</h5>
 		<table id="infoTable">
 			<tr>
-				<td>°ú¸ñ ¸í</td>
+				<td>ê³¼ëª© ëª…</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>¸ðÁý ÀÎ¿ø</td>
+				<td>ëª¨ì§‘ ì¸ì›</td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td>±â°£</td>
+				<td>ê¸°ê°„</td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
 	</div>
 	<br><br>
 	<div id= "addboard">
-		<button><a href="<c:url value='/post/create/form' />">±Û¾²±â</a></button>
+		<button><a href="<c:url value='/post/create/form' />">ê¸€ì“°ê¸°</a></button>
 	</div>
 </div>
 </body>

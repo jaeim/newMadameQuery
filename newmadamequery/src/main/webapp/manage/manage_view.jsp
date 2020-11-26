@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import = "model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>½ºÅÍµğ ±×·ì °ü¸® </title>
-<!-- (¸®½ºÆ®¿¡¼­ Ãâ·ÂÇØ¼­ µé¾î°¡¸é ±× ½ºÅÍµğ ±×·ì¿¡ ´ëÇÑ Á¤º¸ º¸¿©ÁÖ±â), »èÁ¦ ¹× ¼ö¶ô Àº ¿©±â¼­  -->
+<title>ìŠ¤í„°ë”” ê·¸ë£¹ ê´€ë¦¬ </title>
+<!-- (ë¦¬ìŠ¤íŠ¸ì—ì„œ ì¶œë ¥í•´ì„œ ë“¤ì–´ê°€ë©´ ê·¸ ìŠ¤í„°ë”” ê·¸ë£¹ì— ëŒ€í•œ ì •ë³´ ë³´ì—¬ì£¼ê¸°), ì‚­ì œ ë° ìˆ˜ë½ ì€ ì—¬ê¸°ì„œ  -->
 <style>
 body {
   margin: 0;
@@ -131,10 +131,10 @@ ul, li {
  
  <script>
 function memberDelete() {
-	return confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");		
+	return confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");		
 }
 function memberAccept() {
-	return confirm("¸â¹ö·Î ¼ö¶ôÇÏ½Ã°Ú½À´Ï±î?");
+	return confirm("ë©¤ë²„ë¡œ ìˆ˜ë½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 }
 </script>
 </head>
@@ -145,78 +145,78 @@ function memberAccept() {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµğ µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµğ °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµğ ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ì…</a></li>
 			</ul>
 		</li>
 		
 	</ul>
 </nav>
 <%
-//È®ÀÎÀ» À§ÇÑ ¿ëµµ 
+//í™•ì¸ì„ ìœ„í•œ ìš©ë„ 
 
 	StudyGroup sg = new StudyGroup();
 	sg.setGroupId(501);
 %>
 <table id="main1">
 		<tr>
-			<td>½ºÅÍµğ±×·ì ¸í</td>
+			<td>ìŠ¤í„°ë””ê·¸ë£¹ ëª…</td>
 			<td> ${sg.groupName} </td>
-			<td>ÀÎ¿ø</td>
+			<td>ì¸ì›</td>
 			<td> ${sg.numberOfUsers } </td>
-			<td>±â°£</td>
+			<td>ê¸°ê°„</td>
 			<td> ${sg.term }</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
-		<td>subjectId(°ú¸ñ)</td>
+		<td>subjectId(ê³¼ëª©)</td>
 		<td>${sg.subjectId} </td>
-		<td>½ºÅÍµğ ¹æ½Ä</td>
+		<td>ìŠ¤í„°ë”” ë°©ì‹</td>
 		<td>${sg.meetingType} </td>
 	</tr>
 	<tr>
-		<td>°³¼³ ÀÏÀÚ</td>
+		<td>ê°œì„¤ ì¼ì</td>
 		<td>${sg.createdDate }</td>
-		<td>¼ºº°</td>
-		<td>${sg.genderType }</td> <!-- Ãâ·Â »çÇ×Àº ³ªÁß¿¡ ¼öÁ¤ -->
+		<td>ì„±ë³„</td>
+		<td>${sg.genderType }</td> <!-- ì¶œë ¥ ì‚¬í•­ì€ ë‚˜ì¤‘ì— ìˆ˜ì • -->
 	</tr>
 	<tr>
-		<td>ÆÀÀå</td>
+		<td>íŒ€ì¥</td>
 		<td>${sg.leaderId }</td>
-		<td>ÇĞ³â</td>
+		<td>í•™ë…„</td>
 		<td>${sg.gradeType }</td>
 	</tr>
 	<tr>
-		<td>¼Ò°³</td>
+		<td>ì†Œê°œ</td>
 		<td>${sg.description }</td>
 	</tr>
 </table>
 <table id= "userlist">
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÆÀ¿ø °ü¸®</td>
+		<td>ì´ë¦„</td>
+		<td>íŒ€ì› ê´€ë¦¬</td>
 	</tr>
 	
-	<%  //if()...±× ½ºÅÍµğ±×·ìÀÇ ÆÀ¿ø °¡Á®¿Í¼­ ÆÀ¿ø ¼ö ¸¸Å­ <tr> »ı¼ºÇØ¼­ list Ãâ·Â. %>
+	<%  //if()...ê·¸ ìŠ¤í„°ë””ê·¸ë£¹ì˜ íŒ€ì› ê°€ì ¸ì™€ì„œ íŒ€ì› ìˆ˜ ë§Œí¼ <tr> ìƒì„±í•´ì„œ list ì¶œë ¥. %>
 	
 	<c:forEach var="member" items="{sg.memberList}">
 		<tr>
-			<td>ÀÌ¸§ Ãâ·Â</td>
+			<td>ì´ë¦„ ì¶œë ¥</td>
 			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> »èÁ¦</a>
+				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> ì‚­ì œ</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
 					<c:param name='groupId' value='${sg.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">¼ö¶ô</a>
+					</c:url>" onClick= "return memberAccept(); ">ìˆ˜ë½</a>
 			</td>
 		</tr>
 	</c:forEach>
@@ -227,7 +227,7 @@ function memberAccept() {
 	<mark>
 		<a href="<c:url value='/studyGroup/mangeGroup/update/form' >
 		<c:param name='groupId' value='${sg.groupId}' />
-		</c:url> ">Á¤º¸ ¼öÁ¤</a>
+		</c:url> ">ì •ë³´ ìˆ˜ì •</a>
 	</mark>
 	
 </div>

@@ -32,7 +32,7 @@ public class RequestMapping {
     	
     	//스터디관리(팀장)
     	mappings.put("/studyGroup/manageStudyList", new ListManageStudyController());
-    	mappings.put("/studyGroup/manageStudy/", new ViewManageStudyController());
+    	mappings.put("/studyGroup/manageStudy", new ViewManageStudyController());
     	mappings.put("/studyGroup/manageStudy/delete", new DeleteStudyController());
     	mappings.put("/studyGroup/manageStudy/update/form", new UpdateStudyController());
     	mappings.put("/studyGroup/manageStudy/update", new UpdateStudyController());

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Ё╩╟║ ╪сгя ╫╨ем╣П╠в╥Л ╦╝╫╨ф╝ цБ╥б</title>
-<!--  гоЁ╙юг ╫╨ем╣П╦╕ ╪╠ецгр ╟Ф©Л myStudy_view.jsp╥н юл╣© (а╓╨╦ юЭ╢ч)-->
+<title>К┌╢Й╟─ Л├█М∙° Л┼╓М└╟К■■Й╥╦Кё╧ К╕╛Л┼╓М┼╦ Л╤°К═╔</title>
+<!--  М∙≤К┌≤Л²≤ Л┼╓М└╟К■■К╔╪ Л└═М┐²М∙═ Й╡╫Л ╟ myStudy_view.jspК║° Л²╢К▐≥ (Л═∙КЁ╢ Л═└К▀╛)-->
 <style>
 	body {
   margin: 0;
@@ -107,37 +107,37 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
+				<li><a href="#">К║°Й╥╦Л²╦</a></li>
+				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
 			</ul>
 		</li>
 		
 	</ul>
 </nav>
-<div> <!-- Ё╩╟║ ╪сгя ╫╨ем╣П ╠в╥Люг ╦╝╫╨ф╝ ╟║а╝©м╪╜ ╨╦©╘аж╠Б , ╬Н╤╡ а╓╨╦ ╟║а╝©ц╟гаЖ а╓го╟М table ╢ы╫ц╦╦╣И╠Б-->
+<div> <!-- К┌╢Й╟─ Л├█М∙° Л┼╓М└╟К■■ Й╥╦Кё╧Л²≤ К╕╛Л┼╓М┼╦ Й╟─Л═╦Л≥─Л└° КЁ╢Л≈╛Лё╪Й╦╟ , Л√╢К√╓ Л═∙КЁ╢ Й╟─Л═╦Л≤╛Й╠╢Л╖─ Л═∙М∙≤ЙЁ═ table К▀╓Л▀°К╖▄К⌠╓Й╦╟-->
 	<table id="groupList">
 		<tr>
-			<th>╫╨ем╣П ╠в╥Л ╦М</th>
-			<th>юн©Ь ╪Ж</th>
-			<th>Ё╞б╔ </th>
+			<th>Л┼╓М└╟К■■ Й╥╦Кё╧ К╙┘</th>
+			<th>Л²╦Л⌡░ Л┬≤</th>
+			<th>К┌═Л╖° </th>
 		</tr>
 		
-		<% // ╫╨ем╣П ╠в╥Люг ╦╝╫╨ф╝ ╦╦е╜ tr ╩Щ╪╨ %>
+		<% // Л┼╓М└╟К■■ Й╥╦Кё╧Л²≤ К╕╛Л┼╓М┼╦ К╖▄М│╪ tr Л┐²Л└╠ %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
-					<a href="<c:url value='/post/list'>
+					<a href="<c:url value='/studyGroup/manageStudy'>
 						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
-				</td> <!-- ╫╨ем╣П╠в╥Л ╦М е╛╦╞ ╫ц©║ гь╢Г ╫╨ем╣П╠в╥Люг ╟т╫цфгю╦╥н юл╣© -->
+				</td> <!-- Л┼╓М└╟К■■Й╥╦Кё╧ К╙┘ М│╢К╕╜ Л▀°Л≈░ М∙╢К▀╧ Л┼╓М└╟К■■Й╥╦Кё╧Л²≤ Й╡▄Л▀°М▄░Л°╪К║° Л²╢К▐≥ -->
 				<td>${group.numberOfUsers }</td>
 				<td>${group.createdDate}</td>
 				

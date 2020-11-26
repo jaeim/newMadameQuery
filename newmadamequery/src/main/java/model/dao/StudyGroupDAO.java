@@ -353,7 +353,7 @@ public class StudyGroupDAO {
 			query += "numOfMem=? ";
 			selected[i++] = numOfMem;
 		}
-		if(meeting_type.length() < 2 && Integer.valueOf(meeting_type) != -1 || meeting_type.length() >= 2) { 
+		if(!meeting_type.equals("-1")) { 
 			if(i != 0) {query += "and ";}
 			query += "meeting_type=? ";
 			selected[i++] = meeting_type;

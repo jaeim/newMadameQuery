@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +10,7 @@
 	
 </script>
 <meta charset="EUC-KR">
-<title>½ºÅÍµð±×·ì °Ë»ö</title>
+<title>ìŠ¤í„°ë””ê·¸ë£¹ ê²€ìƒ‰</title>
 <style>
 	body {
   margin: 0;
@@ -116,16 +116,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">½ºÅÍµð µî·Ï</a></li>
-				<li><a href="#">½ºÅÍµð °Ë»ö</a></li>
-				<li><a href="#">½ºÅÍµð ±×·ì º¸±â</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ë“±ë¡</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê²€ìƒ‰</a></li>
+				<li><a href="#">ìŠ¤í„°ë”” ê·¸ë£¹ ë³´ê¸°</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">·Î±×ÀÎ</a></li>
-				<li><a href="#">È¸¿ø°¡ÀÔ</a></li>
+				<li><a href="#">ë¡œê·¸ì¸</a></li>
+				<li><a href="#">íšŒì›ê°€ìž…</a></li>
 			</ul>
 		</li>
 		
@@ -135,27 +135,27 @@ ul, li {
 <div id="intro">
 	<pre>
 	StudyGroup
-	¿øÇÏ´Â ½ºÅÍµð ¸ðÀÓÀ» °Ë»öÇØº¸¼¼¿ä.
-	½ºÅÍµð ¸ðÀÓ °Ë»öÀ» À§ÇÑ Á¶°ÇÀ» ÀÔ·Â ¹× ¼±ÅÃÇÏ¼¼¿ä.
+	ì›í•˜ëŠ” ìŠ¤í„°ë”” ëª¨ìž„ì„ ê²€ìƒ‰í•´ë³´ì„¸ìš”.
+	ìŠ¤í„°ë”” ëª¨ìž„ ê²€ìƒ‰ì„ ìœ„í•œ ì¡°ê±´ì„ ìž…ë ¥ ë° ì„ íƒí•˜ì„¸ìš”.
 	</pre>		
 </div>
 
 
 <div id="search">
-	<h2 style="text-align: center;">½ºÅÍµð µî·Ï</h2>
+	<h2 style="text-align: center;">ìŠ¤í„°ë”” ë“±ë¡</h2>
 	
-	<!-- ¸ðµç µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏµµ·Ï  : »õ·Î¿î µ¥ÀÌÅÍ¸¦ ÅëÇØ »õ·Î¿î ½ºÅÍµð¸¦ Ãß°¡ÇÑ´Ù. (¸¶Ä¡ È¸¿ø°¡ÀÔ°ú ºñ½Á)-->
+	<!-- ëª¨ë“  ë°ì´í„°ë¥¼ ìž…ë ¥í•˜ë„ë¡  : ìƒˆë¡œìš´ ë°ì´í„°ë¥¼ í†µí•´ ìƒˆë¡œìš´ ìŠ¤í„°ë””ë¥¼ ì¶”ê°€í•œë‹¤. (ë§ˆì¹˜ íšŒì›ê°€ìž…ê³¼ ë¹„ìŠ·)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />">
 		<table id= "searchGroup">
 			<tr>
-				<td>°ú¸ñ</td>
+				<td>ê³¼ëª©</td>
 				<td> 
 					<select id="subject"></select>
 				</td>
 				
 				<!-- numberOfUsers, groupName, description, term,  
 				meetingType,genderType,gradeType, subjectId -->
-				<td>ÀÎ¿ø ¼ö </td>
+				<td>ì¸ì› ìˆ˜ </td>
 				<td>
 					<select name="numberOfUsers">
 						<option>3</option>
@@ -166,60 +166,60 @@ ul, li {
 						<option>8</option>
 						<option>9</option>
 						<option>10</option>
-						<option>10¸í ÀÌ»ó</option>
+						<option>10ëª… ì´ìƒ</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>½ºÅÍµð ±×·ì ¸í</td>
-				<td><input type="text" name="groupName" value="ex)¾Ë°í¸®Áò" onFocus="this.value='' " /></td>
-				<td>±â°£</td>
+				<td>ìŠ¤í„°ë”” ê·¸ë£¹ ëª…</td>
+				<td><input type="text" name="groupName" value="ex)ì•Œê³ ë¦¬ì¦˜" onFocus="this.value='' " /></td>
+				<td>ê¸°ê°„</td>
 				<td><select name="term">
-					<option>1°³¿ù</option>
-					<option>3°³¿ù</option>
-					<option>6°³¿ù</option>
-					<option>6°³¿ù ÀÌ»ó</option>
+					<option>1ê°œì›”</option>
+					<option>3ê°œì›”</option>
+					<option>6ê°œì›”</option>
+					<option>6ê°œì›” ì´ìƒ</option>
 				</select>
 				
 				</td>
 			</tr>
 			<tr>
-				<td>¼Ò°³</td>
-				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">°£´ÜÇÑ ¼Ò°³±ÛÀ» ÀÔ·ÂÇÏ¼¼¿ä</textarea> </td>
+				<td>ì†Œê°œ</td>
+				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">ê°„ë‹¨í•œ ì†Œê°œê¸€ì„ ìž…ë ¥í•˜ì„¸ìš”</textarea> </td>
 			</tr>
 			<tr>
-				<td>½ºÅÍµð ¹æ½Ä</td>
+				<td>ìŠ¤í„°ë”” ë°©ì‹</td>
 				<td><select name="meetingType">
 					<option>online</option>
 					<option>offline</option>
-					<option>º´Çà</option>
+					<option>ë³‘í–‰</option>
 				</select></td>
-				<td>¼ºº°</td>
+				<td>ì„±ë³„</td>
 				<td>
 					<select name="genderType">
-						<option>0(»ó°ü¾øÀ½)</option>
-						<option>1(³²¼º)</option>
-						<option>2(¿©¼º)</option>
+						<option>0(ìƒê´€ì—†ìŒ)</option>
+						<option>1(ë‚¨ì„±)</option>
+						<option>2(ì—¬ì„±)</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>ÇÐ³â</td>
+				<td>í•™ë…„</td>
 				<td>
 					<select name="gradeType">
-						<option>0(»ó°ü¾øÀ½)</option>
+						<option>0(ìƒê´€ì—†ìŒ)</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
 					</select>
 				</td>
-				<td>ÆÀÀå</td>
-				<td>userId (ÀÚ½ÅÀÇ  userId °¡Á®¿À±â)</td>
+				<td>íŒ€ìž¥</td>
+				<td>userId (ìžì‹ ì˜  userId ê°€ì ¸ì˜¤ê¸°)</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="°Ë»öÇÏ±â" onClick="<c:url value= '/studyGroup/search '>
+		<input type="button" id="createB" value="ê²€ìƒ‰í•˜ê¸°" onClick="<c:url value= '/studyGroup/search '>
 			<c:param name="studyName" value="${studyGroup.groupName }" />
 			<c:param name="memberNumber" value="${studyGroup.numberOfUser }" />
 			<c:param name="span" value="${studyGroup.term}" />
