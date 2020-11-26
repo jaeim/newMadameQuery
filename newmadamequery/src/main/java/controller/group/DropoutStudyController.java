@@ -46,6 +46,7 @@ public class DropoutStudyController implements Controller {
 			}
 			
 			return ""; //오류페이지 
+			
 		}
 		request.setAttribute("groupList", manager.getMyStudyGroupList(memberId));
 		return "/myStudy/myStudy_main.jsp";
