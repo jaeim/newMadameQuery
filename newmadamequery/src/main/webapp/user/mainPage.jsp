@@ -117,7 +117,7 @@ ul, li {
 		<li><a href="#">HOME</a></li>
 		<li><a href="<c:url value='/studyGroup/myStudy'>
 			<c:param name='userId' />
-			</c:url> ">MYSTUDY</a></li>
+			</c:url>">MYSTUDY</a></li>
 		
 	
 		<li><a href="#">STUDYGROUP</a>

@@ -5,7 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 <% 	//@SuppressWarnings("unchecked");
-	List<StudyGroup> groupList = (List<StudyGroup>)request.getAttribute("groupList");
+	ArrayList<StudyGroup> groupList = (ArrayList<StudyGroup>)request.getAttribute("groupList");
  %>
 
 <!DOCTYPE html>
@@ -134,7 +134,7 @@ ul, li {
 		<th>±â°£</th>
 	</tr>
 	
-	<c:forEach var="sg" items="${groupList} ">
+	<c:forEach var="sg" items="${groupList}">
 		<tr>
 			<td>
 			<a href="<c:url value='/studyGroup/manageStudy'>
