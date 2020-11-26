@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import = "model.*" %>
+<%@page import = "model.*" import="java.util.ArrayList" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -162,43 +162,43 @@ function memberAccept() {
 </nav>
 <%
 //확인을 위한 용도 
-
-	StudyGroup sg = new StudyGroup();
-	sg.setGroupId(501);
+	StudyGroup group = (StudyGroup)request.getAttribute("group");
+	ArrayList<Application> applyList = (ArrayList<Application>)request.getAttribute("applyList");
+	ArrayList<User> groupMemberList = (ArrayList<User>)request.getAttribute("groupMemberList");
 %>
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
-			<td> ${sg.groupName} </td>
+			<td> ${group.groupName} </td>
 			<td>인원</td>
-			<td> ${sg.numberOfUsers } </td>
+			<td> ${group.numberOfUsers } </td>
 			<td>기간</td>
-			<td> ${sg.term }</td>
+			<td> ${group.term }</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
 		<td>subjectId(과목)</td>
-		<td>${sg.subjectId} </td>
+		<td>${group.subjectId} </td>
 		<td>스터디 방식</td>
-		<td>${sg.meetingType} </td>
+		<td>${group.meetingType} </td>
 	</tr>
 	<tr>
 		<td>개설 일자</td>
-		<td>${sg.createdDate }</td>
+		<td>${group.createdDate }</td>
 		<td>성별</td>
-		<td>${sg.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
+		<td>${group.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
 	</tr>
 	<tr>
 		<td>팀장</td>
-		<td>${sg.leaderId }</td>
+		<td>${group.leaderId }</td>
 		<td>학년</td>
-		<td>${sg.gradeType }</td>
+		<td>${group.gradeType }</td>
 	</tr>
 	<tr>
 		<td>소개</td>
-		<td>${sg.description }</td>
+		<td>${group.description }</td>
 	</tr>
 </table>
 <table id= "userlist">
@@ -215,7 +215,7 @@ function memberAccept() {
 			<td>
 				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${sg.groupId }'/>
+					<c:param name='groupId' value='${group.groupId }'/>
 					</c:url>" onClick= "return memberAccept(); ">수락</a>
 			</td>
 		</tr>
@@ -226,7 +226,7 @@ function memberAccept() {
 	
 	<mark>
 		<a href="<c:url value='/studyGroup/mangeGroup/update/form' >
-		<c:param name='groupId' value='${sg.groupId}' />
+		<c:param name='groupId' value='${group.groupId}' />
 		</c:url> ">정보 수정</a>
 	</mark>
 	

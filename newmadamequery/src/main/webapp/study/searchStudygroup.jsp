@@ -117,16 +117,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
-				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
-				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
+				<li><a href="#">О©╫Ц┘╫О©╫ЙЁ∙О©╫О©╫ О©╫Й╧┘О©╫</a></li>
+				<li><a href="#">О©╫Ц┘╫О©╫ЙЁ∙О©╫О©╫ Е╞┐О©╫О©╫О©╫</a></li>
+				<li><a href="#">О©╫Ц┘╫О©╫ЙЁ∙О©╫О©╫ Ф╢╧К╙┐О╪≥ Х╧┌К▀©К╕╟</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">К║°Й╥╦Л²╦</a></li>
-				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
+				<li><a href="#">Ф©║О©╫Ф╢╧К╙└О©╫О©╫</a></li>
+				<li><a href="#">О©╫О©╫О©╫О©╫Е╙⌡О©╫О©╫О©╫</a></li>
 			</ul>
 		</li>
 		
@@ -172,55 +172,55 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>Л┼╓М└╟К■■ Й╥╦Кё╧ К╙┘</td>
-				<td><input type="text" name="groupName" value="ex)Л∙▄ЙЁ═К╕╛Л╕≤" onFocus="this.value='' " /></td>
-				<td>Й╦╟Й╟└</td>
+				<td>О©╫Ц┘╫О©╫ЙЁ∙О©╫О©╫ Ф╢╧К╙┐О╪≥ О╖▐О©╫</td>
+				<td><input type="text" name="groupName" value="ex)О©╫О©╫Ф─╗О©╫Г■╠я┼О©╫" onFocus="this.value='' " /></td>
+				<td>Ф╧╡ЙЁ▄О©╫</td>
 				<td><select name="term">
-					<option>1Й╟°Л⌡■</option>
-					<option>3Й╟°Л⌡■</option>
-					<option>6Й╟°Л⌡■</option>
-					<option>6Й╟°Л⌡■ Л²╢Л┐│</option>
+					<option>1Е╙⌡О©╫О©╫О©╫</option>
+					<option>3Е╙⌡О©╫О©╫О©╫</option>
+					<option>6Е╙⌡О©╫О©╫О©╫</option>
+					<option>6Е╙⌡О©╫О©╫О©╫ О©╫К▄│О©╫О©╫</option>
 				</select>
 				
 				</td>
 			</tr>
 			<tr>
-				<td>Л├▄Й╟°</td>
-				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">Й╟└К▀╗М∙° Л├▄Й╟°Й╦─Л²└ Л·┘К═╔М∙≤Л└╦Л ■</textarea> </td>
+				<td>О©╫О©╫Е╙⌡О©╫</td>
+				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">Е╙⌡О©╫О©╫Б▒╕О©╫О©╫ О©╫О©╫Е╙⌡О©╫Ф╧╡О©╫О©╫О©╫ О©╫О©╫О©╫н╫О©╫О©╫О©╫К╙└О©╫О©╫</textarea> </td>
 			</tr>
 			<tr>
-				<td>Л┼╓М└╟К■■ К╟╘Л▀²</td>
+				<td>О©╫Ц┘╫О©╫ЙЁ∙О©╫О©╫ Х╚⌡Б▒╧О©╫О©╫</td>
 				<td><select name="meetingType">
 					<option>online</option>
 					<option>offline</option>
-					<option>КЁ▒М√┴</option>
+					<option>Х╧┌О©╫О©╫О©╫</option>
 				</select></td>
-				<td>Л└╠КЁ└</td>
+				<td>О©╫Й╧┘О©╫</td>
 				<td>
 					<select name="genderType">
-						<option>0(Л┐│Й╢─Л≈├Л²▄)</option>
-						<option>1(К┌╗Л└╠)</option>
-						<option>2(Л≈╛Л└╠)</option>
+						<option>0(О©╫О©╫Ф└©О©╫О©╫О©╫О©╫О©╫)</option>
+						<option>1(О©╫Б▒╔О©╫О©╫)</option>
+						<option>2(О©╫я┼О©╫О©╫)</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>М∙≥К┘└</td>
+				<td>О©╫О©╫О©╫О©╫</td>
 				<td>
 					<select name="gradeType">
-						<option>0(Л┐│Й╢─Л≈├Л²▄)</option>
+						<option>0(О©╫О©╫Ф└©О©╫О©╫О©╫О©╫О©╫)</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
 					</select>
 				</td>
-				<td>М▄─Л·╔</td>
-				<td>userId (Л·░Л▀═Л²≤  userId Й╟─Л═╦Л≤╓Й╦╟)</td>
+				<td>О©╫О©╫О©╫О©╫</td>
+				<td>userId (О©╫О©╫О©╫О©╫О©╫О©╫  userId Е╙⌡О©╫О©╫К╙└О©╫Ц┘╨К╕╟)</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="Й╡─Л┐┴М∙≤Й╦╟" onClick="<c:url value= '/studyGroup/search '>
+		<input type="button" id="createB" value="Е╞┐О©╫О©╫О©╫О©╫О©╫Ф╧╡О©╫" onClick="<c:url value= '/studyGroup/search '>
 			<c:param name="studyName" value="${studyGroup.groupName }" />
 			<c:param name="memberNumber" value="${studyGroup.numberOfUser }" />
 			<c:param name="span" value="${studyGroup.term}" />
@@ -244,7 +244,7 @@ ul, li {
 	
 </script>
 <meta charset="EUC-KR">
-<title>╫╨ем╣П╠в╥Л ╟к╩Ж</title>
+<title>Л┼╓М└╟К■■Й╥╦Кё╧ Й╡─Л┐┴</title>
 <style>
 	body {
   margin: 0;
@@ -350,16 +350,16 @@ ul, li {
 		<li><a href="#">MYSTUDY</a></li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">╫╨ем╣П ╣Н╥о</a></li>
-				<li><a href="#">╫╨ем╣П ╟к╩Ж</a></li>
-				<li><a href="#">╫╨ем╣П ╠в╥Л ╨╦╠Б</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ К⌠╠К║²</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╡─Л┐┴</a></li>
+				<li><a href="#">Л┼╓М└╟К■■ Й╥╦Кё╧ КЁ╢Й╦╟</a></li>
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
-				<li><a href="#">╥н╠вюн</a></li>
-				<li><a href="#">х╦©Ь╟║ют</a></li>
+				<li><a href="#">К║°Й╥╦Л²╦</a></li>
+				<li><a href="#">М ▄Л⌡░Й╟─Л·┘</a></li>
 			</ul>
 		</li>
 		
@@ -369,69 +369,69 @@ ul, li {
 <div id="intro">
 	<pre>
 	StudyGroup
-	©Ьго╢б ╫╨ем╣П ╦Пюсю╩ ╟к╩Жгь╨╦╪╪©Д.
-	╫╨ем╣П ╦Пюс ╟к╩Жю╩ ю╖гя а╤╟гю╩ ют╥б ╧в ╪╠ецго╪╪©Д.
+	Л⌡░М∙≤К┼■ Л┼╓М└╟К■■ К╙╗Л·└Л²└ Й╡─Л┐┴М∙╢КЁ╢Л└╦Л ■.
+	Л┼╓М└╟К■■ К╙╗Л·└ Й╡─Л┐┴Л²└ Л°└М∙° Л║╟Й╠╢Л²└ Л·┘К═╔ К╟▐ Л└═М┐²М∙≤Л└╦Л ■.
 	</pre>		
 </div>
 
 
 <div id="search">
-	<h2 style="text-align: center;">╫╨ем╣П ╟к╩Ж</h2>
+	<h2 style="text-align: center;">Л┼╓М└╟К■■ Й╡─Л┐┴</h2>
 	
-	<!-- ╦П╣Г ╣╔юлем╦╕ ют╥бго╣╣╥о  : ╩У╥н©Н ╣╔юлем╦╕ еКгь ╩У╥н©Н ╫╨ем╣П╦╕ цъ╟║гя╢ы. (╦╤д║ х╦©Ь╟║ют╟З ╨Я╫а)-->
+	<!-- К╙╗К⌠═ К█╟Л²╢М└╟К╔╪ Л·┘К═╔М∙≤К▐└К║²  : Л┐┬К║°Л ╢ К█╟Л²╢М└╟К╔╪ М├╣М∙╢ Л┐┬К║°Л ╢ Л┼╓М└╟К■■К╔╪ Л╤■Й╟─М∙°К▀╓. (К╖┬Л╧≤ М ▄Л⌡░Й╟─Л·┘ЙЁ╪ К╧└Л┼╥)-->
 	<form name="form" method="POST" >
 		<table>
 			<tr>
-				<td>╫╨ем╣П ╧Ф╫д</td>
+				<td>Л┼╓М└╟К■■ К╟╘Л▀²</td>
 				<td>
 					<select name="meetingType">
-						<option value="-1" selected>╪╠ец╬хгт</option>
-						<option value="0">╨Я╢К╦И</option>
-						<option value="1">╢К╦И</option>
-						<option value="2">х╔гу</option>
-						<option value="3">╠Бе╦</option>
+						<option value="-1" selected>Л└═М┐²Л∙┬М∙╗</option>
+						<option value="0">К╧└К▄─К╘╢</option>
+						<option value="1">К▄─К╘╢</option>
+						<option value="2">М≤╪М∙╘</option>
+						<option value="3">Й╦╟М┐─</option>
 						
 					</select>
 					
 				</td>
 			</tr>
 			<tr>
-				<td>╠Б╟ё</td>
+				<td>Й╦╟Й╟└</td>
 				<td>
 					<select name="term">
-						<option value="-1" selected>╪╠ец╬хгт</option>
-						<option value="1">1╟Ё©Ы</option>
-						<option value="2">3╟Ё©Ы</option>
-						<option value="3">6╟Ё©Ы</option>
-						<option value="4">6╟Ё©Ы юл╩С</option>
-						<option value="">╠Бе╦</option>
+						<option value="-1" selected>Л└═М┐²Л∙┬М∙╗</option>
+						<option value="1">1Й╟°Л⌡■</option>
+						<option value="2">3Й╟°Л⌡■</option>
+						<option value="3">6Й╟°Л⌡■</option>
+						<option value="4">6Й╟°Л⌡■ Л²╢Л┐│</option>
+						<option value="">Й╦╟М┐─</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>╪╨╨╟</td>
+				<td>Л└╠КЁ└</td>
 				<td>
 					<select name="genderType">
-						<option value="-1" selected>╪╠ец╬хгт </option>
-						<option value="1">Ё╡╪╨</option>
-						<option value="2">©╘╪╨</option>
-						<option value="3">╩С╟Э╬Ью╫</option>
-						<option value="">╠Бе╦</option>
+						<option value="-1" selected>Л└═М┐²Л∙┬М∙╗ </option>
+						<option value="1">К┌╗Л└╠</option>
+						<option value="2">Л≈╛Л└╠</option>
+						<option value="3">Л┐│Й╢─Л≈├Л²▄</option>
+						<option value="">Й╦╟М┐─</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>гпЁБ</td>
+				<td>М∙≥К┘└</td>
 				<td>
 					<select name="gradeType">
-						<option value="-1">╪╠ец╬хгт</option>
+						<option value="-1">Л└═М┐²Л∙┬М∙╗</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
-						<option value= "5">4гпЁБ юл╩С</option>
+						<option value= "5">4М∙≥К┘└ Л²╢Л┐│</option>
 						<option value="-1"></option>
-						<option value="">╠Бе╦</option>
+						<option value="">Й╦╟М┐─</option>
 					</select>
 				</td>
 			</tr>
@@ -442,5 +442,5 @@ ul, li {
 </div>
 
 </body>
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
+
 </html>
