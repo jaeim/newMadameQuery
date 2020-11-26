@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>manage update page</title>
 <!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
 <scipt>

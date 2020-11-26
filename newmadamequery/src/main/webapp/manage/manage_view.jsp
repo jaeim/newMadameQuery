@@ -250,6 +250,9 @@ function memberAccept() {
 		<a href="<c:url value='/studyGroup/manageStudy/update/form' >
 		<c:param name='groupId' value='${studyGroup.groupId}' />
 		</c:url> ">정보 수정</a>
+		<a href="<c:url value='/studyGroup/manageGroup/delete' >
+			<c:param name="groupId" value="${studyGroup.groupId }" />
+			</c:url>" >그룹 삭제</a>
 	</mark>
 	
 </div>
