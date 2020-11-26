@@ -339,22 +339,48 @@ public class StudyGroupDAO {
 	
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
-		String query = "SELECT * FROM studygroup "
-				+ "WHERE term=? AND number_of_member=? AND meeting_type=? AND gender_type=? AND grade_type=? ORDER BY name";
+		String query = "SELECT * FROM studygroup where ";
+		//ArrayList<Object> param = new ArrayList<Object>();
+		Object [] selected = new Object[] {null, null, null, null, null};
+		int i = 0;
+		if(term != -1) { 
+			if(i != 0) {query += "and ";}
+			query += "term=? ";
+			selected[i++] = term;
+		}
+		if(numOfMem != -1) {
+			if(i != 0) {query += "and ";}
+			query += "numOfMem=? ";
+			selected[i++] = numOfMem;
+		}
+		if(meeting_type.length() < 2 && Integer.valueOf(meeting_type) != -1 || meeting_type.length() >= 2) { 
+			if(i != 0) {query += "and ";}
+			query += "meeting_type=? ";
+			selected[i++] = meeting_type;
+		}
+		if(Integer.valueOf(gender_type) != -1) {
+			if(i != 0) {query += "and ";}
+			query += "gender_type=? ";
+			selected[i++] = gender_type;
+		}
+		if(Integer.valueOf(grade_type) != -1) {
+			if(i != 0) {query += "and ";}
+			query += "grade_type=?";
+			selected[i++] = grade_type;
+		}
 		
-		if(term == -1) { term = null; }
-		if(numOfMem == -1) {numOfMem = null; }
-		if(meeting_type.length() < 2 && Integer.valueOf(meeting_type) == -1) { meeting_type = null; }
-		if(Integer.valueOf(gender_type) == -1) { gender_type = null; }
-		if(Integer.valueOf(grade_type) == -1) { grade_type = null; }
+		// i는 저장된 배열의 크기가 될것
+		Object[] param = new Object[i];
+		for(int j = 0; j < 5; j++) {
+			if(selected[j] != null) {
+				param[j] = selected[j];
+			}
+		}
 		
-		Object[] param = new Object[] {term, numOfMem, meeting_type, gender_type, grade_type};
-			
 		jdbcUtil.setSqlAndParameters(query, param);
 			     
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-//			if(!rs.next()) {throw new AppException();}
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
 				
 			while (rs.next()) {

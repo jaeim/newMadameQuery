@@ -142,7 +142,7 @@ ul, li {
 
 
 
-	 사용자 아이디: ${user.name }<br>
+	 사용자 이름: ${user.name }<br>
 <br><br>
 <div id="fisrt">
 	
