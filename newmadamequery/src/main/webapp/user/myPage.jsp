@@ -116,6 +116,14 @@ ul, li {
  	diplay: inline;
  }
 </style>
+
+<script type="text/javascript">
+function home(targetUri) {
+	form.action = targetUri;
+	form.submit();
+}
+</script>
+
 </head>
 <body>
 	<nav>
@@ -181,12 +189,12 @@ ul, li {
 </div>
 <br>
 <div>
-<input type="button" id= "forHome"value="홈으로" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="수정하기" onClick="<c:url value= '/user/update/form' >
+
+<a href="<c:url value= '/user/mainPage' />">홈으로</a>
+<a href="<c:url value= '/user/update/form' >
 	<c:param name="member_id" value="${user.member_id }" />
-	</c:url>
-	
-"/><br> 
+	</c:url>">수정하기</a>
+	<br> 
 </div>
 </body>
 </html>
