@@ -142,64 +142,47 @@ ul, li {
 
 
 <div id="search">
-	<h2 style="text-align: center;">스터디 등록</h2>
+	<h2 style="text-align: center;">스터디 검색</h2>
 	
 	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
-	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />">
-		<table id= "searchGroup">
+	<form name="form" method="POST" >
+		<table>
 			<tr>
-				<td>과목</td>
-				<td> 
-					<select id="subject"></select>
-				</td>
-				
-				<!-- numberOfUsers, groupName, description, term,  
-				meetingType,genderType,gradeType, subjectId -->
-				<td>인원 수 </td>
+				<td>스터디 방식</td>
 				<td>
-					<select name="numberOfUsers">
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						<option>10명 이상</option>
+					<select name="meetingType">
+						<option value="-1" selected>선택안함</option>
+						<option value="0">비대면</option>
+						<option value="1">대면</option>
+						<option value="2">혼합</option>
+						<option value="3">기타</option>
+						
+					</select>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>기간</td>
+				<td>
+					<select name="term">
+						<option value="-1" selected>선택안함</option>
+						<option value="1">1개월</option>
+						<option value="2">3개월</option>
+						<option value="3">6개월</option>
+						<option value="4">6개월 이상</option>
+						<option value="">기타</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>스터디 그룹 명</td>
-				<td><input type="text" name="groupName" value="ex)알고리즘" onFocus="this.value='' " /></td>
-				<td>기간</td>
-				<td><select name="term">
-					<option>1개월</option>
-					<option>3개월</option>
-					<option>6개월</option>
-					<option>6개월 이상</option>
-				</select>
-				
-				</td>
-			</tr>
-			<tr>
-				<td>소개</td>
-				<td colspan="3"><textarea name="description" cols="70" rows="2" onFocus="this.value='' ">간단한 소개글을 입력하세요</textarea> </td>
-			</tr>
-			<tr>
-				<td>스터디 방식</td>
-				<td><select name="meetingType">
-					<option>online</option>
-					<option>offline</option>
-					<option>병행</option>
-				</select></td>
 				<td>성별</td>
 				<td>
 					<select name="genderType">
-						<option>0(상관없음)</option>
-						<option>1(남성)</option>
-						<option>2(여성)</option>
+						<option value="-1" selected>선택안함 </option>
+						<option value="1">남성</option>
+						<option value="2">여성</option>
+						<option value="3">상관없음</option>
+						<option value="">기타</option>
 					</select>
 				</td>
 			</tr>
@@ -207,26 +190,21 @@ ul, li {
 				<td>학년</td>
 				<td>
 					<select name="gradeType">
-						<option>0(상관없음)</option>
+						<option value="-1">선택안함</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 						<option>4</option>
+						<option value= "5">4학년 이상</option>
+						<option value="-1"></option>
+						<option value="">기타</option>
 					</select>
 				</td>
-				<td>팀장</td>
-				<td>userId (자신의  userId 가져오기)</td>
 			</tr>
 		</table>
-		<br><br>
-		<input type="button" id="createB" value="검색하기" onClick="<c:url value= '/studyGroup/search '>
-			<c:param name="studyName" value="${studyGroup.groupName }" />
-			<c:param name="memberNumber" value="${studyGroup.numberOfUser }" />
-			<c:param name="span" value="${studyGroup.term}" />
-			</c:url>" />
-		
-		<br><br>
 	</form>
+	
+	
 </div>
 
 </body>
