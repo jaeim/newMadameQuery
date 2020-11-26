@@ -15,9 +15,10 @@ public class RegisterUserController implements Controller {
 		//java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); 
 	    //java.util.Date utilDate = df.parse(request.getParameter("birthday"));
 		
+		System.out.println(2222);
 		User user = new User(
-				request.getParameter("password"),
 				request.getParameter("email"),
+				request.getParameter("password"),
 				request.getParameter("name"),
 				request.getParameter("phone"),
 				request.getParameter("university"),
@@ -26,11 +27,13 @@ public class RegisterUserController implements Controller {
 				Integer.parseInt(request.getParameter("gender")));
 
 		try {
+			System.out.println(3333);
 			Manager manager = Manager.getInstance();
 			manager.createUser(user);
-		    return "redirect:/user/login";
+		    return "/user/login.jsp";
 		        
 		} catch (ExistingException e) {
+			System.out.println(4444);
 	        request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
