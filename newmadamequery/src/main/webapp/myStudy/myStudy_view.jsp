@@ -231,7 +231,7 @@ ul, li {
 	</div>
 	<br><br>
 	<div id= "addboard">
-		<button><a href="<c:url value='/post/create/form' />">글쓰기</a></button>
+		<a href="<c:url value='/post/create/form' />" >글쓰기 </a>
 	</div>
 </div>
 </body>
