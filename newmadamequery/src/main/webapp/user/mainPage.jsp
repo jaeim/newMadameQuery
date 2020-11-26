@@ -124,14 +124,17 @@ ul, li {
 <br>
 <div id="fisrt">
 	
+	
+<c:if test= "${user.member_id eq null }" >
 <a href="<c:url value='/user/login/form' />">로그인</a> <br>
 <a href="<c:url value='/user/register/form' />">회원가입</a>
+</c:if>
 
 <c:if test= "${user.member_id ne null }" >
  	<c:out value="${user.member_id}" />
  	<br>
 	<a href="<c:url value='/user/view' >
-		<c:param name="userId" value="String.valueOf(${user.member_id})" />
+		<c:param name='userId' value='${user.member_id}' />
 		</c:url> ">마이페이지로 이동</a>
 	<br>
 	<a href="<c:url value= '/user/logout' />">로그아웃</a>
