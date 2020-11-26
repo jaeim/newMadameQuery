@@ -209,8 +209,8 @@ ul, li {
 	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
 	<table>
 		<tr>
-			<td>사용자 id: </td>
-			<td><input type="text" name="userId"></td>
+			<td>이메일 주소: </td>
+			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td>비밀번호: </td>
@@ -227,10 +227,6 @@ ul, li {
 		<tr>
 			<td>휴대폰 번호 (ex.010-1234-5678)</td>
 			<td><input type="text" name="phone"></td>
-		</tr>
-		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td>소속 학교 명: </td>
@@ -277,27 +273,31 @@ ul, li {
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td><select name="grade">
-				<option>1학년</option>
-				<option>2학년</option>
-				<option>3학년</option>
-				<option>4학년</option>
-				<option>5학년 이상</option>
-			</select></td>
+			<td>
+				<select name="grade">
+					<option>1학년</option>
+					<option>2학년</option>
+					<option>3학년</option>
+					<option>4학년</option>
+					<option>5학년 이상</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><select name="gender">
-				<option>남자</option>
-				<option>여자</option>
-			</select></td>
+			<td>
+				<select name="gender">
+					<option>남자</option>
+					<option>여자</option>
+				</select>
+			</td>
 		</tr>
 	</table>
 	<br>
 	<table style="width: 100%">
 		  <tr>
 			<td align="left">
-			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
+			<input type="submit" value="회원 가입" > &nbsp;
 			</td>
 		  </tr>
 	    </table>

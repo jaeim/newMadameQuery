@@ -12,15 +12,13 @@ public class RegisterUserController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); 
-	    java.util.Date utilDate = df.parse(request.getParameter("birthday"));
+		//java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); 
+	    //java.util.Date utilDate = df.parse(request.getParameter("birthday"));
 		
 		User user = new User(
-				//Integer.parseInt(request.getParameter("userId")),
 				request.getParameter("password"),
 				request.getParameter("email"),
 				request.getParameter("name"),
-				utilDate,
 				request.getParameter("phone"),
 				request.getParameter("university"),
 				request.getParameter("department"),
@@ -30,7 +28,7 @@ public class RegisterUserController implements Controller {
 		try {
 			Manager manager = Manager.getInstance();
 			manager.createUser(user);
-		    return "redirect:/user/mainPage";
+		    return "redirect:/user/login";
 		        
 		} catch (ExistingException e) {
 	        request.setAttribute("registerFailed", true);

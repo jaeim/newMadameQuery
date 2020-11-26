@@ -163,11 +163,11 @@ td{
 	%>
 	<br><br>
 	
-	<button onClick="<c:url value='/post/update/form' >
+	<a href="<c:url value='/post/update/form' >
 		<c:param name="postId" value='${post.postId}' />
-			</c:url>"> 수정하기 </button>
+			</c:url>"> 수정하기 </a>
 	&nbsp;&nbsp;
-	<button onClick= "<c:url value='/post/delete' />">삭제하기</button>
+	<a href= "<c:url value='/post/delete' />">삭제하기</a>
 	
 	
 </div>
