@@ -134,7 +134,7 @@ ul, li {
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
-					<a href="<c:url value='/studyGroup/manageStudy'>
+					<a href="<c:url value='/post/list'>
 						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
 				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
