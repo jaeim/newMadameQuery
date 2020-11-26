@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -121,12 +121,7 @@ ul, li {
 				<li><a href="#">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="#">MANAGE</a>
 		</li>
 		
 	</ul>
@@ -145,19 +140,17 @@ ul, li {
 	<h2 style="text-align: center;">스터디 검색</h2>
 	
 	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
-	<form name="form" method="POST" >
+	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />" >
 		<table>
 			<tr>
 				<td>스터디 방식</td>
 				<td>
 					<select name="meetingType">
-						<option value="-1" selected>선택안함</option>
-						<option value="0">비대면</option>
-						<option value="1">대면</option>
-						<option value="2">혼합</option>
-						<option value="3">기타</option>
-						
-					</select>
+						<option value="-1" selected>-선택안함-</option>
+						<option value="online">online</option>
+						<option value="offline">offline</option>
+						<option value="blended">blended</option>
+					</select>r
 					
 				</td>
 			</tr>
@@ -165,12 +158,12 @@ ul, li {
 				<td>기간</td>
 				<td>
 					<select name="term">
-						<option value="-1" selected>선택안함</option>
+						<option value="-1" selected>-선택안함-</option>
 						<option value="1">1개월</option>
 						<option value="2">3개월</option>
 						<option value="3">6개월</option>
 						<option value="4">6개월 이상</option>
-						<option value="">기타</option>
+						<option value="0">상관없음</option>
 					</select>
 				</td>
 			</tr>
@@ -178,10 +171,10 @@ ul, li {
 				<td>성별</td>
 				<td>
 					<select name="genderType">
-						<option value="-1" selected>선택안함 </option>
+						<option value="-1" selected>-선택안함- </option>
 						<option value="1">남성</option>
 						<option value="2">여성</option>
-						<option value="3">상관없음</option>
+						<option value="0">상관없음</option>
 					</select>
 				</td>
 			</tr>
@@ -189,18 +182,19 @@ ul, li {
 				<td>학년</td>
 				<td>
 					<select name="gradeType">
-						<option value="-1">선택안함</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option value= "5">4학년 이상</option>
-						
-						
+						<option value="-1" selected>-선택안함-</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">4학년 이상</option>
+						<option value="0">상관없음</option>
 					</select>
 				</td>
 			</tr>
 		</table>
+		<br><br>
+		<input type="button" value="검색하기" >
 	</form>
 </div>
 </body>
