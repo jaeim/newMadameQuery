@@ -133,6 +133,9 @@ ul, li {
 	<a href="<c:url value='/user/view' >
 		<c:param name="userId" value="String.valueOf(${user.member_id})" />
 		</c:url> ">마이페이지로 이동</a>
+	<br>
+	<a href="<c:url value= '/user/logout' />">로그아웃</a>
+	
 </c:if>
 </div>
 
