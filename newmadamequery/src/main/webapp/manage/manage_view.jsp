@@ -107,7 +107,7 @@ ul, li {
  		width: 700px;
  		height: 30px;
  	}
- 	#userlist{
+ 	#userlist, #applyList{
  		text-align: center;
  		font-family: Arial;
  		border: 1px solid black;
@@ -151,15 +151,9 @@ function memberAccept() {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
-		
 	</ul>
 </nav>
+
 <%
 //확인을 위한 용도 
 	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
@@ -167,14 +161,15 @@ function memberAccept() {
 	ArrayList<Application> applyList = (ArrayList<Application>)request.getAttribute("applyList");
 	ArrayList<User> groupMemberList = (ArrayList<User>)request.getAttribute("groupMemberList");
 %>
+
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
-			<td> ${studyGroup.groupName} </td>
+			<td>${studyGroup.groupName } </td>
 			<td>인원</td>
-			<td> ${studyGroup.numberOfUsers} </td>
+			<td>${studyGroup.numberOfUsers } </td>
 			<td>기간</td>
-			<td> ${studyGroup.term }</td>
+			<td>${studyGroup.term }</td>
 		</tr>
 </table>
 
@@ -202,26 +197,52 @@ function memberAccept() {
 		<td>${studyGroup.description }</td>
 	</tr>
 </table>
+
 <table id= "userlist">
 	<tr>
-		<td>이름</td>
-		<td>팀원 관리</td>
+		<th>&nbsp;</th>
+		<th>이름</th>
+		<th>학교</th>
+		<th>학과</th>
+		<th>학년</th>
+		<th>성별</th>
 	</tr>
 	
-	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
+	  <!--  그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. 
+		//이미 수락된 멤버들 list 출력 -->
 	
-	<c:forEach var="member" items="${groupMemberList}">
-		<tr>
-			<td>${member.name}</td>
-			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
-				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${studyGroup.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">수락</a>
-			</td>
+	
+	<c:forEach var="gmList" items="${groupMemberList}" varStatus="status" >
+		<tr>			
+			<th><c:out value='${status.count }' /></th>
+			<th>${gmList.name }</th>
+			<th>${gmList.university }</th>
+			<th>${gmList.department }</th>
+			<th>${gmList.grade }</th>
+			<th>${gmList.gender}</th>
 		</tr>
 	</c:forEach>
 	
+</table>
+
+<!--  수락해야하는 멤버들 list -->
+<table id="applyList">
+	<c:forEach var="aList" items="${applyList}" varStatus="status" >
+		<tr>
+			<th>&nbsp;</th>
+			<th>memberId </th>
+			<th>작성한 코멘트</th>
+			<th>신청 날짜</th>
+			<th>&nbsp;</tr>
+		<tr>
+			<td><c:out value="${status.count }" />
+			<td>${aList.memberId}</td>
+			<td>${aList.comment }</td>
+			<td>${aList.applyDate }</td>
+			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+				<c:param name="groupId" value="${studyGroup.groupId}" />
+				</c:url>" >수락</a></td>
+	</c:forEach>
 </table>
 <div id="update">
 	
