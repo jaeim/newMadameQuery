@@ -128,7 +128,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' />
 			</c:url> ">MANAGE</a></li>
 		 <!--  	<li>LOGIN & JOIN</a>
 			<ul id="sub-menu">
