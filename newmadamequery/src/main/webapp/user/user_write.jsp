@@ -209,8 +209,8 @@ ul, li {
 	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
 	<table>
 		<tr>
-			<td>사용자 id: </td>
-			<td><input type="text" name="userId"></td>
+			<td>이메일: </td>
+			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td>비밀번호: </td>
