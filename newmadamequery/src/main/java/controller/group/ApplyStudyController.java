@@ -16,7 +16,8 @@ public class ApplyStudyController implements Controller {
 		HttpSession session = request.getSession();
 		int userId = UserSessionUtils.getLoginUserId(session);
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
-				
+//		System.out.println(groupId);
+		
 		String comments = request.getParameter("comments");
 		
 //		int userId = 1;
