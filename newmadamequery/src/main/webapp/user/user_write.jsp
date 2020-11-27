@@ -1,25 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 
 <script>
 	function userCreate(){
-		if(form.userId.value == ""){
-			
-			alert("사용자의 id를 입력하십시오.");
-			form.userId.focus();
+		if(form.email.value == "") {
+			alert("이메일을 입력하십시오.");
+			form.email.focus();
 			return false;
 		}
-		if(form.password.value == ""){
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
+		if(form.password.value == "") {
 			
 			alert("비밀번호를 입력하십시오.");
 			form.password.focus();
 			return false;
 		}
-		if(form.password.value != form.password2.value){
+		if(form.password.value != form.password2.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			form.password2.focus();
 			return false;
@@ -29,41 +35,34 @@
 			form.name.focus();
 			return false;
 		}
-		
-		if(form.email.value=""){
-			
-			alert("이메일을 입력하십시오.");
-			form.email.focus();
-			return false;
-		}
-		if(form.university.value ==""){
-			
-			alert("대학명을 입력하십시오.");
-			form.univerisity.focus();
-			return false;
-		}
-		if(form.department.value == ""){
-			alert("소속 학과명을 선택하십시오.");
-			form.department.focus();
-			return false;
-		}
-		if(form.gender.value == ""){
-			alert("성별을 선택하십시오.");
+		if(form.phone.value == "") {
+			alert("전화번호를 입력하십시오.");
 			form.gender.focus();
 			return false;
 		}
-		//var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-//		if(emailExp.test(form.email.value)==false) {
-//			alert("이메일 형식이 올바르지 않습니다.");
-//			form.email.focus();
-//			return false;
-//		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
 			alert("전화번호 형식이 올바르지 않습니다.");
 			form.phone.focus();
 			return false;
 		}
+		if(form.university.value =="") {
+			
+			alert("대학명을 입력하십시오.");
+			form.univerisity.focus();
+			return false;
+		}
+		if(form.department.value == "") {
+			alert("소속 학과명을 선택하십시오.");
+			form.department.focus();
+			return false;
+		}
+		if(form.gender.value == "") {
+			alert("성별을 선택하십시오.");
+			form.gender.focus();
+			return false;
+		}
+
 		form.submit();
 		
 	}
@@ -193,7 +192,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
 				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
@@ -228,12 +226,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td>휴대폰 번호 (ex.010-1234-5678)</td>
-			<td><input type="text" name="phone" /></td>
 			<td><input type="text" name="phone"></td>
-		</tr>
-		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td>소속 학교 명: </td>
@@ -280,20 +273,24 @@ ul, li {
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td><select name="grade">
-				<option>1학년</option>
-				<option>2학년</option>
-				<option>3학년</option>
-				<option>4학년</option>
-				<option>5학년 이상</option>
-			</select></td>
+			<td>
+				<select name="grade">
+					<option value="1">1학년</option>
+					<option value="2">2학년</option>
+					<option value="3">3학년</option>
+					<option value="4">4학년</option>
+					<option value="5">5학년 이상</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><select name="gender">
-				<option>남자</option>
-				<option>여자</option>
-			</select></td>
+			<td>
+				<select name="gender">
+					<option value="1">남자</option>
+					<option value="2">여자</option>
+				</select>
+			</td>
 		</tr>
 	</table>
 	<br>

@@ -171,12 +171,8 @@ ul, li {
 
 <div>
 	<p id="title">UPDATE</p>
-	<form name="form" method="POST" action="/user/update/">
+	<form name="form" method="POST" action="<c:url value='/user/update' />">
 	<table>
-		<tr>
-			<td>사용자 id: </td>
-			<td>${user.member_id }</td>
-		</tr>
 		<tr>
 			<td>비밀번호: </td>
 			<td><input type="password" name="password" value="${user.password}"></td>
@@ -211,11 +207,13 @@ ul, li {
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><inpyt type="text" name="gender" value="${user.gender }" ></td>
+			<td><input type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
 	</table>
+	<!-- <input type="submit" value="수정(완료)"/> -->
+	<input type="button" value="수정(완료)" onClick="userModify()" />
 </form>
 </div>
-<br><input type="button" value="수정(완료)" onClick="userModify()"/>
+<br>
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.util.Date;
 public class Application {
 
 	int memberId;
+	String memberName;
 	int groupId;
 	Date applyDate;
 	String isApproved;
@@ -16,6 +17,12 @@ public class Application {
 	}
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 	public int getGroupId() {
 		return groupId;

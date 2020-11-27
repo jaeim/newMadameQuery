@@ -1,12 +1,15 @@
 package controller.group;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.Application;
 import model.StudyGroup;
+import model.User;
 import model.service.Manager;
 import model.service.NotFoundException;
 
@@ -18,27 +21,29 @@ public class UpdateStudyController implements Controller {
 		// TODO Auto-generated method stub
 		
 		Manager manager = Manager.getInstance();
+		int groupId = Integer.valueOf((String)request.getParameter("groupId"));
 		//form출력
 		if(request.getMethod().equals("GET")) {
-			int groupId = Integer.valueOf((String)request.getParameter("groupId"));
 			StudyGroup group = manager.findGroup(groupId);
-			
 			request.setAttribute("studyGroup", group);
-			return "redirect:/manage/manage_update.jsp";
+			return "/manage/manage_update.jsp";
 		}
 		
-		StudyGroup group = new StudyGroup();
-		group.setGroupId(Integer.valueOf((String)request.getAttribute("groupId")));
-		group.setGroupName((String)request.getAttribute("name"));
-		group.setCreatedDate((Date)request.getAttribute("createdDate"));
-		group.setNumberOfUsers(Integer.valueOf((String)request.getAttribute("numberOfUsers")));
-		group.setDescription((String)request.getAttribute("description"));
-		group.setTerm(Integer.valueOf((String)request.getAttribute("term")));
-		group.setMeetingType((String)request.getAttribute("meetingType"));
-		group.setGenderType((String)request.getAttribute("genderType"));
-		group.setGenderType((String)request.getAttribute("gradeType"));
-		group.setSubjectId(Integer.valueOf((String)request.getAttribute("subjectId")));
-		group.setLeaderId(Integer.valueOf((String)request.getAttribute("leaderId")));
+		StudyGroup group = manager.findGroup(groupId);
+		String groupName = (String) request.getParameter("groupName");
+		if(groupName != null) { group.setGroupName(groupName); }
+		String term = (String) request.getParameter("term");
+		if(term != null) { group.setTerm(Integer.valueOf(term)); }
+		String meetingType = (String)request.getParameter("meetingType");
+		if(meetingType == null) { System.out.println("meetingType is null"); }
+		if(meetingType != null) { System.out.println(meetingType); 
+		group.setMeetingType(meetingType); }
+ 		String genderType = (String)request.getParameter("genderType");
+ 		if(genderType != null) { group.setGenderType(genderType); }
+ 		String gradeType = (String)request.getParameter("gradeType");
+ 		if(gradeType != null) { group.setGradeType(gradeType); }
+ 		String leaderId = (String)request.getParameter("leaderId");
+ 		if(leaderId != null) { group.setLeaderId(Integer.valueOf(leaderId)); }
 		
 		int result = 0;
 		try {
@@ -47,8 +52,11 @@ public class UpdateStudyController implements Controller {
 			return ""; // 오류페이지(스터디그룹이 없거나, 업데이트 실패 시)
 		}
 	
+		ArrayList<Application> applyList = manager.getAllApplication(groupId);
+		request.setAttribute("applyList", applyList);
+		request.setAttribute("studyGroup", group);
 		// 업데이트 성공
-		return "redirect:/manage/manage_view.jsp";
+		return "/manage/manage_view.jsp";
 	}
 
 }

@@ -60,6 +60,19 @@ public class User {
 		this.grade = grade;
 		this.gender = gender;
 	}
+	
+	public User(String email, String password, String name, String phone, String university,
+			String department, String grade, int gender) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.phone = phone;
+		this.university = university;
+		this.department = department;
+		this.grade = grade;
+		this.gender = gender;
+	}
 
 	public User(int member_id, String email, String password, String name, Date dob, String phone, String university,
 			String department, String grade, int gender) {

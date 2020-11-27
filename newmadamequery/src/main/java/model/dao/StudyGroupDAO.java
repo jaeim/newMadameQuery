@@ -161,14 +161,13 @@ public class StudyGroupDAO {
 	// StudyGroup의 속성을 수정 (StudyGroup을 수정 할 때 group_id와 created_date는 변경될 수 없다.)
 	public int updateGroup(StudyGroup group) {
 		int result = 0;
-		String query = "UPDATE studyGroup SET number_of_member=? "
-				+ ", name=? , description=? , term=? , meeting_type=? "
-				+", gender_type=? , grade_type=? , subject_id=? , leader_id=? "
+		String query = "UPDATE studyGroup SET name=? , term=? , meeting_type=? "
+				+", gender_type=? , grade_type=? , leader_id=? "
 				+ "WHERE group_id=?";
 			
-		Object [] param = new Object[] {group.getNumberOfUsers(),
-				group.getGroupName(), group.getDescription(), group.getTerm(), group.getMeetingType()
-				, group.getGenderType(), group.getGradeType(), group.getSubjectId(), group.getLeaderId(), group.getGroupId()};
+		Object [] param = new Object[] {
+				group.getGroupName(), group.getTerm(), group.getMeetingType()
+				, group.getGenderType(), group.getGradeType(), group.getLeaderId(), group.getGroupId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
@@ -207,10 +206,11 @@ public class StudyGroupDAO {
 	
 	//모든 지원서 가져오기
 	public ArrayList<Application> getAllApplication(int groupId) throws SQLException{
-		String query = "select * from applyList where group_id=? and isApproved=?";
+		String query = "select a.member_id, name, group_id, apply_date, isapproved, approved_date, commt from applyList a, member m "
+				+ "where group_id=? and a.member_id=m.member_id";
 		
 		ResultSet rs = null;
-		Object [] param = new Object[] {groupId, 0};
+		Object [] param = new Object[] {groupId};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
@@ -221,6 +221,7 @@ public class StudyGroupDAO {
 			while(rs.next()) {
 				Application apply = new Application();
 				apply.setMemberId(rs.getInt("member_id"));
+				apply.setMemberName(rs.getString("name"));
 				apply.setGroupId(rs.getInt("group_id"));
 				apply.setApplyDate(rs.getDate("apply_date"));
 				apply.setIsApproved(rs.getString("isapproved"));
@@ -320,7 +321,7 @@ public class StudyGroupDAO {
 				group.setGradeType(rs.getString("grade_type"));
 				group.setSubjectId(rs.getInt("subject_id"));
 				group.setLeaderId(rs.getInt("leader_id"));;
-					 
+				
 				groupList.add(group);
 			}
 			jdbcUtil.commit();
@@ -370,16 +371,20 @@ public class StudyGroupDAO {
 			selected[i++] = grade_type;
 		}
 		
+		if(i != 0) {
 		// i는 저장된 배열의 크기가 될것
-		Object[] param = new Object[i];
-		for(int j = 0; j < 5; j++) {
-			if(selected[j] != null) {
-				param[j] = selected[j];
+			Object[] param = new Object[i];
+			for(int j = 0; j < 5; j++) {
+				if(selected[j] != null) {
+					param[j] = selected[j];
+				}
 			}
+			jdbcUtil.setSqlAndParameters(query, param);
+		}else {
+			query = "SELECT * FROM STUDYGROUP";
+			jdbcUtil.setSqlAndParameters(query, null);
 		}
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-			     
+		     
 		try {
 			rs = jdbcUtil.executeQuery();
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
@@ -434,7 +439,7 @@ public class StudyGroupDAO {
 				member.setUniversity(rs.getString("univ"));
 				member.setDepartment(rs.getString("dep"));
 				member.setGrade(rs.getString("grade"));
-				
+				member.setGender(rs.getInt("gender"));
 				memberList.add(member);
 			}
 			jdbcUtil.commit();

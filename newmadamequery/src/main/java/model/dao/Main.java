@@ -483,7 +483,6 @@ public class Main {
 //		if(result == 1) {System.out.println("멤버삭제성공");}
 //		else{System.out.println("멤버삭제실패");}
 	
-		User user = null;
 //		User user = null;
 //		try {
 //			user = manager.findUser("20170953@dongduk.ac.kr");
@@ -514,36 +513,35 @@ public class Main {
 		
 //		ArrayList<StudyGroup> groupList = null;
 //		try {
-//			user = manager.findUser("20170953@dongduk.ac.kr");
-//			groupList = manager.searchStudyGroups(-1, -1, "혼합", "-1", "-1");
+//			System.out.println("dao 수행");
+//			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
+//			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //		
-//		if(user != null) {
-//			System.out.println(user.getMember_id() + ", " + user.getName());
+//		if(groupList == null) {System.out.println("groupList is null");}
 //		if(groupList != null) {
 //			for(StudyGroup s : groupList) {
 //				System.out.println(s.getGroupId());
-//				}
 //			}
 //		}
 		
-		ArrayList<StudyGroup> groupList = null;
+		ArrayList<Application> applyList = null;
 		try {
-			System.out.println("dao 수행");
-			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
-			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
+			applyList = manager.getAllApplication(611);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(groupList == null) {System.out.println("groupList is null");}
-		if(groupList != null) {
-			for(StudyGroup s : groupList) {
-				System.out.println(s.getGroupId());
+		if(applyList != null) {
+			for(Application a : applyList) {
+				System.out.println(a.getMemberId() + ", " + a.getMemberName());
 			}
 		}
 	}

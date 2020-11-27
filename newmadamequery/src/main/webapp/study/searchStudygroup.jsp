@@ -103,10 +103,6 @@ ul, li {
 			font-family: Arial;
 
 		}
-		#searchGroup {
-		
-		}
-		
 	</style>
 </head>
 <body>
@@ -150,7 +146,7 @@ ul, li {
 						<option value="online">online</option>
 						<option value="offline">offline</option>
 						<option value="blended">blended</option>
-					</select>r
+					</select>
 					
 				</td>
 			</tr>
@@ -160,9 +156,9 @@ ul, li {
 					<select name="term">
 						<option value="-1" selected>-선택안함-</option>
 						<option value="1">1개월</option>
-						<option value="2">3개월</option>
-						<option value="3">6개월</option>
-						<option value="4">6개월 이상</option>
+						<option value="3">3개월</option>
+						<option value="6">6개월</option>
+						<option value="10">6개월 이상</option>
 						<option value="0">상관없음</option>
 					</select>
 				</td>
@@ -192,9 +188,27 @@ ul, li {
 					</select>
 				</td>
 			</tr>
+			<tr>
+				<td>인원 수 </td>
+				<td>
+					<select name="numberOfUsers">
+						<option value="-1" selected>-선택안함-</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">10명 이상</option>
+						<option value="0">상관없음</option>
+					</select>
+				</td>
+			</tr>
 		</table>
 		<br><br>
-		<input type="button" value="검색하기" >
+		<input type="submit" value="검색하기" >
 	</form>
 </div>
 </body>

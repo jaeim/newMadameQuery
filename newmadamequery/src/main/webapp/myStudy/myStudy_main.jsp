@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	List<StudyGroup> groupList = (List<StudyGroup>) request.getAttribute("groupList");
@@ -125,22 +125,24 @@ ul, li {
 <div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 , 어떤 정보 가져올건지 정하고 table 다시만들기-->
 	<table id="groupList">
 		<tr>
-			<th>스터디 그룹 명</th>
-			<th>인원 수</th>
-			<th>날짜 </th>
+			<th>그룹 명</th>
+			<th>모집인원</th>
+			<th>생성일</th>
 		</tr>
 		
 		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
-					<a href="<c:url value='/studyGroup/manageStudy'>
+					<a href="<c:url value='/post/list'>
 						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
 				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
 				<td>${group.numberOfUsers }</td>
 				<td>${group.createdDate}</td>
-				
+				<td><a href="<c:url value='/studyGroup/myStudy/dropOut'>
+						   <c:param name='groupId' value='${group.groupId}'/>
+						 </c:url>">탈퇴</a></td>
 			</tr>
 		</c:forEach>
 	</table>

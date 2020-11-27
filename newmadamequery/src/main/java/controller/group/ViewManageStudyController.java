@@ -22,18 +22,18 @@ public class ViewManageStudyController implements Controller{
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
 		StudyGroup group;
 		ArrayList<Application> applyList;
-		ArrayList<User> groupMemberList;
+		//ArrayList<User> groupMemberList;
 		try {
 			group = manager.findGroup(groupId);
 			applyList = manager.getAllApplication(groupId);
-			groupMemberList = manager.getAllMemberInGroup(groupId);
+			//groupMemberList = manager.getAllMemberInGroup(groupId);
 		}catch(NotFoundException e) {
 			return ""; //오류페이지로 이동
 		}
 		
 		request.setAttribute("studyGroup", group);
 		request.setAttribute("applyList", applyList);
-		request.setAttribute("groupMemberList", groupMemberList);
+		//request.setAttribute("groupMemberList", groupMemberList);
 		
 		return "/manage/manage_view.jsp";
 	}

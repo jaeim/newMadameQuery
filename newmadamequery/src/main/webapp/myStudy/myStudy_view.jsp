@@ -5,7 +5,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	//@SuppressWarnings("unchecked") 
-	//List<Post> postList = (List<Post>)request.getAttribute("postList");
+	List<Post> postList = (List<Post>)request.getAttribute("postList");
 	
 %>
 
@@ -175,15 +175,15 @@ ul, li {
 		</tr>
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		
-		<c:forEach var="post" items="${postList} ">
+		<c:forEach var="post" items="${postList}">
 			<tr>
-				<td><a href="<c:url value='/post/detail'>
-					<c:param name='postId' value="${post.postId }" />
-					</c:url>">${post.title}</a>
+				<td>
+					<a href="<c:url value='/post/detail'>
+						<c:param name='postId' value='${post.postId}' />
+						</c:url>">${post.title}</a>
 				</td>
 				<td>${post.userName}</td>
 				<td>${post.createdDate }</td>
-				
 			</tr>
 		</c:forEach>
 		</table>
@@ -231,7 +231,7 @@ ul, li {
 	</div>
 	<br><br>
 	<div id= "addboard">
-		<button><a href="<c:url value='/post/create/form' />">글쓰기</a></button>
+		<a href="<c:url value='/post/create/form' />" >글쓰기 </a>
 	</div>
 </div>
 </body>

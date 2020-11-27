@@ -173,7 +173,7 @@ ul, li {
 	<table>
 		  <tr>
 			<td>
-			<input type="submit" value="로그인" onClick="login()"> &nbsp;
+			<input type="button" value="로그인" onClick="login()"> &nbsp;
 			</td>						
 		  </tr>
 	    </table>

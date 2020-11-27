@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*, model.*" %> 
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@page import="java.util.*, model.*" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>마이페이지 - 내 정보 받아와서 보여주기 </title>
 <!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] -->
 <style>
@@ -116,6 +116,14 @@ ul, li {
  	diplay: inline;
  }
 </style>
+
+<script type="text/javascript">
+function home(targetUri) {
+	form.action = targetUri;
+	form.submit();
+}
+</script>
+
 </head>
 <body>
 	<nav>
@@ -144,15 +152,11 @@ ul, li {
 	<p id="title">My Page</p>
 	<table>
 		<tr>
-			<td>����� id: </td>
-			<td>${user.email }</td>
-		</tr>
-		<tr>
 			<td>이름: </td>
 			<td>${user.name }</td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td>휴대폰 번호</td>
 			<td>${user.phone }</td>
 		</tr>
 		<tr>
@@ -175,18 +179,22 @@ ul, li {
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td>${user.gender }</td>
+			<td>
+				<c:set var= "gender" value="${ user.gender}" />
+				<c:if test="${gender eq '1'}"> 
+					<c:out value="남자" />
+				</c:if>
+				<c:if test="${gender eq '2'}">
+					<c:out value="여자" />
+				</c:if>
+			</td>
 		</tr>
 	</table>
+	<a href="<c:url value= '/user/mainPage' />">홈으로</a>
+	<a href="<c:url value= '/user/update/form' >
+	<c:param name='userId' value='${user.member_id }' />
+	</c:url>">수정하기</a>	
 </div>
 <br>
-<div>
-<input type="button" id= "forHome"value="홈으로" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="수정하기" onClick="<c:url value= '/user/update/form' >
-	<c:param name="member_id" value="${user.member_id }" />
-	</c:url>
-	
-"/><br> 
-</div>
 </body>
 </html>

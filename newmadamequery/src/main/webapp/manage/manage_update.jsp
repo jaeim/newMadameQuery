@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
+<%@page import="controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>manage update page</title>
 <!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
-
+<scipt>
+	function groupModify(){
+	
+		form.submit();
+	}
+</scipt>
 <style>
 	body {
   margin: 0;
@@ -199,46 +208,59 @@ ul, li {
 
 <%
 //확인을 위한 용도 
-
-	StudyGroup sg = new StudyGroup();
-	sg.setGroupId(501);
-	//밑에서 나중에 sg -> StudyGroup.~로 바꿀 것.
+	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
+	System.out.println(group.getGroupName());
 %>
 
-<form name="form" method="POST" action="<c:url value='/myGroup/manageGroup/update' />">
+<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update'>
+	<c:param name="groupId" value="${studyGroup.groupId}" />
+	<c:param name="groupMemberList" value="${groupMemberList}" />
+</c:url>" >
 <table id="main1">
 		<tr>
-			<td>스터디그룹 명</td>
-			<td> <input type="text" name="groupName" value="${sg.groupName} " ></td>
+			<td>스터디그룹 명(${studyGroup.groupId})</td>
+			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
 			<td>인원</td>
-			<td> ${sg.numberOfUsers } </td>
+			<td>${studyGroup.numberOfUsers } </td>
 			<td>기간</td>
-			<td> <input type="text" name="term" value="${sg.term }"></td>
+			<td>
+				<select name="term">
+						<c:set var= "term" value="${studyGroup.term}" />
+						<option value="-1" <c:if test="${term eq '-1'}"> selected </c:if>>-선택안함-</option> 
+						<option value="1" <c:if test="${term eq '1'}"> selected </c:if>>1개월</option> 
+						<option value="2" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
+						<option value="3" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
+						<option value="4" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
+						<option value="0" <c:if test="${term eq '0'}"> selected </c:if>>상관 없음</option> 
+				</select>
+			</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
 		<td>subjectId(과목)</td>
-		<td>${sg.subjectId} </td>
+		<td>${studyGroup.subjectId} </td>
 		<td>스터디 방식</td>
-		<td> <!-- online, offline, both-->
-			<select name="meetingType">
-				<option value="0">Online</option>
-				<option value="1">Offline</option>
-				<option value="2">On & Off(혼합)</option>
-			</select>
-			<!-- 기존의 데이터 가져와서 selected 표시하기 -->
-		</td>
+				<td> <!-- online, offline, blended-->
+					<select name="meetingType">
+						<c:set var="meetingT" value="${studyGroup.meetingType }" />
+						<option <c:if test="${meetingT eq 'online'}"> selected </c:if>>online</option> 
+						<option <c:if test="${meetingT eq 'offline'}"> selected </c:if>>offline</option> 
+						<option <c:if test="${meetingT eq 'blended'}"> selected </c:if>>blended</option> 
+					</select>
+				</td>
 	</tr>
 	<tr>
 		<td>개설 일자</td>
-		<td>${sg.createdDate }</td>
+		<td>${studyGroup.createdDate }</td>
 		<td>성별</td>
-		<td><select name="meetingType">
-				<option value="0">상관 없음</option>
-				<option value="1">남자</option>
-				<option value="2">여자</option>
+		<td><select name="genderType">
+				<c:set var="gender" value="${studyGroup.genderType }" />
+				<option value="-1" <c:if test="${gender eq '-1'}">selected</c:if>>-선택안함-</option>
+				<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
+				<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
+				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
 			</select></td>
 	</tr>
 	<tr>
@@ -246,22 +268,25 @@ ul, li {
 		<td>
 			<select name="leaderId">
 					<option value="">없음</option>
-					<c:forEach var="member" items="${sg.memberList}">
-						<option value="${member.userId}"
-							<c:if test="${member.userId eq sg.leaderId}">selected="selected"</c:if>
-							>${member.userId}</option>
+					<c:forEach var="member" items="${studyGroup.groupUsers}">
+						<option value="${member.member_id}"
+							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
+							>${member.member_id}</option>
 					</c:forEach>
-				</select>
+			</select>
 		
 		</td>
 		<td>학년</td>
 		<td>
-			<select name="grade">
-				<option value="0">상관 없음</option>
-				<option value="1">1학년</option>
-				<option value="2">2학년</option>
-				<option value="3">3학년</option>
-				<option value="4">4학년</option>
+			<select name="gradeType">
+					<c:set var="grade" value="${studyGroup.genderType}" />
+					<option value="-1" <c:if test="${grade eq '-1'}">selected</c:if>>-선택안함-</option>
+					<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
+					<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
+					<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
+					<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
+					<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
+					<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>
 		</td>
 	</tr>
@@ -277,13 +302,13 @@ ul, li {
 	
 	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
 	
-	<c:forEach var="member" items="{sg.memberList}">
+	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
-			<td><!-- 멤버 이름 출력 --></td>
+			<td>${member.name}</td>
 			<td>
 				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
 				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${sg.groupId }'/>
+					<c:param name='groupId' value='${studyGroup.groupId }'/>
 					</c:url>" onClick= "return memberAccept(); ">수락</a>
 			</td>
 			
@@ -294,10 +319,11 @@ ul, li {
 </table>
 <br>
 <div id="buttons">
-	<input type="button" value="저장하기" onClick="groupModify()"> &nbsp;
+	<input type="submit" value="저장하기" onClick="groupModify()"> &nbsp;
+	
 	<input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
-		<c:param name="groupId" value="${sg.groupId}" />
-		</c:url>'')">
+		<c:param name="groupId" value="${studyGroup.groupId}" />
+		</c:url>)">
 </div>
 </form>
 

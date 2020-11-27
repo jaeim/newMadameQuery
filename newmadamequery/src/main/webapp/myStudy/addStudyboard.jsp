@@ -161,7 +161,7 @@ ul, li {
 <form name="form" method="POST" action="<c:url value='/post/create'/>">
 	<input type="text" name="title" id="title" placeholder="제목" />
 	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="내용을 입력하세요"></textarea>
-	<input type="button" name="submitB" id="submit" value="게시글 작성 " onClick="postCreate()" />
+	<input type="submit" name="submitB" id="submit" value="게시글 작성 " onClick="postCreate()" />
 </form>
 </div>
 

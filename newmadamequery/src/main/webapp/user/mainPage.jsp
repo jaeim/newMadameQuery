@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>mainPage</title>
-<!-- 메인 화면  (가장 처음 뜨는 화면 & 로그인 후 뜨는 화면.) -->
 
 <style>
 	body {
@@ -116,25 +115,29 @@ ul, li {
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			</c:url> ">MANAGE</a>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
 	</ul>
 </nav>
-
-	 사용자 이름: ${user.name }<br>
-<br><br>
+사용자 이름: ${user.name }
+<br>
+<br>
 <div id="fisrt">
 	
-<a href="<c:url value='/user/login/form' />">로그인</a>
+
+
+<c:if test= "${user.member_id eq null }" >
+<a href="<c:url value='/user/login/form' />">로그인</a> <br>
 <a href="<c:url value='/user/register/form' />">회원가입</a>
 
 <c:if test= "${user.member_id ne null }" >
  	<c:out value="${user.member_id}" />
  	<br>
 	<a href="<c:url value='/user/view' >
-		<c:param name="userId" value="String.valueOf(${user.member_id})" />
+		<c:param name='userId' value='${user.member_id}' />
 		</c:url> ">마이페이지로 이동</a>
+	<br>
+	<a href="<c:url value= '/user/logout' />">로그아웃</a>
 </c:if>
 </div>
 

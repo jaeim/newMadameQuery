@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*" %>
+<%@page import="model.*,controller.*, model.dao.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>스터디 그룹 등록</title>
 <script>
 	function addStudyGroup(){
@@ -167,7 +167,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
 				<li><a href="#">로그인</a></li>
@@ -196,11 +195,19 @@ ul, li {
 			<font color="red"><c:out value="${exception. getMessage()}" /></font>
 		</c:if>
 		
+		
+		<% 
+			
+			
+		
+		%>
 		<table id= "addGroup">
 			<tr>
 				<td>과목</td>
 				<td> 
-					<select id="subject"></select>
+					<select id="subject">
+						<option></option>
+					</select>
 				</td>
 				
 				<!-- numberOfUsers, groupName, description, term,  
@@ -273,7 +280,7 @@ ul, li {
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="생성하기" onClick=addStudyGroup() />
+		<input type="submit" id="createB" value="생성하기" onClick=addStudyGroup() /> 
 		<br><br>
 	</form>
 	

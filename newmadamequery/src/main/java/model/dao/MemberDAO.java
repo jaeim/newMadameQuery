@@ -28,13 +28,13 @@ public class MemberDAO {
 	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
 		int result = 0;
-		String query = "INSERT INTO MEMBER (member_id, email, password, name, dob, phone, "
-				+ "date_of_join, university, dep, grade, gender)"
-				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?)";
+		String query = "INSERT INTO MEMBER (member_id, email, password, name, phone, "
+				+ "dob, date_of_join, univ, dep, grade, gender)"
+				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, sysdate, sysdate, ?, ?, ?, ?)";
 		
-		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
+		//java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
 		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
-		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob,
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(),
 				user.getPhone(), user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
@@ -57,7 +57,8 @@ public class MemberDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs != null) {
+			
+			if(rs.next()) {
 				result = true;
 			}
 			jdbcUtil.commit();
@@ -91,9 +92,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -125,9 +126,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -147,14 +148,14 @@ public class MemberDAO {
 	public int userInfoUpdate(User user) throws SQLException {
 		int result = 0;
 		String query = "UPDATE MEMBER "
-				+ "SET email=?, password=?, name=?, dob=?, phone=?, "
+				+ "SET email=?, password=?, name=?, phone=?, "
 				+ "univ=?, dep=?, grade=?, gender=?"
 				+ "WHERE member_id=?";
 		
-		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
+		//java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
 		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
 		
-		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob, user.getPhone(), 
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), user.getPhone(), 
 				user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender(), user.getMember_id()};
 		jdbcUtil.setSqlAndParameters(query, param);
 		
@@ -185,7 +186,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
@@ -226,7 +227,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
