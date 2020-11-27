@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	
@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <script>
 	
@@ -134,10 +134,10 @@ td{
 		
 	</ul>
 </nav>
-<p></p>
+<br><br>
 
 <div id="onePost">
-<h3></h3>
+<h3>게시글 상세보기</h3>
 	<table id="pTable">
 		<tr>
 			<td>제목</td>
@@ -150,77 +150,55 @@ td{
 		<tr>
 			<td >내용</td>
 			<td colspan="5">${post.content}</td>
-			<!--  <td></td>
-			<td></td>
-			<td></td>
-			<td></td> -->
 		</tr>
 		
 	</table>
-	<%
-		//내가 게시한 글일 때만 수정하기 버튼 뜨게 하기
-		
-	%>
-	<br><br>
+
+<!-- 내가 작성한 게시글일 때만 수정 버튼 뜸. -->
+
+	<c:set var="myPost" value="${post.member_id}" />
+	<c:if test="${myPost eq '${userId}'}" >
+		<a href=" <c:url value= '/post/update/form' >
+			<c:param name='postId' value='${post.postId}' />
+			<c:param name="memberId" value="${post.member_id}" />
+			</c:url>" >게시글 수정</a>
+	</c:if>
 	
-	<a href="<c:url value='/post/update/form' >
-		<c:param name="postId" value='${post.postId}' />
-			</c:url>"> 수정하기 </a>
-	&nbsp;&nbsp;
-	<a href= "<c:url value='/post/delete' />">삭제하기</a>
-	
-	
+	<br><br>	
 </div>
 <br><br>
+
 <div id="comments">
-	<h3>Comments</h3>
-	
-	<div id="newCommt">
-		<h6>${member.userId }</h6>
-		<textarea name="cmtContents" cols="30" rows="1"></textarea>
-		<input type="button" value="댓글쓰기" onClick= "<c:url value='/comment/register' > 
-			
-				<c:param name='username' value = '${user.name }' />
-				<c:param name='date' value= '${comment.createdDate }' />
-				<c:param name= 'commentText' value='${comment.content }' />
-			</c:url>"  />
 		
+	<form name="form" method="POST" action="<c:url value='/comment/register' >
+		<c:param name='groupId' value='${post.group_id}' />
+		<c:param name='postId' value='${post.postId }' />
+		</c:url> ">
 		
-		<!-- 댓글 개수 만큼 댓글 보여주기 -->
-		<br>
-		<table id="cmtTable">
-			
-			<%-- <c:forEach var="cmtList" items="${commentList}" >
-				<tr >
-					<td>이름</td> 
-					<td>이현아</td>
-					<td>날짜</td>
-					<td>2020-11-23</td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td colspan="3">좋은 것 같아요~</td>
-				</tr>
-			</c:forEach>--%>
-			
-		<tr>
+		<input type="text" name="content" >
+		<input type="submit" value="댓글 쓰기" />
+	</form>
+	<br>
+	<table id="cmtTable">
+		
+		<c:forEach var="cm" items="${commList}" varStatus="status" >
+			<tr>
+				<td>${status.count}</td>
 				<td>이름</td>
-				<td>이현아</td>
-				<td>날짜</td>
-				<td>2020-11-23</td>
-			</tr>
-			<tr>
+				<td>${cm.userName}</td>
 				<td>내용</td>
-				<td colspan="3">좋은 것 같아요~</td>
+				<td>${cm.content}</td>
 			</tr>
 			<tr>
-				<td colspan="4" style="text-align:right"><a href="<c:url value='/comment/delete'>
-					<c:param name='commentId' value= '${comment.comment_id}'/>
-					</c:url>">삭제</a>
-				</td>
-			</tr>
-		</table>
-	</div>
+				<td colspan="2">&nbsp;</td>
+				<td style="text-align:right"><a href="<c:url value='/comment/delete'>
+					<c:param name='comment_id' value='${cm.comment_id}'/>
+					</c:url>">삭제</a></td>
+				<td>&nbsp;</td>
+				<td>${cm.createdDate}</td>
+			</tr> 
+		</c:forEach>
+	</table>
 </div>
 </body>
 </html>
