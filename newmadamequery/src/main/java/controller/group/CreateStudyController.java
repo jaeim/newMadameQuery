@@ -1,5 +1,7 @@
 package controller.group;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.StudyGroup;
+import model.Subject;
 import model.service.Manager;
 
 // 재임 : Main.java test 완료
@@ -14,6 +17,14 @@ public class CreateStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (request.getMethod().equals("GET")) {
+			Manager manager = Manager.getInstance();
+			ArrayList<Subject> list = manager.getAllSubject();
+			
+			request.setAttribute("subjectList", list);
+			return "/study/addStudygroup.jsp";
+		}
+		// post 방식 => 스터디 생성
 		StudyGroup studyGroup = new StudyGroup(Integer.parseInt(request.getParameter("numberOfUsers")),
 				request.getParameter("groupName").toString(), request.getParameter("description").toString(),
 				Integer.parseInt(request.getParameter("term")), request.getParameter("meetingType").toString(),
