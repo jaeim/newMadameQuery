@@ -53,10 +53,10 @@ public class UpdateStudyController implements Controller {
 		}
 	
 		ArrayList<Application> applyList = manager.getAllApplication(groupId);
-		request.setAttribute("applyList", applyList);
-		request.setAttribute("studyGroup", group);
+//		request.setAttribute("applyList", applyList);
+//		request.setAttribute("studyGroup", group);
 		// 업데이트 성공
-		return "/manage/manage_view.jsp";
+		return "redirect:/studyGroup/manageStudy?groupId=" + groupId;
 	}
 
 }

@@ -252,10 +252,11 @@ public class StudyGroupDAO {
 		
 		try {
 			rs = jdbcUtil.executeQuery();
-			System.out.println(rs.getInt("MEMBER_ID"));
+//			System.out.println(rs.getInt("MEMBER_ID"));
 			if(!rs.next())
 				result = 0;
-			result = 1;
+			else
+				result = 1;
 			jdbcUtil.commit();
 		}catch(Exception e) {
 			jdbcUtil.rollback();
