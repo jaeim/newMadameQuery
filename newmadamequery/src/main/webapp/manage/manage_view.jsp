@@ -154,14 +154,6 @@ function memberAccept() {
 	</ul>
 </nav>
 
-<%
-//확인을 위한 용도 
-	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
-	System.out.println(group.getGroupId() + ", " + group.getGroupName());
-	ArrayList<Application> applyList = (ArrayList<Application>)request.getAttribute("applyList");
-	ArrayList<User> groupMemberList = (ArrayList<User>)request.getAttribute("groupMemberList");
-%>
-
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명</td>
@@ -243,7 +235,14 @@ function memberAccept() {
 			<td>${aList.applyDate }</td>
 			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
 				<c:param name="groupId" value="${studyGroup.groupId}" />
+				<c:param name="memberId" value="${aList.memberId}" />
+				<c:param name="isAccepted" value="true" />
 				</c:url>" >수락</a></td>
+			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+				<c:param name="groupId" value="${studyGroup.groupId}" />
+				<c:param name="memberId" value="${aList.memberId}" />
+				<c:param name="isAccepted" value="false" />
+				</c:url>" >거절</a></td>
 	</c:forEach>
 </table>
 <div id="update">
