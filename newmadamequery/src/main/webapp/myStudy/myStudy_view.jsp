@@ -211,7 +211,6 @@ ul, li {
 			</tr>
 		</table>
 	</div>
-	
 	<div id="groupinfo">
 	<h5 id="memberTitle">Group Info</h5>
 		<table id="infoTable">
