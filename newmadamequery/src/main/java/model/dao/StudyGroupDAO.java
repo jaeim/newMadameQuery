@@ -319,7 +319,7 @@ public class StudyGroupDAO {
 				group.setGradeType(rs.getString("grade_type"));
 				group.setSubjectId(rs.getInt("subject_id"));
 				group.setLeaderId(rs.getInt("leader_id"));;
-					 
+				
 				groupList.add(group);
 			}
 			jdbcUtil.commit();
@@ -368,16 +368,20 @@ public class StudyGroupDAO {
 			selected[i++] = grade_type;
 		}
 		
+		if(i != 0) {
 		// i는 저장된 배열의 크기가 될것
-		Object[] param = new Object[i];
-		for(int j = 0; j < 5; j++) {
-			if(selected[j] != null) {
-				param[j] = selected[j];
+			Object[] param = new Object[i];
+			for(int j = 0; j < 5; j++) {
+				if(selected[j] != null) {
+					param[j] = selected[j];
+				}
 			}
+			jdbcUtil.setSqlAndParameters(query, param);
+		}else {
+			query = "SELECT * FROM STUDYGROUP";
+			jdbcUtil.setSqlAndParameters(query, null);
 		}
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-			     
+		     
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();

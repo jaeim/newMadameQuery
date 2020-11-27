@@ -3,15 +3,14 @@
 <%@page import ="java.util.*" %>
 <%@page import = "model. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
-<% 	//@SuppressWarnings("unchecked");
-	ArrayList<StudyGroup> groupList = (ArrayList<StudyGroup>)request.getAttribute("groupList");
- %>
+<%
+    request.setCharacterEncoding("utf-8");
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>스터디 그룹 메인 (자신이 팀장인 스터디 그룹 리스트 출력)</title>
 <style>
 	body {

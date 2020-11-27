@@ -33,15 +33,17 @@
 	<table id="resultTable">
 	<tr>
 		<td>&nbsp;</td>
+		<td>그룹명</td>
 		<td>스터디 방식</td>
 		<td>기간</td>
-		<td>성별</td>
-		<td>학년</td>
+		<td>모집성별</td>
+		<td>모집학년</td>
 	</tr>
 	
-	<c:forEach var="sl" items="${searchList}" varStatus= "status"> 
+	<c:forEach var="sl" items="${groupList}" varStatus= "status"> 
 		<tr>
 			<td><c:out value="${status.count}" /></td>
+			<td>${sl.groupName }</td>
 			<td>${sl.meetingType }</td>
 			<td>${sl.term}개월 </td>
 			<td>${sl.genderType }</td>
