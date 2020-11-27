@@ -206,11 +206,11 @@ ul, li {
 <div id="joinDiv">
 	
 	<h1>Join With Us!</h1>
-	<form name="form" method="POST" action="<c:url value='/user/register' />">
+	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
 	<table>
 		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email"></td>
+			<td>사용자 id: </td>
+			<td><input type="text" name="userId"></td>
 		</tr>
 		<tr>
 			<td>비밀번호: </td>

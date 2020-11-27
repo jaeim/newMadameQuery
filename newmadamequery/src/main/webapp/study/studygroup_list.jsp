@@ -3,9 +3,6 @@
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,13 +125,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
-		
 	</ul>
 </nav>
 
@@ -164,4 +154,5 @@ ul, li {
 	</c:forEach>
 </table>
 </body>
+
 </html>

@@ -103,15 +103,20 @@ ul, li {
 <nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
-		<li><a href="<c:url value='/studyGroup/myStudy'>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/apply' />">나의 신청 현황</a>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
 			<c:param name='userId' />
-			</c:url>">MYSTUDY</a></li>
+			</c:url>">나의 스터디 보기</a></li>
+				</ul>
+			</li>
 		
 	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
-				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="#">스터디 검색</a></li>
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
@@ -119,16 +124,19 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-사용자 이름: ${user.name }
+
 <br>
 <br>
 <div id="fisrt">
+
 <c:if test= "${user.member_id eq null }" >
-<a href="<c:url value='/user/login/form' />">로그인</a> <br>
-<a href="<c:url value='/user/register/form' />">회원가입</a>
+	<a href="<c:url value='/user/login/form' />">로그인</a> <br>
+	<a href="<c:url value='/user/register/form' />">회원가입</a>
 </c:if>
 
+
 <c:if test= "${user.member_id ne null }" >
+	사용자 이름: ${user.name } (로그인 o.k) <br>
  	<c:out value="${user.member_id}" />
  	<br>
 	<a href="<c:url value='/user/view' >
@@ -136,7 +144,6 @@ ul, li {
 		</c:url> ">마이페이지로 이동</a>
 	<br>
 	<a href="<c:url value= '/user/logout' />">로그아웃</a>
-	
 </c:if>
 </div>
 

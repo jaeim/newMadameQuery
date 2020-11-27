@@ -27,7 +27,6 @@ public class ApplyAcceptStudyController implements Controller {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 			
-			
 			return "/manage/manage_view.jsp";
 		}
 	}

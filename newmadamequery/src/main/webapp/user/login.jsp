@@ -129,6 +129,7 @@ ul, li {
 			<c:param name='userId' />
 			</c:url> ">MANAGE</a>
 		</li>
+
 		 <!--  <li>LOGIN & JOIN</a>
 			<ul id="sub-menu">
 				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>

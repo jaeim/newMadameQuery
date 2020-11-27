@@ -336,6 +336,7 @@ public class StudyGroupDAO {
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		String query = "SELECT * FROM studygroup where ";
+		ResultSet rs = null;
 		//ArrayList<Object> param = new ArrayList<Object>();
 		Object [] selected = new Object[] {null, null, null, null, null};
 		int i = 0;
@@ -380,9 +381,9 @@ public class StudyGroupDAO {
 		}
 		     
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();
+			rs = jdbcUtil.executeQuery();
 			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-				
+			
 			while (rs.next()) {
 				StudyGroup group = new StudyGroup();
 					

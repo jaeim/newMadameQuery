@@ -84,7 +84,7 @@ public class Manager {
 	
 	//ok
 	public int createStudyGroup(StudyGroup group, int memberId) throws SQLException, ExistingException, NotFoundException{
-		int r1 = 0;
+		int createdGroupId = 0;
 		int r2 = 0;
 		
 		if(studyGroupDAO.existingGroup(group.getGroupId())) {
@@ -93,14 +93,14 @@ public class Manager {
 		
 		findUser(memberId);
 		
-		r1 = studyGroupDAO.addGroup(group, memberId);
-		if(r1 == 1) {
+		createdGroupId = studyGroupDAO.addGroup(group, memberId);
+		if(createdGroupId != 0) {
 			// groupmember 테이블에 팀장 추가
 			r2 = studyGroupDAO.addMemberInGroupMember(group.getGroupId(), memberId, "1");
 		}
 		
-		if(r1 == 1 && r2 == 1)
-			return 1;
+		if(createdGroupId != 0 && r2 == 1)
+			return createdGroupId;
 		return 0;
 	}
 	

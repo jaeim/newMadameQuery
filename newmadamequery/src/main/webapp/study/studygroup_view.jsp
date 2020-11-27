@@ -133,6 +133,7 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
+
 		<li><a href="#"> LOGIN & JOIN</a>
 			<ul id="sub-menu">
 				<li><a href="#">로그인</a></li>
@@ -149,6 +150,8 @@ ul, li {
 	<div> <!--  StudyGroup 하나의 객체 반환 -->
 		<table id="groupInfo">
 			<tr>
+				<td colspan="2">���͵��</td>
+				<td colspan="2">${StudyGroup.groupName }</td>
 				<td width="100" colspan="2">스터디명</td>
 				<td width="100" colspan="2">${studyGroup.groupName}</td>
 			</tr>
@@ -176,6 +179,7 @@ ul, li {
 	
 	<div > <!--  멤버의 수, 이름, 학과, 학년 보여주기  -->
 	
+
 		<!-- 멤버 수 가져와서 그 만큼 table tr 생성해서 보여주기 -->
 		
 		<table id="memberList">
