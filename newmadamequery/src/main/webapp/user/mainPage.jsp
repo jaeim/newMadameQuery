@@ -123,8 +123,6 @@ ul, li {
 <br>
 <br>
 <div id="fisrt">
-	
-	
 <c:if test= "${user.member_id eq null }" >
 <a href="<c:url value='/user/login/form' />">로그인</a> <br>
 <a href="<c:url value='/user/register/form' />">회원가입</a>
