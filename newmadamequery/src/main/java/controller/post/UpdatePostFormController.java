@@ -13,6 +13,7 @@ import model.service.Manager;
 public class UpdatePostFormController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println(request.getParameter("postId"));
 		int postId = Integer.parseInt(request.getParameter("postId"));
 //		int postId = 801;
 		try {

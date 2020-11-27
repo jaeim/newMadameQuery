@@ -21,7 +21,7 @@ public class UpdateStudyController implements Controller {
 		// TODO Auto-generated method stub
 		
 		Manager manager = Manager.getInstance();
-		int groupId = Integer.valueOf((String)request.getParameter("groupId"));
+		int groupId = Integer.valueOf(request.getParameter("groupId"));
 		//form출력
 		if(request.getMethod().equals("GET")) {
 			StudyGroup group = manager.findGroup(groupId);

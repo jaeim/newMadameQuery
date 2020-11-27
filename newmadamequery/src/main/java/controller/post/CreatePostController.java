@@ -28,8 +28,8 @@ public class CreatePostController implements Controller {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		if(title == null) {System.out.println("title is null");}
-		if(content == null) {System.out.println("content is null");}
+		if(title.equals("")) {System.out.println("title is null");}
+		if(content.equals("")) {System.out.println("content is null");}
 		post.setTitle(request.getParameter("title"));
 		post.setContent(request.getParameter("content"));
 		

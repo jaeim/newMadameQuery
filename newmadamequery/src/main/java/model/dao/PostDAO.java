@@ -89,6 +89,7 @@ public class PostDAO {
 			if (rs.next()) {
 				Post post = new Post();
 				
+				post.setPostId(postId);
 				post.setUserName(rs.getString("name"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getNString("content"));
