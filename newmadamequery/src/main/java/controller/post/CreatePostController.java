@@ -25,6 +25,11 @@ public class CreatePostController implements Controller {
 //		post.setTitle("※공지사항");
 //		post.setContent("수요일 오후 6시 군자역 스타벅스!");
 		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		if(title == null) {System.out.println("title is null");}
+		if(content == null) {System.out.println("content is null");}
 		post.setTitle(request.getParameter("title"));
 		post.setContent(request.getParameter("content"));
 		

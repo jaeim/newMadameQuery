@@ -152,13 +152,15 @@ ul, li {
 </nav>
 <br><br>
 <%
-	String str = request.getParameter("groupId");
+	request.setAttribute("groupId", request.getParameter("groupId"));
 %>
 <div id="addform">
-	this is group_id : <%=request.getParameter("groupId")%>
-	<form name="form" method="POST" action="<c:url value='/post/create'/>">
-		<input type="text" name="title" id="title" placeholder="제목" />
-		<input type="text" name="content" id="content" placeholder="내용을 입력하세요." style="width: 300px; height: 300px;"/>
+	this is group_id : ${groupId}
+	<form name="form" method="POST" action="<c:url value='/post/create'>
+		<c:param name='groupId' value='${groupId}' />
+	</c:url>">
+		<input type="text" name="title" placeholder="제목" />
+		<input type="text" name="content" placeholder="내용을 입력하세요." style="width: 300px; height: 300px;"/>
 		<input type="submit" id="sm" value="게시글 작성 " onClick="postCreate()" />
 	</form>
 </div>
