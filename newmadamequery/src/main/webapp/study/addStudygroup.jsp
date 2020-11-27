@@ -193,9 +193,9 @@ ul, li {
 			<tr>
 				<td>과목</td>
 				<td> 
-					<select name="subject">
+					<select name="subjectId">
 						<c:forEach var="sub" items="${subjectList}" >
-							<option value="{sub.subjectId}">${sub.name}</option>
+							<option value="${sub.subjectId}">${sub.name}</option>
 						</c:forEach>
 					</select>
 				</td>
