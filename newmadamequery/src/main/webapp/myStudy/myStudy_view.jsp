@@ -104,7 +104,7 @@ ul, li {
  	}
  	#board{
  		background-color: #C0EDFF;
- 		width: 50%;
+ 		width: 400px;
  		height: 300px;
  		float: left;
  		text-align: center;
@@ -114,18 +114,6 @@ ul, li {
  		height: auto;
  		text-align: center;
  		margin: auto;
- 	}
- 	#members{
- 		background-color: #AAEBAA;
- 		width: 400px;
- 		height: auto;
- 		float:right;
- 	}
- 	#groupinfo {
- 		background-color: #FFDFDC;
- 		width: 400px;
- 		height: auto;
- 		float:right;
  	}
  	#addboard{
  		background-color: aqua;
@@ -151,22 +139,14 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
-<div>
-	<div id="name">
-		<h2>스터디 그룹 명</h2>
-	</div>
+<br><br>
+<div id="board">
 	
-	<div id="board">
 	<table id="boardT">
+		<caption>스터디 게시판 </caption>
 		<tr>
 			<td width="200">제목</td>
 			<td width="100">글쓴이</td>
@@ -176,6 +156,7 @@ ul, li {
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		
 		<c:forEach var="post" items="${postList}">
+			${postList.group_id }
 			<tr>
 				<td>
 					<a href="<c:url value='/post/detail'>
@@ -189,50 +170,10 @@ ul, li {
 		</table>
 	</div>
 	
-	<!-- DAO, controller 상의 후 추가 or 삭제 -->
-	<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
-			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			
-			<tr>
-				<td>이현아</td>
-				<td>컴퓨터학과</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-	
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
 	<br><br>
 	<div id= "addboard">
-		<a href="<c:url value='/post/create/form' />" >글쓰기 </a>
+		<a href="<c:url value='/post/create/form' />">글쓰기 </a>
 	</div>
-</div>
+
 </body>
 </html>
