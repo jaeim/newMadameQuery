@@ -133,13 +133,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -203,6 +196,14 @@ ul, li {
 	
 	<div id="addToMember">
 		<%@include file="registerStudy.jsp" %>
+		
+<form name="form" method="POST" action="<c:url value='/studygroup/apply'/>">
+	<h5 id="userName">${user.name }</h5><br>
+	<textarea cols="30" rows="5" value="코멘트를 작성하세요." name="comments"></textarea><br><br>
+	<input type="button" value="팀원 신청하기" id="submitB" onClick=applyMember() /><br> 
+	
+	<!-- 버튼 클릭 시 : StudyGroupDAO.applyToGroup () 신청, alert-해서 "신청 완료되었습니다."-->
+</form>
 	</div>
 </div>
 <br><br>

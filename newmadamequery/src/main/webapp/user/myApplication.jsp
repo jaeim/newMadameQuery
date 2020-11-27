@@ -19,7 +19,7 @@
 			<td></td>
 			<td></td>
 		</tr>
-		<c:forEach var="" items="" >
+		<c:forEach var="apList" items="${applyList }" >
 			<tr>
 				<td></td>
 				<td></td>
