@@ -10,6 +10,12 @@
 <script>
 	function userModify(){
 		
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
 		if (form.password.value == "") {
 			alert("비밀번호를 입력하십시오.");
 			form.password.focus();
@@ -25,12 +31,6 @@
 			form.name.focus();
 			return false;
 		}
-		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		if(emailExp.test(form.email.value)==false) {
-			alert("이메일 형식이 올바르지 않습니다.");
-			form.email.focus();
-			return false;
-		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
 			alert("전화번호 형식이 올바르지 않습니다.");
@@ -42,86 +42,86 @@
 </script>
 <style>
 	body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;  
-}
+	  margin: 0;
+	  padding: 0;
+	  font-family: Arial;
+	  display: flex;
+	  flex-flow: column nowrap;
+	  justify-content: center;
+	  align-items: center;
+	  overflow-x: hidden;  
+	}
 
-h1 {
-  margin: 2em 0 1.5em 0;
-}
+	h1 {
+	  margin: 2em 0 1.5em 0;
+	}
 
-nav {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  background:  #C0EDFF;
-}
+	nav {
+	  width: 100%;
+	  display: flex;
+	  justify-content: center;
+	  position: relative;
+	  background:  #C0EDFF;
+	}
+	
+	ul, li {
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	}
+	
+	#main-menu > li {
+	  float: left;
+	  position: relative;
+	}
+	
+	#main-menu > li > a {
+	  font-size: 0.85rem;
+	  color: black;
+	  text-align: center;
+	  text-decoration: none;
+	  letter-spacing: 0.05em;
+	  display: block;
+	  padding: 14px 36px;
+	  border-right: 1px solid rgba(0,0,0,0.15);
+	  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	}
+	
+	#main-menu > li:nth-child(1) > a {
+	  border-left: 1px solid rgba(0,0,0,0.15);
+	}
+	
+	#sub-menu {
+	  position: absolute;
+	  background: white;
+	  opacity: 0;
+	  visibility: hidden;
+	  transition: all 0.15s ease-in;
+	  font-family: Arial;
+	}
+	
+	#sub-menu > li {
+	  padding: 16px 28px;
+	  border-bottom: 1px solid rgba(0,0,0,0.15);
+	  
+	}
+	
+	#sub-menu > li >  a {
+	  color: black;
+	  text-decoration: none;
+	  font-family: Arial;
+	}
+	
+	#main-menu > li:hover #sub-menu {
+	  opacity: 1;
+	  visibility: visible;
+	}
+	
+	#sub-menu > li >  a:hover {
+	 text-decoration: underline;
+	}
 
-ul, li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#main-menu > li {
-  float: left;
-  position: relative;
-}
-
-#main-menu > li > a {
-  font-size: 0.85rem;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  display: block;
-  padding: 14px 36px;
-  border-right: 1px solid rgba(0,0,0,0.15);
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-}
-
-#main-menu > li:nth-child(1) > a {
-  border-left: 1px solid rgba(0,0,0,0.15);
-}
-
-#sub-menu {
-  position: absolute;
-  background: white;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.15s ease-in;
-  font-family: Arial;
-}
-
-#sub-menu > li {
-  padding: 16px 28px;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  
-}
-
-#sub-menu > li >  a {
-  color: black;
-  text-decoration: none;
-  font-family: Arial;
-}
-
-#main-menu > li:hover #sub-menu {
-  opacity: 1;
-  visibility: visible;
-}
-
-#sub-menu > li >  a:hover {
- text-decoration: underline;
-}
-
-#title {
+	#title {
  		text-align: center;
  		font-size: 50px;
  		font-family: Arial;
@@ -174,6 +174,10 @@ ul, li {
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
 	<table>
 		<tr>
+			<td>이메일 주소: </td>
+			<td><input type="text" name="email" value="${user.email }" ></td>
+		</tr>
+		<tr>
 			<td>비밀번호: </td>
 			<td><input type="password" name="password" value="${user.password}"></td>
 		</tr>
@@ -188,10 +192,6 @@ ul, li {
 		<tr>
 			<td>휴대폰 번호 (ex.010-1234-5678)</td>
 			<td><input type="text" name="phone" value="${user.phone }" ></td>
-		</tr>
-		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email" value="${user.email }" ></td>
 		</tr>
 		<tr>
 			<td>소속 학교 명: </td>

@@ -167,7 +167,7 @@ function memberAccept() {
 
 <table id="main2">
 	<tr>
-		<td>subjectId(과목)</td>
+		<td>과목 id</td>
 		<td>${studyGroup.subjectId} </td>
 		<td>스터디 방식</td>
 		<td>${studyGroup.meetingType} </td>
@@ -176,13 +176,21 @@ function memberAccept() {
 		<td>개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
 		<td>성별</td>
-		<td>${studyGroup.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
+		<td>
+			<c:set var="gen" value="${studyGroup.genderType }" />
+			<c:if test="${gen eq '1'}" >
+				<c:out value="남성" />
+			</c:if>
+			<c:if test="${gen eq '2'}" >
+				<c:out value="여성" />
+			</c:if>
+		</td>
 	</tr>
 	<tr>
-		<td>팀장</td>
+		<td>팀장 id</td>
 		<td>${studyGroup.leaderId }</td>
 		<td>학년</td>
-		<td>${studyGroup.gradeType }</td>
+		<td>${studyGroup.gradeType } 학년</td>
 	</tr>
 	<tr>
 		<td>소개</td>
@@ -199,10 +207,6 @@ function memberAccept() {
 		<th>학년</th>
 		<th>성별</th>
 	</tr>
-	
-	  <!--  그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. 
-		//이미 수락된 멤버들 list 출력 -->
-	
 	
 	<c:forEach var="gmList" items="${studyGroup.groupUsers}" varStatus="status" >
 		<tr>			

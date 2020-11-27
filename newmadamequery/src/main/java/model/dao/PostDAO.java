@@ -41,7 +41,7 @@ public class PostDAO {
 	
 	//전체 게시글 보기
 	public ArrayList<Post> getPostList(int groupId) throws SQLException {
-		String query = "SELECT post_id, name, title, content, created_date, modified_date, member_id "
+		String query = "SELECT * "
 				+ "FROM post JOIN member USING (member_id) "
 				+ "WHERE group_id = ? ORDER BY created_date DESC";
 		
@@ -61,7 +61,7 @@ public class PostDAO {
 				post.setCreatedDate(rs.getDate("created_date"));
 				post.setModifiedDate(rs.getDate("modified_date"));
 				post.setMember_id(rs.getInt("member_id"));
-				
+				post.setGroup_id(rs.getInt("group_id"));
 				postList.add(post);
 			}
 			return postList;

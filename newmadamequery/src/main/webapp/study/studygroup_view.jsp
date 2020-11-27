@@ -94,7 +94,7 @@ ul, li {
  		border: 1px solid black;
  		
  		background-color:  #C0EDFF;
- 		width: 50%;
+ 		width: 400px;
  		height: 300px;
  		float: left;
  		color: black;
@@ -133,43 +133,33 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
 <br><br>
 
-<div>
-	
-	<div> <!--  StudyGroup 하나의 객체 반환 -->
+
+	<div> <!--  ViewUserController에서부터  StudyGroup 하나의 객체 반환 , -->
 		<table id="groupInfo">
 			<tr>
-				<td colspan="2">���͵��</td>
-				<td colspan="2">${StudyGroup.groupName }</td>
 				<td width="100" colspan="2">스터디명</td>
-				<td width="100" colspan="2">${studyGroup.groupName}</td>
+				<td width="100" colspan="2">${StudyGroup.groupName}</td>
 			</tr>
 			<tr>
 				<td width="100" colspan="2">소개</td>
-				<td width="100"colspan="2">${studyGroup.description}</td>
+				<td width="100"colspan="2">${StudyGroup.description}</td>
 			</tr>
 			<tr>
 				<td width="50">스터디 방식</td>
-				<td>${studyGroup.meetingType }</td>
+				<td>${StudyGroup.meetingType }</td>
 				<td width="50">성별</td>
-				<td>${studyGroup.genderType }</td>
+				<td>${StudyGroup.genderType }</td>
 			</tr>
 			<tr>
 				<td width="50">학년</td>
-				<td>${studyGroup.gradeType}</td>
+				<td>${StudyGroup.gradeType}</td>
 				<td width="50">기간</td>
-				<td>${studyGroup.term }</td>
+				<td>${StudyGroup.term }</td>
 			</tr>
 			
 		</table>
@@ -190,7 +180,7 @@ ul, li {
 				<th>학년</th>
 			</tr>
 			<!-- user 수 만큼 출력됨. -->
-			<c:forEach var="sgUsers" items="${studyGroup.groupUsers}">
+			<c:forEach var="sgUsers" items="${StudyGroup.groupUsers}">
 				<tr>
 					<td>&nbsp;${sgUsers.name}</td>
 					<td>&nbsp;${sgUser.department }</td>
@@ -200,13 +190,19 @@ ul, li {
 		</table>
 		
 	</div>
-	
-	<div id="addToMember">
-		<%@include file="registerStudy.jsp" %>
-	</div>
-</div>
-<br><br>
+	<!-- 여기로 넘어올 때 하나의 StudyGroup 객체를 받아왔어. -->
+<div id="addToMember">
+ 
+<form name="form" method="POST" action="<c:url value= '/studyGroup/apply' >
+	<c:param name="groupId" value="${StudyGroup.groupId }"/>
+	</c:url>">
+	<c:out value="${member_id}" />
+	<input type="text" name="comments" /> 
+	<input type="submit" value="팀원 신청하기"/>
+</form>
 
-<!-- <button onClick="location.href='studygroup_list.jsp'">GoBack</button>  다시 되돌아 가기 버튼 -->
+
+</div>
+
 </body>
 </html>

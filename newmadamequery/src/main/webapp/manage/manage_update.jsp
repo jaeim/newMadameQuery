@@ -12,12 +12,22 @@
 <meta charset="UTF-8">
 <title>manage update page</title>
 <!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
-<scipt>
-	function groupModify(){
-	
+<script>
+	function groupModify() {
+		if(form.groupName.value ==""){
+			alert("스터디 그룹 명을 입력하시오.");
+			form.groupName.focus();
+			return false;
+		}
+		if(form.description.value == ""){
+			alert("그룹 소개를 작성하십시오.");
+			form.description.focus();
+			return false;
+		}
 		form.submit();
+		
 	}
-</scipt>
+</script>
 <style>
 	body {
   margin: 0;
@@ -162,32 +172,20 @@ ul, li {
  		
  	}
 </style>
-<script>
-	function groupModify() {
-		if(form.groupName.value ==""){
-			alert("스터디 그룹 명을 입력하시오.");
-			form.groupName.focus();
-			return false;
-		}
-		if(form.description.value == ""){
-			alert("그룹 소개를 작성하십시오.");
-			form.description.focus();
-			return false;
-		}
-		form.submit();
-		
-	}
-	function groupInfo(targetUri){
-		form.action =targetUri;
-		form.submit();
-	}
-</script>
+
 </head>
 <body>
 	<nav>
 	<ul id="main-menu">
 		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/apply' />">나의 신청 현황</a>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+			<c:param name='userId' />
+			</c:url>">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="#">스터디 등록</a></li>
@@ -196,12 +194,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -228,9 +220,9 @@ ul, li {
 						<c:set var= "term" value="${studyGroup.term}" />
 						<option value="-1" <c:if test="${term eq '-1'}"> selected </c:if>>-선택안함-</option> 
 						<option value="1" <c:if test="${term eq '1'}"> selected </c:if>>1개월</option> 
-						<option value="2" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
-						<option value="3" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
-						<option value="4" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
+						<option value="3" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
+						<option value="6" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
+						<option value="10" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
 						<option value="0" <c:if test="${term eq '0'}"> selected </c:if>>상관 없음</option> 
 				</select>
 			</td>
@@ -318,13 +310,15 @@ ul, li {
 	
 </table>
 <br>
-<div id="buttons">
 	<input type="submit" value="저장하기" onClick="groupModify()"> &nbsp;
 	
-	<input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
+<!-- <input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
 		<c:param name="groupId" value="${studyGroup.groupId}" />
-		</c:url>)">
-</div>
+		</c:url>)"> -->
+		
+	<a href="<c:url value='/studyGroup/manageStudy'>
+		<c:param name="groupId" value="${studyGroup.groupId}" />
+		</c:url> ">돌아가기</a>
 </form>
 
 

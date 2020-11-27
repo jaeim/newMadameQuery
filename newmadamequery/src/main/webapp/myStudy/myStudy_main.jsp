@@ -113,12 +113,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
@@ -137,6 +131,7 @@ ul, li {
 					<a href="<c:url value='/post/list'>
 						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
+						 
 				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
 				<td>${group.numberOfUsers }</td>
 				<td>${group.createdDate}</td>

@@ -104,7 +104,7 @@ ul, li {
  	}
  	#board{
  		background-color: #C0EDFF;
- 		width: 50%;
+ 		width: 400px;
  		height: 300px;
  		float: left;
  		text-align: center;
@@ -114,18 +114,6 @@ ul, li {
  		height: auto;
  		text-align: center;
  		margin: auto;
- 	}
- 	#members{
- 		background-color: #AAEBAA;
- 		width: 400px;
- 		height: auto;
- 		float:right;
- 	}
- 	#groupinfo {
- 		background-color: #FFDFDC;
- 		width: 400px;
- 		height: auto;
- 		float:right;
  	}
  	#addboard{
  		background-color: aqua;
@@ -151,23 +139,16 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
-<div>
-	<div id="name">
-		<h2>스터디 그룹 명</h2>
-	</div>
+<br><br>
+<div id="board">
 	
-	<div id="board">
 	<table id="boardT">
+		<caption>스터디 게시판 </caption>
 		<tr>
+			<td width="80">그룹 아이디</td>
 			<td width="200">제목</td>
 			<td width="100">글쓴이</td>
 			<td width= "80">일시</td>
@@ -177,6 +158,7 @@ ul, li {
 		
 		<c:forEach var="post" items="${postList}">
 			<tr>
+				<td>${post.group_id}</td>
 				<td>
 					<a href="<c:url value='/post/detail'>
 						<c:param name='postId' value='${post.postId}' />
@@ -187,52 +169,15 @@ ul, li {
 			</tr>
 		</c:forEach>
 		</table>
+		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
+						   <c:param name='groupId' value='${postList.get(0).group_id}'/>
+						 </c:url>">글쓰기 </a>
 	</div>
 	
-	<!-- DAO, controller 상의 후 추가 or 삭제 -->
-	<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
-			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			
-			<tr>
-				<td>이현아</td>
-				<td>컴퓨터학과</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-	
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
 	<br><br>
 	<div id= "addboard">
-		<a href="<c:url value='/post/create/form' />" >글쓰기 </a>
+		 
 	</div>
-</div>
+
 </body>
 </html>

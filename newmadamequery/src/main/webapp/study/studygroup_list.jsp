@@ -144,10 +144,11 @@ ul, li {
 	</tr>
 	<c:forEach var="group" items="${groupList}"> <!-- List<StudyGroup>이 반환됨. -->
 		<tr>
-			<td><a href= "<c:url value='/studyGroup/view' >
-				<c:param name="groupId" value='${group.groupId}' />
-				</c:url>
-">${group.groupName}</a></td>
+			<td>
+			<a href= "<c:url value='/studyGroup/view' >
+				<c:param name='groupId' value='${group.groupId}' />
+				</c:url>">${group.groupName}</a>
+			</td>
 			<td>${group.description}</td>
 			<td>${group.term}</td>
 		</tr>

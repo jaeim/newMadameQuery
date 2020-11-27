@@ -7,6 +7,7 @@ public class Application {
 	int memberId;
 	String memberName;
 	int groupId;
+	String groupName;
 	Date applyDate;
 	String isApproved;
 	Date approvedDate;
@@ -29,6 +30,12 @@ public class Application {
 	}
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
+	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 	public Date getApplyDate() {
 		return applyDate;

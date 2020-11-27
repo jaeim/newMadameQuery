@@ -62,7 +62,7 @@ public class Manager {
 	
 	public int updateUser(User user) throws SQLException, NotFoundException{
 		// NotFoundException이 나는지 확인하기 위해 수행하는 코드
-		findUser(user.getMember_id());
+		findUser(user.getEmail());
 		
 		return memberDAO.userInfoUpdate(user);
 	}
@@ -343,8 +343,8 @@ public class Manager {
 	}
 	
 	//나의 신청현황
-	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
-		ArrayList<User> applyList = memberDAO.getApplyList();
+	public ArrayList<Application> getApplyList(int userId) throws NotFoundException, SQLException {		
+		ArrayList<Application> applyList = memberDAO.getApplyList(userId);
 		
 		if(applyList == null) {throw new NotFoundException("나의 신청 현황 조회 실패");}
 		

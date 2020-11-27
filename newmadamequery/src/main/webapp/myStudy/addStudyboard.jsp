@@ -6,16 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>글쓰기 페이지 </title>
-<script>
-	function boardCreate(){
+<script type="text/Javascript">
+
+	function postCreate(){
+		
 		if(form.title.value =""){
 			alert("제목을 입력하십시오.");
 			form.title.focus();
 			return false;
 		}
-		if(form.contents.value=""){
+		if(form.content.value=""){
 			alert("내용을 입력하십시오.");
 			form.contents.focus();
 			return false;
@@ -23,9 +25,18 @@
 		form.submit();
 	}
 </script>
-<!-- myStudy_view.jsp에서 글쓰기 버튼을 눌렀을 때 이동 (게시판에 글 쓰기) -->
+
 <style>
-	
+	body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;  
+}
 
 h1 {
   margin: 2em 0 1.5em 0;
@@ -99,36 +110,26 @@ ul, li {
 #addform{
  		border: 1px solid black;
  		padding: 10px;
- 		width: 50%;
+ 		width: 450px;
  		height: auto;
- 		float: left;
+ 		tedxt-alingn: center;
+ 		margin: auto;
+ 		posigon: absolute;
  		
  }
  #title{
  		width:100%;
  		height: 20px;
  }
- #contents{
+ #content{
  		margin-top: 10px;
  		width: 100%;
- 		height: 80px;
+ 		height: 200px;
  }
- #submit{
+ #sm{
  		margin-top: 10px;
  		width: 30%;
  		height: 30px;
- }
- #members{
- 		background-color: #DCEBFF;
- 		width: 40%;
- 		height: auto;
- 		float: right;
- }
- #groupinfo {
- 		background-color: #FFEBF0;
- 		width: 40%;
- 		height: auto;
- 		float: right;
  }
  	
 </style>
@@ -146,61 +147,23 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
 		
 	</ul>
 </nav>
 <br><br>
-
+<%
+	request.setAttribute("groupId", request.getParameter("groupId"));
+%>
 <div id="addform">
-<form name="form" method="POST" action="<c:url value='/post/create'/>">
-	<input type="text" name="title" id="title" placeholder="제목" />
-	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="내용을 입력하세요"></textarea>
-	<input type="submit" name="submitB" id="submit" value="게시글 작성 " onClick="postCreate()" />
-</form>
+	this is group_id : ${groupId}
+	<form name="form" method="POST" action="<c:url value='/post/create'>
+		<c:param name='groupId' value='${groupId}' />
+	</c:url>">
+		<input type="text" name="title" placeholder="제목" />
+		<input type="text" name="content" placeholder="내용을 입력하세요." style="width: 300px; height: 300px;"/>
+		<input type="submit" id="sm" value="게시글 작성 " onClick="postCreate()" />
+	</form>
 </div>
 
-<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
-			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			<tr>
-				<td>이현아</td>
-				<td>컴퓨터학과</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
 </body>
 </html>
