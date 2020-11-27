@@ -74,14 +74,13 @@ public class User {
 		this.gender = gender;
 	}
 
-	public User(int member_id, String email, String password, String name, Date dob, String phone, String university,
+	public User(int member_id, String email, String password, String name, String phone, String university,
 			String department, String grade, int gender) {
 		super();
 		this.member_id = member_id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.dob = dob;
 		this.phone = phone;
 		this.university = university;
 		this.department = department;
