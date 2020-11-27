@@ -257,7 +257,6 @@ public class MemberDAO {
 		String query = "SELECT name, apply_date, approved_date, isApproved "
 				+ "FROM studygroup JOIN applylist USING (group_id)";
 		jdbcUtil.setSqlAndParameters(query, null);
-		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs == null) {throw new AppException();}
