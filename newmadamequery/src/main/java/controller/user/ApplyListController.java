@@ -22,7 +22,7 @@ public class ApplyListController implements Controller {
 			ArrayList<Application> applyList = manager.getApplyList(userId);
 			request.setAttribute("applyList", applyList);
 
-			return "redirect:/studyGroup/myStudy";
+			return "/user/myApplication.jsp";
 		} catch (NotFoundException e) {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
