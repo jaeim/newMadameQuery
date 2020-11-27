@@ -190,7 +190,7 @@ public class Manager {
 		// 지원서에 없을 경우
 		if(result != 1) {throw new NotFoundException();}		
 		
-		result = studyGroupDAO.manageApplication(groupId, userId, approved);
+		result = studyGroupDAO.deleteFromApplyList(groupId, userId);
 		if(approved && result == 1) {
 			result = studyGroupDAO.addMemberInGroupMember(groupId, userId, "0");
 		}

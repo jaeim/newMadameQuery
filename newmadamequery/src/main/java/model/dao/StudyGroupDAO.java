@@ -267,18 +267,12 @@ public class StudyGroupDAO {
 	}
 	
 	// 지원서관리
-	public int manageApplication(int groupId, int userId, boolean approved) {
+	public int deleteFromApplyList(int groupId, int userId) {
 		int result = 0;
 		String query;
 		Object [] param;
-		if(approved) {
-			query = "UPDATE applyList SET isApproved=?, approved_date=SYSDATE where member_id=? and group_id=?";
-			param = new Object[] {"1", userId, groupId};
-		}else {
-			// 차라리 삭제를 할까?
-			query = "UPDATE applyList SET isApproved=? where member_id=? and group_id=?";
-			param = new Object[] {"0", userId, groupId};
-		}
+		query = "DELETE FROM applyList where member_id=? and group_id=?";
+		param = new Object[] {userId, groupId};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
