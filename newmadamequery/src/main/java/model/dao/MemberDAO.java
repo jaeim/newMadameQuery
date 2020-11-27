@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
 
+import model.Application;
 import model.StudyGroup;
 import model.User;
 import model.service.AppException;
@@ -253,28 +254,33 @@ public class MemberDAO {
 	}
 	
 	//내가 신청한 스터디그룹 목록
-	public ArrayList<User> getApplyList() {
-		String query = "SELECT name, apply_date, approved_date, isApproved "
-				+ "FROM studygroup JOIN applylist USING (group_id)";
-		jdbcUtil.setSqlAndParameters(query, null);
+	public ArrayList<Application> getApplyList(int memberId) {
+		String query = "SELECT m.name, s.gorup_id, s.name, apply_date, approved_date, isApproved, commt "
+				+ "FROM studygroup s, applylist a, member m "
+				+ "WHERE m.member_id=a.member_id AND s.group_id=a.group_id AND m.member_id=?";
+		Object[] param = new Object[] {memberId};
+		jdbcUtil.setSqlAndParameters(query, param);
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs == null) {throw new AppException();}
 			
-			ArrayList<User> applyList = new ArrayList<User>();
+			ArrayList<Application> applyList = new ArrayList<Application>();
 			
 			while (rs.next()) {
-				User apply = new User();
+				Application apply = new Application();
 				
-				apply.setStudyName(rs.getString("name"));
+				apply.setMemberId(memberId);
+				apply.setMemberName(rs.getString("m.name"));
+				apply.setGroupId(rs.getInt("s.group_id"));
+				apply.setGroupName(rs.getString("s.name"));
 				apply.setApplyDate(rs.getDate("apply_date"));
 				apply.setApplyDate(rs.getDate("approved_date"));
-				
 				String approved = rs.getString("isApproved");
 				if (approved.equals("1"))
-					apply.setApproved(true);
+					apply.setIsApproved("true");
 				else
-					apply.setApproved(false);
+					apply.setIsApproved("false");
+				apply.setComment(rs.getString("commt"));
 					 
 				applyList.add(apply);
 			}
