@@ -156,7 +156,6 @@ ul, li {
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		
 		<c:forEach var="post" items="${postList}">
-			${postList.group_id }
 			<tr>
 				<td>
 					<a href="<c:url value='/post/detail'>
@@ -172,7 +171,10 @@ ul, li {
 	
 	<br><br>
 	<div id= "addboard">
-		<a href="<c:url value='/post/create/form' />">글쓰기 </a>
+		<jsp:forward page="addStudyboard.jsp" >
+			<jsp:param name="groupId" value="${post.group_id }" />
+		</jsp:forward>
+		<!-- <a href="<c:url value='/post/create/form' />">글쓰기 </a> -->
 	</div>
 
 </body>

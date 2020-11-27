@@ -12,7 +12,22 @@
 		//List<Application> applyList = request.getParameter("applyList");
 		
 	%>
-	
+	<table>
+		<caption>나의 신청 현황 </caption>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<c:forEach var="" items="" >
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</c:forEach>
+		
+	</table>
 	
 </body>
 </html>
