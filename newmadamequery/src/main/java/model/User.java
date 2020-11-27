@@ -19,12 +19,6 @@ public class User {
 	private String grade;
 	private int gender;
 
-	// 나의 신청현황 목록 보기위한 변수
-	private String StudyName;
-	private java.util.Date applyDate;
-	private java.util.Date approvedDate;
-	private boolean isApproved;
-
 	public User() {
 		dob = null;
 		date_of_join = null;
@@ -87,24 +81,6 @@ public class User {
 		this.grade = grade;
 		this.gender = gender;
 	}
-
-//	public User(String studyName, Date apply_date, Date approved_date, boolean isApproved) {
-//		super();
-//		StudyName = studyName;
-//		this.apply_date = apply_date;
-//		this.approved_date = approved_date;
-//		this.isApproved = isApproved;
-//	}
-
-//	public void update(User updateUser) {
-//        this.password = updateUser.password;
-//        this.name = updateUser.name;
-//        this.email = updateUser.email;
-//        this.phone = updateUser.phone;
-//        this.university = updateUser.university;
-//		this.department = updateUser.department;
-//		this.grade = updateUser.grade;
-//}
 
 	public int getMember_id() {
 		return member_id;
