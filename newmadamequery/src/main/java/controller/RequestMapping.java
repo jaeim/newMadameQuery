@@ -30,7 +30,7 @@ public class RequestMapping {
     	mappings.put("/user/view", new ViewUserController());
     	mappings.put("/user/update/form", new UpdateUserController());
     	mappings.put("/user/update", new UpdateUserController());
-    	
+    	mappings.put("/user/home", new GoToHomeController());
     	
     	//스터디관리(팀장)
     	mappings.put("/studyGroup/manageStudyList", new ListManageStudyController());
