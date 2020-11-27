@@ -13,7 +13,6 @@ public class UpdateUserController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (request.getMethod().equals("GET")) {
-			
 			int updateId = Integer.parseInt(request.getParameter("userId"));
 
 			Manager manager = Manager.getInstance();
@@ -40,12 +39,19 @@ public class UpdateUserController implements Controller {
 			return "/user/myPage.jsp";
 		}
 
-		// POST request (회원정보가 parameter로 전송됨)
-
 		//java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
-		//java.util.Date dob = df.parse(request.getParameter("birthday"));
-
+		//java.util.Date dob = df
+		
+		HttpSession session = request.getSession();
+		int userId;
+		if(UserSessionUtils.hasLogined(session)) {
+			userId = UserSessionUtils.getLoginUserId(session);
+		}else {
+			return "redirect:/user/login";
+		}
+		
 		User updateUser = new User(
+				userId,
 				request.getParameter("email"), 
 				request.getParameter("password"),
 				request.getParameter("name"), 
@@ -54,10 +60,13 @@ public class UpdateUserController implements Controller {
 				request.getParameter("department"), 
 				request.getParameter("grade"),
 				Integer.parseInt(request.getParameter("gender")));
-
+		
 		Manager manager = Manager.getInstance();
 		manager.updateUser(updateUser);
-		return "redirect:/user/mainPage";
+		
+		request.setAttribute("user", updateUser);
+		
+		return "/user/mainPage.jsp";
 	}
 
 }
