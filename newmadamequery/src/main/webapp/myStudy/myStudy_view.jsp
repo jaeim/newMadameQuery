@@ -148,6 +148,7 @@ ul, li {
 	<table id="boardT">
 		<caption>스터디 게시판 </caption>
 		<tr>
+			<td width="80">그룹 아이디</td>
 			<td width="200">제목</td>
 			<td width="100">글쓴이</td>
 			<td width= "80">일시</td>
@@ -157,6 +158,7 @@ ul, li {
 		
 		<c:forEach var="post" items="${postList}">
 			<tr>
+				<td>${post.group_id}</td>
 				<td>
 					<a href="<c:url value='/post/detail'>
 						<c:param name='postId' value='${post.postId}' />
@@ -167,18 +169,14 @@ ul, li {
 			</tr>
 		</c:forEach>
 		</table>
+		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
+						   <c:param name='groupId' value='${postList.get(0).group_id}'/>
+						 </c:url>">글쓰기 </a>
 	</div>
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	<br><br>
 	<div id= "addboard">
-		<jsp:forward page="addStudyboard.jsp" >
-			<jsp:param name="groupId" value="${post.group_id }" />
-		</jsp:forward>
-		<!-- <a href="<c:url value='/post/create/form' />">글쓰기 </a> -->
+		 
 	</div>
 
 </body>
