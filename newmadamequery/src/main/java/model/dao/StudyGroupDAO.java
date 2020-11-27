@@ -206,10 +206,10 @@ public class StudyGroupDAO {
 	
 	//모든 지원서 가져오기
 	public ArrayList<Application> getAllApplication(int groupId) throws SQLException{
-		String query = "select * from applyList where group_id=? and isApproved=?";
+		String query = "select * from applyList where group_id=?";
 		
 		ResultSet rs = null;
-		Object [] param = new Object[] {groupId, 0};
+		Object [] param = new Object[] {groupId};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		
@@ -432,7 +432,7 @@ public class StudyGroupDAO {
 				member.setUniversity(rs.getString("univ"));
 				member.setDepartment(rs.getString("dep"));
 				member.setGrade(rs.getString("grade"));
-				
+				member.setGender(rs.getInt("gender"));
 				memberList.add(member);
 			}
 			jdbcUtil.commit();

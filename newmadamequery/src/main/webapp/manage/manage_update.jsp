@@ -209,11 +209,14 @@ ul, li {
 	System.out.println(group.getGroupName());
 %>
 
-<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update' />" >
+<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update'>
+	<c:param name="groupId" value="${studyGroup.groupId}" />
+	<c:param name="groupMemberList" value="${groupMemberList}" />
+</c:url>" >
 <table id="main1">
 		<tr>
-			<td>스터디그룹 명</td>
-			<td><input type="text" name="name" value="${studyGroup.groupName} " ></td>
+			<td>스터디그룹 명(${studyGroup.groupId})</td>
+			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
 			<td>인원</td>
 			<td>${studyGroup.numberOfUsers } </td>
 			<td>기간</td>
@@ -237,12 +240,11 @@ ul, li {
 		<td>${studyGroup.subjectId} </td>
 		<td>스터디 방식</td>
 				<td> <!-- online, offline, blended-->
-					<select>
+					<select name="meetingType">
 						<c:set var="meetingT" value="${studyGroup.meetingType }" />
-						<option value="-1" <c:if test="${meetingT eq '-1'}"> selected </c:if>>-선택안함-</option> 
-						<option value="online" <c:if test="${meetingT eq 'online'}"> selected </c:if>>online</option> 
-						<option value="offline" <c:if test="${meetingT eq 'offline'}"> selected </c:if>>offline</option> 
-						<option value="blended" <c:if test="${meetingT eq 'blended'}"> selected </c:if>>blended</option> 
+						<option <c:if test="${meetingT eq 'online'}"> selected </c:if>>online</option> 
+						<option <c:if test="${meetingT eq 'offline'}"> selected </c:if>>offline</option> 
+						<option <c:if test="${meetingT eq 'blended'}"> selected </c:if>>blended</option> 
 					</select>
 				</td>
 	</tr>
@@ -263,7 +265,7 @@ ul, li {
 		<td>
 			<select name="leaderId">
 					<option value="">없음</option>
-					<c:forEach var="member" items="${groupMemberList}">
+					<c:forEach var="member" items="${studyGroup.groupUsers}">
 						<option value="${member.member_id}"
 							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
 							>${member.member_id}</option>
@@ -297,7 +299,7 @@ ul, li {
 	
 	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
 	
-	<c:forEach var="member" items="${groupMemberList}">
+	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
 			<td>${member.name}</td>
 			<td>

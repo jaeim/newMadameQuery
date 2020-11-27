@@ -212,7 +212,7 @@ function memberAccept() {
 		//이미 수락된 멤버들 list 출력 -->
 	
 	
-	<c:forEach var="gmList" items="${groupMemberList}" varStatus="status" >
+	<c:forEach var="gmList" items="${studyGroup.groupUsers}" varStatus="status" >
 		<tr>			
 			<th><c:out value='${status.count }' /></th>
 			<th>${gmList.name }</th>
