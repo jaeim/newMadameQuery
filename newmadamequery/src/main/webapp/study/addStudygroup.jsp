@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*,controller.*, model.dao.*" %>
+<%@page import="model.*,controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>스터디 그룹 등록</title>
-<script>
+<script type="text/javascript">
+
 	function addStudyGroup(){
 		<!-- numberOfUsers, groupName, description, term,  
 		meetingType,genderType,gradeType, subjectId -->
@@ -167,13 +168,6 @@ ul, li {
 			</ul>
 		</li>
 		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
-		</li>
-		
 	</ul>
 </nav>
 
@@ -190,23 +184,19 @@ ul, li {
 	<h2 style="text-align: center;">스터디 등록</h2>
 	
 	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
-	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">
-		<c:if test= "${creationFailed }">
-			<font color="red"><c:out value="${exception. getMessage()}" /></font>
-		</c:if>
-		
-		
+	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">	
 		<% 
-			
-			
-		
+		//test용
+			List<Subject> sList = (List<Subject>)request.getAttribute("subjectList");
 		%>
 		<table id= "addGroup">
 			<tr>
 				<td>과목</td>
 				<td> 
-					<select id="subject">
-						<option></option>
+					<select name="subject">
+						<c:forEach var="sub" items="${subjectList}" >
+							<option value="{sub.subjectId}">${sub.name}</option>
+						</c:forEach>
 					</select>
 				</td>
 				
@@ -215,15 +205,16 @@ ul, li {
 				<td>인원 수 </td>
 				<td>
 					<select name="numberOfUsers">
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						<option>10명 이상</option>
+						<option value="3" selected>3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">10명 이상</option>
+						<option value="0">상관없음</option>
 					</select>
 				</td>
 			</tr>
@@ -234,10 +225,11 @@ ul, li {
 					/></td>
 				<td>기간</td>
 				<td><select name="term">
-					<option>1개월</option>
-					<option>3개월</option>
-					<option>6개월</option>
-					<option>6개월 이상</option>
+					<option value="1">1개월</option>
+					<option value="3">3개월</option>
+					<option value="6">6개월</option>
+					<option value="10">6개월 이상</option>
+					<option value="0">상관없음</option>
 				</select>
 				
 				</td>
@@ -251,16 +243,16 @@ ul, li {
 			<tr>
 				<td>스터디 방식</td>
 				<td><select name="meetingType">
-					<option>online</option>
-					<option>offline</option>
-					<option>병행</option>
+					<option value="online">online</option>
+					<option value="offline">offline</option>
+					<option value="blended">blended</option>
 				</select></td>
 				<td>성별</td>
 				<td>
 					<select name="genderType">
-						<option>0(상관없음)</option>
-						<option>1(남성)</option>
-						<option>2(여성)</option>
+						<option value="0">상관없음</option>
+						<option value="1">남성</option>
+						<option value="2">여성</option>
 					</select>
 				</td>
 			</tr>
@@ -268,19 +260,20 @@ ul, li {
 				<td>학년</td>
 				<td>
 					<select name="gradeType">
-						<option>0(상관없음)</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">4학년 이상</option>
+						<option value="0">상관없음</option>
 					</select>
 				</td>
-				<td>팀장</td>
-				<td>userId (자신의  userId 가져오기)</td>
+				<td>팀장 Id</td>
+				<td>${userId}</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="submit" id="createB" value="생성하기" onClick=addStudyGroup() /> 
+		<input type="submit" id="createB" value="생성하기" onClick="addStudyGroup()" /> 
 		<br><br>
 	</form>
 	

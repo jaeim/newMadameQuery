@@ -22,6 +22,7 @@ public class CreateStudyController implements Controller {
 			ArrayList<Subject> list = manager.getAllSubject();
 			
 			request.setAttribute("subjectList", list);
+			System.out.println("과목은 가져옴.");
 			return "/study/addStudygroup.jsp";
 		}
 		// post 방식 => 스터디 생성
@@ -33,14 +34,17 @@ public class CreateStudyController implements Controller {
 //		StudyGroup studyGroup = new StudyGroup(4, "데베프스터디", "데베프 스터디입니다.", 3, "online",
 //				"0", "0", 1);
 //		int userId = 201;
+		System.out.println("새로운 객체는 생성됨.");
 		try {
 			Manager manager = Manager.getInstance();
 //			manager.createStudyGroup(studyGroup, Integer.parseInt(request.getParameter("userId")));	
 			// session을 통해 user의 PK 구함
+			System.out.println("그룹이 아직 생성되기 전");
 			HttpSession session = request.getSession();
 			int userId = UserSessionUtils.getLoginUserId(session);
-			manager.createStudyGroup(studyGroup, userId);
 			
+			manager.createStudyGroup(studyGroup, userId);
+			System.out.println("그룹이 생성됨.");
 			return "redirect:/studyGroup/list";
 			
 		} catch (Exception e) { // 예외 발생 시 입력 form으로 forwarding

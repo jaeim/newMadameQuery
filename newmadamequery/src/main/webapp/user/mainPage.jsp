@@ -119,18 +119,19 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-사용자 이름: ${user.name }
+
 <br>
 <br>
 <div id="fisrt">
 	
-
-
 <c:if test= "${user.member_id eq null }" >
-<a href="<c:url value='/user/login/form' />">로그인</a> <br>
-<a href="<c:url value='/user/register/form' />">회원가입</a>
+	<a href="<c:url value='/user/login/form' />">로그인</a> <br>
+	<a href="<c:url value='/user/register/form' />">회원가입</a>
+</c:if>
+
 
 <c:if test= "${user.member_id ne null }" >
+	사용자 이름: ${user.name } (로그인 o.k) <br>
  	<c:out value="${user.member_id}" />
  	<br>
 	<a href="<c:url value='/user/view' >
