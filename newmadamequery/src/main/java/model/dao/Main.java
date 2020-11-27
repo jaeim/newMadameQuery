@@ -511,20 +511,37 @@ public class Main {
 //			}
 //		}
 		
-		ArrayList<StudyGroup> groupList = null;
+//		ArrayList<StudyGroup> groupList = null;
+//		try {
+//			System.out.println("dao 수행");
+//			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
+//			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(groupList == null) {System.out.println("groupList is null");}
+//		if(groupList != null) {
+//			for(StudyGroup s : groupList) {
+//				System.out.println(s.getGroupId());
+//			}
+//		}
+		
+		ArrayList<Application> applyList = null;
 		try {
-			System.out.println("dao 수행");
-			groupList = manager.searchStudyGroups(-1, -1, "-1", "-1", "3");
-			//groupList = manager.searchStudyGroups(1, -1, "-1", "-1", "-1");
+			applyList = manager.getAllApplication(611);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if(groupList == null) {System.out.println("groupList is null");}
-		if(groupList != null) {
-			for(StudyGroup s : groupList) {
-				System.out.println(s.getGroupId());
+		if(applyList != null) {
+			for(Application a : applyList) {
+				System.out.println(a.getMemberId() + ", " + a.getMemberName());
 			}
 		}
 	}

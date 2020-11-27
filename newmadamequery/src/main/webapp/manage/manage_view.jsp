@@ -231,12 +231,14 @@ function memberAccept() {
 		<tr>
 			<th>&nbsp;</th>
 			<th>memberId </th>
+			<th>이름</th>
 			<th>작성한 코멘트</th>
 			<th>신청 날짜</th>
 			<th>&nbsp;</tr>
 		<tr>
 			<td><c:out value="${status.count }" />
 			<td>${aList.memberId}</td>
+			<td>${aList.memberName}</td>
 			<td>${aList.comment }</td>
 			<td>${aList.applyDate }</td>
 			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 

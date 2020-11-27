@@ -206,7 +206,8 @@ public class StudyGroupDAO {
 	
 	//모든 지원서 가져오기
 	public ArrayList<Application> getAllApplication(int groupId) throws SQLException{
-		String query = "select * from applyList where group_id=?";
+		String query = "select a.member_id, name, group_id, apply_date, isapproved, approved_date, commt from applyList a, member m "
+				+ "where group_id=? and a.member_id=m.member_id";
 		
 		ResultSet rs = null;
 		Object [] param = new Object[] {groupId};
@@ -220,6 +221,7 @@ public class StudyGroupDAO {
 			while(rs.next()) {
 				Application apply = new Application();
 				apply.setMemberId(rs.getInt("member_id"));
+				apply.setMemberName(rs.getString("name"));
 				apply.setGroupId(rs.getInt("group_id"));
 				apply.setApplyDate(rs.getDate("apply_date"));
 				apply.setIsApproved(rs.getString("isapproved"));
