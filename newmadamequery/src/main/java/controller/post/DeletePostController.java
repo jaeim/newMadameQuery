@@ -20,7 +20,7 @@ public class DeletePostController implements Controller {
 			Manager manager = Manager.getInstance();
 			// 해당 게시글을 삭제할 권한이 있는지 확인
 //			 writer는 해당 post 작성자의 memberId임
-			int writer = (int) request.getAttribute("member_id");
+			int writer = Integer.parseInt(request.getParameter("memberId"));
 			HttpSession session = request.getSession();
 						
 			if (UserSessionUtils.isLoginUser(writer, session)) {

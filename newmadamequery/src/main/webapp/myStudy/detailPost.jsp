@@ -163,8 +163,9 @@ td{
 			<c:param name="memberId" value="${post.member_id}" />
 			</c:url>" >게시글 수정</a>
 		<a href="<c:url value='/post/delete'>
-		<c:param name="postId" value="${post.postId}" />
-		<c:param name="groupId" value="${post.group_id}" />
+			<c:param name="postId" value="${post.postId}" />
+			<c:param name="groupId" value="${post.group_id}" />
+			<c:param name="memberId" value="${post.member_id}" />
 		</c:url>">삭제하기</a>
 	</c:if>
 	
