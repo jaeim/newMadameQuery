@@ -12,8 +12,8 @@ public class GoToHomeController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		int memberId = Integer.valueOf(request.getParameter("memberId"));
-		
+//		int memberId = Integer.valueOf(request.getParameter("memberId"));
+		int memberId = UserSessionUtils.getLoginUserId(request.getSession());
 		Manager manager = Manager.getInstance();
 		User user = manager.findUser(memberId);
 		
