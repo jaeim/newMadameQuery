@@ -159,9 +159,9 @@ ul, li {
 	<form name="form" method="POST" action="<c:url value='/post/create'>
 		<c:param name='groupId' value='${groupId}' />
 	</c:url>">
-		<input type="text" name="title" placeholder="제목" />
-		<input type="text" name="content" placeholder="내용을 입력하세요." style="width: 300px; height: 300px;"/>
-		<input type="submit" id="sm" value="게시글 작성 " onClick="postCreate()" />
+		<input type="text" name="title" />
+		<input type="text" name="content" />
+		<input type="button" id="sm" value="게시글 작성 " onClick="postCreate()" />
 	</form>
 </div>
 

@@ -33,12 +33,12 @@ public class DeletePostController implements Controller {
 			// else (삭제 불가능한 경우) 게시글 상세보기 화면으로 오류 메세지를 전달
 			request.setAttribute("exception", 
 					new IllegalStateException("자신이 작성한 게시글만 삭제할 수 있습니다."));        		
-			return "/mystudy/detailPost.jsp";
+			return "/myStudy/detailPost.jsp";
 			
 		} catch (Exception e) {
 			// 오류 메세지를 포워딩
 			request.setAttribute("exception", e);
-			return "/mystudy/detailPost.jsp";
+			return "/myStudy/detailPost.jsp";
 		}
 		
 	}
