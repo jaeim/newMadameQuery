@@ -12,7 +12,7 @@
 
 	function postCreate(){
 		
-		if(form.title.value ==""){
+		if(form.title.value == ""){
 			alert("제목을 입력하십시오.");
 			form.title.focus();
 			return false;

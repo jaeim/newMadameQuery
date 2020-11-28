@@ -88,7 +88,10 @@ public class PostDAO {
 			
 			if (rs.next()) {
 				Post post = new Post();
+<<<<<<< HEAD
 				
+=======
+>>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 				post.setPostId(postId);
 				post.setUserName(rs.getString("name"));
 				post.setTitle(rs.getString("title"));
