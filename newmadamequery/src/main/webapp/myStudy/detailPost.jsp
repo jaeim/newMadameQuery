@@ -185,7 +185,7 @@ td{
 			<tr>
 				<td>${status.count}</td>
 				<td>이름</td>
-				<td>${cm.userName}</td>
+				<td>${cm.member_name}</td>
 				<td>내용</td>
 				<td>${cm.content}</td>
 			</tr>

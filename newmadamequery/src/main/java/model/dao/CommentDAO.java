@@ -65,7 +65,7 @@ public class CommentDAO {
 				comt.setPostId(rs.getInt("post_id"));
 				comt.setGroupId(rs.getInt("group_id"));
 				comt.setMember_id(rs.getInt("member_id"));
-				comt.setMemeber_name(rs.getString("name"));
+				comt.setMember_name(rs.getString("name"));
 				return comt;
 			}
 		} catch (Exception ex) {
@@ -120,7 +120,7 @@ public class CommentDAO {
 				comt.setPostId(rs.getInt("post_id"));
 				comt.setGroupId(rs.getInt("group_id"));
 				comt.setMember_id(rs.getInt("member_id"));
-				comt.setMemeber_name(rs.getString("name"));
+				comt.setMember_name(rs.getString("name"));
 				
 				commentList.add(comt);
 			}
