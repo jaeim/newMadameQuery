@@ -169,14 +169,13 @@ ul, li {
 			</tr>
 		</c:forEach>
 		</table>
-		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
-						   <c:param name='groupId' value='${postList.get(0).group_id}'/>
-						 </c:url>">글쓰기 </a>
 	</div>
 	
 	<br><br>
 	<div id= "addboard">
-		 
+		 		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
+						   <c:param name='groupId' value='${postList.get(0).group_id}'/>
+						 </c:url>">글쓰기 </a>
 	</div>
 
 </body>

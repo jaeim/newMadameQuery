@@ -169,39 +169,6 @@ public class User {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-
-	public String getStudyName() {
-		return StudyName;
-	}
-
-	public void setStudyName(String studyName) {
-		StudyName = studyName;
-	}
-
-	public java.util.Date getApplyDate() {
-		return applyDate;
-	}
-
-	public void setApplyDate(java.util.Date applyDate) {
-		this.applyDate = applyDate;
-	}
-
-	public java.util.Date getApprovedDate() {
-		return approvedDate;
-	}
-
-	public void setApprovedDate(java.util.Date approvedDate) {
-		this.approvedDate = approvedDate;
-	}
-
-	public boolean isApproved() {
-		return isApproved;
-	}
-
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
-	}
-
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
