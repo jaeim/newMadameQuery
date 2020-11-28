@@ -169,6 +169,7 @@ public class User {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
+
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {

@@ -174,7 +174,7 @@ ul, li {
 	<br><br>
 	<div id= "addboard">
 		 		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
-						   <c:param name='groupId' value='${postList.get(0).group_id}'/>
+						   	<c:param name='groupId' value='${groupId}'/>
 						 </c:url>">글쓰기 </a>
 	</div>
 

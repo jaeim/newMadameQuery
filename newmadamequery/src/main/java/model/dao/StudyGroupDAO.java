@@ -223,9 +223,18 @@ public class StudyGroupDAO {
 				apply.setMemberId(rs.getInt("member_id"));
 				apply.setMemberName(rs.getString("name"));
 				apply.setGroupId(rs.getInt("group_id"));
-				apply.setApplyDate(rs.getDate("apply_date"));
+				
+				java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
+				java.util.Date utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String apply_date = df.format(utilDate); 
+				apply.setApplyDate(apply_date);
+				
 				apply.setIsApproved(rs.getString("isapproved"));
-				apply.setApprovedDate(rs.getDate("approved_date"));
+				
+				utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String approved_date = df.format(utilDate); 
+				apply.setApplyDate(approved_date);
+				
 				apply.setComment(rs.getString("commt"));
 				
 				applyList.add(apply);
