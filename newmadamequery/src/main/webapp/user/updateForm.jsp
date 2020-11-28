@@ -178,7 +178,6 @@
 <div>
 	
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
-		<c:param name="postId" value="${post.postId}" />
 	<table>
 		<tr>
 			<td>이메일 주소: </td>
