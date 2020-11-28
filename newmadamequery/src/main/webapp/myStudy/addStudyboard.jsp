@@ -161,7 +161,7 @@ ul, li {
 	</c:url>">
 		<input type="text" name="title" />
 		<input type="text" name="content" />
-		<input type="submit" id="sm" value="게시글 작성 " onClick="postCreate()" />
+		<input type="button" id="sm" value="게시글 작성 " onClick="postCreate()" />
 	</form>
 </div>
 
