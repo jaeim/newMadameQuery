@@ -383,7 +383,7 @@ public class StudyGroupDAO {
 		}
 		if(numOfMem != -1) {
 			if(i != 0) {query += "and ";}
-			query += "numOfMem=? ";
+			query += "number_Of_Member=? ";
 			selected[i++] = numOfMem;
 		}
 		if(!meeting_type.equals("-1")) { 
