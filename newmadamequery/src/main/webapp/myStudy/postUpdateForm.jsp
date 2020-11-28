@@ -11,12 +11,12 @@
 <script>
 	function postModify(){
 		
-		if(form.title.value = ""){
+		if(form.title.value == ""){
 			alert("제목을 입력하십시오.");
 			form.name.focus();
 			return false;
 		}
-		if(form.content.value=""){
+		if(form.content.value == ""){
 			alert("내용을 입력하십시오.");
 			form.contents.focus();
 			return false;
@@ -143,7 +143,9 @@ td{
 
 <div id="onePost">
 
-<form name="form" method="POST" action="<c:url value='/post/update' />">
+<form name="form" method="POST" action="<c:url value='/post/update'>
+	<c:param name="postId" value="${post.postId}" />
+</c:url>">
 	<table id="pTable">
 		
 		<tr>
