@@ -101,19 +101,35 @@ ul, li {
 }
 </style>
 <body>
+
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home'>
+			<c:param name='memberId' value='${sessionScope.UserSessionUtils.USER_SESSION_KEY }' />
+			</c:url>">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
+		</li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 	

@@ -102,7 +102,9 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
+		<li><a href="<c:url value='/user/home'> 
+			<c:param name="memberId" value='${user.member_id}' />
+			</c:url>">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList'>

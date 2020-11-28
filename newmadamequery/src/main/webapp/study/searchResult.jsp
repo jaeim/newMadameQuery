@@ -46,7 +46,18 @@
 			<td>${sl.groupName }</td>
 			<td>${sl.meetingType }</td>
 			<td>${sl.term}개월 </td>
-			<td>${sl.genderType }</td>
+			<td>
+			<c:set var="gen" value="${sl.genderType }" />
+			<c:if test="${gen eq '0'}" >
+				<c:out value="상관없음" />
+			</c:if>
+			<c:if test="${gen eq '1'}" >
+				<c:out value="남성" />
+			</c:if>
+			<c:if test="${gen eq '2'}" >
+				<c:out value="여성" />
+			</c:if>
+			</td>
 			<td>${sl.gradeType }학년</td>
 		</tr>
 	</c:forEach>

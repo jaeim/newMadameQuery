@@ -177,24 +177,32 @@ ul, li {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
+		<li><a href="<c:url value='/user/home'> 
+			<c:param name="memberId" value='${user.member_id}' />
+			</c:url>">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
-					<li><a href="<c:url value= '/studyGroup/apply' />">나의 신청 현황</a>
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
 					<li><a href="<c:url value='/studyGroup/myStudy'>
-			<c:param name='userId' />
-			</c:url>">나의 스터디 보기</a></li>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
 				</ul>
 		</li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 
@@ -270,15 +278,14 @@ ul, li {
 		</td>
 		<td>학년</td>
 		<td>
-			<select name="gradeType">
-					<c:set var="grade" value="${studyGroup.genderType}" />
-					<option value="-1" <c:if test="${grade eq '-1'}">selected</c:if>>-선택안함-</option>
-					<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
-					<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
-					<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
-					<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
-					<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
-					<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
+			<select name="gradeType" >
+				<c:set var="grade" value="${studyGroup.gradeType }" />
+				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
+				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
+				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
+				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
+				<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
+				<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>
 		</td>
 	</tr>
@@ -311,11 +318,7 @@ ul, li {
 </table>
 <br>
 	<input type="submit" value="저장하기" onClick="groupModify()"> &nbsp;
-	
-<!-- <input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
-		<c:param name="groupId" value="${studyGroup.groupId}" />
-		</c:url>)"> -->
-		
+			
 	<a href="<c:url value='/studyGroup/manageStudy'>
 		<c:param name="groupId" value="${studyGroup.groupId}" />
 		</c:url> ">돌아가기</a>

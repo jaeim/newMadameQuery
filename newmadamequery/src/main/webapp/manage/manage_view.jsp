@@ -141,16 +141,32 @@ function memberAccept() {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home'>
+			<c:param name='memberId' value='${sessionScope.UserSessionUtils.USER_SESSION_KEY }' />
+			</c:url>">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
+		</li>
+		
+	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 
@@ -178,6 +194,9 @@ function memberAccept() {
 		<td>성별</td>
 		<td>
 			<c:set var="gen" value="${studyGroup.genderType }" />
+			<c:if test="${gen eq '0' }" >
+				<c:out value="상관없음" />
+			</c:if>
 			<c:if test="${gen eq '1'}" >
 				<c:out value="남성" />
 			</c:if>
@@ -190,7 +209,27 @@ function memberAccept() {
 		<td>팀장 id</td>
 		<td>${studyGroup.leaderId }</td>
 		<td>학년</td>
-		<td>${studyGroup.gradeType } 학년</td>
+		<td>
+			<c:set var="gr" value="${studyGroup.gradeType }" />
+			<c:if test="${gr eq '1' }" >
+				<c:out value="1학년" />
+			</c:if>
+			<c:if test="${gr eq '2' }" >
+				<c:out value="2학년" />
+			</c:if>
+			<c:if test="${gr eq '3' }" >
+				<c:out value="3학년" />
+			</c:if>
+			<c:if test="${gr eq '4' }" >
+				<c:out value="4학년" />
+			</c:if>
+			<c:if test="${gr eq '5' }" >
+				<c:out value="4학년 이상" />
+			</c:if>
+			<c:if test="${gr eq '0' }" >
+				<c:out value="상관없음" />
+			</c:if>
+		</td>
 	</tr>
 	<tr>
 		<td>소개</td>
@@ -215,7 +254,15 @@ function memberAccept() {
 			<th>${gmList.university }</th>
 			<th>${gmList.department }</th>
 			<th>${gmList.grade }</th>
-			<th>${gmList.gender}</th>
+			<th>
+				<c:set var="gr" value="${gmList.gender}" />
+				<c:if test="${gr eq '1'}"> 
+					<c:out value="남성" />
+				</c:if>
+				<c:if test="${gr eq '2'}"> 
+					<c:out value="여성" />
+				</c:if>
+			</th>
 		</tr>
 	</c:forEach>
 	
