@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -11,12 +11,12 @@
 <script>
 	function postModify(){
 		
-		if(form.pTitle.value = ""){
+		if(form.title.value = ""){
 			alert("제목을 입력하십시오.");
 			form.name.focus();
 			return false;
 		}
-		if(form.pContents.value=""){
+		if(form.content.value=""){
 			alert("내용을 입력하십시오.");
 			form.contents.focus();
 			return false;
@@ -140,34 +140,28 @@ td{
 </nav>
 
 <br><br>
-<% //테스트를 위한 설정- failed
 
-	Post firstPost= new Post();
-	firstPost.setPostId(411);
-	System.out.println(firstPost.getContent());
-%>
 <div id="onePost">
-<h3></h3>
+
+<form name="form" method="POST" action="<c:url value='/post/update' />">
 	<table id="pTable">
+		
 		<tr>
 			<td>제목</td>
-			<td><input type="text" name="pTitle" value="${post.title}"/></td>
+			<td><input type="text" name="title" value="${post.title}"></td>
 			<td>작성자</td>
-			<td>작성자이름</td>
+			<td>${post.userName }</td>
 			<td>날짜</td>
-			<td>2020-11-23</td>
+			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
 			<td >내용</td>
-			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
-			<!--  <td></td>
-			<td></td>
-			<td></td>
-			<td></td> -->
+			<td colspan="5"><input type="text" value="${post.content}" name="content" ></td>
 		</tr>
-		
 	</table>
 	<input type="button" value="수정 완료" onClick="postModify()" />
+</form>
+	
 </div>
 </body>
 </html>
