@@ -207,11 +207,17 @@ public class Manager {
 		StudyGroup studyGroup = findGroup(groupId);
 		
 		int isExistingUser = studyGroupDAO.findApplication(groupId, userId);
+		int isGroupMember = studyGroupDAO.findUserInGroup(groupId, userId);
+		
 		
 		if (isExistingUser != 0) {
 			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
 			throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
-		} else if (!studyGroup.getGenderType().equals("0")) {
+		}else if (isGroupMember != 0) {
+			System.out.println("이미 해당 그룹에 존재하는 멤버입니다. 결과는  " + isGroupMember);
+			throw new ExistingException("이미 해당 그룹에 존재하는 멤버입니다.");	
+		}
+		else if (!studyGroup.getGenderType().equals("0")) {
 			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
 				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
 				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");

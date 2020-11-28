@@ -249,6 +249,33 @@ public class StudyGroupDAO {
 		
 		return null;
 	}
+	// 해당 스터디 그룹에 존재하는 멤버인가?
+	public int findUserInGroup (int groupId, int userId) {
+		int result = 0;
+		String query = "select * from groupmember where group_id=? and member_id=?";
+		
+		ResultSet rs = null;
+		Object [] param = new Object[] {groupId, userId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			rs = jdbcUtil.executeQuery();
+//			System.out.println(rs.getInt("MEMBER_ID"));
+			if(!rs.next())
+				result = 0;
+			else
+				result = 1;
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return result;
+		
+	}
 	
 	public int findApplication(int groupId, int userId) {
 		int result = 0;
