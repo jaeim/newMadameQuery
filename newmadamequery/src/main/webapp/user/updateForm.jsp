@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="model.*" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>회원정보 수정 </title>
 <script>
 	function userModify(){
@@ -149,28 +148,35 @@
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
-		<li><a href="#">STUDYGROUP</a>
-			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
-			</ul>
-		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
 		</li>
 		
+	
+		<li><a href="#">STUDYGROUP</a>
+			<ul id="sub-menu">
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
+			</ul>
+		</li>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
-
+<p id="title">UPDATE</p>
 <div>
-	<p id="title">UPDATE</p>
+	
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
 		<c:param name="postId" value="${post.postId}" />
 	<table>
@@ -211,7 +217,6 @@
 			<td><input type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
 	</table>
-	<!-- <input type="submit" value="수정(완료)"/> -->
 	<input type="button" value="수정(완료)" onClick="userModify()" />
 </form>
 </div>

@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>내가 속한 스터디그룹 리스트 출력</title>
-<!--  하나의 스터디를 선택할 경우 myStudy_view.jsp로 이동 (정보 전달)-->
+<title>myStudyGroup List</title>
+
 <style>
 	body {
   margin: 0;
@@ -103,20 +103,31 @@ ul, li {
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
-<div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 , 어떤 정보 가져올건지 정하고 table 다시만들기-->
+<div>
 	<table id="groupList">
 		<tr>
 			<th>그룹 명</th>
@@ -124,7 +135,6 @@ ul, li {
 			<th>생성일</th>
 		</tr>
 		
-		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
@@ -132,7 +142,7 @@ ul, li {
 						   <c:param name='groupId' value='${group.groupId}'/>
 						 </c:url>">${group.groupName} </a> 
 						 
-				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
+				</td>
 				<td>${group.numberOfUsers}</td>
 				<td>${group.createdDate}</td>
 				<td><a href="<c:url value='/studyGroup/myStudy/dropOut'>

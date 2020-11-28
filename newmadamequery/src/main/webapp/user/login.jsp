@@ -3,9 +3,9 @@
 
 <html>
 <head>
-<title>사용자 관리(UserMan3)</title>
+<title>로그인</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">-->
+
 <script>
 function login() {
 	if (form.email.value == "") {
@@ -112,34 +112,31 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="<c:url value='/studyGroup/myStudy'>
-			<c:param name='userId' />
-			</c:url> ">MYSTUDY</a></li>
-		
-	
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' />
-			</c:url> ">MANAGE</a>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-
-		 <!--  <li>LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
-		</li>-->
-		
 	</ul>
 </nav>
-<!-- login form  -->
+
 <form name="form" method="POST" action="<c:url value='/user/login' />">
   <table>
 	<tr>
@@ -150,7 +147,6 @@ ul, li {
 			<td>&nbsp;&nbsp;<b>사용자 관리 - 로그인</b>&nbsp;&nbsp;</td>
 		  </tr>
 	    </table>  
-	    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
         <c:if test="${loginFailed}">
 	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>

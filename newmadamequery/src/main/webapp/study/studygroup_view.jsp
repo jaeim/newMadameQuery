@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>스터디그룹 info 보여주는 화면</title>
-<!-- menu/ STUDYGROUP / 스터티 그룹 보기 -> 하나의 스터디그룹 선택 시 보여지는 화면. -->
+<title>스터디그룹 _view</title>
+
 
 <style>
 body {
@@ -92,11 +92,9 @@ ul, li {
 }
  	#groupInfo{
  		border: 1px solid black;
- 		
- 		background-color:  #C0EDFF;
- 		width: 400px;
- 		height: 300px;
- 		float: left;
+ 		background-color:  #E6E0F8;
+ 		width: auto;
+ 		height: auto;
  		color: black;
  	}
  	td{
@@ -105,17 +103,21 @@ ul, li {
  	}
  	#memberList{
  		text-align: center;
- 		background-color: green;
- 		width: 50%;
- 		height: auto;
- 		float: right;
+ 		background-color: #E6E0F8;
+ 		width: 350px;
+ 		height:100px;
+ 		margin: 30px;
+ 		padding: 10px;
+ 		
  	}
  	#addToMember {
  		text-align: center;
- 		background-color: #fffcde;
- 		width: 50%;
+ 		background-color: #FBEFFB;
+ 		width: 350px;
  		height: auto;
- 		float: right;
+ 		margin: 30px;
+ 		padding: 10px;
+ 		
  	}
  
 </style>
@@ -123,17 +125,28 @@ ul, li {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 <br><br>
@@ -142,23 +155,23 @@ ul, li {
 	<div> <!--  ViewUserController에서부터  StudyGroup 하나의 객체 반환 , -->
 		<table id="groupInfo">
 			<tr>
-				<td width="100" colspan="2">스터디명</td>
-				<td width="100" colspan="2">${StudyGroup.groupName}</td>
+				<td colspan="2">스터디명</td>
+				<td  colspan="2">${StudyGroup.groupName}</td>
 			</tr>
 			<tr>
-				<td width="100" colspan="2">소개</td>
-				<td width="100"colspan="2">${StudyGroup.description}</td>
+				<td colspan="2">소개</td>
+				<td colspan="2">${StudyGroup.description}</td>
 			</tr>
 			<tr>
-				<td width="50">스터디 방식</td>
+				<td>스터디 방식</td>
 				<td>${StudyGroup.meetingType }</td>
-				<td width="50">성별</td>
+				<td >성별</td>
 				<td>${StudyGroup.genderType }</td>
 			</tr>
 			<tr>
-				<td width="50">학년</td>
+				<td>학년</td>
 				<td>${StudyGroup.gradeType}</td>
-				<td width="50">기간</td>
+				<td>기간</td>
 				<td>${StudyGroup.term }</td>
 			</tr>
 			
@@ -183,7 +196,7 @@ ul, li {
 			<c:forEach var="sgUsers" items="${StudyGroup.groupUsers}">
 				<tr>
 					<td>&nbsp;${sgUsers.name}</td>
-					<td>&nbsp;${sgUser.department }</td>
+					<td>&nbsp;${sgUsers.department }</td>
 					<td>&nbsp;${sgUsers.grade }</td>
 				</tr>
 			</c:forEach>

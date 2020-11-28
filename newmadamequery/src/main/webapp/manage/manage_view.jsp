@@ -141,9 +141,7 @@ function memberAccept() {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="<c:url value='/user/home'>
-			<c:param name='memberId' value='${sessionScope.UserSessionUtils.USER_SESSION_KEY }' />
-			</c:url>">HOME</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList'>
@@ -156,8 +154,6 @@ function memberAccept() {
 					</li>
 				</ul>
 		</li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>

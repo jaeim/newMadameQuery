@@ -11,7 +11,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스터디 그룹 메인 (자신이 팀장인 스터디 그룹 리스트 출력)</title>
+<title>StudyGroup Manage</title>
+<!--  (자신이 팀장인 스터디 그룹 리스트 출력) -->
 <style>
 	body {
   margin: 0;
@@ -104,9 +105,7 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="<c:url value='/user/home'>
-			<c:param name='memberId' value='${sessionScope.UserSessionUtils.USER_SESSION_KEY }' />
-			</c:url>">HOME</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList'>
@@ -119,8 +118,6 @@ ul, li {
 					</li>
 				</ul>
 		</li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>

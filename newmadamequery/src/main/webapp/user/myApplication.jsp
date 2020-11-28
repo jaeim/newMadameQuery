@@ -98,7 +98,7 @@ ul, li {
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList'>
@@ -111,12 +111,10 @@ ul, li {
 					</li>
 				</ul>
 		</li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
+				<li><a href=<c:url value='/studyGroup/search/form' />>스터디 검색</a></li>
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>

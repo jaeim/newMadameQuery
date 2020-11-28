@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>manage update page</title>
-<!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
+
 <script>
 	function groupModify() {
 		if(form.groupName.value ==""){
@@ -177,9 +177,7 @@ ul, li {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="<c:url value='/user/home'> 
-			<c:param name="memberId" value='${user.member_id}' />
-			</c:url>">HOME</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList'>
@@ -192,8 +190,6 @@ ul, li {
 					</li>
 				</ul>
 		</li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
@@ -206,16 +202,11 @@ ul, li {
 	</ul>
 </nav>
 
-<%
-//확인을 위한 용도 
-	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
-	System.out.println(group.getGroupName());
-%>
-
 <form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update'>
 	<c:param name="groupId" value="${studyGroup.groupId}" />
 	<c:param name="groupMemberList" value="${groupMemberList}" />
 </c:url>" >
+
 <table id="main1">
 		<tr>
 			<td>스터디그룹 명(${studyGroup.groupId})</td>
@@ -298,8 +289,6 @@ ul, li {
 		<td>이름</td>
 		<td>팀원 관리</td>
 	</tr>
-	
-	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
 	
 	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
