@@ -89,14 +89,9 @@ public class Comment {
 		return member_name;
 	}
 
-
-<<<<<<< HEAD
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
-=======
 	public void setMember_name(String memeber_name) {
 		this.member_name = memeber_name;
->>>>>>> branch 'dev' of https://github.com/jaeim/newMadameQuery.git
 	}
-	
 }
+	
+

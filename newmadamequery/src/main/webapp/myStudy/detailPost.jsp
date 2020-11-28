@@ -193,6 +193,8 @@ td{
 				<td colspan="2">&nbsp;</td>
 				<td style="text-align:right"><a href="<c:url value='/comment/delete'>
 					<c:param name='comment_id' value='${cm.comment_id}'/>
+					<c:param name='member_id' value='${cm.member_id}'/>
+					<c:param name='postId' value='${post.postId }' />
 					</c:url>">삭제</a></td>
 				<td>&nbsp;</td>
 				<td>${cm.createdDate}</td>
