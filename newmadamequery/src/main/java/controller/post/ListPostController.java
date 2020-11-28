@@ -20,7 +20,7 @@ public class ListPostController implements Controller {
 			ArrayList<Post> postList = manager.getAllPost(groupId);
 			
 			request.setAttribute("postList", postList);
-			
+			request.setAttribute("groupId", groupId);
 			return "/myStudy/myStudy_view.jsp";
 		} catch (NotFoundException e) {
 	        request.setAttribute("Failed", true);

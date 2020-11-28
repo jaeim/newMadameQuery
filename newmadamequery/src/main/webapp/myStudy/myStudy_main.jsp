@@ -133,7 +133,7 @@ ul, li {
 						 </c:url>">${group.groupName} </a> 
 						 
 				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
-				<td>${group.numberOfUsers }</td>
+				<td>${group.numberOfUsers}</td>
 				<td>${group.createdDate}</td>
 				<td><a href="<c:url value='/studyGroup/myStudy/dropOut'>
 						   <c:param name='groupId' value='${group.groupId}'/>

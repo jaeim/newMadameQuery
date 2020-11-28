@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.Comment;
 import model.Post;
 import model.service.Manager;
@@ -22,7 +23,7 @@ public class DetailPostController implements Controller {
 			Post detailPost = manager.findPost(postId);
 			int numOfComm = manager.numberOfComment(postId);
 			ArrayList<Comment> commList = manager.getAllComment(postId);
-			
+
 			request.setAttribute("post", detailPost);
 			request.setAttribute("numOfComm", numOfComm);	
 			request.setAttribute("commList", commList);

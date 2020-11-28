@@ -157,7 +157,7 @@ td{
 <!-- 내가 작성한 게시글일 때만 수정 버튼 뜸. -->
 
 	<c:set var="myPost" value="${post.member_id}" />
-	<c:if test="${myPost eq '${userId}'}" >
+	<c:if test="${myPost eq userId}">
 		<a href=" <c:url value= '/post/update/form' >
 			<c:param name='postId' value='${post.postId}' />
 			<c:param name="memberId" value="${post.member_id}" />
