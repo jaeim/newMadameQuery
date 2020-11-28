@@ -255,7 +255,7 @@ public class MemberDAO {
 	
 	//내가 신청한 스터디그룹 목록
 	public ArrayList<Application> getApplyList(int memberId) {
-		String query = "SELECT m.name, s.gorup_id, s.name, apply_date, approved_date, isApproved, commt "
+		String query = "SELECT m.name mName, s.group_id sGroup_id, s.name sName, apply_date, approved_date, isApproved, commt "
 				+ "FROM studygroup s, applylist a, member m "
 				+ "WHERE m.member_id=a.member_id AND s.group_id=a.group_id AND m.member_id=?";
 		Object[] param = new Object[] {memberId};
@@ -270,11 +270,19 @@ public class MemberDAO {
 				Application apply = new Application();
 				
 				apply.setMemberId(memberId);
-				apply.setMemberName(rs.getString("m.name"));
-				apply.setGroupId(rs.getInt("s.group_id"));
-				apply.setGroupName(rs.getString("s.name"));
-				apply.setApplyDate(rs.getDate("apply_date"));
-				apply.setApplyDate(rs.getDate("approved_date"));
+				apply.setMemberName(rs.getString("mName"));
+				apply.setGroupId(rs.getInt("sGroup_id"));
+				apply.setGroupName(rs.getString("sName"));		
+				
+				java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
+				java.util.Date utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String apply_date = df.format(utilDate); 
+				apply.setApplyDate(apply_date);
+				
+				utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String approved_date = df.format(utilDate); 
+				apply.setApplyDate(approved_date);
+				
 				String approved = rs.getString("isApproved");
 				if (approved.equals("1"))
 					apply.setIsApproved("true");

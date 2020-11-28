@@ -8,9 +8,9 @@ public class Application {
 	String memberName;
 	int groupId;
 	String groupName;
-	Date applyDate;
+	String applyDate;
 	String isApproved;
-	Date approvedDate;
+	String approvedDate;
 	String comment; //지원자가 남기는 간단한 메시지
 	
 	public int getMemberId() {
@@ -37,10 +37,10 @@ public class Application {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Date getApplyDate() {
+	public String getApplyDate() {
 		return applyDate;
 	}
-	public void setApplyDate(Date applyDate) {
+	public void setApplyDate(String applyDate) {
 		this.applyDate = applyDate;
 	}
 	public String getIsApproved() {
@@ -49,10 +49,10 @@ public class Application {
 	public void setIsApproved(String isApproved) {
 		this.isApproved = isApproved;
 	}
-	public Date getApprovedDate() {
+	public String getApprovedDate() {
 		return approvedDate;
 	}
-	public void setApprovedDate(Date approvedDate) {
+	public void setApprovedDate(String approvedDate) {
 		this.approvedDate = approvedDate;
 	}
 	public String getComment() {
