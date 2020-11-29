@@ -93,13 +93,18 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-	#resultTable, tr{
-		border: 1px solid black;
-		width: auto;
+#resultTable{
+		border: 1px solid #E6E6E6;
+		width: 500px;
 		height: auto;
 		margin: 0;
 		text-align: center;
 	}
+	
+th{
+	background : #084B8A;
+	color: white;
+}
 </style>
 
 <style>
@@ -135,15 +140,16 @@ ul, li {
 </nav>
 
 	<br><br>
+
 	<div id ="result">
 	<table id="resultTable">
 	<tr>
-		<td>&nbsp;</td>
-		<td>그룹명</td>
-		<td>스터디 방식</td>
-		<td>기간</td>
-		<td>모집성별</td>
-		<td>모집학년</td>
+		<th>번호</th>
+		<th>그룹명</th>
+		<th>스터디 방식</th>
+		<th>기간</th>
+		<th>모집성별</th>
+		<th>모집학년</th>
 	</tr>
 	
 	<c:forEach var="sl" items="${groupList}" varStatus= "status"> 
@@ -164,7 +170,27 @@ ul, li {
 				<c:out value="여성" />
 			</c:if>
 			</td>
-			<td>${sl.gradeType }학년</td>
+			<td>
+				<c:set var="gr" value="${sl.gradeType }" />
+				<c:if test="${gr eq '0'}">
+					<c:out value="상관없음" />
+				</c:if>
+				<c:if test="${gr eq '1'}">
+					<c:out value="1학년" />
+				</c:if>
+				<c:if test="${gr eq '2'}">
+					<c:out value="2학년" />
+				</c:if>
+				<c:if test="${gr eq '3'}">
+					<c:out value="3학년" />
+				</c:if>
+				<c:if test="${gr eq '4'}">
+					<c:out value="4학년" />
+				</c:if>
+				<c:if test="${gr eq '5'}">
+					<c:out value="4학년 이상" />
+				</c:if>
+			</td>
 		</tr>
 	</c:forEach>
 	</table>

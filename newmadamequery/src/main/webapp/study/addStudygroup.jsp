@@ -134,25 +134,30 @@ ul, li {
  text-decoration: underline;
 }
  		
-		#intro{
-			font-family: Arial;
-			font-size: 15px;
-			border-bottom: 1px dashed black;
-			text-align: center;
-			margin: 0;
-		}
-		
-		table{
-			border: 2px solid black;
-			width: 650px;
-			height: 300px;
-			font-family: Arial;
+#intro{
+		font-family: Arial;
+		font-size: 15px;
+		border-bottom: 1px dashed black;
+		text-align: center;
+		margin: 0;
+}
+#addGroup{
+		border: 1px solid #E6E6E6;
+		width: 550px;
+		height: 300px;
+		font-family: Arial;
 
-		}
-		#createB {
-			float: right;
-		}
-		
+	}
+#bc{
+	width: 150px;
+	background : #084B8A;
+	color: white;
+}
+#gAddB{
+	background : #084B8A;
+	color: white;
+	float: right;
+}
 	</style>
 </head>
 <body>
@@ -185,25 +190,19 @@ ul, li {
 
 
 <div id="intro">
-	<pre>
-	StudyGroup
-	스터디 등록 후, 마음에 드는 팀원을 찾아보세요.
-	스터디 등록을 위한 조건을 입력 및 선택해주세요.
-	</pre>		
+<h5>
+	<pre>StudyGroup
+스터디 등록 후, 마음에 드는 팀원을 찾아보세요.
+스터디 등록을 위한 조건을 입력 및 선택해주세요.</pre></h5>	
 </div>
 	
-<div id="add">
+<div id="gAddDic">
 	<h2 style="text-align: center;">스터디 등록</h2>
 	
-	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">	
-		<% 
-		//test용
-			List<Subject> sList = (List<Subject>)request.getAttribute("subjectList");
-		%>
 		<table id= "addGroup">
 			<tr>
-				<td>과목</td>
+				<td id="bc">과목</td>
 				<td> 
 					<select name="subjectId">
 						<c:forEach var="sub" items="${subjectList}" >
@@ -211,10 +210,7 @@ ul, li {
 						</c:forEach>
 					</select>
 				</td>
-				
-				<!-- numberOfUsers, groupName, description, term,  
-				meetingType,genderType,gradeType, subjectId -->
-				<td>인원 수 </td>
+				<td id="bc">인원 수 </td>
 				<td>
 					<select name="numberOfUsers">
 						<option value="3" selected>3</option>
@@ -231,11 +227,11 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>스터디 그룹 명</td>
+				<td id="bc">스터디 그룹 명</td>
 				<td><input type="text" name="groupName" onFocus="this.value='' " 
 					<c:if test="${creationFailed }"> value="${studyGroup.groupName }"</c:if>
 					/></td>
-				<td>기간</td>
+				<td id="bc">기간</td>
 				<td><select name="term">
 					<option value="1">1개월</option>
 					<option value="3">3개월</option>
@@ -247,19 +243,20 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>소개</td>
-				<td colspan="3"><input type="text" name="description" width="200" onFocus="this.value='' "
+				<td id="bc">소개</td>
+				<td colspan="3"><input type="text" name="description" onFocus="this.value=''' " 
+						style="width:300px;"
 					<c:if test="${creationFaild }">value="${studyGroup.description }" </c:if>
 				/> </td>
 			</tr>
 			<tr>
-				<td>스터디 방식</td>
+				<td id="bc">스터디 방식</td>
 				<td><select name="meetingType">
 					<option value="online">online</option>
 					<option value="offline">offline</option>
 					<option value="blended">blended</option>
 				</select></td>
-				<td>성별</td>
+				<td id="bc">성별</td>
 				<td>
 					<select name="genderType">
 						<option value="0">상관없음</option>
@@ -269,7 +266,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>학년</td>
+				<td id="bc">학년</td>
 				<td>
 					<select name="gradeType">
 						<option value="1">1</option>
@@ -280,12 +277,12 @@ ul, li {
 						<option value="0">상관없음</option>
 					</select>
 				</td>
-				<td>팀장 Id</td>
+				<td id="bc">팀장 Id</td>
 				<td>${userId}</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="submit" id="createB" value="생성하기" onClick="addStudyGroup()" /> 
+		<input type="submit" value="생성하기" onClick="addStudyGroup()" id="gAddB"/> 
 		<br><br>
 	</form>
 	

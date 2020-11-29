@@ -89,28 +89,28 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- 		
-		#intro{
-			font-family: Arial;
-			font-size: 15px;
-		}
-		#add, table{
-			text-align:center;
-			margin: auto;
-			
-		}
-		table{
-			border: 2px solid black;
-			width: 700px;
-			height: 200px;
-			font-family: Arial;
-
-		}
-		
-	#allList{
-		border: 1px solid black;
+ 
+th{
+	background : #084B8A;
+	color: white;
+}
+#allList{
+	width: 450px;
+	height: auto;
+}
+a{
+	text-decoration: none;
 	}
-	</style>
+a:link {
+	color: black;
+	}
+a:visited {
+	color: black;
+	}
+#bc{
+	color: blue;
+}
+</style>
 </head>
 <body>
 	<nav>
@@ -140,14 +140,14 @@ ul, li {
 	</ul>
 </nav>
 
-<div id="intro">
-	<pre>
-	StudyGroup
-	마음에 맞는 스터디를 찾아보세요!
-	(모든 스터디 그룹 보여주기)
-	</pre>		
+<div>
+<h5>
+	<pre>StudyGroup
+마음에 맞는 스터디를 찾아보세요!
+	</pre></h5>	
 </div>
 <!-- 모든 스터디 그룹을 리스트로 보여주기 -->
+
 <table id="allList">
 	<tr> 
 		<th>스터디그룹 명 </th>
@@ -159,7 +159,7 @@ ul, li {
 			<td>
 			<a href= "<c:url value='/studyGroup/view' >
 				<c:param name='groupId' value='${group.groupId}' />
-				</c:url>">${group.groupName}</a>
+				</c:url>" id="bc">${group.groupName}</a>
 			</td>
 			<td>${group.description}</td>
 			<td>${group.term}</td>

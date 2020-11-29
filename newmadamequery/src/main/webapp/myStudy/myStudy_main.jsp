@@ -95,7 +95,7 @@ ul, li {
 
 #groupList{
 	text-align: center;
-	border: 1px solid black;
+	border: 1px solid #E6E6E6;
 	font-family: "Arial";
 	width: 500px;
 	height: auto;

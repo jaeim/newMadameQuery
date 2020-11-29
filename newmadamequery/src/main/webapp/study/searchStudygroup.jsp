@@ -89,17 +89,30 @@ ul, li {
  text-decoration: underline;
 }
  		
-		#intro{
-			font-family: Arial;
-			font-size: 15px;
-		}
-		table{
-			border: 2px solid black;
-			width: 700px;
-			height: 200px;
-			font-family: Arial;
+#intro{
+	font-family: Arial;
+	font-size: 15px;
+}
+#searchT{
+	border: 1px solid #BDBDBD;
+	width: 500px;
+	heigh: auto;
+	text-align: center;
+	margin: auto;
+	padding: 10px;
 
-		}
+}
+#gSearchB {
+	background : #084B8A;
+	color: white;
+	float: right;
+}
+th{
+	width: 150px;
+	background : #084B8A;
+	color: white;
+}
+
 	</style>
 </head>
 <body>
@@ -131,22 +144,20 @@ ul, li {
 </nav>
 
 <div id="intro">
-	<pre>
-	StudyGroup
-	원하는 스터디 모임을 검색해보세요.
-	스터디 모임 검색을 위한 조건을 입력 및 선택하세요.
-	</pre>		
+<h5>
+	<pre>StudyGroup
+원하는 스터디 모임을 검색해보세요.
+스터디 모임 검색을 위한 조건을 입력 및 선택하세요.</pre></h5>
 </div>
 
 
 <div id="search">
 	<h2 style="text-align: center;">스터디 검색</h2>
 	
-	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
 	<form name="form" method="POST" action="<c:url value='/studyGroup/search' />" >
-		<table>
+		<table id="searchT">
 			<tr>
-				<td>스터디 방식</td>
+				<th>스터디 방식</th>
 				<td>
 					<select name="meetingType">
 						<option value="-1" selected>-선택안함-</option>
@@ -158,7 +169,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>기간</td>
+				<th>기간</th>
 				<td>
 					<select name="term">
 						<option value="-1" selected>-선택안함-</option>
@@ -171,7 +182,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>성별</td>
+				<th>성별</th>
 				<td>
 					<select name="genderType">
 						<option value="-1" selected>-선택안함- </option>
@@ -182,7 +193,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>학년</td>
+				<th>학년</th>
 				<td>
 					<select name="gradeType">
 						<option value="-1" selected>-선택안함-</option>
@@ -196,7 +207,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td>인원 수 </td>
+				<th>인원 수 </th>
 				<td>
 					<select name="numberOfUsers">
 						<option value="-1" selected>-선택안함-</option>
@@ -215,7 +226,7 @@ ul, li {
 			</tr>
 		</table>
 		<br><br>
-		<input type="submit" value="검색하기" >
+		<input type="submit" value="검색하기" id="gSearchB">
 	</form>
 </div>
 </body>

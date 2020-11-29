@@ -109,68 +109,45 @@ ul, li {
  text-decoration: underline;
 }
 
-#main{
+ #main1, #main2{
  		text-align: center;
  		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 50px;
- 		width: 700px;
- 		height: 30px;
- 	 }
- 	 
- #list{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-bottom: 50px;
- 		width: 700px;
- 		height: 30px;
- 		
- }
- tr{
- 	
- 	margin: 50px;}
- 	
- 	
- 	#main1{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
+ 		border: 1px solid #BDBDBD;
  		margin-top: 50px;
  		margin-bottom: 20px;
  		width: 700px;
  		height: 30px;
  		}
- 	#main2 {
+ #userlist{
  		text-align: center;
  		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 10px;
- 		margin-bottom: 20px;
- 		width: 700px;
- 		height: 30px;
- 	}
- 	#userlist{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
+ 		border: 1px solid #BDBDBD;
  		margin-bottom: 50px;
  		width: 700px;
  		height: 30px;
- 		
  	}
- 	td {
- 		width: 170px;
- 		bgcolor: "ffffff";
- 		padding-left: 10;
+ 	#bc{
+ 		background : #084B8A;
+		color: white;
  	}
- 	tr{
- 		border: 1px solid black;
- 	}
- 	#buttons{
- 		text-align: center;
- 		
- 	}
+ 	
+ a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#mDeleteB {
+	color: red;
+}
+#updateB, #back {
+	background: #E6E6E6;
+	color: black;
+}
+#table1 {float: right;}
 </style>
 
 </head>
@@ -209,11 +186,11 @@ ul, li {
 
 <table id="main1">
 		<tr>
-			<td>스터디그룹 명(${studyGroup.groupId})</td>
+			<td id="bc">스터디그룹 명(groupid: ${studyGroup.groupId})</td>
 			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
-			<td>인원</td>
+			<td id="bc">인원</td>
 			<td>${studyGroup.numberOfUsers } </td>
-			<td>기간</td>
+			<td id="bc">기간</td>
 			<td>
 				<select name="term">
 						<c:set var= "term" value="${studyGroup.term}" />
@@ -230,9 +207,9 @@ ul, li {
 
 <table id="main2">
 	<tr>
-		<td>subjectId(과목)</td>
+		<td id="bc">subjectId</td>
 		<td>${studyGroup.subjectId} </td>
-		<td>스터디 방식</td>
+		<td id="bc">스터디 방식</td>
 				<td> <!-- online, offline, blended-->
 					<select name="meetingType">
 						<c:set var="meetingT" value="${studyGroup.meetingType }" />
@@ -243,9 +220,9 @@ ul, li {
 				</td>
 	</tr>
 	<tr>
-		<td>개설 일자</td>
+		<td id="bc">개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
-		<td>성별</td>
+		<td id="bc">성별</td>
 		<td><select name="genderType">
 				<c:set var="gender" value="${studyGroup.genderType }" />
 				<option value="-1" <c:if test="${gender eq '-1'}">selected</c:if>>-선택안함-</option>
@@ -255,7 +232,7 @@ ul, li {
 			</select></td>
 	</tr>
 	<tr>
-		<td>팀장</td>
+		<td id="bc">팀장</td>
 		<td>
 			<select name="leaderId">
 					<option value="">없음</option>
@@ -267,7 +244,7 @@ ul, li {
 			</select>
 		
 		</td>
-		<td>학년</td>
+		<td id="bc">학년</td>
 		<td>
 			<select name="gradeType" >
 				<c:set var="grade" value="${studyGroup.gradeType }" />
@@ -286,31 +263,29 @@ ul, li {
 
 <table id= "userlist">
 	<tr>
-		<td>이름</td>
-		<td>팀원 관리</td>
+		<td id="bc">이름</td>
+		<td id="bc">팀원 관리</td>
 	</tr>
 	
 	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
 			<td>${member.name}</td>
 			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
-				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${studyGroup.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">수락</a>
+				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); " id="mDeleteB"> 삭제</a>
 			</td>
-			
-			
 		</tr>
 	</c:forEach>
 	
 </table>
-<br>
-	<input type="submit" value="저장하기" onClick="groupModify()"> &nbsp;
-			
-	<a href="<c:url value='/studyGroup/manageStudy'>
-		<c:param name="groupId" value="${studyGroup.groupId}" />
-		</c:url> ">돌아가기</a>
+
+<table id="table1">
+	<tr>
+		<td><input type="submit" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
+		<td><a href="<c:url value='/studyGroup/manageStudy'>
+			<c:param name="groupId" value="${studyGroup.groupId}" />
+			</c:url> " id="back">돌아가기</a> </td>
+	</tr>
+</table>
 </form>
 
 

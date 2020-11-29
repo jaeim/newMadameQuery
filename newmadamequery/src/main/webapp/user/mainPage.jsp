@@ -144,13 +144,10 @@ ul, li {
 
 <br>
 <br>
-
-	<img src='../images/som2.gif' />
-	
-	<h4>
+	<h3>
 		<pre>Study with me!
 원하는 스터디 그룹을 찾고 싶으신가요?</pre>
-	</h4>
+	</h3>
 	
 	<c:if test= "${user.member_id eq null }" >
 		<div id="div1">

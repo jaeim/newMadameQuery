@@ -15,13 +15,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial;
-  display: flex;
+  display: inlinel;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;  
 }
-
 	h1 {
   margin: 2em 0 1.5em 0;
 }
@@ -90,36 +89,51 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
- 	#groupInfo{
- 		border: 1px solid black;
- 		background-color:  #E6E0F8;
- 		width: auto;
- 		height: auto;
- 		color: black;
- 	}
- 	td{
- 		border: 1px solid black;
- 		text-align: center;
- 	}
- 	#memberList{
- 		text-align: center;
- 		background-color: #E6E0F8;
- 		width: 350px;
- 		height:100px;
- 		margin: 30px;
- 		padding: 10px;
- 		
- 	}
- 	#addToMember {
- 		text-align: center;
- 		background-color: #FBEFFB;
- 		width: 350px;
- 		height: auto;
- 		margin: 30px;
- 		padding: 10px;
- 		
- 	}
  
+ 
+#groupDiv{
+	float: left;
+	width: 50%;
+	height: auto;
+	border: 1px solid #E6E6E6;
+	margin-left: 25px;
+}
+#groupInfo{
+	margin: auto;
+	padding: 15px;
+	width: auto;
+	heigth: 300px;
+}
+#memberDiv{
+	float: right;
+	width: 300px;
+	heigth: auto;
+	border: 1px solid #E6E6E6;
+	margin-right: 50px;
+}
+#memberList{
+	margin: auto;
+	padding: 15px;
+}
+th, #bc, #bc2{
+	background : #084B8A;
+	color: white;
+}
+#bc2{
+	width: 50px;
+}
+#addMDiv{
+	float: right;
+	width: 300px;
+	heigth: 200px;
+	border: 1px solid #E6E6E6;
+	margin-right: 50px;
+}
+#applyT{
+	text-align: center;
+}
+
+
 </style>
 </head>
 <body>
@@ -151,41 +165,45 @@ ul, li {
 </nav>
 <br><br>
 
-
-	<div> <!--  ViewUserController에서부터  StudyGroup 하나의 객체 반환 , -->
+<div id="groupDiv">
 		<table id="groupInfo">
 			<tr>
-				<td colspan="2">스터디명</td>
-				<td  colspan="2">${StudyGroup.groupName}</td>
+				<td colspan="2" id="bc">스터디명</td>
+				<td colspan="2">${StudyGroup.groupName}</td>
 			</tr>
 			<tr>
-				<td colspan="2">소개</td>
+				<td colspan="2" id="bc" >소개</td>
 				<td colspan="2">${StudyGroup.description}</td>
 			</tr>
 			<tr>
-				<td>스터디 방식</td>
-				<td>${StudyGroup.meetingType }</td>
-				<td >성별</td>
-				<td>${StudyGroup.genderType }</td>
+				<td id="bc2">스터디 방식</td>
+				<td style="width: 15px;">${StudyGroup.meetingType }</td>
+				<td id="bc2">성별</td>
+				<td>
+					<c:set var="gen" value="${StudyGroup.genderType }" />
+					<c:if test="${gen eq '1'}">
+						<c:out value="남성" />
+					</c:if>
+					<c:if test="${gen eq '2'}">
+						<c:out value="여성" />
+					</c:if>
+					<c:if test="${gen eq '0'}">
+						<c:out value="상관없음" />
+					</c:if>
+				</td>
 			</tr>
 			<tr>
-				<td>학년</td>
-				<td>${StudyGroup.gradeType}</td>
-				<td>기간</td>
-				<td>${StudyGroup.term }</td>
+				<td id="bc2">학년</td>
+				<td style="width: 15px;">${StudyGroup.gradeType}</td>
+				<td id="bc2">기간</td>
+				<td >${StudyGroup.term }</td>
 			</tr>
-			
 		</table>
-	</div>
-	
-	<!-- StudyGroup -> groupUser를 가져오면 될 듯  -->
-	
-	<div > <!--  멤버의 수, 이름, 학과, 학년 보여주기  -->
-	
+</div>
 
-		<!-- 멤버 수 가져와서 그 만큼 table tr 생성해서 보여주기 -->
-		
-		<table id="memberList">
+<div id="memberDiv"> 
+			
+		<table id="memberList" style="width: 250px;">
 			<caption>GroupMembers</caption>
 			<tr>
 				<th>이름</th>
@@ -202,19 +220,28 @@ ul, li {
 			</c:forEach>
 		</table>
 		
-	</div>
-	<!-- 여기로 넘어올 때 하나의 StudyGroup 객체를 받아왔어. -->
-<div id="addToMember">
- 
+</div>
+
+<div id="addMDiv">
 <form name="form" method="POST" action="<c:url value= '/studyGroup/apply' >
 	<c:param name="groupId" value="${StudyGroup.groupId }"/>
 	</c:url>">
-	<c:out value="${member_id}" />
-	<input type="text" name="comments" /> 
-	<input type="submit" value="팀원 신청하기"/>
+<table id="applyT">
+<tr>
+	<td><h5 style="color: red;">스터디 조건에 맞는 분만 신청이 가능합니다.</h5></td>
+</tr>
+<tr>
+	<td><input type="text" name="comments" /> </td>
+</tr>
+<tr>
+	<td><input type="submit" value="팀원 신청하기"/></td>
+</tr>
+
+	
+</table>
+	
 </form>
-
-
+<br>
 </div>
 
 </body>

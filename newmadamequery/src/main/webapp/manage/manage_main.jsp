@@ -93,12 +93,28 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+th{
+	background : #084B8A;
+	color: white;
+}
 
-#groupList{
+#manageT{
 	text-align: center;
-	border: 1px solid black;
-	width : 700px;
-	height: 400px;
+	border: 1px solid #E6E6E6;
+	width: 500px;
+	height: auto;
+}
+a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#gname{
+	color: blue;
 }
 </style>
 <body>
@@ -132,7 +148,7 @@ ul, li {
 	
 <br>
 
-<table>
+<table id="manageT">
 
 	<tr>
 		<th>스터디그룹 명 </th>
@@ -145,7 +161,7 @@ ul, li {
 			<td>
 			<a href="<c:url value='/studyGroup/manageStudy'>
 						   <c:param name='groupId' value='${sg.groupId}'/>
-						 </c:url>">
+						 </c:url>" id="gname">
 				  ${sg.groupName}</a>
 			</td>
 			<td>
