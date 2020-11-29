@@ -154,7 +154,7 @@ a:visited {
 				</c:url>" id="bc">${group.groupName}</a>
 			</td>
 			<td>${group.description}</td>
-			<td>${group.term}</td>
+			<td>${group.term}개월</td>
 		</tr>
 	</c:forEach>
 </table>
