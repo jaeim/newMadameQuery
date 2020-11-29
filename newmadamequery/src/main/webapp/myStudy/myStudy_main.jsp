@@ -138,6 +138,7 @@ a:visited {
 	</ul>
 </nav>
 <br><br>
+<h2>나의 스터디</h2>
 <table id="groupList">
 		<tr>
 			<th>그룹 명</th>

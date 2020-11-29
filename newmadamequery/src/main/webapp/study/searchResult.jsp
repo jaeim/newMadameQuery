@@ -146,7 +146,11 @@ th{
 	<c:forEach var="sl" items="${groupList}" varStatus= "status"> 
 		<tr>
 			<td><c:out value="${status.count}" /></td>
-			<td>${sl.groupName }</td>
+			<td>
+				<a href= "<c:url value='/studyGroup/view' >
+					<c:param name='groupId' value='${sl.groupId }' />
+					</c:url>" id="bc">${sl.groupName }</a>
+			</td>
 			<td>${sl.meetingType }</td>
 			<td>${sl.term}개월 </td>
 			<td>

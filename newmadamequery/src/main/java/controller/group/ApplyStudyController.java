@@ -28,9 +28,15 @@ public class ApplyStudyController implements Controller {
 //		int groupId = 1011;
 //		String comments = "안녕하세요~! 데베프 스터디 신청합니다.";
 		
-		try {		
-			manager.applyToGroup(groupId, userId, comments);			
-			return "redirect:/studyGroup/view?groupId=" + groupId;
+		try {
+			if(manager.applyToGroup(groupId, userId, comments) == 1) {
+				System.out.println("신청 성공");
+				return "redirect:/studyGroup/myApplyList";
+			}else {
+				System.out.println("신청 실패");
+				return "redirect:/studyGroup/view?groupId=" + groupId;
+			}			
+	
 		} catch (Exception e) {
 			//신청이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 in /study/studygroup_list/studygroup_view.jsp
 			//alert(exception)

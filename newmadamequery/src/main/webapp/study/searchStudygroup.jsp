@@ -163,7 +163,7 @@ th{
 				</td>
 			</tr>
 			<tr>
-				<th>기간</th>
+				<th>수행기간</th>
 				<td>
 					<select name="term">
 						<option value="-1" selected>-선택안함-</option>
@@ -176,7 +176,7 @@ th{
 				</td>
 			</tr>
 			<tr>
-				<th>성별</th>
+				<th>모집성별</th>
 				<td>
 					<select name="genderType">
 						<option value="-1" selected>-선택안함- </option>
@@ -187,7 +187,7 @@ th{
 				</td>
 			</tr>
 			<tr>
-				<th>학년</th>
+				<th>모집학년</th>
 				<td>
 					<select name="gradeType">
 						<option value="-1" selected>-선택안함-</option>
@@ -201,7 +201,7 @@ th{
 				</td>
 			</tr>
 			<tr>
-				<th>인원 수 </th>
+				<th>모집인원</th>
 				<td>
 					<select name="numberOfUsers">
 						<option value="-1" selected>-선택안함-</option>

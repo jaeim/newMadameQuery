@@ -528,21 +528,24 @@ public class Main {
 //			}
 //		}
 		
-		ArrayList<Application> applyList = null;
-		try {
-			applyList = manager.getAllApplication(611);
-		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if(applyList != null) {
-			for(Application a : applyList) {
-				System.out.println(a.getMemberId() + ", " + a.getMemberName());
-			}
-		}
+//		ArrayList<Application> applyList = null;
+//		try {
+//			applyList = manager.getAllApplication(611);
+//		} catch (NotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		if(applyList != null) {
+//			for(Application a : applyList) {
+//				System.out.println(a.getMemberId() + ", " + a.getMemberName());
+//			}
+//		}
+//		
+//		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
+//		StudyGroup s = studyGroupDAO.findGroup(611);
 	}
 }

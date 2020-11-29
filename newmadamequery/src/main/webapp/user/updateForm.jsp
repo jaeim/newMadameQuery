@@ -148,8 +148,14 @@
 		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
-					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
-					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+					<li><a href="<c:url value= '/studyGroup/myApplyList'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 신청 현황</a>
+					</li>
+					<li><a href="<c:url value='/studyGroup/myStudy'>
+						<c:param name='userId' value='${user.member_id}' />
+						</c:url>">나의 스터디 보기</a>
+					</li>
 				</ul>
 		</li>
 		
@@ -197,7 +203,44 @@
 		</tr>
 		<tr>
 			<td>소속 학과명 </td>
-			<td><input type="text" name="department" value="${user.department }" ></td>
+			<td>
+			<select name="department">
+				<c:set var="dept" value="${user.department }" />
+				<option <c:if test="${dept eq '국어국문학과'}"> selected </c:if>>국어국문학과</option>
+					<option <c:if test="${dept eq '국사학과'}"> selected </c:if>>국사학과</option>
+					<option <c:if test="${dept eq '문예창작과'}"> selected </c:if>>문예창작과</option>
+					<option <c:if test="${dept eq '영어과'}"> selected </c:if>>영어과</option>
+					<option <c:if test="${dept eq '일본어과'}"> selected </c:if>>일본어과</option>
+					<option <c:if test="${dept eq '프랑스어과'}"> selected </c:if>>프랑스어과</option>
+					<option <c:if test="${dept eq '독일어과'}"> selected </c:if>>독일어과</option>
+					<option <c:if test="${dept eq '중어중국학과'}"> selected </c:if>>중어중국학과</option>
+					<option <c:if test="${dept eq '경영학과'}"> selected </c:if>>경영학과</option>
+					<option <c:if test="${dept eq '경제학과'}"> selected </c:if>>경제학과</option>
+					<option <c:if test="${dept eq '국제경영학과'}"> selected </c:if>>국제경영학과</option>
+					<option <c:if test="${dept eq '아동학과'}"> selected </c:if>>아동학과</option>
+					<option <c:if test="${dept eq '사회복지학과'}"> selected </c:if>>사회복지학과</option>
+					<option <c:if test="${dept eq '문헌정보학과'}"> selected </c:if>>문헌정보학과</option>
+					<option <c:if test="${dept eq '세무회계학과'}"> selected </c:if>>세무회계학과</option>
+					<option <c:if test="${dept eq '식품영양학과'}"> selected </c:if>>식품영양학과</option>
+					<option <c:if test="${dept eq '보건관리학과'}"> selected </c:if>>보건관리학과</option>
+					<option <c:if test="${dept eq '화학, 화장품학부'}"> selected </c:if>>화학, 화장품학부</option>
+					<option <c:if test="${dept eq '체육학과'}"> selected </c:if>>체육학과</option>
+					<option <c:if test="${dept eq '토탈뷰티케어학과(야)'}"> selected </c:if>>토탈뷰티케어학과(야)</option>
+					<option <c:if test="${dept eq '컴퓨터학과'}"> selected </c:if>>컴퓨터학과</option>
+					<option <c:if test="${dept eq '정보통계학과'}"> selected </c:if>>정보통계학과</option>
+					<option <c:if test="${dept eq '회화과'}"> selected </c:if>>회화과</option>
+					<option <c:if test="${dept eq '디지털공예과'}"> selected </c:if>>디지털공예과</option>
+					<option <c:if test="${dept eq '큐레이터학과'}"> selected </c:if>>큐레이터학과</option>
+					<option <c:if test="${dept eq '피아노과'}"> selected </c:if>>피아노과</option>
+					<option <c:if test="${dept eq '관현악과'}"> selected </c:if>>관현악과</option>
+					<option <c:if test="${dept eq '성악과'}"> selected </c:if>>성악과</option>
+					<option <c:if test="${dept eq '패션디자인학과'}"> selected </c:if>>패션디자인학과</option>
+					<option <c:if test="${dept eq '시각&실내디자인학과'}"> selected </c:if>>시각&실내디자인학과</option>
+					<option <c:if test="${dept eq '미디어디자인학과'}"> selected </c:if>>미디어디자인학과</option>
+					<option <c:if test="${dept eq '약학과'}"> selected </c:if>>약학과</option>
+			</select>
+			
+			</td>
 		</tr>
 		<tr>
 			<td>학년</td>
@@ -205,7 +248,13 @@
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><input type="text" name="gender" value="${user.gender }" ></td>
+			<td>
+			<select name="gender">
+				<c:set var="gen" value="${user.gender }" />
+				<option value="1" <c:if test="${gen eq '1'}">selected</c:if>>남성</option>
+				<option value="2" <c:if test="${gen eq '2'}">selected</c:if>>여성</option>
+			</select>
+			</td>
 		</tr>
 	</table>
 	<br><br>
