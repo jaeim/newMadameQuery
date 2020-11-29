@@ -166,7 +166,7 @@ ul, li {
 		</tr>
 		<tr>
 			<td rowspan="2" id="bc">내용</td>
-			<td rowspan= "2" colspan="3"><input type="text" value="${post.content}" name="content" style="width: 300px;"></td>
+			<td rowspan= "2" colspan="3"><input type="text" value="${post.content}" name="content" style="width: 300px; height: 100px;"></td>
 		</tr>
 	</table>
 	<br>

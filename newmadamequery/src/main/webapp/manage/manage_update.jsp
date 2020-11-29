@@ -251,6 +251,10 @@ a:visited {
 			</select>
 		</td>
 	</tr>
+	<tr>
+		<td id="bc">소개</td>
+		<td><input type="text" name="description" value="${studyGroup.description } " style="width:250px"></td>
+	</tr>
 </table>
 
 <br>
@@ -274,7 +278,7 @@ a:visited {
 
 <table id="table1">
 	<tr>
-		<td><input type="submit" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
+		<td><input type="button" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
 		<td><a href="<c:url value='/studyGroup/manageStudy'>
 			<c:param name="groupId" value="${studyGroup.groupId}" />
 			</c:url> " id="back">돌아가기</a> </td>

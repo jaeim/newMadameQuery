@@ -44,6 +44,8 @@ public class UpdateStudyController implements Controller {
  		if(gradeType != null) { group.setGradeType(gradeType); }
  		String leaderId = (String)request.getParameter("leaderId");
  		if(leaderId != null) { group.setLeaderId(Integer.valueOf(leaderId)); }
+ 		String description = (String) request.getParameter("description");
+ 		if (description != null) { group.setDescription(description); }
 		
 		int result = 0;
 		try {
