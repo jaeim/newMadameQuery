@@ -14,7 +14,7 @@
 
 <script>
 	function groupModify() {
-		if(form.groupName.value ==""){
+		if(form.groupName.value == ""){
 			alert("스터디 그룹 명을 입력하시오.");
 			form.groupName.focus();
 			return false;
@@ -188,12 +188,12 @@ a:visited {
 			<td>
 				<select name="term">
 						<c:set var= "term" value="${studyGroup.term}" />
-						<option value="-1" <c:if test="${term eq '-1'}"> selected </c:if>>-선택안함-</option> 
-						<option value="1" <c:if test="${term eq '1'}"> selected </c:if>>1개월</option> 
-						<option value="3" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
-						<option value="6" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
-						<option value="10" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
-						<option value="0" <c:if test="${term eq '0'}"> selected </c:if>>상관 없음</option> 
+						<option value="1" <c:if test="${term eq 1}"> selected </c:if>>1개월</option> 
+						<option value="3" <c:if test="${term eq 3}"> selected </c:if>>3개월</option> 
+						<option value="6" <c:if test="${term eq 6}"> selected </c:if>>6개월 </option> 
+						<option value="9" <c:if test="${term eq 9}"> selected </c:if>>9개월 </option> 
+						<option value="12" <c:if test="${term eq 12}"> selected </c:if>>12개월 </option> 
+						<option value="0" <c:if test="${term eq 0}"> selected </c:if>>상관 없음</option> 
 				</select>
 			</td>
 		</tr>
@@ -219,7 +219,6 @@ a:visited {
 		<td id="bc">성별</td>
 		<td><select name="genderType">
 				<c:set var="gender" value="${studyGroup.genderType }" />
-				<option value="-1" <c:if test="${gender eq '-1'}">selected</c:if>>-선택안함-</option>
 				<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
 				<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
 				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
@@ -229,7 +228,6 @@ a:visited {
 		<td id="bc">팀장</td>
 		<td>
 			<select name="leaderId">
-					<option value="">없음</option>
 					<c:forEach var="member" items="${studyGroup.groupUsers}">
 						<option value="${member.member_id}"
 							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
@@ -250,6 +248,10 @@ a:visited {
 				<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>
 		</td>
+	</tr>
+	<tr>
+		<td id="bc">소개</td>
+		<td><input type="text" name="description" value="${studyGroup.description } " style="width:250px"></td>
 	</tr>
 </table>
 
@@ -274,7 +276,7 @@ a:visited {
 
 <table id="table1">
 	<tr>
-		<td><input type="submit" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
+		<td><input type="button" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
 		<td><a href="<c:url value='/studyGroup/manageStudy'>
 			<c:param name="groupId" value="${studyGroup.groupId}" />
 			</c:url> " id="back">돌아가기</a> </td>

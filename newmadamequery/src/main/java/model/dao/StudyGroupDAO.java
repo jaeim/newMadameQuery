@@ -162,12 +162,12 @@ public class StudyGroupDAO {
 	public int updateGroup(StudyGroup group) {
 		int result = 0;
 		String query = "UPDATE studyGroup SET name=? , term=? , meeting_type=? "
-				+", gender_type=? , grade_type=? , leader_id=? "
+				+", gender_type=? , grade_type=? , leader_id=? , description=? "
 				+ "WHERE group_id=?";
 			
 		Object [] param = new Object[] {
 				group.getGroupName(), group.getTerm(), group.getMeetingType()
-				, group.getGenderType(), group.getGradeType(), group.getLeaderId(), group.getGroupId()};
+				, group.getGenderType(), group.getGradeType(), group.getLeaderId(), group.getDescription(), group.getGroupId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
