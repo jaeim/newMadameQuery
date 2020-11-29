@@ -15,6 +15,7 @@ public class StudyGroup {
 	String gradeType; // 학년 ( 1~4, 0 - 상관없음)	
 	int subjectId; 
 	int leaderId;
+	String leaderName;
 	ArrayList<User> groupUsers;
 	
 	public StudyGroup(int numberOfUsers, String groupName, String description, int term, String meetingType,
@@ -176,6 +177,19 @@ public class StudyGroup {
 	public void setGroupUsers(ArrayList<User> groupUsers) {
 		this.groupUsers = groupUsers;
 	}
+
+
+
+	public String getLeaderName() {
+		return leaderName;
+	}
+
+
+
+	public void setLeaderName(String leaderName) {
+		this.leaderName = leaderName;
+	}
+	
 	
 	
 }

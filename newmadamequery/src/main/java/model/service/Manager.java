@@ -142,6 +142,8 @@ public class Manager {
 		StudyGroup group = studyGroupDAO.findGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
+		User leader = findUser(group.getLeaderId());
+		group.setLeaderName(leader.getName());
 		ArrayList<User> userList = getAllMemberInGroup(groupId);
 		group.setGroupUsers(userList);
 		

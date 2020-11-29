@@ -200,8 +200,8 @@ function memberAccept() {
 		</td>
 	</tr>
 	<tr>
-		<td id="bc">팀장 id</td>
-		<td>${studyGroup.leaderId }</td>
+		<td id="bc">팀장</td>
+		<td>${studyGroup.leaderName}</td>
 		<td id="bc">학년</td>
 		<td >
 			<c:set var="gr" value="${studyGroup.gradeType }" />
@@ -230,7 +230,7 @@ function memberAccept() {
 		<td>${studyGroup.description }</td>
 	</tr>
 </table>
-
+<h3>멤버 리스트</h3>
 <table id= "userlist">
 	<tr>
 		<th>&nbsp;</th>
@@ -261,6 +261,7 @@ function memberAccept() {
 	</c:forEach>
 	
 </table>
+<h3>신청자 리스트</h3>
 <table id="applyList">
 	
 		<tr>

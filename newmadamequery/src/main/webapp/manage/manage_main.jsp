@@ -142,8 +142,8 @@ a:visited {
 	
 <br>
 
+<h2>스터디그룹 관리</h2>
 <table id="manageT">
-
 	<tr>
 		<th>스터디그룹 명 </th>
 		<th>인원</th>
