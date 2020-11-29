@@ -230,7 +230,8 @@ ul, li {
 					<option value="1">1개월</option>
 					<option value="3">3개월</option>
 					<option value="6">6개월</option>
-					<option value="10">6개월 이상</option>
+					<option value="9">9개월</option>
+					<option value="12">12개월</option>
 					<option value="0">상관없음</option>
 				</select>
 				

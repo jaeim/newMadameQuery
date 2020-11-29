@@ -11,7 +11,17 @@
 <head>
 <meta charset="EUC-KR">
 <title>myStudyGroup List</title>
+<script>
+	<% 
+		String ex = (String)request.getAttribute("exception");
+		if(ex != null){
+			if(ex.equals("deleteException")){
+				out.println("alert('팀장은 그룹에서 탈퇴할 수 없습니다.');");
+			}
+		}
+	%>
 
+</script>
 <style>
 	body {
   margin: 0;
