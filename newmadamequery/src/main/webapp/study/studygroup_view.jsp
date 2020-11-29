@@ -8,7 +8,19 @@
 <head>
 <meta charset="EUC-KR">
 <title>스터디그룹 _view</title>
+<%
+	String result = request.getParameter("result");
 
+	out.println("<script>");
+	if(result != null){
+		if(result.equals("1")){
+			out.println("alert('신청에 성공하였습니다.')");
+		}else if(result.equals("0")){
+			out.println("alert('조건에 맞지 않기 때문에 신청에 실패하였습니다.')");
+		}
+	}
+	out.println("</script>");
+%>
 
 <style>
 body {
