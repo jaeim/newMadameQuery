@@ -93,7 +93,7 @@ th{
 	color: white;
 }
 #allList{
-	width: 450px;
+	width: 600px;
 	height: auto;
 }
 a{
@@ -134,7 +134,7 @@ a:visited {
 
 <div>
 <h5>
-	<pre>StudyGroup
+	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
 마음에 맞는 스터디를 찾아보세요!
 	</pre></h5>	
 </div>

@@ -157,10 +157,40 @@ a:visited {
 				  ${sg.groupName}</a>
 			</td>
 			<td>
-				${sg.numberOfUsers} 
+				<c:set var="num" value="${sg.numberOfUsers}" />
+				<c:if test="${num eq '3' }" >
+					<c:out value="3명" />
+				</c:if>
+				<c:if test="${num eq '4' }" >
+					<c:out value="4명" />
+				</c:if>
+				<c:if test="${num eq '5' }" >
+					<c:out value="5명" />
+				</c:if>
+				<c:if test="${num eq '6' }" >
+					<c:out value="6명" />
+				</c:if>
+				<c:if test="${num eq '7' }" >
+					<c:out value="7명" />
+				</c:if>
+				<c:if test="${num eq '8' }" >
+					<c:out value="8명" />
+				</c:if>
+				<c:if test="${num eq '9' }" >
+					<c:out value="9명" />
+				</c:if>
+				<c:if test="${num eq '10' }" >
+					<c:out value="10명" />
+				</c:if>
+				<c:if test="${num eq '11' }" >
+					<c:out value="10명이상" />
+				</c:if>
+				<c:if test="${num eq '0' }" >
+					<c:out value="상관없음" />
+				</c:if>
 			</td>
 			<td>
-				${sg.term}
+				${sg.term}개월
 			</td>
 		</tr>
 	</c:forEach>

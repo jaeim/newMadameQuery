@@ -251,10 +251,10 @@ a:visited {
 		<td>
 			<select name="gradeType" >
 				<c:set var="grade" value="${studyGroup.gradeType }" />
-				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
-				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
-				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
-				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
+				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1학년</option>
+				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2학년</option>
+				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3학년</option>
+				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4학년</option>
 				<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
 				<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>

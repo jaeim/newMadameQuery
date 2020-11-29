@@ -113,7 +113,7 @@ ul, li {
 	width: 50%;
 	height: auto;
 	border: 1px solid #E6E6E6;
-	margin-left: 25px;
+	margin-left: 150px;
 }
 #groupInfo{
 	margin: auto;
@@ -126,7 +126,7 @@ ul, li {
 	width: 300px;
 	heigth: auto;
 	border: 1px solid #E6E6E6;
-	margin-right: 50px;
+	margin-right: 150px;
 }
 #memberList{
 	margin: auto;
@@ -135,16 +135,19 @@ ul, li {
 th, #bc, #bc2{
 	background : #084B8A;
 	color: white;
+	text-align: center;
+	padding: 5px;
+	
 }
 #bc2{
-	width: 50px;
+	width: 80px;
 }
 #addMDiv{
 	float: right;
 	width: 300px;
 	heigth: 200px;
 	border: 1px solid #E6E6E6;
-	margin-right: 50px;
+	margin-right: 150px;
 }
 #applyT{
 	text-align: center;
