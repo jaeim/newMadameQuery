@@ -204,7 +204,7 @@ ul, li {
 						</c:forEach>
 					</select>
 				</td>
-				<td id="bc">인원 수 </td>
+				<td id="bc">모집인원</td>
 				<td>
 					<select name="numberOfUsers">
 						<option value="3" selected>3</option>
@@ -225,7 +225,7 @@ ul, li {
 				<td><input type="text" name="groupName" onFocus="this.value='' " 
 					<c:if test="${creationFailed }"> value="${studyGroup.groupName }"</c:if>
 					/></td>
-				<td id="bc">기간</td>
+				<td id="bc">수행기간</td>
 				<td><select name="term">
 					<option value="1">1개월</option>
 					<option value="3">3개월</option>
@@ -250,7 +250,7 @@ ul, li {
 					<option value="offline">offline</option>
 					<option value="blended">blended</option>
 				</select></td>
-				<td id="bc">성별</td>
+				<td id="bc">모집성별</td>
 				<td>
 					<select name="genderType">
 						<option value="0">상관없음</option>
@@ -260,7 +260,7 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td id="bc">학년</td>
+				<td id="bc">모집학년</td>
 				<td>
 					<select name="gradeType">
 						<option value="1">1</option>

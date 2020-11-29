@@ -118,7 +118,7 @@ a:visited {
 	color: black;
 }
 
-#pUpdateB, #pDeleteB{
+#pUpdateB, #pDeleteB, #pListB{
 	background: #E6E6E6;
 	color: black;
 }
@@ -194,6 +194,12 @@ a:visited {
 			<c:param name="groupId" value="${post.group_id}" />
 			<c:param name="memberId" value="${post.member_id}" />
 			</c:url>" id="pDeleteB">삭제하기</a>
+			</td>
+			<td>&nbsp;</td>
+			<td>
+			<a href="<c:url value='/post/list'>
+			<c:param name="groupId" value="${post.group_id}" />
+			</c:url>" id="pListB">목록으로</a>
 			</td>
 		</tr>
 	</table>

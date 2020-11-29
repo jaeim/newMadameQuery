@@ -511,7 +511,7 @@ public class StudyGroupDAO {
 	
 	public StudyGroup findGroup(int groupId) {
 		StudyGroup group = null;
-		String query = "select * from STUDYGROUP where group_id=?";
+		String query = "select * from STUDYGROUP s where group_id=?";
 		
 		ResultSet rs = null;
 		Object [] param = new Object[] {groupId};
@@ -522,7 +522,6 @@ public class StudyGroupDAO {
 			rs = jdbcUtil.executeQuery();
 			if(rs.next()){
 				group = new StudyGroup();
-				
 				group.setGroupId(rs.getInt("group_id"));
 				group.setCreatedDate(rs.getDate("created_date"));
 				group.setNumberOfUsers(rs.getInt("number_of_member"));
@@ -533,7 +532,7 @@ public class StudyGroupDAO {
 				group.setGenderType(rs.getString("gender_type"));
 				group.setGradeType(rs.getString("grade_type"));
 				group.setSubjectId(rs.getInt("subject_id"));
-				group.setLeaderId(rs.getInt("leader_id"));;
+				group.setLeaderId(rs.getInt("leader_id"));
 			}
 			jdbcUtil.commit();
 		}catch(Exception e) {
