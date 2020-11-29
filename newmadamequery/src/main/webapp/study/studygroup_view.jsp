@@ -172,7 +172,7 @@ th, #bc, #bc2{
 			<tr>
 				<td id="bc2">스터디 방식</td>
 				<td style="width: 15px;">${StudyGroup.meetingType }</td>
-				<td id="bc2">성별</td>
+				<td id="bc2">모집성별</td>
 				<td>
 					<c:set var="gen" value="${StudyGroup.genderType }" />
 					<c:if test="${gen eq '1'}">
@@ -187,7 +187,7 @@ th, #bc, #bc2{
 				</td>
 			</tr>
 			<tr>
-				<td id="bc2">학년</td>
+				<td id="bc2">모집학년</td>
 				<td style="width: 15px;">${StudyGroup.gradeType}</td>
 				<td id="bc2">기간</td>
 				<td >${StudyGroup.term }</td>

@@ -185,10 +185,10 @@ function home(targetUri) {
 			<td>&nbsp;
 				<c:set var= "gender" value="${ user.gender}" />
 				<c:if test="${gender eq '1'}"> 
-					<c:out value="남자" />
+					<c:out value="남성" />
 				</c:if>
 				<c:if test="${gender eq '2'}">
-					<c:out value="여자" />
+					<c:out value="여성" />
 				</c:if>
 			</td>
 		</tr>
