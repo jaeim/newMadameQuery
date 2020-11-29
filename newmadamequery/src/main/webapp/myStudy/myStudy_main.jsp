@@ -3,9 +3,7 @@
     <%@page import="java.util.*" %>
 <%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	List<StudyGroup> groupList = (List<StudyGroup>) request.getAttribute("groupList");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +24,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center; 
@@ -79,7 +77,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -91,7 +88,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -106,7 +102,6 @@ ul, li {
 #groupList{
 	text-align: center;
 	border: 1px solid #E6E6E6;
-	font-family: "Arial";
 	width: 500px;
 	height: auto;
 }

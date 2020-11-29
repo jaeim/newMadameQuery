@@ -72,7 +72,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -125,7 +125,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -137,7 +136,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -151,14 +149,12 @@ ul, li {
  	#title {
  		text-align: center;
  		font-size: 50px;
- 		font-family: Arial;
  	}
  	#joinTable, #lectureTable{
  		text-align: center;
  		border: 1px solid black;
  		margin-left: auto;
  		margin-right: auto;
- 		font-family: Arial;
  	}
  	#joinTable{
  		width: 550px;

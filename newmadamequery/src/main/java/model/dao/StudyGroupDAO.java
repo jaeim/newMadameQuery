@@ -161,12 +161,12 @@ public class StudyGroupDAO {
 	// StudyGroup의 속성을 수정 (StudyGroup을 수정 할 때 group_id와 created_date는 변경될 수 없다.)
 	public int updateGroup(StudyGroup group) {
 		int result = 0;
-		String query = "UPDATE studyGroup SET name=? , term=? , meeting_type=? "
+		String query = "UPDATE studyGroup SET name=? , number_of_member=?, term=? , meeting_type=? "
 				+", gender_type=? , grade_type=? , leader_id=? , description=? "
 				+ "WHERE group_id=?";
 			
 		Object [] param = new Object[] {
-				group.getGroupName(), group.getTerm(), group.getMeetingType()
+				group.getGroupName(), group.getNumberOfUsers(), group.getTerm(), group.getMeetingType()
 				, group.getGenderType(), group.getGradeType(), group.getLeaderId(), group.getDescription(), group.getGroupId()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);

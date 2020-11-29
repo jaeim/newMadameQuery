@@ -43,7 +43,7 @@
 	body {
 	  margin: 0;
 	  padding: 0;
-	  font-family: Arial;
+	  font-family: 'NanumSquare', sans-serif !important;
 	  display: flex;
 	  flex-flow: column nowrap;
 	  justify-content: center;
@@ -96,7 +96,6 @@
 	  opacity: 0;
 	  visibility: hidden;
 	  transition: all 0.15s ease-in;
-	  font-family: Arial;
 	}
 	
 	#sub-menu > li {
@@ -108,7 +107,6 @@
 	#sub-menu > li >  a {
 	  color: black;
 	  text-decoration: none;
-	  font-family: Arial;
 	}
 	
 	#main-menu > li:hover #sub-menu {
@@ -123,7 +121,6 @@
 	#title {
  		text-align: center;
  		font-size: 50px;
- 		font-family: Arial;
  	}
  	#div1{
  	text-align: center;
@@ -172,7 +169,7 @@
 	</ul>
 </nav>
 
-<div id="div1"  style=" font-family: 'Arial;' ">
+<div id="div1" >
 	<h4 id="title">UPDATE</h4>
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
 	<table id="table1">
