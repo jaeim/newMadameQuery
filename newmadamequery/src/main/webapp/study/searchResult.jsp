@@ -4,10 +4,7 @@
 <%@page import="java.util.*" %>    
 <%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	List<StudyGroup> searchList = (List<StudyGroup>)request.getAttribute("searchList");
-	// 받아오는 리스트 이름 수정 
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,14 +114,8 @@ th{
 		<li><a href="<c:url value='/user/home' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
-					<li><a href="<c:url value= '/studyGroup/myApplyList'>
-						<c:param name='userId' value='${user.member_id}' />
-						</c:url>">나의 신청 현황</a>
-					</li>
-					<li><a href="<c:url value='/studyGroup/myStudy'>
-						<c:param name='userId' value='${user.member_id}' />
-						</c:url>">나의 스터디 보기</a>
-					</li>
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
 				</ul>
 		</li>
 		<li><a href="#">STUDYGROUP</a>
