@@ -14,6 +14,7 @@ import model.service.NotFoundException;
 public class ApplyListController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		
 		try {
