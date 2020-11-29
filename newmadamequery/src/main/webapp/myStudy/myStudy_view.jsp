@@ -6,7 +6,6 @@
 <%
 	//@SuppressWarnings("unchecked") 
 	List<Post> postList = (List<Post>)request.getAttribute("postList");
-	
 %>
 
 <!DOCTYPE html>
@@ -96,34 +95,40 @@ ul, li {
  text-decoration: underline;
 }
  	
- 	#name{
- 		background-color: black;
- 		width: 100%;
- 		heght: 200px;
- 		color: white;
- 	}
  	#board{
- 		background-color: #C0EDFF;
- 		width: 400px;
- 		height: 300px;
- 		float: left;
+ 		background-color: white;
  		text-align: center;
- 		 	}
+ 	}
  	#boardT {
- 		width: 400px;
+ 		width: 600px;
  		height: auto;
  		text-align: center;
  		margin: auto;
  	}
- 	#addboard{
- 		background-color: aqua;
- 		width: 50%;
- 		height: 50px;
- 		text-align: right;
- 	}
  	tr, td{
  		border-bottom: 1px solid black;
+ 		width: auto;
+ 		heigth: auto;
  	}
+ 	th{
+ 		background : #084B8A;
+		color: white;
+ 	}
+ 	#addB {
+		background: #E6E6E6;
+		color: black;
+		float: right;
+	}
+ 	a{
+	text-decoration: none;
+	}
+	a:link {
+		color: black;
+	}
+	a:visited {
+		color: black;
+	}
+	
 </style>
 </head>
 <body>
@@ -153,23 +158,28 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-<br><br>
+<br>
+
+<h4 style="display: inline;" id="desc">
+	<pre style="display: inline;">StudyGroup 멤버들을 위한 공간입니다.
+게시글을 통해 여러가지 정보를 나눠보세요.<hr></pre>
+</h4>
+
 <div id="board">
-	
 	<table id="boardT">
-		<caption>스터디 게시판 </caption>
+		<caption><h3>스터디 게시판 </h3></caption>
 		<tr>
-			<td width="80">그룹 아이디</td>
-			<td width="200">제목</td>
-			<td width="100">글쓴이</td>
-			<td width= "80">일시</td>
+			<th>번호</th>
+			<th>제목</th>
+			<th>글쓴이</th>
+			<th>일시</th>
 			
 		</tr>
 		<!--  모든 게시글 가져오기 / List<Post> getPostList () 이용해서  table 생성-->
 		
-		<c:forEach var="post" items="${postList}">
+		<c:forEach var="post" items="${postList}" varStatus="status">
 			<tr>
-				<td>${post.group_id}</td>
+				<td>${status.count}</td>
 				<td>
 					<a href="<c:url value='/post/detail'>
 						<c:param name='postId' value='${post.postId}' />
@@ -183,11 +193,11 @@ ul, li {
 	</div>
 	
 	<br><br>
-	<div id= "addboard">
-		 		<a href="<c:url value='/myStudy/addStudyboard.jsp'>
-						   	<c:param name='groupId' value='${groupId}'/>
-						 </c:url>">글쓰기 </a>
-	</div>
+	
+	<a href="<c:url value='/myStudy/addStudyboard.jsp'>
+				<c:param name='groupId' value='${groupId}'/>
+				</c:url>" id="addB">글쓰기 </a>
+
 
 </body>
 </html>

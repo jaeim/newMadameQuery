@@ -125,23 +125,20 @@
  		font-size: 50px;
  		font-family: Arial;
  	}
- 	#joinTable, #lectureTable{
- 		text-align: center;
- 		border: 1px solid black;
- 		margin-left: auto;
- 		margin-right: auto;
- 		font-family: Arial;
+ 	#div1{
+ 	text-align: center;
+ 	border: 1px solid grey;
+ 	margin-bottom:  50px;
+ 	margin: 50px;
+ 	padding-top: 10px;
+	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right:30px;
+	width: 400px;
+	
  	}
- 	#joinTable{
- 		width: 550px;
- 		height: 500px;
- 	}
- 	#lectureTable, #tags{
- 		border: 1px solid black;
- 		width: 350px;
- 		height: 100px;
- 		margin-left: auto;
- 		margin-right: auto;
+ 	#table1{
+ 		margin: auto;
  	}
 </style>
 </head>
@@ -174,37 +171,38 @@
 		</li>
 	</ul>
 </nav>
-<p id="title">UPDATE</p>
-<div>
-	
+
+<div id="div1"  style=" font-family: 'Arial;' ">
+	<h4 id="title">UPDATE</h4>
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
-	<table>
+	<table id="table1">
 		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email" value="${user.email }" ></td>
-		</tr>
-		<tr>
-			<td>비밀번호: </td>
-			<td><input type="password" name="password" value="${user.password}"></td>
-		</tr>
-		<tr>
-			<td>비밀번호: </td>
-			<td><input type="password" name="password2" value="${user.password}"></td>
-		</tr>
-		<tr>
-			<td>이름: </td>
+			<td>이름 </td>
 			<td><input type="text" name="name" value="${user.name }"></td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td>이메일 주소(ID) </td>
+			<td><input type="text" name="email" value="${user.email }" ></td>
+		</tr>
+		<tr>
+			<td>비밀번호 </td>
+			<td><input type="password" name="password" value="${user.password}"></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인 </td>
+			<td><input type="password" name="password2" value="${user.password}"></td>
+		</tr>
+		
+		<tr>
+			<td>휴대폰 번호</td>
 			<td><input type="text" name="phone" value="${user.phone }" ></td>
 		</tr>
 		<tr>
-			<td>소속 학교 명: </td>
+			<td>소속 학교 명 </td>
 			<td><input type="text" name="university" value="${user.university }" ></td>
 		</tr>
 		<tr>
-			<td>소속 학과명: </td>
+			<td>소속 학과명 </td>
 			<td><input type="text" name="department" value="${user.department }" ></td>
 		</tr>
 		<tr>
@@ -216,6 +214,7 @@
 			<td><input type="text" name="gender" value="${user.gender }" ></td>
 		</tr>
 	</table>
+	<br><br>
 	<input type="button" value="수정(완료)" onClick="userModify()" />
 </form>
 </div>

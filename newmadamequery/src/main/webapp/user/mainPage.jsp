@@ -88,13 +88,26 @@ ul, li {
  text-decoration: underline;
 }
 
- #first{
+#first{
  	border: 1px solid black;
  	text-align: center;
  }
+#loginB, #userRB, #logout, #toMP{
+	color: #08088A;
+	font-weight: bold;
+	background:  #C0EDFF;
+	text-decoration: none;
+}
 
-
- 
+#div1, #div2{
+	border: 1px solid #C0EDFF;
+	margin : auto;
+	padding: 10px;
+	text-align: center;
+	width: 300px;
+	height: 100px;
+	border-style: outset;
+}
 </style>
 </head>
 <body>
@@ -131,25 +144,36 @@ ul, li {
 
 <br>
 <br>
-<div id="fisrt">
 
-<c:if test= "${user.member_id eq null }" >
-	<a href="<c:url value='/user/login/form' />">로그인</a> <br>
-	<a href="<c:url value='/user/register/form' />">회원가입</a>
-</c:if>
+	<img src='../images/som2.gif' />
+	
+	<h4>
+		<pre>Study with me!
+원하는 스터디 그룹을 찾고 싶으신가요?</pre>
+	</h4>
+	
+	<c:if test= "${user.member_id eq null }" >
+		<div id="div1">
+			<br>
+			<a href="<c:url value='/user/login/form' />" id="loginB">로그인</a> <br><br>
+			<a href="<c:url value='/user/register/form' />" id="userRB">회원가입</a>
+		</div>
+	</c:if>
 
 
-<c:if test= "${user.member_id ne null }" >
-	사용자 이름: ${user.name } (로그인 o.k) <br>
- 	<c:out value="${user.member_id}" />
- 	<br>
-	<a href="<c:url value='/user/view' >
-		<c:param name='userId' value='${user.member_id}' />
-		</c:url> ">마이페이지로 이동</a>
-	<br>
-	<a href="<c:url value= '/user/logout' />">로그아웃</a>
-</c:if>
-</div>
+
+	<c:if test= "${user.member_id ne null }" >
+		<div id="div2">
+		이름: ${user.name } (로그인) <br>
+ 		<br>
+		<a href="<c:url value='/user/view' >
+			<c:param name='userId' value='${user.member_id}' />
+			</c:url> " id="toMP">마이페이지로 이동</a>
+		<br><br>
+		<a href="<c:url value= '/user/logout' />" id="logout">로그아웃</a>
+		</div>
+	</c:if>
+
 
 </body>
 </html>

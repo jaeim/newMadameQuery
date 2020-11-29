@@ -172,10 +172,18 @@ ul, li {
  		margin-right: auto;
  	}
 #joinDiv {
-	border: 1px solid black;
 	text-align: center;
-	width: 450px;
-	height: 500px;
+ 	border: 1px solid grey;
+ 	margin-bottom:  50px;
+ 	margin: 50px;
+ 	padding-top: 10px;
+	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right:30px;
+	width: 400px;
+}
+#table1{
+	margin: auto;
 }
 </style>
 </head>
@@ -207,13 +215,12 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-<br><br>
 
 <div id="joinDiv">
 	
-	<h1>Join With Us!</h1>
+	<h4 id="title">Join With us!</h4>
 	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
-	<table>
+	<table id="table1">
 		<tr>
 			<td>이메일: </td>
 			<td><input type="text" name="email"></td>
@@ -231,7 +238,7 @@ ul, li {
 			<td><input type="text" name="name"></td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td>휴대폰 번호(ex.010-1234-5678)</td>
 			<td><input type="text" name="phone"></td>
 		</tr>
 		<tr>
@@ -299,15 +306,9 @@ ul, li {
 			</td>
 		</tr>
 	</table>
-	<br>
-	<table style="width: 100%">
-		  <tr>
-			<td align="left">
-			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
-			</td>
-		  </tr>
-	    </table>
-	 <br>
+	<br><br>
+	<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
+	
 	</form>
 </div>
 </body>

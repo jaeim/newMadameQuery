@@ -94,9 +94,25 @@ ul, li {
 }
 
 #groupList{
-	border-bottom: 1px solid black;
+	text-align: center;
+	border: 1px solid black;
+	font-family: "Arial";
+	width: 500px;
+	height: auto;
 }
-
+th{
+	background : #084B8A;
+	color: white;
+}
+a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
 
 </style>
 </head>
@@ -127,12 +143,13 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-<div>
-	<table id="groupList">
+<br><br>
+<table id="groupList">
 		<tr>
 			<th>그룹 명</th>
 			<th>모집인원</th>
 			<th>생성일</th>
+			<th>&nbsp;</th>
 		</tr>
 		
 		<c:forEach var="group" items="${groupList}">
@@ -150,7 +167,7 @@ ul, li {
 						 </c:url>">탈퇴</a></td>
 			</tr>
 		</c:forEach>
-	</table>
-</div>
+</table>
+
 </body>
 </html>

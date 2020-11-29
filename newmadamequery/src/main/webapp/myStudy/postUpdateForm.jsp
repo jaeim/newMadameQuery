@@ -104,15 +104,22 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-td{
-	border-right: 1px solid black;
-	width: 100px;
-}
-#onePost {
-	border: 1px solid black;
-	width: 700px;
-	height: auto;
+
+
+#pTable{
+	margin: auto;
+	width: 400px;
+	height: 200px;
 	text-align: center;
+}
+#bc{
+	background : #084B8A;
+	color: white;
+}
+#pUpdateB{
+	background : #084B8A;
+	color: white;
+	float: right;
 }
 </style>
 </head>
@@ -147,28 +154,32 @@ td{
 <br><br>
 
 <div id="onePost">
-
-<form name="form" method="POST" action="<c:url value='/post/update'>
+	<h3 style="text-align: center;">게시글 수정</h3>
+	<form name="form" method="POST" action="<c:url value='/post/update'>
 	<c:param name="postId" value="${post.postId}" />
-</c:url>">
+	</c:url>">
+	
 	<table id="pTable">
-		
 		<tr>
-			<td>제목</td>
-			<td><input type="text" name="title" value="${post.title}"></td>
-			<td>작성자</td>
+			<td id="bc">작성자</td>
 			<td>${post.userName }</td>
-			<td>날짜</td>
+			<td id="bc">날짜</td>
 			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
-			<td >내용</td>
-			<td colspan="5"><input type="text" value="${post.content}" name="content" ></td>
+			<td id="bc">제목</td>
+			<td colspan="3"><input type="text" name="title" value="${post.title}" style="width: 300px;"></td>
+		</tr>
+		<tr>
+			<td rowspan="2" id="bc">내용</td>
+			<td rowspan= "2" colspan="3"><input type="text" value="${post.content}" name="content" style="width: 300px;"></td>
 		</tr>
 	</table>
-	<input type="button" value="수정 완료" onClick="postModify()" />
+	<br>
+	<input type="button" value="수정 완료" onClick="postModify()" id="pUpdateB" />
 </form>
-	
 </div>
+
+
 </body>
 </html>

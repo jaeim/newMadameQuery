@@ -106,6 +106,13 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+
+#loginform {
+	margin-bottom: 100px;
+	padding: 70px;
+	border-style: double;
+	border : 1px double #D8D8D8;
+}
 </style>
 </head>
 <body>
@@ -136,47 +143,19 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-
-<form name="form" method="POST" action="<c:url value='/user/login' />">
-  <table>
-	<tr>
-	  <td ></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td>&nbsp;&nbsp;<b>사용자 관리 - 로그인</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
-        <c:if test="${loginFailed}">
+<br><br>
+<div id="loginform" >
+<form  name="form" method="POST" action="<c:url value='/user/login' />">
+	<b>LOGIN</b>
+	<c:if test="${loginFailed}">
 	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>
-	    <br>	  
-	    <table >
-	  	  <tr >
-			<td >사용자 ID</td>
-			<td>
-				<input type="text" style="width:240" name="email">
-			</td>
-		  </tr>
-	  	  <tr >
-			<td >비밀번호</td>
-			<td >
-				<input type="password" style="width:240" name="password">
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	<table>
-		  <tr>
-			<td>
-			<input type="button" value="로그인" onClick="login()"> &nbsp;
-			</td>						
-		  </tr>
-	    </table>
-	  </td>	  
-	</tr>
-
-  </table>  
+	<h4> 사용자 ID : </h4>
+	<input type="text" style="width:240" name="email">
+	<h4> 비밀번호 : </h4>
+	<input type="password" style="width:240" name="password"><br><br>
+	<input type="button" value="로그인" onClick="login()"> &nbsp;
 </form>
+</div>
 </body>
 </html>

@@ -94,26 +94,30 @@ ul, li {
  		font-size: 50px;
  		font-family: Arial;
  }
- #joinTable, #lectureTable{
- 		text-align: center;
- 		border: 1px solid black;
- 		margin-left: auto;
- 		margin-right: auto;
- 		font-family: Arial;
- }
- #joinTable{
- 		width: 550px;
- 		height: 500px;
- }
- #lectureTable, #tags{
- 		border: 1px solid black;
- 		width: 350px;
- 		height: 100px;
- 		margin-left: auto;
- 		margin-right: auto;
- }
  #forUpdate, #forHome {
  	diplay: inline;
+ }
+ 
+ #goHome, #updateB {
+ 	color: #08088A;
+	font-weight: bold;
+	background:  #C0EDFF;
+	text-decoration: none;
+ }
+ #div1{
+ 	text-align: center;
+ 	border: 1px solid grey;
+ 	margin-bottom:  50px;
+ 	margin: 50px;
+ 	padding-top: 10px;
+	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right:30px;
+	width: 400px;
+	
+ }
+ #table1{
+ 	margin: auto;
  }
 </style>
 
@@ -155,38 +159,36 @@ function home(targetUri) {
 	</ul>
 </nav>
 
-<div>
-	<p id="title">My Page</p>
-	<table>
+<div id="div1" style=" font-family: 'Arial;' ">
+	<h4 id="title">My Page</h4>
+	<table id="table1">
 		<tr>
-			<td>이름: </td>
-			<td>${user.name }</td>
+			<td>이름 </td>
+			<td>&nbsp;${user.name }</td>
+		</tr>
+		<tr>
+			<td>이메일 주소 </td>
+			<td>&nbsp;${user.email }</td>
 		</tr>
 		<tr>
 			<td>휴대폰 번호</td>
-			<td>${user.phone }</td>
+			<td>&nbsp;${user.phone }</td>
 		</tr>
 		<tr>
-			<td>이메일 주소: </td>
-			<td>${user.email }</td>
+			<td>소속 학교 명 </td>
+			<td>&nbsp;${user.university }</td>
 		</tr>
 		<tr>
-			<td>소속 학교 명: </td>
-			<td>${user.university }</td>
-		</tr>
-		<tr>
-			<td>소속 학과명: </td>
-			<td>
-				${user.department }
-			</td>
+			<td>소속 학과명 </td>
+			<td>&nbsp;${user.department }</td>
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td>${user.grade }</td>
+			<td>&nbsp;${user.grade }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td>
+			<td>&nbsp;
 				<c:set var= "gender" value="${ user.gender}" />
 				<c:if test="${gender eq '1'}"> 
 					<c:out value="남자" />
@@ -197,12 +199,15 @@ function home(targetUri) {
 			</td>
 		</tr>
 	</table>
+</div>
+<div id="div2">
 	<a href="<c:url value= '/user/home'>
 		<c:param name='memberId' value='${user.member_id }' />
-	</c:url>">홈으로</a>
+	</c:url>" id="goHome">홈으로</a>
 	<a href="<c:url value= '/user/update/form' >
 	<c:param name='userId' value='${user.member_id }' />
-	</c:url>">수정하기</a>	
+	</c:url>" id="updateB">수정하기</a>	
+	
 </div>
 <br>
 </body>

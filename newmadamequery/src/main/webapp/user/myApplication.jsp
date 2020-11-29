@@ -92,6 +92,12 @@ ul, li {
 	border: 1px solid black;
 	width: 500px;
 	height: auto;
+	font-family: "Arial";
+}
+
+th{
+	background : #084B8A;
+	color: white;
 }
 </style>
 </head>
@@ -129,11 +135,11 @@ ul, li {
 	%>
 	<!-- 보여줄 정보 : 스터디그룹 명, 수락 여부(isApproved), 신청날짜  -->
 	<table id="apTable">
-		<caption>나의 신청 현황 </caption>
+		<caption><h4 style="display: inline;">나의 신청 현황 </h4></caption>
 		<tr>
-			<td>그룹 명</td>
-			<td>수락 여부</td>
-			<td>신청 날짜</td>
+			<th>그룹 명</th>
+			<th>수락 여부</th>
+			<th>신청 날짜</th>
 		</tr>
 		<c:forEach var="apList" items="${applyList }" >
 			<tr>

@@ -106,17 +106,16 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-
-#addform{
- 		border: 1px solid black;
- 		padding: 10px;
- 		width: 450px;
- 		height: auto;
- 		tedxt-alingn: center;
- 		margin: auto;
- 		posigon: absolute;
- 		
- }
+#addform {
+	border: 1px solid #E6E6E6;
+	text-align: center;
+	padding: 10px;
+	width: 450px;
+}
+#addT{
+	margin: auto;
+	width: 400px;
+}
  #title{
  		width:100%;
  		height: 20px;
@@ -130,6 +129,10 @@ ul, li {
  		margin-top: 10px;
  		width: 30%;
  		height: 30px;
+ }
+ th{
+ 	background : #084B8A;
+	color: white;
  }
  	
 </style>
@@ -167,13 +170,29 @@ ul, li {
 	request.setAttribute("groupId", request.getParameter("groupId"));
 %>
 <div id="addform">
-	This is group_id : ${groupId}
 	<form name="form" method="POST" action="<c:url value='/post/create'>
 		<c:param name='groupId' value='${groupId}' />
-	</c:url>">
-		<input type="text" name="title" />
-		<input type="text" name="content" />
-		<input type="button" id="sm" value="게시글 작성 " onClick="postCreate()" />
+		</c:url>">
+	
+	<table id="addT">
+		<tr>
+			<th>&nbsp;</th>
+			<th>내용 작성하기</th>
+		</tr>
+		<tr>
+			<td>제목</td>
+			<td><input type="text" name="title" style="width: 300px;"/></td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><input type="text" name="content" style="width: 300px; height: 100px;"/></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" id="sm" value="게시글 작성 " onClick="postCreate()" /></td>
+		</tr>
+		
+	</table>
 	</form>
 </div>
 
