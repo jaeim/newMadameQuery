@@ -170,6 +170,10 @@ th, #bc, #bc2{
 				<td colspan="2">${StudyGroup.description}</td>
 			</tr>
 			<tr>
+				<td colspan="2" id="bc" >모집인원</td>
+				<td colspan="2">${StudyGroup.numberOfUsers}명</td>
+			</tr>
+			<tr>
 				<td id="bc2">스터디 방식</td>
 				<td style="width: 15px;">${StudyGroup.meetingType }</td>
 				<td id="bc2">모집성별</td>
@@ -188,9 +192,17 @@ th, #bc, #bc2{
 			</tr>
 			<tr>
 				<td id="bc2">모집학년</td>
-				<td style="width: 15px;">${StudyGroup.gradeType}</td>
-				<td id="bc2">기간</td>
-				<td >${StudyGroup.term }</td>
+				<td style="width: 15px;">
+					<c:set var="grade" value="${StudyGroup.gradeType}" />
+					<c:if test="${grade eq '0'}">
+						<c:out value="상관없음" />
+					</c:if>
+					<c:if test="${grade != '0'}">
+						<c:out value="${grade}" />학년
+					</c:if>
+				</td>
+				<td id="bc2">수행기간</td>
+				<td >${StudyGroup.term }개월</td>
 			</tr>
 		</table>
 </div>
