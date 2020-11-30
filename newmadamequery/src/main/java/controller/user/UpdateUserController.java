@@ -66,7 +66,7 @@ public class UpdateUserController implements Controller {
 		
 		request.setAttribute("user", updateUser);
 		
-		return "/user/mainPage.jsp";
+		return "redirect:/user/view";
 	}
 
 }

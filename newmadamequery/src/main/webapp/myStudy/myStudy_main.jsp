@@ -118,7 +118,12 @@ a:link {
 a:visited {
 	color: black;
 }
-
+#bc{
+	color: blue;
+}
+#out{
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -157,14 +162,14 @@ a:visited {
 				<td>
 					<a href="<c:url value='/post/list'>
 						   <c:param name='groupId' value='${group.groupId}'/>
-						 </c:url>">${group.groupName} </a> 
+						 </c:url>" id="bc">${group.groupName} </a> 
 						 
 				</td>
 				<td>${group.numberOfUsers}</td>
 				<td>${group.createdDate}</td>
 				<td><a href="<c:url value='/studyGroup/myStudy/dropOut'>
 						   <c:param name='groupId' value='${group.groupId}'/>
-						 </c:url>">탈퇴</a></td>
+						 </c:url>" id="out">탈퇴</a></td>
 			</tr>
 		</c:forEach>
 </table>

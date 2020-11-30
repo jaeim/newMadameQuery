@@ -100,6 +100,18 @@ th{
 	background : #084B8A;
 	color: white;
 }
+a{
+	text-decoration: none;
+	}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#bc{
+	color: blue;
+}
 </style>
 
 <style>
