@@ -14,7 +14,7 @@
 
 <script>
 	function groupModify() {
-		if(form.groupName.value ==""){
+		if(form.groupName.value == ""){
 			alert("스터디 그룹 명을 입력하시오.");
 			form.groupName.focus();
 			return false;
@@ -29,10 +29,10 @@
 	}
 </script>
 <style>
-	body {
+body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -85,7 +85,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -97,7 +96,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -111,7 +109,6 @@ ul, li {
 
  #main1, #main2{
  		text-align: center;
- 		font-family: Arial;
  		border: 1px solid #BDBDBD;
  		margin-top: 50px;
  		margin-bottom: 20px;
@@ -120,7 +117,6 @@ ul, li {
  		}
  #userlist{
  		text-align: center;
- 		font-family: Arial;
  		border: 1px solid #BDBDBD;
  		margin-bottom: 50px;
  		width: 700px;
@@ -183,17 +179,32 @@ a:visited {
 			<td id="bc">스터디그룹 명(groupid: ${studyGroup.groupId})</td>
 			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
 			<td id="bc">인원</td>
-			<td>${studyGroup.numberOfUsers } </td>
+			<td> 
+				<select name="numberOfUsers">
+						<c:set var= "num" value="${studyGroup.numberOfUsers }" />
+						<option value="3" <c:if test="${num eq 3}"> selected </c:if>>3명</option> 
+						<option value="4" <c:if test="${num eq 4}"> selected </c:if>>4명</option> 
+						<option value="5" <c:if test="${num eq 5}"> selected </c:if>>5명 </option> 
+						<option value="6" <c:if test="${num eq 6}"> selected </c:if>>6명 </option> 
+						<option value="7" <c:if test="${num eq 7}"> selected </c:if>>7명 </option> 
+						<option value="8" <c:if test="${num eq 8}"> selected </c:if>>8명 </option> 
+						<option value="9" <c:if test="${num eq 9}"> selected </c:if>>9명 </option> 
+						<option value="10" <c:if test="${num eq 10}"> selected </c:if>>10명 </option> 
+						<option value="11" <c:if test="${num eq 11}"> selected </c:if>>10명 이상 </option> 
+						<option value="0" <c:if test="${num eq 0}"> selected </c:if>>상관 없음</option> 
+				</select>
+			
+			</td>
 			<td id="bc">기간</td>
 			<td>
 				<select name="term">
 						<c:set var= "term" value="${studyGroup.term}" />
-						<option value="-1" <c:if test="${term eq '-1'}"> selected </c:if>>-선택안함-</option> 
-						<option value="1" <c:if test="${term eq '1'}"> selected </c:if>>1개월</option> 
-						<option value="3" <c:if test="${term eq '2'}"> selected </c:if>>3개월</option> 
-						<option value="6" <c:if test="${term eq '3'}"> selected </c:if>>6개월 </option> 
-						<option value="10" <c:if test="${term eq '4'}"> selected </c:if>>6개월 이상</option> 
-						<option value="0" <c:if test="${term eq '0'}"> selected </c:if>>상관 없음</option> 
+						<option value="1" <c:if test="${term eq 1}"> selected </c:if>>1개월</option> 
+						<option value="3" <c:if test="${term eq 3}"> selected </c:if>>3개월</option> 
+						<option value="6" <c:if test="${term eq 6}"> selected </c:if>>6개월 </option> 
+						<option value="9" <c:if test="${term eq 9}"> selected </c:if>>9개월 </option> 
+						<option value="12" <c:if test="${term eq 12}"> selected </c:if>>12개월 </option> 
+						<option value="0" <c:if test="${term eq 0}"> selected </c:if>>상관 없음</option> 
 				</select>
 			</td>
 		</tr>
@@ -219,7 +230,6 @@ a:visited {
 		<td id="bc">성별</td>
 		<td><select name="genderType">
 				<c:set var="gender" value="${studyGroup.genderType }" />
-				<option value="-1" <c:if test="${gender eq '-1'}">selected</c:if>>-선택안함-</option>
 				<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
 				<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
 				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
@@ -229,7 +239,6 @@ a:visited {
 		<td id="bc">팀장</td>
 		<td>
 			<select name="leaderId">
-					<option value="">없음</option>
 					<c:forEach var="member" items="${studyGroup.groupUsers}">
 						<option value="${member.member_id}"
 							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
@@ -242,10 +251,10 @@ a:visited {
 		<td>
 			<select name="gradeType" >
 				<c:set var="grade" value="${studyGroup.gradeType }" />
-				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1</option>
-				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2</option>
-				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3</option>
-				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4</option>
+				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1학년</option>
+				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2학년</option>
+				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3학년</option>
+				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4학년</option>
 				<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
 				<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
 			</select>

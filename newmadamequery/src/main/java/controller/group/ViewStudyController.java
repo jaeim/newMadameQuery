@@ -16,6 +16,7 @@ public class ViewStudyController implements Controller{
 		// TODO Auto-generated method stub
 		
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
+		String result = request.getParameter("result");
 		Manager manager = Manager.getInstance();
 		
 		StudyGroup group = null;
@@ -26,6 +27,10 @@ public class ViewStudyController implements Controller{
 		}
 		
 		request.setAttribute("StudyGroup", group);
-		return "/study/studygroup_view.jsp";
+		if(result == null) {
+			return "/study/studygroup_view.jsp";
+		}else {
+			return "/study/studygroup_view.jsp?result=" + result;
+		}
 	}
 }

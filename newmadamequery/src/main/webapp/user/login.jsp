@@ -30,7 +30,7 @@ function userCreate(targetUri) {
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -83,7 +83,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -95,7 +94,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -119,7 +117,7 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="<c:url value='/user/mainPage' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>

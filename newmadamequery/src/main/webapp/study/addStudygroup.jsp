@@ -57,7 +57,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -110,7 +110,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -122,7 +121,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -135,7 +133,6 @@ ul, li {
 }
  		
 #intro{
-		font-family: Arial;
 		font-size: 15px;
 		border-bottom: 1px dashed black;
 		text-align: center;
@@ -145,7 +142,6 @@ ul, li {
 		border: 1px solid #E6E6E6;
 		width: 550px;
 		height: 300px;
-		font-family: Arial;
 
 	}
 #bc{
@@ -185,7 +181,7 @@ ul, li {
 
 <div id="intro">
 <h5>
-	<pre>StudyGroup
+	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
 스터디 등록 후, 마음에 드는 팀원을 찾아보세요.
 스터디 등록을 위한 조건을 입력 및 선택해주세요.</pre></h5>	
 </div>
@@ -230,7 +226,8 @@ ul, li {
 					<option value="1">1개월</option>
 					<option value="3">3개월</option>
 					<option value="6">6개월</option>
-					<option value="10">6개월 이상</option>
+					<option value="9">9개월</option>
+					<option value="12">12개월</option>
 					<option value="0">상관없음</option>
 				</select>
 				

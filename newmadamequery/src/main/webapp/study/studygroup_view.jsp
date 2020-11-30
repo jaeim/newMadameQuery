@@ -8,13 +8,32 @@
 <head>
 <meta charset="EUC-KR">
 <title>스터디그룹 _view</title>
+<%
+	String result = request.getParameter("result");
 
+	out.println("<script>");
+	if(result != null){
+		if(result.equals("1")){
+			out.println("alert('신청에 성공하였습니다.');");
+			// 버튼클릭시 내 신청현황으로 이동...
+		}else if(result.equals("3")){
+			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
+		}else if(result.equals("-1")){
+			out.println("alert('이미 해당 그룹에 신청하였습니다.');");
+		}else if(result.equals("2")){
+			out.println("alert('이미 해당 그룹에 존재하는 멤버입니다.');");
+		}else if(result.equals("4")){
+			out.println("alert('학년 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
+		}
+	}
+	out.println("</script>");
+%>
 
 <style>
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: inlinel;
   flex-flow: column nowrap;
   justify-content: center;
@@ -66,7 +85,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -78,7 +96,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -96,7 +113,7 @@ ul, li {
 	width: 50%;
 	height: auto;
 	border: 1px solid #E6E6E6;
-	margin-left: 25px;
+	margin-left: 150px;
 }
 #groupInfo{
 	margin: auto;
@@ -109,7 +126,7 @@ ul, li {
 	width: 300px;
 	heigth: auto;
 	border: 1px solid #E6E6E6;
-	margin-right: 50px;
+	margin-right: 150px;
 }
 #memberList{
 	margin: auto;
@@ -118,16 +135,19 @@ ul, li {
 th, #bc, #bc2{
 	background : #084B8A;
 	color: white;
+	text-align: center;
+	padding: 5px;
+	
 }
 #bc2{
-	width: 50px;
+	width: 80px;
 }
 #addMDiv{
 	float: right;
 	width: 300px;
 	heigth: 200px;
 	border: 1px solid #E6E6E6;
-	margin-right: 50px;
+	margin-right: 150px;
 }
 #applyT{
 	text-align: center;

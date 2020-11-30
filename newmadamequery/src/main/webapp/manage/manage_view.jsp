@@ -8,11 +8,13 @@
 <meta charset="EUC-KR">
 <title>스터디 그룹 관리 </title>
 <!-- (리스트에서 출력해서 들어가면 그 스터디 그룹에 대한 정보 보여주기), 삭제 및 수락 은 여기서  -->
+
 <style>
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -91,7 +93,6 @@ ul, li {
  		
  	#main1 ,#main2 {
  		text-align: center;
- 		font-family: "Arial";
  		border: 1px solid #BDBDBD;
  		margin: 20px;
  		width: 700px;
@@ -99,7 +100,6 @@ ul, li {
  		}
  	#userlist, #applyList{
  		text-align: center;
- 		font-family: "Arial";
  		border: 1px solid #BDBDBD;
  		margin-bottom: 50px;
  		width: 700px;
@@ -131,6 +131,7 @@ a:visited {
 		color: black;
 		float: right;
 }
+
  </style>
  
 <script>
@@ -169,9 +170,62 @@ function memberAccept() {
 			<td id="bc">스터디그룹 명</td>
 			<td>${studyGroup.groupName } </td>
 			<td id="bc">인원</td>
-			<td>${studyGroup.numberOfUsers } </td>
+			<td>
+				<c:set var="num" value="${studyGroup.numberOfUsers }" />
+				<c:if test="${num eq '3' }" >
+					<c:out value="3명" />
+				</c:if>
+				<c:if test="${num eq '4' }" >
+					<c:out value="4명" />
+				</c:if>
+				<c:if test="${num eq '5' }" >
+					<c:out value="5명" />
+				</c:if>
+				<c:if test="${num eq '6' }" >
+					<c:out value="6명" />
+				</c:if>
+				<c:if test="${num eq '7' }" >
+					<c:out value="7명" />
+				</c:if>
+				<c:if test="${num eq '8' }" >
+					<c:out value="8명" />
+				</c:if>
+				<c:if test="${num eq '9' }" >
+					<c:out value="9명" />
+				</c:if>
+				<c:if test="${num eq '10' }" >
+					<c:out value="10명" />
+				</c:if>
+				<c:if test="${num eq '11' }" >
+					<c:out value="10명이상" />
+				</c:if>
+				<c:if test="${num eq '0' }" >
+					<c:out value="상관없음" />
+				</c:if>
+			
+			</td>
 			<td id="bc">기간</td>
-			<td>${studyGroup.term }</td>
+			<td>
+				<c:set var="term" value="${studyGroup.term }" />
+				<c:if test="${term eq '1' }" >
+					<c:out value="1개월" />
+				</c:if>
+				<c:if test="${term eq '3' }" >
+					<c:out value="3개월" />
+				</c:if>
+				<c:if test="${term eq '6' }" >
+					<c:out value="6개월" />
+				</c:if>
+				<c:if test="${term eq '9' }" >
+					<c:out value="9개월 " />
+				</c:if>
+				<c:if test="${term eq '12' }" >
+					<c:out value="12개월 " />
+				</c:if>
+				<c:if test="${term eq '0' }" >
+					<c:out value="상관없음" />
+				</c:if>
+			</td>
 		</tr>
 </table>
 

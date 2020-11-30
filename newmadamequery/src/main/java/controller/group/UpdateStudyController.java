@@ -32,6 +32,8 @@ public class UpdateStudyController implements Controller {
 		StudyGroup group = manager.findGroup(groupId);
 		String groupName = (String) request.getParameter("groupName");
 		if(groupName != null) { group.setGroupName(groupName); }
+		String numberOfUsers = (String) request.getParameter("numberOfUsers");
+		if (numberOfUsers != null) { group.setNumberOfUsers(Integer.valueOf(numberOfUsers)); }
 		String term = (String) request.getParameter("term");
 		if(term != null) { group.setTerm(Integer.valueOf(term)); }
 		String meetingType = (String)request.getParameter("meetingType");

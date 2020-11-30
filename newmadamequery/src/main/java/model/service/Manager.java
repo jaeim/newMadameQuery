@@ -201,7 +201,7 @@ public class Manager {
 	}
 	
 	// ok
-	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
+	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException{
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
@@ -214,22 +214,26 @@ public class Manager {
 		
 		if (isExistingUser != 0) {
 			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
-			throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
+			//throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
+			return -1;
 		}else if (isGroupMember != 0) {
 			System.out.println("이미 해당 그룹에 존재하는 멤버입니다. 결과는  " + isGroupMember);
-			throw new ExistingException("이미 해당 그룹에 존재하는 멤버입니다.");	
+			//throw new ExistingException("이미 해당 그룹에 존재하는 멤버입니다.");	
+			return 2;
 		}
 		else if (!studyGroup.getGenderType().equals("0")) {
 			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
 				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
-				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				//throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				return 3;
 			}		
 		} else if (!studyGroup.getGradeType().equals("0")) {
 			// studyGroup의 grade 이상인 학년은 가입 가능하도록 설정함
 			if (Integer.valueOf(user.getGrade()) < Integer.valueOf(studyGroup.getGradeType())) {
 				System.out.println("신청 조건에 맞지 않습니다." + "유저 학년: "
 						+ user.getGrade() + " 그룹 학년 : " + studyGroup.getGradeType());
-				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				//throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				return 4;
 			}
 		}
 		

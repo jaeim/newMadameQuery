@@ -12,7 +12,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -65,7 +65,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -77,7 +76,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -90,7 +88,6 @@ ul, li {
 }
  		
 #intro{
-	font-family: Arial;
 	font-size: 15px;
 }
 #searchT{
@@ -139,7 +136,7 @@ th{
 
 <div id="intro">
 <h5>
-	<pre>StudyGroup
+	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
 원하는 스터디 모임을 검색해보세요.
 스터디 모임 검색을 위한 조건을 입력 및 선택하세요.</pre></h5>
 </div>

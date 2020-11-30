@@ -13,7 +13,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -66,7 +66,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -78,7 +77,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -95,7 +93,7 @@ th{
 	color: white;
 }
 #allList{
-	width: 450px;
+	width: 600px;
 	height: auto;
 }
 a{
@@ -136,7 +134,7 @@ a:visited {
 
 <div>
 <h5>
-	<pre>StudyGroup
+	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
 마음에 맞는 스터디를 찾아보세요!
 	</pre></h5>	
 </div>
@@ -156,7 +154,7 @@ a:visited {
 				</c:url>" id="bc">${group.groupName}</a>
 			</td>
 			<td>${group.description}</td>
-			<td>${group.term}</td>
+			<td>${group.term}개월</td>
 		</tr>
 	</c:forEach>
 </table>

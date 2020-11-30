@@ -3,10 +3,6 @@
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	//@SuppressWarnings("unchecked") 
-	List<Post> postList = (List<Post>)request.getAttribute("postList");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +14,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -71,7 +67,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -83,7 +78,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -155,7 +149,7 @@ ul, li {
 <br>
 
 <h4 style="display: inline;" id="desc">
-	<pre style="display: inline;">StudyGroup 멤버들을 위한 공간입니다.
+	<pre style="display: inline; font-family: 'NanumSquare', sans-serif !important;">StudyGroup 멤버들을 위한 공간입니다.
 게시글을 통해 여러가지 정보를 나눠보세요.<hr></pre>
 </h4>
 

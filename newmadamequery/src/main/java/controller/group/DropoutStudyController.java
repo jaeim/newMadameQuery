@@ -22,7 +22,6 @@ public class DropoutStudyController implements Controller {
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
 		//int memberId = Integer.valueOf(request.getParameter("member_id"));
 		int memberId = UserSessionUtils.getLoginUserId(request.getSession());
-		
 		Manager manager = Manager.getInstance();
 		try {
 			StudyGroup group = manager.findGroup(groupId);
@@ -49,6 +48,6 @@ public class DropoutStudyController implements Controller {
 			
 		}
 		request.setAttribute("groupList", manager.getMyStudyGroupList(memberId));
-		return "/myStudy/myStudy_main.jsp";
+		return "/myStudy/myStudy_main.jsp?";
 	}
 }
