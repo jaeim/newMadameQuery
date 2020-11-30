@@ -117,7 +117,7 @@ ul, li {
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="<c:url value='/user/mainPage' />">HOME</a></li>
 		<li><a href="#">MYSTUDY</a>
 				<ul id="sub-menu">
 					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
