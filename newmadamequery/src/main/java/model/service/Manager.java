@@ -341,7 +341,7 @@ public class Manager {
 	public int removeComment(int commentId) throws SQLException, NotFoundException{
 		if(!commentDAO.existingComment(commentId)) {throw new NotFoundException(commentId + "는 존재하지 않는 댓글입니다.");}
 		
-		return commentDAO.deleteComment(commentId);
+		return commentDAO.removeComment(commentId);
 	}
 	
 	public int updateComment(Comment comment) throws SQLException, NotFoundException{
