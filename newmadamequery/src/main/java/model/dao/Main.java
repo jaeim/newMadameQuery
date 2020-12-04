@@ -547,5 +547,34 @@ public class Main {
 //		
 //		StudyGroupDAO studyGroupDAO = StudyGroupDAO.getInstance();
 //		StudyGroup s = studyGroupDAO.findGroup(611);
+		
+		
+		CommentDAO commentDAO = CommentDAO.getInstance();
+		Comment c = commentDAO.selectCommentByPrimaryKey(1301);
+//		System.out.println(c.getComment_id());
+//		System.out.println(c.getContent());
+//		System.out.println("groupId : " + c.getGroupId());
+//		System.out.println(c.getMember_id() + ", " + c.getMember_name());
+//		System.out.println("postId : " + c.getPostId());
+//		System.out.println(c.getCreatedDate());
+//		System.out.println(c.getModifiedDate());
+		
+//		System.out.println(commentDAO.selectCommentCount(901));
+		
+//		ArrayList<Comment> commentList = commentDAO.selectAllComment(901);
+//		
+//		for(Comment c: commentList) {
+//			System.out.println(c.getComment_id());
+//		}
+		
+//		c.setComment_id(-1);
+//		c.setContent("mybatis이용하여 추가한 댓글");
+//		System.out.println(commentDAO.insertComment(c));
+		
+//		commentDAO.deleteComment(1411);
+//		commentDAO.deleteAllComments(901);
+		
+		c.setContent("mybatis로 댓글 수정해 봅니다.");
+		commentDAO.updateCommentMB(c);
 	}
 }
