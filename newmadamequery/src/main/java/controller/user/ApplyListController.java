@@ -20,7 +20,7 @@ public class ApplyListController implements Controller {
 		HttpSession session = request.getSession();
 		UserSessionUtils utils = new UserSessionUtils();
 		if(!utils.hasLogined(session)) {return "redirect:/user/login";} //로그인이 되어 있지 않다면 로그인 페이지로 이동
-		
+		/////
 		int userId = Integer.valueOf(utils.getLoginUserId(session));
 		
 		try {
