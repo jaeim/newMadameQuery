@@ -3,6 +3,8 @@
 <%@page import="java.util.*" %>
 <%@page import="model.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,15 +149,19 @@ a:visited {
 		<th>기간</th>
 	</tr>
 	<c:forEach var="group" items="${groupList}"> <!-- List<StudyGroup>이 반환됨. -->
-		<tr>
-			<td>
-			<a href= "<c:url value='/studyGroup/view' >
-				<c:param name='groupId' value='${group.groupId}' />
-				</c:url>" id="bc">${group.groupName}</a>
-			</td>
-			<td>${group.description}</td>
-			<td>${group.term}개월</td>
-		</tr>
+		<c:set var="maxNum" value="${group.numberOfUsers}" />
+		<c:set var="groupUsers" value="${fn:length(group.groupUsers)}" />
+		<c:if test="${maxNum ne groupUsers}" >
+			<tr>
+				<td>
+				<a href= "<c:url value='/studyGroup/view' >
+					<c:param name='groupId' value='${group.groupId}' />
+					</c:url>" id="bc">${group.groupName}</a>
+				</td>
+				<td>${group.description}</td>
+				<td>${group.term}개월</td>
+			</tr>
+		</c:if>
 	</c:forEach>
 </table>
 </body>
