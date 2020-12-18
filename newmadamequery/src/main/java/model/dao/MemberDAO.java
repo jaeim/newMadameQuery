@@ -285,7 +285,9 @@ public class MemberDAO {
 				
 				String approved = rs.getString("isApproved");
 				if (approved.equals("1"))
-					apply.setIsApproved("수락");
+					apply.setIsApproved("수락 완료");
+				else if(approved.equals("2")) 
+					apply.setIsApproved("수락 거절");
 				else
 					apply.setIsApproved("수락 대기");
 				apply.setComment(rs.getString("commt"));
