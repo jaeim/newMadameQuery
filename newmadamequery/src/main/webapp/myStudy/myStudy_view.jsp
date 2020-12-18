@@ -182,7 +182,7 @@ ul, li {
 	
 	<br><br>
 	
-	<a href="<c:url value='/myStudy/addStudyboard.jsp'>
+	<a href="<c:url value='/post/create/form'>
 				<c:param name='groupId' value='${groupId}'/>
 				</c:url>" id="addB">글쓰기 </a>
 

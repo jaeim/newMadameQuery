@@ -530,6 +530,15 @@ public class StudyGroupDAO {
 		return group;
 	}
 	
+	public StudyGroup selectStudyGroup(int groupId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(CommentMapper.class).selectStudyGroup(groupId);			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	public boolean existingGroup(int groupId) {
 		String query = "SELECT * FROM StudyGroup WHERE group_id=?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {groupId});

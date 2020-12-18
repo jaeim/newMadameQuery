@@ -22,4 +22,6 @@ public interface CommentMapper {
 	int deleteAllComments(int postId);
 	
 	ArrayList<StudyGroup> selectAllStudyGroup();
+	
+	StudyGroup selectStudyGroup(int groupId);
 }

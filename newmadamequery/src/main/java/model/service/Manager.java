@@ -136,15 +136,18 @@ public class Manager {
 		return result;
 	}
 	
-	// ok
+	// ok (mabatis collection)
 	public StudyGroup findGroup(int groupId) throws SQLException, NotFoundException{
-		StudyGroup group = studyGroupDAO.findGroup(groupId);
+		//StudyGroup group = studyGroupDAO.findGroup(groupId);
+		
+		StudyGroup group = studyGroupDAO.selectStudyGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
 		User leader = findUser(group.getLeaderId());
 		group.setLeaderName(leader.getName());
-		ArrayList<User> userList = getAllMemberInGroup(groupId);
-		group.setGroupUsers(userList);
+		
+		//ArrayList<User> userList = getAllMemberInGroup(groupId);
+		//group.setGroupUsers(userList);
 		
 		return group;
 	}
@@ -239,14 +242,8 @@ public class Manager {
 		return studyGroupDAO.applyToGroup(groupId, userId, comments);
 	}
 	
-	// ok -> mybatis collection 써서 해야될거같음..
+	// ok (mybatis collection)
 	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
-		//ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
-		
-		//for(StudyGroup group : groupList) {
-			//ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
-			//group.setGroupUsers(memberList);
-		//}
 		
 		ArrayList<StudyGroup> groupList = studyGroupDAO.selectAllStudyGroup();
 		return groupList;
