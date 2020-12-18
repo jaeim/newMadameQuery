@@ -126,5 +126,9 @@
 		WHERE post_id = #{postId}
 	</delete>
 	
-
+	<delete id="deleteAllCommentsByGroupId" parameterType="int">
+		DELETE FROM COMMT
+		WHERE group_id = #{groupId}
+	</delete>
+	
 </mapper>

@@ -21,6 +21,8 @@ public interface TotalMapper {
 	
 	int deleteAllComments(int postId);
 	
+	int deleteAllCommentsByGroupId(int groupId);
+	
 	ArrayList<StudyGroup> selectAllStudyGroup();
 	
 	StudyGroup selectStudyGroup(int groupId);

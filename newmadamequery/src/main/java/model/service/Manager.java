@@ -112,7 +112,7 @@ public class Manager {
 		// StudyGroup을 참조 하고 있는 테이블 레코드 전부 삭제
 		result = studyGroupDAO.removeMemberInGroup(groupId, -1);
 		System.out.println("member :" + result);
-		result = commentDAO.removeAllComment(groupId);
+		result = commentDAO.deleteAllCommentsByGroupId(groupId);
 		System.out.println("comment :" + result);
 		result = postDAO.removeAllPost(groupId);
 		System.out.println("post :" + result);
@@ -298,7 +298,7 @@ public class Manager {
 		if(!postDAO.existingPost(postId)){
 			throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");
 		}
-		commentDAO.deleteCommentByPost(postId);
+		commentDAO.deleteAllComments(postId);
 		
 		return postDAO.removePost(postId);
 	}
