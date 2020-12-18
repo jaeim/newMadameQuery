@@ -9,26 +9,29 @@
 <meta charset="EUC-KR">
 <title>스터디그룹 _view</title>
 
-<script>
-	function showResult() {
-		
-		<% String result = request.getParameter("result"); 
-		if(result.equals("1")){
-			out.println("alert('신청에 성공하였습니다.');");
-			// 버튼클릭시 내 신청현황으로 이동...
-		}else if(result.equals("3")){
-			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
-		}else if(result.equals("-1")){
-			System.out.println("alert('이미 해당 그룹에 신청하였습니다.');");
-		}else if(result.equals("2")){
-			out.println("alert('이미 해당 그룹에 존재하는 멤버입니다.');");
-		}else if(result.equals("4")){
-			out.println("alert('학년 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
-		}
-		%>
 	
+<%
+	out.println("<script> ");
+	out.println("function showResult() {");
+	String rst =  request.getParameter("result");
+	
+	if(rst == null){
+		out.println("alert('팀원 신청하기 버튼을 한 번더 눌러주세요! ')");
 	}
-</script>
+	else{
+		
+		if(rst.equals("-1"))
+			out.println("alert('이미 해당 그룹에 신청하였습니다.'); ");
+		else if(rst.equals("2"))
+			out.println("alert('이미 해당 그룹에 존재하는 멤버입니다.'); ");
+		else if(rst.equals("3"))
+			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.'); ");
+		else if(rst.equals("4"))
+			out.println("alert('학년 조건에 맞지 않기 때문에 신청에 실패하였습니다.'); ");	
+	}
+	out.println(" } </script>");
+	%>
+
 <style>
 body {
   margin: 0;
@@ -249,9 +252,9 @@ th, #bc, #bc2{
 </div>
 
 <div id="addMDiv">
-<form name="form" method="POST" action="<c:url value= '/studyGroup/apply' >
+<form name="form" method="POST" action="<c:url value= '/studyGroup/apply'  >
 	<c:param name="groupId" value="${StudyGroup.groupId }"/>
-	</c:url>">
+	</c:url>" onsubmit='return frmsubmit();'>
 <table id="applyT">
 <tr>
 	<td><h5 style="color: red;">스터디 조건에 맞는 분만 신청이 가능합니다.</h5></td>
@@ -260,7 +263,7 @@ th, #bc, #bc2{
 	<td><input type="text" name="comments" /> </td>
 </tr>
 <tr>
-	<td><input type="submit" value="팀원 신청하기" onClick="showResult()" /></td>
+	<td><input type="submit" value="팀원 신청하기" onClick= "showResult()"/></td>
 </tr>
 
 	
