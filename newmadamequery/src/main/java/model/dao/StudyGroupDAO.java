@@ -344,6 +344,53 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
+	// 수락 과정
+	public int acceptApply(int groupId, int userId) {
+		int result = 0;
+		String query;
+		Object [] param;
+		query = "update applylist set isapproved=?, approved_date=sysdate " +
+		"where group_id=? and member_id=?";
+		param = new Object[] {1, groupId, userId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return result;	
+	}
+	// 거절 과정
+	public int rejectApply(int groupId, int userId) {
+		int result = 0;
+		String query;
+		Object [] param;
+		query = "update applylist set isapproved=? " +
+		"where group_id=? and member_id=?";
+		param = new Object[] {2, groupId, userId};
+		
+		jdbcUtil.setSqlAndParameters(query, param);
+		
+		try {
+			result = jdbcUtil.executeUpdate();
+			if(result != 1) {throw new AppException();}
+			jdbcUtil.commit();
+		}catch(Exception e) {
+			jdbcUtil.rollback();
+		}finally {
+			jdbcUtil.close();
+		}
+		
+		return result;	
+	}
+	
 	// 모든 스터디 그룹 조회 (MyBatis)
 	public ArrayList<StudyGroup> selectAllStudyGroup(){
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -403,9 +450,12 @@ public class StudyGroupDAO {
 		     
 		try {
 			rs = jdbcUtil.executeQuery();
-			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-			
+//			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			ArrayList<StudyGroup> groupList = null;			
 			while (rs.next()) {
+				if (groupList == null) {
+					groupList = new ArrayList<StudyGroup>();
+				}
 				StudyGroup group = new StudyGroup();
 					
 				group.setGroupId(rs.getInt("group_id"));

@@ -329,23 +329,26 @@ function memberAccept() {
 		</tr>
 		
 		<c:forEach var="aList" items="${applyList}" varStatus="status" >
-		<tr>
-			<td><c:out value="${status.count }" />
-			<td>${aList.memberId}</td>
-			<td>${aList.memberName}</td>
-			<td style="width: 300px;">${aList.comment }</td>
-			<td>${aList.applyDate }</td>
-			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
-				<c:param name="groupId" value="${studyGroup.groupId}" />
-				<c:param name="memberId" value="${aList.memberId}" />
-				<c:param name="isAccepted" value="true" />
-				</c:url>" id="acceptB">수락</a></td>
-			<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
-				<c:param name="groupId" value="${studyGroup.groupId}" />
-				<c:param name="memberId" value="${aList.memberId}" />
-				<c:param name="isAccepted" value="false" />
-				</c:url>" id="rejectB">거절</a></td>
-	</c:forEach>
+			<c:if test="${aList.isApproved eq '0'}">
+				<tr>
+					<td><c:out value="${status.count }" />
+					<td>${aList.memberId}</td>
+					<td>${aList.memberName}</td>
+					<td style="width: 300px;">${aList.comment }</td>
+					<td>${aList.applyDate }</td>
+					<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+						<c:param name="groupId" value="${studyGroup.groupId}" />
+						<c:param name="memberId" value="${aList.memberId}" />
+						<c:param name="isAccepted" value="true" />
+						</c:url>" id="acceptB">수락</a></td>
+					<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+						<c:param name="groupId" value="${studyGroup.groupId}" />
+						<c:param name="memberId" value="${aList.memberId}" />
+						<c:param name="isAccepted" value="false" />
+						</c:url>" id="rejectB">거절</a></td>
+				</tr>
+			</c:if>
+		</c:forEach>
 </table>
 
 <table>

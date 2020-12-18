@@ -156,7 +156,7 @@ public class Manager {
 	public ArrayList<StudyGroup> searchStudyGroups (int term, int numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(term, numOfMem, meeting_type, gender_type, grade_type);
 	
-		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+		if(groupList == null) {throw new SQLException("조건에 맞는 스터디 그룹이 없습니다.");}
 		
 		return groupList;
 	}
@@ -193,10 +193,12 @@ public class Manager {
 		
 		// 지원서에 없을 경우
 		if(result != 1) {throw new NotFoundException();}		
-		
-		result = studyGroupDAO.deleteFromApplyList(groupId, userId);
+//		result = studyGroupDAO.deleteFromApplyList(groupId, userId);
 		if(approved && result == 1) {
+			studyGroupDAO.acceptApply(groupId, userId);
 			result = studyGroupDAO.addMemberInGroupMember(groupId, userId, "0");
+		} else if (approved == false && result == 1) {
+			studyGroupDAO.rejectApply(groupId, userId);
 		}
 		
 		return result;
