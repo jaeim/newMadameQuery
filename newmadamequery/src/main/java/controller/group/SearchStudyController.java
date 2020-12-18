@@ -26,6 +26,7 @@ public class SearchStudyController implements Controller{
 			ArrayList<StudyGroup> groupList = manager.searchStudyGroups(term, numOfMem, meeting_type, gender_type, grade_type);
 			
 			request.setAttribute("groupList", groupList);
+
 			return "/study/searchResult.jsp";
 		} catch (Exception e) {
 			request.setAttribute("searchFailed", true);

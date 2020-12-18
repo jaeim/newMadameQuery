@@ -403,9 +403,12 @@ public class StudyGroupDAO {
 		     
 		try {
 			rs = jdbcUtil.executeQuery();
-			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-			
+//			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
+			ArrayList<StudyGroup> groupList = null;			
 			while (rs.next()) {
+				if (groupList == null) {
+					groupList = new ArrayList<StudyGroup>();
+				}
 				StudyGroup group = new StudyGroup();
 					
 				group.setGroupId(rs.getInt("group_id"));

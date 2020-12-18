@@ -154,7 +154,7 @@ a:visited {
 	</tr>
 	<c:if test="${searchFailed}">
 		<tr>
-			<br><font color="red"><c:out value="${e.getMessage()}" /></font><br>
+			<td colspan="6"><c:out value="${exception.getMessage()}" /></td>
 		</tr>
 	</c:if>
 	<c:forEach var="sl" items="${groupList}" varStatus= "status"> 
