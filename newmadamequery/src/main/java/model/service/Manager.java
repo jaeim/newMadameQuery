@@ -15,7 +15,6 @@ import model.User;
 
 // 현지
 public class Manager {
-	
 	private static Manager manager = new Manager();
 	private MemberDAO memberDAO;
 	private StudyGroupDAO studyGroupDAO;
@@ -240,15 +239,16 @@ public class Manager {
 		return studyGroupDAO.applyToGroup(groupId, userId, comments);
 	}
 	
-	// ok
+	// ok -> mybatis collection 써서 해야될거같음..
 	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
-		ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
+		//ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
 		
-		for(StudyGroup group : groupList) {
-			ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
-			group.setGroupUsers(memberList);
-		}
+		//for(StudyGroup group : groupList) {
+			//ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
+			//group.setGroupUsers(memberList);
+		//}
 		
+		ArrayList<StudyGroup> groupList = studyGroupDAO.selectAllStudyGroup();
 		return groupList;
 	}
 	

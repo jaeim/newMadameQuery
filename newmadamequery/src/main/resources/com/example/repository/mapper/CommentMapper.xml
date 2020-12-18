@@ -15,6 +15,30 @@
 		c.member_id AS member_id
 	</sql>
 	
+	<resultMap id="collectionResultMap" type="StudyGroup">
+		<id column="group_id" jdbcType="NUMERIC" property="groupId" />
+		<result column="created_date" jdbcType="DATE" property="createdDate"/>
+		<result column="number_of_member" jdbcType="NUMERIC" property="numberOfUsers" />
+		<result column="name" jdbcType="VARCHAR" property="groupName" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="term" jdbcType="NUMERIC" property="term" />
+		<result column="meeting_type" jdbcType="VARCHAR" property="meetingType" />
+		<result column="gender_type" jdbcType="CHAR" property="genderType" />
+		<result column="grade_type" jdbcType="VARCHAR" property="gradeType" />
+		<result column="subject_id" jdbcType="NUMERIC" property="subjectId" />
+		<result column="leader_id" jdbcType="NUMERIC" property="leaderId" />
+		<collection property="groupUsers" ofType="User">
+			<id property="member_id" column="member_id" />
+			<result property="gender" column="gender" />
+		</collection>	
+	</resultMap>
+	
+	<select id="selectAllStudyGroup" resultMap="collectionResultMap">
+		SELECT *
+		FROM STUDYGROUP sg, GROUPMEMBER gm
+		WHERE sg.group_id = gm.group_id
+	</select>
+	
 	<!-- getOneComment, existingComment -->
 	<select id="selectCommentByPrimaryKey" parameterType="int" 
 		resultType="Comment">
@@ -58,7 +82,7 @@
  	<!-- deleteComment -->
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM COMMT
-		WHERE comment_id = #{comment_id}
+		WHERE comment_id = #{id}
 	</delete>
 	
 	<!-- removeAllComment -->

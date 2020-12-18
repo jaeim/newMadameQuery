@@ -1,10 +1,19 @@
 package model.dao;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.example.repository.mapper.CommentMapper;
 
 import model.Application;
 import model.StudyGroup;
@@ -13,12 +22,21 @@ import model.service.AppException;
 
 
 public class StudyGroupDAO {
-
+	private SqlSessionFactory sqlSessionFactory;
 	private static StudyGroupDAO dao = new StudyGroupDAO();
 	JDBCUtil jdbcUtil = null;
 	
 	private StudyGroupDAO() {
 		jdbcUtil = new JDBCUtil();
+		
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
+		try {
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
+		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
 	public static StudyGroupDAO getInstance() {
@@ -326,48 +344,15 @@ public class StudyGroupDAO {
 		return result;
 	}
 	
-	//모든 스터디그룹 목록 조회
-	public ArrayList<StudyGroup> getGroupList() throws SQLException {
-		String query = "SELECT group_id, created_date, number_of_member, name, description, term, "
-					+ "meeting_type, gender_type, grade_type, subject_id, leader_id FROM studygroup ORDER BY name";
-		jdbcUtil.setSqlAndParameters(query, null);
-			
+	// 모든 스터디 그룹 조회 (MyBatis)
+	public ArrayList<StudyGroup> selectAllStudyGroup(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();
-			//if(!rs.next()) {throw new AppException();}
-			
-			ArrayList<StudyGroup> groupList = new ArrayList<StudyGroup>();
-			
-			while (rs.next()) {
-				StudyGroup group = new StudyGroup();
-					
-				group.setGroupId(rs.getInt("group_id"));
-				group.setCreatedDate(rs.getDate("created_date"));
-				group.setNumberOfUsers(rs.getInt("number_of_member"));
-				group.setGroupName(rs.getString("name"));
-				group.setDescription(rs.getString("description"));
-				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getString("meeting_type"));
-				group.setGenderType(rs.getString("gender_type"));
-				group.setGradeType(rs.getString("grade_type"));
-				group.setSubjectId(rs.getInt("subject_id"));
-				group.setLeaderId(rs.getInt("leader_id"));;
-				
-				groupList.add(group);
-			}
-			jdbcUtil.commit();
-			return groupList;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
+			return sqlSession.getMapper(CommentMapper.class).selectAllStudyGroup();			
 		} finally {
-			jdbcUtil.close();
+			sqlSession.close();
 		}
-			
-		return null;
 	}
-	
-			
 	
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {

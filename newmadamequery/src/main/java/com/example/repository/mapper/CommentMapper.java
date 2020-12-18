@@ -3,6 +3,7 @@ package com.example.repository.mapper;
 import java.util.ArrayList;
 
 import model.Comment;
+import model.StudyGroup;
 
 public interface CommentMapper {
 
@@ -19,4 +20,6 @@ public interface CommentMapper {
 	int deleteComment(int comment_id);
 	
 	int deleteAllComments(int postId);
+	
+	ArrayList<StudyGroup> selectAllStudyGroup();
 }
