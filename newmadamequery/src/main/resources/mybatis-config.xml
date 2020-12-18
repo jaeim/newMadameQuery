@@ -24,6 +24,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/example/repository/mapper/CommentMapper.xml" />
+		<mapper resource="com/example/repository/mapper/TotalMapper.xml" />
 	</mappers>
 </configuration>

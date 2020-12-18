@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.repository.mapper.*;
+import com.example.repository.mapper.TotalMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -69,7 +69,7 @@ public class CommentDAO {
 	public Comment selectCommentByPrimaryKey(int comment_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(CommentMapper.class).selectCommentByPrimaryKey(comment_id);			
+			return sqlSession.getMapper(TotalMapper.class).selectCommentByPrimaryKey(comment_id);			
 		} finally {
 			sqlSession.close();
 		}
@@ -110,7 +110,7 @@ public class CommentDAO {
 	public int selectCommentCount(int postId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			return sqlSession.getMapper(CommentMapper.class).selectCommentCount(postId);			
+			return sqlSession.getMapper(TotalMapper.class).selectCommentCount(postId);			
 		} finally {
 			sqlSession.close();
 		}
@@ -144,7 +144,7 @@ public class CommentDAO {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		ArrayList<Comment> commentList = null;
 		try {
-			commentList = sqlSession.getMapper(CommentMapper.class).selectAllComment(postId);			
+			commentList = sqlSession.getMapper(TotalMapper.class).selectAllComment(postId);			
 		} finally {
 			sqlSession.close();
 		}
@@ -191,7 +191,7 @@ public class CommentDAO {
 	public int insertComment(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(CommentMapper.class).insertComment(comment);
+			int result = sqlSession.getMapper(TotalMapper.class).insertComment(comment);
 			if (result > 0) {
 				sqlSession.commit(); // 꼭해줘야함. 안그러면 저장안됨
 			} 
@@ -238,7 +238,7 @@ public class CommentDAO {
 	public int deleteComment(int comment_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(CommentMapper.class).deleteComment(comment_id);
+			int result = sqlSession.getMapper(TotalMapper.class).deleteComment(comment_id);
 			if (result > 0) {
 				sqlSession.commit();
 			} 
@@ -271,7 +271,7 @@ public class CommentDAO {
 	public int deleteAllComments(int postId) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(CommentMapper.class).deleteAllComments(postId);
+			int result = sqlSession.getMapper(TotalMapper.class).deleteAllComments(postId);
 			if (result > 0) {
 				sqlSession.commit();
 			} 
@@ -304,7 +304,7 @@ public class CommentDAO {
 	public int updateCommentMB(Comment comment) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(CommentMapper.class).updateComment(comment);
+			int result = sqlSession.getMapper(TotalMapper.class).updateComment(comment);
 			if (result > 0) {
 				sqlSession.commit();
 			} 

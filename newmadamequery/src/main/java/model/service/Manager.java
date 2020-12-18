@@ -138,16 +138,11 @@ public class Manager {
 	
 	// ok (mabatis collection)
 	public StudyGroup findGroup(int groupId) throws SQLException, NotFoundException{
-		//StudyGroup group = studyGroupDAO.findGroup(groupId);
-		
 		StudyGroup group = studyGroupDAO.selectStudyGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
 		User leader = findUser(group.getLeaderId());
 		group.setLeaderName(leader.getName());
-		
-		//ArrayList<User> userList = getAllMemberInGroup(groupId);
-		//group.setGroupUsers(userList);
 		
 		return group;
 	}

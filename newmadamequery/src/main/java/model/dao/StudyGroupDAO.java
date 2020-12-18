@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.example.repository.mapper.CommentMapper;
+import com.example.repository.mapper.TotalMapper;
 
 import model.Application;
 import model.StudyGroup;
@@ -41,6 +41,26 @@ public class StudyGroupDAO {
 	
 	public static StudyGroupDAO getInstance() {
 		return dao;
+	}
+	
+	// 모든 스터디 그룹 조회 (MyBatis)
+	public ArrayList<StudyGroup> selectAllStudyGroup(){
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(TotalMapper.class).selectAllStudyGroup();			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	// 스터디그룹 조회 (MyBatis)
+	public StudyGroup selectStudyGroup(int groupId) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(TotalMapper.class).selectStudyGroup(groupId);			
+		} finally {
+			sqlSession.close();
+		}
 	}
 	
 	//스터디 그룹 생성
@@ -391,16 +411,6 @@ public class StudyGroupDAO {
 		return result;	
 	}
 	
-	// 모든 스터디 그룹 조회 (MyBatis)
-	public ArrayList<StudyGroup> selectAllStudyGroup(){
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return sqlSession.getMapper(CommentMapper.class).selectAllStudyGroup();			
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
 	//스터디그룹 검색 -> 과목이름, 인원, 기간으로 검색
 	public ArrayList<StudyGroup> searchGroupList(Integer term, Integer numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		String query = "SELECT * FROM studygroup where ";
@@ -542,51 +552,6 @@ public class StudyGroupDAO {
 		}
 		
 		return result;
-	}
-	
-	public StudyGroup findGroup(int groupId) {
-		StudyGroup group = null;
-		String query = "select * from STUDYGROUP s where group_id=?";
-		
-		ResultSet rs = null;
-		Object [] param = new Object[] {groupId};
-		
-		jdbcUtil.setSqlAndParameters(query, param);
-		
-		try {
-			rs = jdbcUtil.executeQuery();
-			if(rs.next()){
-				group = new StudyGroup();
-				group.setGroupId(rs.getInt("group_id"));
-				group.setCreatedDate(rs.getDate("created_date"));
-				group.setNumberOfUsers(rs.getInt("number_of_member"));
-				group.setGroupName(rs.getString("name"));
-				group.setDescription(rs.getString("description"));
-				group.setTerm(rs.getInt("term"));
-				group.setMeetingType(rs.getString("meeting_type"));
-				group.setGenderType(rs.getString("gender_type"));
-				group.setGradeType(rs.getString("grade_type"));
-				group.setSubjectId(rs.getInt("subject_id"));
-				group.setLeaderId(rs.getInt("leader_id"));
-			}
-			jdbcUtil.commit();
-		}catch(Exception e) {
-			jdbcUtil.rollback();
-		}finally {
-			jdbcUtil.close();
-		}
-		
-		
-		return group;
-	}
-	
-	public StudyGroup selectStudyGroup(int groupId) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			return sqlSession.getMapper(CommentMapper.class).selectStudyGroup(groupId);			
-		} finally {
-			sqlSession.close();
-		}
 	}
 	
 	public boolean existingGroup(int groupId) {

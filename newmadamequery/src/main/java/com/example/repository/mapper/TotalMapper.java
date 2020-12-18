@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.Comment;
 import model.StudyGroup;
 
-public interface CommentMapper {
+public interface TotalMapper {
 
 	Comment selectCommentByPrimaryKey(int comment_id);
 	
