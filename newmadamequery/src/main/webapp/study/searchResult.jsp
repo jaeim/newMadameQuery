@@ -152,7 +152,11 @@ a:visited {
 		<th>모집성별</th>
 		<th>모집학년</th>
 	</tr>
-	
+	<c:if test="${searchFailed}">
+		<tr>
+			<br><font color="red"><c:out value="${e.getMessage()}" /></font><br>
+		</tr>
+	</c:if>
 	<c:forEach var="sl" items="${groupList}" varStatus= "status"> 
 		<tr>
 			<td><c:out value="${status.count}" /></td>

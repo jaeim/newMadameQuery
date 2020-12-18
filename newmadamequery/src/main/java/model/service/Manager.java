@@ -153,7 +153,7 @@ public class Manager {
 	public ArrayList<StudyGroup> searchStudyGroups (int term, int numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(term, numOfMem, meeting_type, gender_type, grade_type);
 	
-		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+		if(groupList == null) {throw new SQLException("조건에 맞는 스터디 그룹이 없습니다.");}
 		
 		return groupList;
 	}
