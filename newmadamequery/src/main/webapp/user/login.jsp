@@ -111,6 +111,16 @@ ul, li {
 	border-style: double;
 	border : 1px double #D8D8D8;
 }
+#tobemember{
+	color: #0040FF;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+h5 {display: inline;}
 </style>
 </head>
 <body>
@@ -137,6 +147,9 @@ ul, li {
 </nav>
 <br><br>
 <div id="loginform" >
+	<h4 id="tobemember" style="display: inline;">아직 회원이 아니신가요?</h4>
+	<a href="<c:url value='/user/register/form' />" id="userRB">회원가입</a>
+	<br><br>
 <form  name="form" method="POST" action="<c:url value='/user/login' />">
 	<b>LOGIN</b>
 	<c:if test="${loginFailed}">
@@ -147,6 +160,8 @@ ul, li {
 	<h4> 비밀번호 : </h4>
 	<input type="password" style="width:240" name="password"><br><br>
 	<input type="button" value="로그인" onClick="login()"> &nbsp;
+
+		
 </form>
 </div>
 </body>

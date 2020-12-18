@@ -8,27 +8,27 @@
 <head>
 <meta charset="EUC-KR">
 <title>스터디그룹 _view</title>
-<%
-	String result = request.getParameter("result");
 
-	out.println("<script>");
-	if(result != null){
+<script>
+	function showResult() {
+		
+		<% String result = request.getParameter("result"); 
 		if(result.equals("1")){
 			out.println("alert('신청에 성공하였습니다.');");
 			// 버튼클릭시 내 신청현황으로 이동...
 		}else if(result.equals("3")){
 			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
 		}else if(result.equals("-1")){
-			out.println("alert('이미 해당 그룹에 신청하였습니다.');");
+			System.out.println("alert('이미 해당 그룹에 신청하였습니다.');");
 		}else if(result.equals("2")){
 			out.println("alert('이미 해당 그룹에 존재하는 멤버입니다.');");
 		}else if(result.equals("4")){
 			out.println("alert('학년 조건에 맞지 않기 때문에 신청에 실패하였습니다.');");
 		}
+		%>
+	
 	}
-	out.println("</script>");
-%>
-
+</script>
 <style>
 body {
   margin: 0;
@@ -260,7 +260,7 @@ th, #bc, #bc2{
 	<td><input type="text" name="comments" /> </td>
 </tr>
 <tr>
-	<td><input type="submit" value="팀원 신청하기"/></td>
+	<td><input type="submit" value="팀원 신청하기" onClick="showResult()" /></td>
 </tr>
 
 	
