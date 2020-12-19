@@ -24,7 +24,11 @@ public class ListStudyController implements Controller {
 //			return "redirect:/user/login.jsp ";
 //		}
 //		
-//		
+		Object object = request.getAttribute("errorResult");
+		
+		if(object != null) {
+			request.setAttribute("errorResult", object.toString());
+		}
 		ArrayList<StudyGroup> groupList = manager.getAllStudyGroup();
 		
 		request.setAttribute("groupList", groupList);

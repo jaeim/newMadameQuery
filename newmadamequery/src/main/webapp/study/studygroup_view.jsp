@@ -122,14 +122,14 @@ ul, li {
 }
 #memberDiv{
 	float: right;
-	width: 300px;
+	width: 320px;
 	heigth: auto;
 	border: 1px solid #E6E6E6;
 	margin-right: 150px;
 }
 #memberList{
 	margin: auto;
-	padding: 15px;
+	padding: 10px;
 }
 th, #bc, #bc2{
 	background : #084B8A;
@@ -143,7 +143,7 @@ th, #bc, #bc2{
 }
 #addMDiv{
 	float: right;
-	width: 300px;
+	width: 320px;
 	heigth: 200px;
 	border: 1px solid #E6E6E6;
 	margin-right: 150px;
@@ -234,13 +234,22 @@ th, #bc, #bc2{
 				<th>이름</th>
 				<th>학과</th>
 				<th>학년</th>
+				<th>성별</th>
 			</tr>
 			<!-- user 수 만큼 출력됨. -->
 			<c:forEach var="sgUsers" items="${StudyGroup.groupUsers}">
 				<tr>
 					<td>&nbsp;${sgUsers.name}</td>
 					<td>&nbsp;${sgUsers.department }</td>
-					<td>&nbsp;${sgUsers.grade }</td>
+					<td>&nbsp;${sgUsers.grade}</td>
+					<td>&nbsp;
+						<c:if test="${sgUsers.gender eq '1'}">
+							<c:out value="남성" />
+						</c:if>
+						<c:if test="${sgUsers.gender eq '2'}">
+							<c:out value="여성" />
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>

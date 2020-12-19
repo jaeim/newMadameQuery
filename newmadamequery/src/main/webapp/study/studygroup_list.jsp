@@ -11,6 +11,25 @@
 <meta charset="EUC-KR">
 <title>스터디 그룹 목록 보기</title>
 
+<script>
+
+<% 
+	out.println("window.onload = function showResult() {");
+	String rst = String.valueOf(request.getAttribute("errorResult"));
+
+	if(rst != null){
+		if(rst.equals("gender")){
+			out.println("alert('팀장의 성별과 조건의 성별이 어긋납니다'); ");
+		}
+		if(rst.equals("grade")){
+			out.println("alert('팀장의 학년과 조건의 학년이 어긋납니다'); ");
+	}
+}
+out.println("}");
+%>
+
+</script>
+
 <style>
 	body {
   margin: 0;

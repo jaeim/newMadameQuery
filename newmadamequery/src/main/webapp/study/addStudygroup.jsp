@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>스터디 그룹 등록</title>
+
 <script type="text/javascript">
 
 	function addStudyGroup(){
@@ -52,8 +53,10 @@
 		//과목 처리 - 추가하기
 		form.submit();
 	}
+	
 </script>
-	<style>
+
+<style>
 	body {
   margin: 0;
   padding: 0;
@@ -154,7 +157,7 @@ ul, li {
 	color: white;
 	float: right;
 }
-	</style>
+</style>
 </head>
 <body>
 <nav>
