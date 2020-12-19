@@ -232,6 +232,10 @@ ul, li {
 			<td><input type="text" name="phone"></td>
 		</tr>
 		<tr>
+			<td>생년월일 (yyyy/mm/dd)</td>
+			<td><input type="text" name="dob"></td>
+		</tr>
+		<tr>
 			<td>소속 학교 명: </td>
 			<td><input type="text" name="university"></td>
 		</tr>

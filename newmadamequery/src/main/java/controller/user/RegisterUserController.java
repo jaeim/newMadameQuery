@@ -1,5 +1,8 @@
 package controller.user;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,10 +19,20 @@ public class RegisterUserController implements Controller {
 	    //java.util.Date utilDate = df.parse(request.getParameter("birthday"));
 		request.setCharacterEncoding("UTF-8");
 
+		String dob_string = request.getParameter("dob");
+		String [] date = dob_string.split("/");
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, Integer.valueOf(date[0]));
+		c.set(Calendar.MONTH, Integer.valueOf(date[1]) - 1);
+		c.set(Calendar.DATE, Integer.valueOf(date[2]));
+		Date dob = c.getTime();
+		
 		User user = new User(
 				request.getParameter("email"),
 				request.getParameter("password"),
 				request.getParameter("name"),
+				dob,
 				request.getParameter("phone"),
 				request.getParameter("university"),
 				request.getParameter("department"),

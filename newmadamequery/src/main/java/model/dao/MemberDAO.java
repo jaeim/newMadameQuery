@@ -31,12 +31,11 @@ public class MemberDAO {
 		int result = 0;
 		String query = "INSERT INTO MEMBER (member_id, email, password, name, phone, "
 				+ "dob, date_of_join, univ, dep, grade, gender)"
-				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, sysdate, sysdate, ?, ?, ?, ?)";
+				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?)";
 		
-		//java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
-		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
+		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
 		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(),
-				user.getPhone(), user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
+				user.getPhone(), dob, user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
