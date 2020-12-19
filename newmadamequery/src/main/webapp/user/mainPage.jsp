@@ -156,7 +156,6 @@ ul, li {
 		이름: ${user.name } (로그인) <br>
  		<br>
 		<a href="<c:url value='/user/view' >
-			<c:param name='userId' value='${user.member_id}' />
 			</c:url> " id="toMP">마이페이지로 이동</a>
 		<br><br>
 		<a href="<c:url value= '/user/logout' />" id="logout">로그아웃</a>

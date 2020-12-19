@@ -180,20 +180,7 @@ a:visited {
 			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
 			<td id="bc">인원</td>
 			<td> 
-				<select name="numberOfUsers">
-						<c:set var= "num" value="${studyGroup.numberOfUsers }" />
-						<option value="3" <c:if test="${num eq 3}"> selected </c:if>>3명</option> 
-						<option value="4" <c:if test="${num eq 4}"> selected </c:if>>4명</option> 
-						<option value="5" <c:if test="${num eq 5}"> selected </c:if>>5명 </option> 
-						<option value="6" <c:if test="${num eq 6}"> selected </c:if>>6명 </option> 
-						<option value="7" <c:if test="${num eq 7}"> selected </c:if>>7명 </option> 
-						<option value="8" <c:if test="${num eq 8}"> selected </c:if>>8명 </option> 
-						<option value="9" <c:if test="${num eq 9}"> selected </c:if>>9명 </option> 
-						<option value="10" <c:if test="${num eq 10}"> selected </c:if>>10명 </option> 
-						<option value="11" <c:if test="${num eq 11}"> selected </c:if>>10명 이상 </option> 
-						<option value="0" <c:if test="${num eq 0}"> selected </c:if>>상관 없음</option> 
-				</select>
-			
+				${studyGroup.numberOfUsers} 	
 			</td>
 			<td id="bc">기간</td>
 			<td>
@@ -242,7 +229,7 @@ a:visited {
 					<c:forEach var="member" items="${studyGroup.groupUsers}">
 						<option value="${member.member_id}"
 							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
-							>${member.member_id}</option>
+							>${member.name}</option>
 					</c:forEach>
 			</select>
 		
@@ -268,18 +255,15 @@ a:visited {
 
 <br>
 
+<h3>팀원 리스트</h3>
 <table id= "userlist">
 	<tr>
 		<td id="bc">이름</td>
-		<td id="bc">팀원 관리</td>
 	</tr>
 	
 	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
 			<td>${member.name}</td>
-			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); " id="mDeleteB"> 삭제</a>
-			</td>
 		</tr>
 	</c:forEach>
 	

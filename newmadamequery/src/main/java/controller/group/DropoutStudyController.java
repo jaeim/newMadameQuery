@@ -32,22 +32,8 @@ public class DropoutStudyController implements Controller {
 				manager.removeMemberInGroup(groupId, memberId);
 			}
 		}catch(Exception e) {
-			if(e instanceof NotFoundException) {
-				request.setAttribute("exception", "notFound");
-			}
-			if(e instanceof SQLException) {
-				request.setAttribute("exception", "sqlException");
-			}
-			if(e instanceof DeleteException) {
-				request.setAttribute("exception", "deleteException");
-				request.setAttribute("groupList", manager.getMyStudyGroupList(memberId));
-				return "/myStudy/myStudy_main.jsp";
-			}
-			
-			return ""; //오류페이지 
-			
+			request.setAttribute("exception", e);
 		}
-		request.setAttribute("groupList", manager.getMyStudyGroupList(memberId));
-		return "/myStudy/myStudy_main.jsp?";
+		return "/studyGroup/myStudy";
 	}
 }

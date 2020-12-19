@@ -46,10 +46,8 @@ public class CreateStudyController implements Controller {
 		} catch (Exception e) { // 예외 발생 시 입력 form으로 forwarding
 			//실패한 경우 exception 객체에 저장된 오류 메시지를 출력 in /study/addStudygroup.jsp
 			//alert(exception)
-			request.setAttribute("creationFailed", true);
 			request.setAttribute("exception", e);
-			request.setAttribute("studyGroup", studyGroup);
-			return "/study/addStudygroup.jsp";
+			return "/studyGroup/create/form";
 		}
 	}
 	

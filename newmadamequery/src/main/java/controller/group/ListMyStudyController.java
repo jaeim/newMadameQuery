@@ -33,7 +33,7 @@ public class ListMyStudyController implements Controller {
 			request.setAttribute("member_id", userId); // 첫화면에서 userId 저장해 놓기
 			request.setAttribute("groupList", groupList);
 		}catch(SQLException e) {
-			return ""; //실패, 오류관리페이지로 이동
+			return "/"; //실패, 오류관리페이지로 이동
 		}
 		
 		//성공

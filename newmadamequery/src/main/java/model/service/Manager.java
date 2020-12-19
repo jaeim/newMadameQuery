@@ -61,9 +61,11 @@ public class Manager {
 	
 	public int updateUser(User user) throws SQLException, NotFoundException{
 		// NotFoundException이 나는지 확인하기 위해 수행하는 코드
-		findUser(user.getEmail());
-		
-		return memberDAO.userInfoUpdate(user);
+		// findUser(user.getEmail());
+		if(memberDAO.existingUser(user.getEmail(), user.getPassword())) {
+			return memberDAO.userInfoUpdate(user);
+		}
+		return -1;
 	}
 	
 	//ok
@@ -85,12 +87,6 @@ public class Manager {
 	public int createStudyGroup(StudyGroup group, int memberId) throws SQLException, ExistingException, NotFoundException{
 		int createdGroupId = 0;
 		int r2 = 0;
-		
-		if(studyGroupDAO.existingGroup(group.getGroupId())) {
-			throw new ExistingException(group.getGroupId() + "는 존재하는 groupId 입니다.");
-		}
-		
-		findUser(memberId);
 		
 		createdGroupId = studyGroupDAO.addGroup(group, memberId);
 		if(createdGroupId != 0) {

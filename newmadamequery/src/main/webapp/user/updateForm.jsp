@@ -150,7 +150,6 @@
 						</c:url>">나의 신청 현황</a>
 					</li>
 					<li><a href="<c:url value='/studyGroup/myStudy'>
-						<c:param name='userId' value='${user.member_id}' />
 						</c:url>">나의 스터디 보기</a>
 					</li>
 				</ul>

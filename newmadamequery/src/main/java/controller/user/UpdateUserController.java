@@ -21,18 +21,14 @@ public class UpdateUserController implements Controller {
 			request.setAttribute("user", user);
 
 			HttpSession session = request.getSession();
-			
-			int userId;
-			if(UserSessionUtils.hasLogined(session)) {
-				userId = UserSessionUtils.getLoginUserId(session);
-			}else {
+				
+			if(!UserSessionUtils.hasLogined(session)) {
 				return "redirect:/user/login";
 			}
 			
-			if (UserSessionUtils.isLoginUser(userId, session)) {
+			if (UserSessionUtils.isLoginUser(updateId, session)) {
 				return "/user/updateForm.jsp";
 			}
-
 
 			request.setAttribute("updateFailed", true);
 			request.setAttribute("exception", new IllegalStateException("타인의 정보는 수정할 수 없습니다."));
@@ -62,9 +58,7 @@ public class UpdateUserController implements Controller {
 				Integer.parseInt(request.getParameter("gender")));
 		
 		Manager manager = Manager.getInstance();
-		manager.updateUser(updateUser);
-		
-		request.setAttribute("user", updateUser);
+		int result = manager.updateUser(updateUser);
 		
 		return "redirect:/user/view";
 	}

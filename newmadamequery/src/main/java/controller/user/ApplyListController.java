@@ -33,7 +33,7 @@ public class ApplyListController implements Controller {
 			request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 
-			return "/myStudy/mystudy_main.jsp";
+			return "/user/mainPage.jsp";
 		}
 
 	}

@@ -55,10 +55,6 @@ public class UpdateStudyController implements Controller {
 		}catch(Exception e) {
 			return ""; // 오류페이지(스터디그룹이 없거나, 업데이트 실패 시)
 		}
-	
-		ArrayList<Application> applyList = manager.getAllApplication(groupId);
-//		request.setAttribute("applyList", applyList);
-//		request.setAttribute("studyGroup", group);
 		// 업데이트 성공
 		return "redirect:/studyGroup/manageStudy?groupId=" + groupId;
 	}
