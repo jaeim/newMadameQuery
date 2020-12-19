@@ -12,20 +12,16 @@
 	
 <%
 	out.println("<script> ");
-	out.println("function showResult() {");
+	out.println("window.onload = function showResult() {");
 	String rst =  request.getParameter("result");
 	
-	if(rst == null){
-		out.println("alert('팀원 신청하기 버튼을 한 번더 눌러주세요! ')");
-	}
-	else{
-		
+	if(rst != null){
 		if(rst.equals("-1"))
 			out.println("alert('이미 해당 그룹에 신청하였습니다.'); ");
 		else if(rst.equals("2"))
 			out.println("alert('이미 해당 그룹에 존재하는 멤버입니다.'); ");
 		else if(rst.equals("3"))
-			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.'); ");
+			out.println("alert('성별 조건에 맞지 않기 때문에 신청에 실패하였습니다.'); ");	
 		else if(rst.equals("4"))
 			out.println("alert('학년 조건에 맞지 않기 때문에 신청에 실패하였습니다.'); ");	
 	}

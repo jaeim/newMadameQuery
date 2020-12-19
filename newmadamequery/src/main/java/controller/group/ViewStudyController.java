@@ -28,8 +28,10 @@ public class ViewStudyController implements Controller{
 		
 		request.setAttribute("StudyGroup", group);
 		if(result == null) {
+			System.err.println("result == null");
 			return "/study/studygroup_view.jsp";
 		}else {
+			System.err.println("result != null");
 			return "/study/studygroup_view.jsp?result=" + result;
 		}
 	}

@@ -47,10 +47,11 @@ public class ApplyStudyController implements Controller {
 		} catch (Exception e) {
 			//신청이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 in /study/studygroup_list/studygroup_view.jsp
 			//alert(exception)
-			request.setAttribute("StudyGroup", studyGroup);
-			request.setAttribute("exception", e);
-			request.setAttribute("comments", comments);
-			return "/study/studygroup_view.jsp";
+			//request.setAttribute("StudyGroup", studyGroup);
+			//request.setAttribute("exception", e);
+			//request.setAttribute("comments", comments);
+			//return "/study/studygroup_view.jsp";
+			return "redirect:/studyGroup/view?groupId=" + groupId + "&result=" + result;
 		}
 	}
 	

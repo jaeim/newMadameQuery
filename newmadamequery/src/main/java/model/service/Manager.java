@@ -215,18 +215,22 @@ public class Manager {
 			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
 			//throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
 			return -1;
-		}else if (isGroupMember != 0) {
+		}
+		if (isGroupMember != 0) {
 			System.out.println("이미 해당 그룹에 존재하는 멤버입니다. 결과는  " + isGroupMember);
 			//throw new ExistingException("이미 해당 그룹에 존재하는 멤버입니다.");	
 			return 2;
 		}
-		else if (!studyGroup.getGenderType().equals("0")) {
+		if (!studyGroup.getGenderType().equals("0")) {
 			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
 				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
 				//throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
 				return 3;
 			}		
-		} else if (!studyGroup.getGradeType().equals("0")) {
+		}
+		if (!studyGroup.getGradeType().equals("0")) {
+			System.out.println("유저 학년 : " + user.getGrade());
+			System.out.println("조건 학년 : " + studyGroup.getGradeType());
 			// studyGroup의 grade 이상인 학년은 가입 가능하도록 설정함
 			if (Integer.valueOf(user.getGrade()) < Integer.valueOf(studyGroup.getGradeType())) {
 				System.out.println("신청 조건에 맞지 않습니다." + "유저 학년: "

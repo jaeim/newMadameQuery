@@ -284,7 +284,9 @@ function memberAccept() {
 		<td>${studyGroup.description }</td>
 	</tr>
 </table>
-<h3>멤버 리스트</h3>
+
+<a><h3>멤버 리스트</h3></a>
+
 <table id= "userlist">
 	<tr>
 		<th>&nbsp;</th>
@@ -315,7 +317,8 @@ function memberAccept() {
 	</c:forEach>
 	
 </table>
-<h3>신청자 리스트</h3>
+
+<a><h3>신청자 리스트</h3></a>
 <table id="applyList">
 	
 		<tr>
