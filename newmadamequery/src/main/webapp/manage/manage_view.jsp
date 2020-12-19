@@ -9,6 +9,20 @@
 <title>스터디 그룹 관리 </title>
 <!-- (리스트에서 출력해서 들어가면 그 스터디 그룹에 대한 정보 보여주기), 삭제 및 수락 은 여기서  -->
 
+<%
+	out.println("<script>");
+	out.println("window.onload = function showResult() {");
+	Object rst = request.getParameter("result");
+
+	if(rst != null){	
+		out.println("alert('지원서를 더이상 받을 수 없습니다!!(인원꽉참)'); ");
+	}
+	
+out.println("}</script>");
+
+
+%>
+
 <style>
 
 body {

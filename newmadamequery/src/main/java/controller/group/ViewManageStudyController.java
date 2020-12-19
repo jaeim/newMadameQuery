@@ -19,6 +19,11 @@ public class ViewManageStudyController implements Controller{
 		// TODO Auto-generated method stub
 		Manager manager = Manager.getInstance();
 		
+		Object result = request.getParameter("result");
+		if(result != null) {
+			request.setAttribute("result", result);
+		}
+		
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
 		StudyGroup group;
 		ArrayList<Application> applyList;

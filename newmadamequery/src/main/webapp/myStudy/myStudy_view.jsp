@@ -10,6 +10,20 @@
 <meta charset="EUC-KR">
 <title> 스터디 게시판 ()</title>
 <!-- 내가 속한 스터디- 게시판 (내가 속한 각각의 스터디 그룹 게시판) -->
+<%
+	out.println("<script>");
+	out.println("window.onload = function showResult() {");
+	Object rst = request.getParameter("result");
+
+	if(rst != null){	
+		out.println("alert('지원서를 더이상 받을 수 없습니다!!(인원꽉참)'); ");
+	}
+	
+out.println("</script>}");
+
+
+%>
+
 <style>
 	body {
   margin: 0;
