@@ -178,7 +178,7 @@ a:visited {
 		<tr>
 			<td id="bc">스터디그룹 명(groupid: ${studyGroup.groupId})</td>
 			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
-			<td id="bc">인원</td>
+			<td id="bc">모집인원</td>
 			<td> 
 				<%
 					int nowNumber = (Integer)request.getAttribute("nowNumber");
@@ -200,7 +200,7 @@ a:visited {
 						<option value="6" <c:if test="${term eq 6}"> selected </c:if>>6개월 </option> 
 						<option value="9" <c:if test="${term eq 9}"> selected </c:if>>9개월 </option> 
 						<option value="12" <c:if test="${term eq 12}"> selected </c:if>>12개월 </option> 
-						<option value="0" <c:if test="${term eq 0}"> selected </c:if>>상관 없음</option> 
+						<option value="0" <c:if test="${term eq 0}"> selected </c:if>>무기한</option> 
 				</select>
 			</td>
 		</tr>
@@ -223,7 +223,7 @@ a:visited {
 	<tr>
 		<td id="bc">개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
-		<td id="bc">성별</td>
+		<td id="bc">모집성별</td>
 		<td><select name="genderType">
 				<c:set var="gender" value="${studyGroup.genderType }" />
 				<c:if test="${gender eq '1'}">
@@ -247,7 +247,7 @@ a:visited {
 			</select>
 		
 		</td>
-		<td id="bc">학년</td>
+		<td id="bc">모집학년</td>
 		<td>
 			<select name="gradeType" >
 			<% 

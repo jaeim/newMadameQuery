@@ -157,7 +157,9 @@ a:visited {
 <h5>
 	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
 마음에 맞는 스터디를 찾아보세요!
-	</pre></h5>	
+	</pre>
+	<p>*인원모집이 완료된 스터디그룹은 조회할 수 없습니다*</p>
+</h5>	
 </div>
 <!-- 모든 스터디 그룹을 리스트로 보여주기 -->
 
@@ -178,7 +180,14 @@ a:visited {
 					</c:url>" id="bc">${group.groupName}</a>
 				</td>
 				<td>${group.description}</td>
-				<td>${group.term}개월</td>
+				<td>
+					<c:if test="${group.term == '0' }">
+						무기한
+					</c:if>
+					<c:if test="${group.term != '0' }" >
+						${group.term}개월
+					</c:if>
+				</td>
 			</tr>
 		</c:if>
 	</c:forEach>

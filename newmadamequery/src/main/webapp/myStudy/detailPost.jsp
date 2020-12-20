@@ -227,12 +227,13 @@ a:visited {
 		<tr>
 			<td>&nbsp;</td>
 			<td colspan="2" style="width: 200px;">${cm.content}</td>
+			<c:if test="${memberId eq cm.member_id }">
 			<td style="text-align:right"><a href="<c:url value='/comment/delete'>
 					<c:param name='comment_id' value='${cm.comment_id}'/>
 					<c:param name='member_id' value='${cm.member_id}'/>
 					<c:param name='postId' value='${post.postId }' />
 					</c:url>" id="cDeleteB">삭제</a></td>
-			
+			</c:if>
 		</tr>
 	</table>
 	<hr>

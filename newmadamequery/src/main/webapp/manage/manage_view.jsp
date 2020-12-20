@@ -183,7 +183,7 @@ function memberAccept() {
 		<tr>
 			<td id="bc">스터디그룹 명</td>
 			<td>${studyGroup.groupName } </td>
-			<td id="bc">인원</td>
+			<td id="bc">모집인원</td>
 			<td>
 				<c:set var="num" value="${studyGroup.numberOfUsers }" />
 				<c:if test="${num eq '3' }" >
@@ -218,7 +218,7 @@ function memberAccept() {
 				</c:if>
 			
 			</td>
-			<td id="bc">기간</td>
+			<td id="bc">모집기간</td>
 			<td>
 				<c:set var="term" value="${studyGroup.term }" />
 				<c:if test="${term eq '1' }" >
@@ -237,7 +237,7 @@ function memberAccept() {
 					<c:out value="12개월 " />
 				</c:if>
 				<c:if test="${term eq '0' }" >
-					<c:out value="상관없음" />
+					<c:out value="무기한" />
 				</c:if>
 			</td>
 		</tr>
@@ -253,7 +253,7 @@ function memberAccept() {
 	<tr>
 		<td id="bc">개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
-		<td id="bc">성별</td>
+		<td id="bc">모집성별</td>
 		<td>
 			<c:set var="gen" value="${studyGroup.genderType }" />
 			<c:if test="${gen eq '0' }" >
@@ -270,22 +270,19 @@ function memberAccept() {
 	<tr>
 		<td id="bc">팀장</td>
 		<td>${studyGroup.leaderName}</td>
-		<td id="bc">학년</td>
+		<td id="bc">모집학년</td>
 		<td >
 			<c:set var="gr" value="${studyGroup.gradeType }" />
 			<c:if test="${gr eq '1' }" >
-				<c:out value="1학년" />
+				<c:out value="1학년 이상" />
 			</c:if>
 			<c:if test="${gr eq '2' }" >
-				<c:out value="2학년" />
+				<c:out value="2학년 이상" />
 			</c:if>
 			<c:if test="${gr eq '3' }" >
-				<c:out value="3학년" />
+				<c:out value="3학년 이상" />
 			</c:if>
 			<c:if test="${gr eq '4' }" >
-				<c:out value="4학년" />
-			</c:if>
-			<c:if test="${gr eq '5' }" >
 				<c:out value="4학년 이상" />
 			</c:if>
 			<c:if test="${gr eq '0' }" >

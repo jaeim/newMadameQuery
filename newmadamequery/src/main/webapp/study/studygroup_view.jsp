@@ -221,7 +221,14 @@ th, #bc, #bc2{
 					</c:if>
 				</td>
 				<td id="bc2">수행기간</td>
-				<td >${StudyGroup.term }개월</td>
+				<td>
+					<c:if test="${StudyGroup.term == '0' }">
+						무기한
+					</c:if>
+					<c:if test="${StudyGroup.term != '0' }" >
+						${StudyGroup.term}개월
+					</c:if>
+				</td>
 			</tr>
 		</table>
 </div>

@@ -215,7 +215,6 @@ ul, li {
 						<option value="9">9</option>
 						<option value="10">10</option>
 						<option value="11">10명 이상</option>
-						<option value="0">상관없음</option>
 					</select>
 				</td>
 			</tr>
@@ -231,7 +230,7 @@ ul, li {
 					<option value="6">6개월</option>
 					<option value="9">9개월</option>
 					<option value="12">12개월</option>
-					<option value="0">상관없음</option>
+					<option value="0">무기한</option>
 				</select>
 				
 				</td>

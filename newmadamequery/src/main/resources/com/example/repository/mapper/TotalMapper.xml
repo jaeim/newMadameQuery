@@ -87,7 +87,7 @@
 	
 		SELECT <include refid="BaseColumns" />
 		FROM COMMT c, MEMBER m
-		WHERE c.post_id = #{postId} and c.member_id = m.member_id
+		WHERE c.post_id = #{postId} and c.member_id = m.member_id ORDER BY comment_id
 	</select>
  
  	<!-- getCommentCount -->

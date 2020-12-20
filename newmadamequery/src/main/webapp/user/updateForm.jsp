@@ -8,23 +8,6 @@
 <title>회원정보 수정 </title>
 <script>
 	function userModify(){
-		
-		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		if(emailExp.test(form.email.value)==false) {
-			alert("이메일 형식이 올바르지 않습니다.");
-			form.email.focus();
-			return false;
-		}
-		if (form.password.value == "") {
-			alert("비밀번호를 입력하십시오.");
-			form.password.focus();
-			return false;
-		}
-		if (form.password.value != form.password2.value) {
-			alert("비밀번호가 일치하지 않습니다.");
-			form.name.focus();
-			return false;
-		}
 		if (form.name.value == "") {
 			alert("이름을 입력하십시오.");
 			form.name.focus();
@@ -177,18 +160,13 @@
 			<td><input type="text" name="name" value="${user.name }"></td>
 		</tr>
 		<tr>
-			<td>이메일 주소(ID) </td>
-			<td><input type="text" name="email" value="${user.email }" ></td>
+			<td>이메일 주소 </td>
+			<td>${user.email }</td>
 		</tr>
 		<tr>
 			<td>비밀번호 </td>
-			<td><input type="password" name="password" value="${user.password}"></td>
+			<td>${user.password}</td>
 		</tr>
-		<tr>
-			<td>비밀번호 확인 </td>
-			<td><input type="password" name="password2" value="${user.password}"></td>
-		</tr>
-		
 		<tr>
 			<td>휴대폰 번호</td>
 			<td><input type="text" name="phone" value="${user.phone }" ></td>
@@ -240,16 +218,14 @@
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td><input type="text" name="grade" value="${user.grade }" ></td>
+			<td>${user.grade }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>
-			<select name="gender">
 				<c:set var="gen" value="${user.gender }" />
-				<option value="1" <c:if test="${gen eq '1'}">selected</c:if>>남성</option>
-				<option value="2" <c:if test="${gen eq '2'}">selected</c:if>>여성</option>
-			</select>
+				<c:if test="${gen eq '1'}">남성</c:if>
+				<c:if test="${gen eq '2'}">여성</c:if>
 			</td>
 		</tr>
 	</table>

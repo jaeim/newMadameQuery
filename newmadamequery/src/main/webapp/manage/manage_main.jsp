@@ -190,7 +190,12 @@ a:visited {
 				</c:if>
 			</td>
 			<td>
-				${sg.term}개월
+				<c:if test="${sg.term == '0' }">
+						무기한
+					</c:if>
+					<c:if test="${sg.term != '0' }" >
+						${sg.term}개월
+					</c:if>
 			</td>
 		</tr>
 	</c:forEach>

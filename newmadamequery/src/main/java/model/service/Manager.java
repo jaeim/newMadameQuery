@@ -60,12 +60,7 @@ public class Manager {
 	}
 	
 	public int updateUser(User user) throws SQLException, NotFoundException{
-		// NotFoundException이 나는지 확인하기 위해 수행하는 코드
-		// findUser(user.getEmail());
-		if(memberDAO.existingUser(user.getEmail(), user.getPassword())) {
-			return memberDAO.userInfoUpdate(user);
-		}
-		return -1;
+		return memberDAO.userInfoUpdate(user);
 	}
 	
 	//ok
