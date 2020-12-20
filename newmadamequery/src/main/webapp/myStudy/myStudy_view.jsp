@@ -10,6 +10,7 @@
 <meta charset="EUC-KR">
 <title> 스터디 게시판 ()</title>
 <!-- 내가 속한 스터디- 게시판 (내가 속한 각각의 스터디 그룹 게시판) -->
+
 <style>
 	body {
   margin: 0;

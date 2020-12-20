@@ -178,30 +178,10 @@ a:visited {
 				<th>스터디 방식</th>
 				<td>
 					<select name="meetingType">
-						<c:if test="${meetingType eq null || meetingType eq '-1' }">
-							<option value="-1" selected>-선택안함-</option>
-							<option value="online">online</option>
-							<option value="offline">offline</option>
-							<option value="blended">blended</option>
-						</c:if>
-						<c:if test="${meetingType eq 'online'  }">
-							<option value="-1" >-선택안함-</option>
-							<option value="online" selected>online</option>
-							<option value="offline">offline</option>
-							<option value="blended">blended</option>
-						</c:if>
-						<c:if test="${meetingType eq 'offline' }">
-							<option value="-1" >-선택안함-</option>
-							<option value="online">online</option>
-							<option value="offline" selected>offline</option>
-							<option value="blended">blended</option>
-						</c:if>
-						<c:if test="${meetingType eq 'blended' }">
-							<option value="-1" >-선택안함-</option>
-							<option value="online">online</option>
-							<option value="offline">offline</option>
-							<option value="blended" selected>blended</option>
-						</c:if>
+						<option value="-1" <c:if test="${meetingType eq null}">selected</c:if>>-선택안함-</option>
+						<option value="online" <c:if test="${meetingType eq 'online'}">selected</c:if>>online</option>
+						<option value="offline" <c:if test="${meetingType eq 'offline'}">selected</c:if>>offline</option>
+						<option value="blended" <c:if test="${meetingType eq 'blended'}">selected</c:if>>blended</option>
 					</select>
 					
 				</td>
@@ -210,54 +190,13 @@ a:visited {
 				<th>수행기간</th>
 				<td>
 					<select name="term">
-						<c:if test="${term eq null || term eq -1}">
-							<option value="-1" selected>-선택안함-</option>
-							<option value="1">1개월</option>
-							<option value="3">3개월</option>
-							<option value="6">6개월</option>
-							<option value="10">6개월 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${term eq 1 }">
-							<option value="-1">-선택안함-</option>
-							<option value="1" selected>1개월</option>
-							<option value="3">3개월</option>
-							<option value="6">6개월</option>
-							<option value="10">6개월 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${term eq 3 }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1개월</option>
-							<option value="3" selected>3개월</option>
-							<option value="6">6개월</option>
-							<option value="10">6개월 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${term eq 6 }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1개월</option>
-							<option value="3">3개월</option>
-							<option value="6" selected>6개월</option>
-							<option value="10">6개월 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${term eq 10 }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1개월</option>
-							<option value="3">3개월</option>
-							<option value="6">6개월</option>
-							<option value="10" selected>6개월 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${term eq 0 }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1개월</option>
-							<option value="3">3개월</option>
-							<option value="6">6개월</option>
-							<option value="10">6개월 이상</option>
-							<option value="0" selected>상관없음</option>
-						</c:if>
+						<option value="-1" <c:if test="${term eq null}">selected</c:if>>-선택안함-</option>
+						<option value="1" <c:if test="${term eq '1'}">selected</c:if>>1개월</option>
+						<option value="3" <c:if test="${term eq '3'}">selected</c:if>>3개월</option>
+						<option value="6" <c:if test="${term eq '6'}">selected</c:if>>6개월</option>
+						<option value="9" <c:if test="${term eq '9'}">selected</c:if>>9개월</option>
+						<option value="12" <c:if test="${term eq '12'}">selected</c:if>>12개월</option>
+						<option value="0" <c:if test="${term eq '0'}">selected</c:if>>무기한</option>
 					</select>
 				</td>
 			</tr>
@@ -265,102 +204,22 @@ a:visited {
 				<th>모집성별</th>
 				<td>
 					<select name="genderType">
-						<c:if test="${genderType eq null || genderType eq '-1' }">
-							<option value="-1" selected>-선택안함- </option>
-							<option value="1">남성</option>
-							<option value="2">여성</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${genderType eq '1' }">
-							<option value="-1">-선택안함- </option>
-							<option value="1" selected>남성</option>
-							<option value="2">여성</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${genderType eq '2' }">
-							<option value="-1">-선택안함- </option>
-							<option value="1" >남성</option>
-							<option value="2" selected>여성</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${genderType eq '0' }">
-							<option value="-1">-선택안함- </option>
-							<option value="1">남성</option>
-							<option value="2">여성</option>
-							<option value="0" selected>상관없음</option>
-						</c:if>
-						
+						<option value="-1" <c:if test="${genderType eq null }">selected</c:if>>-선택안함- </option>
+						<option value="1" <c:if test="${genderType eq '1' }">selected</c:if>>남성</option>
+						<option value="2" <c:if test="${genderType eq '2' }">selected</c:if>>여성</option>
+						<option value="0" <c:if test="${genderType eq '0' }">selected</c:if>>상관없음</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>모집학년</th>
 				<td>
-					<select name="gradeType">
-						<c:if test="${gradeType eq null || gradeType eq '-1' }">
-							<option value="-1" selected>-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '1' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '2' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2" selected>2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '3' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3" selected>3</option>
-							<option value="4">4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '4' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4" selected>4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '5' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5" selected>4학년 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${gradeType eq '0' }">
-							<option value="-1">-선택안함-</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">4학년 이상</option>
-							<option value="0" selected>상관없음</option>
-						</c:if>
-
+					<select name="gradeType">		
+						<option value="-1" <c:if test="${gradeType eq null}">selected</c:if>>-선택안함-</option>
+						<option value="2" <c:if test="${gradeType eq '2'}">selected</c:if>>2학년 이상</option>
+						<option value="3" <c:if test="${gradeType eq '3'}">selected</c:if>>3학년 이상</option>
+						<option value="4" <c:if test="${gradeType eq '4'}">selected</c:if>>4학년 이상</option>
+						<option value="0" <c:if test="${gradeType eq '0'}">selected</c:if>>상관없음</option>
 					</select>
 				</td>
 			</tr>
@@ -368,150 +227,16 @@ a:visited {
 				<th>모집인원</th>
 				<td>
 					<select name="numberOfUsers">
-						<c:if test="${num eq null || num eq '-1' }">
-							<option value="-1" selected>-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '3' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3" selected>3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '4' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4" selected>4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '5' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5" selected>5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '6' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6" selected>6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '7' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7" selected>7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '8' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8" selected>8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '9' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9" selected>9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '10' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10" selected>10</option>
-							<option value="11">10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '11' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11" selected>10명 이상</option>
-							<option value="0">상관없음</option>
-						</c:if>
-						<c:if test="${num eq '0' }">
-							<option value="-1">-선택안함-</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">10명 이상</option>
-							<option value="0" selected>상관없음</option>
-						</c:if>
-						
+							<option value="-1" <c:if test="${num eq null}">selected</c:if>>-선택안함-</option>
+							<option value="3" <c:if test="${num eq '3'}">selected</c:if>>3</option>
+							<option value="4" <c:if test="${num eq '4'}">selected</c:if>>4</option>
+							<option value="5" <c:if test="${num eq '5'}">selected</c:if>>5</option>
+							<option value="6" <c:if test="${num eq '6'}">selected</c:if>>6</option>
+							<option value="7" <c:if test="${num eq '7'}">selected</c:if>>7</option>
+							<option value="8" <c:if test="${num eq '8'}">selected</c:if>>8</option>
+							<option value="9" <c:if test="${num eq '9'}">selected</c:if>>9</option>
+							<option value="10" <c:if test="${num eq '10'}">selected</c:if>>10</option>
+							<option value="11" <c:if test="${num eq '11'}">selected</c:if>>10명 이상</option>
 					</select>
 				</td>
 			</tr>
@@ -552,7 +277,14 @@ a:visited {
 						</c:url>" id="bc">${sl.groupName }</a>
 				</td>
 				<td>${sl.meetingType }</td>
-				<td>${sl.term}개월 </td>
+				<td>
+					<c:if test="${sl.term == '0' }">
+						무기한
+					</c:if>
+					<c:if test="${sl.term != '0' }" >
+						${sl.term}개월
+					</c:if>
+				</td>
 				<td>
 				<c:set var="gen" value="${sl.genderType }" />
 				<c:if test="${gen eq '0'}" >

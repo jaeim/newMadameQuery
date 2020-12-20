@@ -16,12 +16,17 @@ public class ApplyAcceptStudyController implements Controller {
 		String isAccepted = request.getParameter("isAccepted");
 		try {
 			Manager manager = Manager.getInstance();
+			int result = -1;
 			if(isAccepted.equals("true")) {
-				manager.manageApplicationInGroup(groupId, userId, true);
+				result = manager.manageApplicationInGroup(groupId, userId, true);
 			}else if(isAccepted.equals("false")) {
 				manager.manageApplicationInGroup(groupId, userId, false);
 			}
 			 
+			if(result == -3) {
+				return "redirect:/studyGroup/manageStudy?groupId=" + groupId + "&result=" + result;
+			}
+			
 			return "redirect:/studyGroup/manageStudy?groupId=" + groupId; //수락한 스터디그룹 상세페이지로 redirect	
 		} catch (NotFoundException e) {
 			request.setAttribute("Failed", true);

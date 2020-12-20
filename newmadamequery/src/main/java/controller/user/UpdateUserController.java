@@ -46,16 +46,13 @@ public class UpdateUserController implements Controller {
 			return "redirect:/user/login";
 		}
 		
-		User updateUser = new User(
-				userId,
-				request.getParameter("email"), 
-				request.getParameter("password"),
-				request.getParameter("name"), 
-				request.getParameter("phone"), 
-				request.getParameter("university"),
-				request.getParameter("department"), 
-				request.getParameter("grade"),
-				Integer.parseInt(request.getParameter("gender")));
+		User updateUser = new User();
+		
+		updateUser.setMember_id(userId);
+		updateUser.setName(request.getParameter("name"));
+		updateUser.setPhone(request.getParameter("phone"));
+		updateUser.setUniversity(request.getParameter("university"));
+		updateUser.setDepartment(request.getParameter("department"));
 		
 		Manager manager = Manager.getInstance();
 		int result = manager.updateUser(updateUser);

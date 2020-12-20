@@ -60,12 +60,7 @@ public class Manager {
 	}
 	
 	public int updateUser(User user) throws SQLException, NotFoundException{
-		// NotFoundException이 나는지 확인하기 위해 수행하는 코드
-		// findUser(user.getEmail());
-		if(memberDAO.existingUser(user.getEmail(), user.getPassword())) {
-			return memberDAO.userInfoUpdate(user);
-		}
-		return -1;
+		return memberDAO.userInfoUpdate(user);
 	}
 	
 	//ok
@@ -165,7 +160,7 @@ public class Manager {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException();
 		}
-		
+		int result = studyGroupDAO.deleteFromApplyList(groupId, memberId);
 		return studyGroupDAO.removeMemberInGroup(groupId, memberId);
 	}
 	
@@ -181,11 +176,14 @@ public class Manager {
 	// ok
 	public int manageApplicationInGroup(int groupId, int userId, boolean approved) throws SQLException, NotFoundException{
 		int result = studyGroupDAO.findApplication(groupId, userId);
-		
 		// 지원서에 없을 경우
 		if(result != 1) {throw new NotFoundException();}		
 //		result = studyGroupDAO.deleteFromApplyList(groupId, userId);
 		if(approved && result == 1) {
+			StudyGroup group = studyGroupDAO.selectStudyGroup(groupId);
+			if(group.getNumberOfUsers() <= group.getGroupUsers().size()) {
+				return -3;
+			}			
 			studyGroupDAO.acceptApply(groupId, userId);
 			result = studyGroupDAO.addMemberInGroupMember(groupId, userId, "0");
 		} else if (approved == false && result == 1) {

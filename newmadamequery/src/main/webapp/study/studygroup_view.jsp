@@ -217,11 +217,18 @@ th, #bc, #bc2{
 						<c:out value="상관없음" />
 					</c:if>
 					<c:if test="${grade != '0'}">
-						<c:out value="${grade}" />학년
+						<c:out value="${grade}" />학년이상
 					</c:if>
 				</td>
 				<td id="bc2">수행기간</td>
-				<td >${StudyGroup.term }개월</td>
+				<td>
+					<c:if test="${StudyGroup.term == '0' }">
+						무기한
+					</c:if>
+					<c:if test="${StudyGroup.term != '0' }" >
+						${StudyGroup.term}개월
+					</c:if>
+				</td>
 			</tr>
 		</table>
 </div>
