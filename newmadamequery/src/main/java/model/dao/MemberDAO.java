@@ -15,7 +15,6 @@ import model.User;
 import model.service.AppException;
 
 public class MemberDAO {
-	
 	private static MemberDAO md = new MemberDAO();
 	private JDBCUtil jdbcUtil = null;
 	
