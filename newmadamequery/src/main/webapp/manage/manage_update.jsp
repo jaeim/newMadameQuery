@@ -180,7 +180,16 @@ a:visited {
 			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
 			<td id="bc">인원</td>
 			<td> 
-				${studyGroup.numberOfUsers} 	
+				<%
+					int nowNumber = (Integer)request.getAttribute("nowNumber");
+					if(nowNumber < 3) { nowNumber = 3; }
+					request.setAttribute("nowNumOfMem", nowNumber);
+				%>
+				<select name="numberOfUsers">
+				<c:forEach begin="${nowNumOfMem}" varStatus="status" end="10">
+					<option value="${status.index}" <c:if test="${status.index == studyGroup.numberOfUsers}"> selected </c:if>>${status.index}명</option> 
+				</c:forEach>
+				</select>
 			</td>
 			<td id="bc">기간</td>
 			<td>
@@ -217,8 +226,12 @@ a:visited {
 		<td id="bc">성별</td>
 		<td><select name="genderType">
 				<c:set var="gender" value="${studyGroup.genderType }" />
-				<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
-				<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
+				<c:if test="${gender eq '1'}">
+					<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
+				</c:if>
+				<c:if test="${gender eq '2'}">
+					<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
+				</c:if>
 				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
 			</select></td>
 	</tr>
@@ -237,13 +250,23 @@ a:visited {
 		<td id="bc">학년</td>
 		<td>
 			<select name="gradeType" >
-				<c:set var="grade" value="${studyGroup.gradeType }" />
-				<option value="1" <c:if test="${grade eq '1'}">selected</c:if>>1학년</option>
-				<option value="2" <c:if test="${grade eq '2'}">selected</c:if>>2학년</option>
-				<option value="3" <c:if test="${grade eq '3'}">selected</c:if>>3학년</option>
-				<option value="4" <c:if test="${grade eq '4'}">selected</c:if>>4학년</option>
-				<option value="5" <c:if test="${grade eq '5'}">selected</c:if>>4학년 이상</option>
-				<option value="0" <c:if test="${grade eq '0'}">selected</c:if>>상관없음</option>
+			<% 
+				StudyGroup sg = (StudyGroup)request.getAttribute("studyGroup");
+				int grade = Integer.valueOf(sg.getGradeType());
+				request.setAttribute("grade", grade);
+			%>
+			<c:forEach begin="0" varStatus="status" end="${grade}">
+				<c:if test="${status.index != 1 }">
+					<option value="${status.index}" <c:if test="${status.index == grade}">selected</c:if>>				
+						<c:if test="${status.index == 0 }">
+							상관없음
+						</c:if>
+						<c:if test="${status.index != 0 }">
+							${status.index}학년이상
+						</c:if>
+					</option>
+				</c:if>
+			</c:forEach>
 			</select>
 		</td>
 	</tr>

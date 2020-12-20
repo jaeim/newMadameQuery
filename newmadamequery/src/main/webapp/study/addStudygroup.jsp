@@ -263,12 +263,10 @@ ul, li {
 				<td id="bc">모집학년</td>
 				<td>
 					<select name="gradeType">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">4학년 이상</option>
 						<option value="0">상관없음</option>
+						<option value="2">2학년이상</option>
+						<option value="3">3학년이상</option>
+						<option value="4">4학년이상</option>
 					</select>
 				</td>
 				<td id="bc">팀장 Id</td>

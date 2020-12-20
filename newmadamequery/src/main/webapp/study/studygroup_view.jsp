@@ -217,7 +217,7 @@ th, #bc, #bc2{
 						<c:out value="상관없음" />
 					</c:if>
 					<c:if test="${grade != '0'}">
-						<c:out value="${grade}" />학년
+						<c:out value="${grade}" />학년이상
 					</c:if>
 				</td>
 				<td id="bc2">수행기간</td>

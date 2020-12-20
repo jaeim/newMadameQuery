@@ -25,6 +25,8 @@ public class UpdateStudyController implements Controller {
 		//form출력
 		if(request.getMethod().equals("GET")) {
 			StudyGroup group = manager.findGroup(groupId);
+			int nowNumber = manager.getNumberOfMemberInGroup(groupId);
+			request.setAttribute("nowNumber", nowNumber);
 			request.setAttribute("studyGroup", group);
 			return "/manage/manage_update.jsp";
 		}
