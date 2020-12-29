@@ -30,7 +30,7 @@ public class ListManageStudyController implements Controller {
 			ArrayList<StudyGroup> groupList = manager.getManageStudyGroupList(userId);
 			request.setAttribute("groupList", groupList);
 		}catch(SQLException e) {
-			return ""; // 실패, 오류관리페이지로 이동
+			return "/"; // 실패, 오류관리페이지로 이동
 		}
 		
 		//성공

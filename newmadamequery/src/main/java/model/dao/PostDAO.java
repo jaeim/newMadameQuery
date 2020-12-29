@@ -41,7 +41,7 @@ public class PostDAO {
 	
 	//전체 게시글 보기
 	public ArrayList<Post> getPostList(int groupId) throws SQLException {
-		String query = "SELECT post_id, name, title, content, created_date, modified_date, member_id "
+		String query = "SELECT * "
 				+ "FROM post JOIN member USING (member_id) "
 				+ "WHERE group_id = ? ORDER BY created_date DESC";
 		
@@ -61,7 +61,7 @@ public class PostDAO {
 				post.setCreatedDate(rs.getDate("created_date"));
 				post.setModifiedDate(rs.getDate("modified_date"));
 				post.setMember_id(rs.getInt("member_id"));
-				
+				post.setGroup_id(rs.getInt("group_id"));
 				postList.add(post);
 			}
 			return postList;
@@ -88,7 +88,8 @@ public class PostDAO {
 			
 			if (rs.next()) {
 				Post post = new Post();
-				
+
+				post.setPostId(postId);
 				post.setUserName(rs.getString("name"));
 				post.setTitle(rs.getString("title"));
 				post.setContent(rs.getNString("content"));
@@ -110,7 +111,7 @@ public class PostDAO {
 	
 	//게시글 등록
 	public int addPost(Post post) throws SQLException {
-		jdbcUtil.setAutoCommit(false);
+		//jdbcUtil.setAutoCommit(false);
 		
 		String query = "INSERT INTO post (post_id, title, content, created_date, member_id, group_id) "
 				+ "VALUES (SEQUENCE_POST.nextval, ?, ?, SYSDATE, ?, ?)";
@@ -145,7 +146,7 @@ public class PostDAO {
 	
 	//게시글 수정
 	public int updatePost(Post post) throws SQLException {
-		jdbcUtil.setAutoCommit(false);
+		//jdbcUtil.setAutoCommit(false);
 		
 		String query = "UPDATE post SET title = ?, content = ?, modified_date = SYSDATE "
 				+ "WHERE post_id = ?";
@@ -179,7 +180,7 @@ public class PostDAO {
 		String query2 = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query2, new Object[] {postId});
 
-		jdbcUtil.setAutoCommit(false);
+		//jdbcUtil.setAutoCommit(false);
 		
 		String query = "DELETE FROM post WHERE post_id = ?";
 		jdbcUtil.setSqlAndParameters(query, new Object[] {postId});

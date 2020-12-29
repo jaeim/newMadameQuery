@@ -9,12 +9,12 @@ import java.util.List;
 
 import org.apache.naming.java.javaURLContextFactory;
 
+import model.Application;
 import model.StudyGroup;
 import model.User;
 import model.service.AppException;
 
 public class MemberDAO {
-	
 	private static MemberDAO md = new MemberDAO();
 	private JDBCUtil jdbcUtil = null;
 	
@@ -28,14 +28,13 @@ public class MemberDAO {
 	//회원가입 (새로운 user 추가)
 	public int userCreate(User user) throws SQLException {
 		int result = 0;
-		String query = "INSERT INTO MEMBER (member_id, email, password, name, dob, phone, "
-				+ "date_of_join, university, dep, grade, gender)"
+		String query = "INSERT INTO MEMBER (member_id, email, password, name, phone, "
+				+ "dob, date_of_join, univ, dep, grade, gender)"
 				+ " VALUES (SEQUENCE_USER.NEXTVAL, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?)";
 		
 		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
-		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
-		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob,
-				user.getPhone(), user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
+		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(),
+				user.getPhone(), dob, user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender()};
 		
 		jdbcUtil.setSqlAndParameters(query, param);
 		try {
@@ -57,7 +56,8 @@ public class MemberDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
-			if(rs != null) {
+			
+			if(rs.next()) {
 				result = true;
 			}
 			jdbcUtil.commit();
@@ -91,9 +91,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -125,9 +125,9 @@ public class MemberDAO {
 						rs.getString("email"),
 						rs.getString("password"),
 						rs.getString("name"),
-						new java.util.Date(rs.getDate("dob").getTime()),
+						rs.getDate("dob"),
 						rs.getString("phone"),
-						new java.util.Date(rs.getDate("date_of_join").getTime()),
+						rs.getDate("date_of_join"),
 						rs.getString("univ"),
 						rs.getString("dep"),
 						rs.getString("grade"),
@@ -147,15 +147,10 @@ public class MemberDAO {
 	public int userInfoUpdate(User user) throws SQLException {
 		int result = 0;
 		String query = "UPDATE MEMBER "
-				+ "SET email=?, password=?, name=?, dob=?, phone=?, "
-				+ "univ=?, dep=?, grade=?, gender=?"
-				+ "WHERE member_id=?";
-		
-		java.sql.Date dob = new java.sql.Date(user.getDob().getTime());
-		//java.sql.Date date_of_join = new java.sql.Date(user.getDate_of_join().getTime());
-		
-		Object[] param = new Object[] {user.getEmail(), user.getPassword(), user.getName(), dob, user.getPhone(), 
-				user.getUniversity(), user.getDepartment(), user.getGrade(), user.getGender(), user.getMember_id()};
+				+ "SET name=?, phone=?, univ=?, dep=? WHERE member_id=?";
+	
+		Object[] param = new Object[] {user.getName(), user.getPhone(), 
+				user.getUniversity(), user.getDepartment(), user.getMember_id()};
 		jdbcUtil.setSqlAndParameters(query, param);
 		
 		try {
@@ -185,7 +180,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
@@ -226,7 +221,7 @@ public class MemberDAO {
 				StudyGroup sg = new StudyGroup();
 				
 				sg.setGroupId(rs.getInt("group_id"));
-				sg.setCreatedDate(new java.util.Date(rs.getDate("created_date").getTime()));
+				sg.setCreatedDate(rs.getDate("created_date"));
 				sg.setNumberOfUsers(rs.getInt("number_of_member"));
 				sg.setGroupName(rs.getString("name"));
 				sg.setDescription(rs.getString("description"));
@@ -252,29 +247,43 @@ public class MemberDAO {
 	}
 	
 	//내가 신청한 스터디그룹 목록
-	public ArrayList<User> getApplyList() {
-		String query = "SELECT name, apply_date, approved_date, isApproved "
-				+ "FROM studygroup JOIN applylist USING (group_id)";
-		jdbcUtil.setSqlAndParameters(query, null);
-		
+	public ArrayList<Application> getApplyList(int memberId) {
+		String query = "SELECT m.name mName, s.group_id sGroup_id, s.name sName, apply_date, approved_date, isApproved, commt "
+				+ "FROM studygroup s, applylist a, member m "
+				+ "WHERE m.member_id=a.member_id AND s.group_id=a.group_id AND m.member_id=?";
+		Object[] param = new Object[] {memberId};
+		jdbcUtil.setSqlAndParameters(query, param);
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			if(rs == null) {throw new AppException();}
 			
-			ArrayList<User> applyList = new ArrayList<User>();
+			ArrayList<Application> applyList = new ArrayList<Application>();
 			
 			while (rs.next()) {
-				User apply = new User();
+				Application apply = new Application();
 				
-				apply.setStudyName(rs.getString("name"));
-				apply.setApplyDate(rs.getDate("apply_date"));
-				apply.setApplyDate(rs.getDate("approved_date"));
+				apply.setMemberId(memberId);
+				apply.setMemberName(rs.getString("mName"));
+				apply.setGroupId(rs.getInt("sGroup_id"));
+				apply.setGroupName(rs.getString("sName"));		
+				
+				java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
+				java.util.Date utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String apply_date = df.format(utilDate); 
+				apply.setApplyDate(apply_date);
+				
+				utilDate = new java.util.Date(rs.getDate("apply_date").getTime());
+				String approved_date = df.format(utilDate); 
+				apply.setApplyDate(approved_date);
 				
 				String approved = rs.getString("isApproved");
 				if (approved.equals("1"))
-					apply.setApproved(true);
+					apply.setIsApproved("수락 완료");
+				else if(approved.equals("2")) 
+					apply.setIsApproved("수락 거절");
 				else
-					apply.setApproved(false);
+					apply.setIsApproved("수락 대기");
+				apply.setComment(rs.getString("commt"));
 					 
 				applyList.add(apply);
 			}

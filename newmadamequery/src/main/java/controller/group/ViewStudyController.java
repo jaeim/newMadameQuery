@@ -16,6 +16,7 @@ public class ViewStudyController implements Controller{
 		// TODO Auto-generated method stub
 		
 		int groupId = Integer.valueOf(request.getParameter("groupId"));
+		String result = request.getParameter("result");
 		Manager manager = Manager.getInstance();
 		
 		StudyGroup group = null;
@@ -25,7 +26,13 @@ public class ViewStudyController implements Controller{
 			return ""; // 오류페이지로 이동
 		}
 		
-		request.setAttribute("studyGroup", group);
-		return "/study/studygroup_view.jsp";
+		request.setAttribute("StudyGroup", group);
+		if(result == null) {
+			System.err.println("result == null");
+			return "/study/studygroup_view.jsp";
+		}else {
+			System.err.println("result != null");
+			return "/study/studygroup_view.jsp?result=" + result;
+		}
 	}
 }

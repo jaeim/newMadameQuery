@@ -3,9 +3,9 @@
 
 <html>
 <head>
-<title>사용자 관리(UserMan3)</title>
+<title>로그인</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--<link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">-->
+
 <script>
 function login() {
 	if (form.email.value == "") {
@@ -30,7 +30,7 @@ function userCreate(targetUri) {
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -83,7 +83,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -95,7 +94,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -106,80 +104,65 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
+
+#loginform {
+	margin-bottom: 100px;
+	padding: 70px;
+	border-style: double;
+	border : 1px double #D8D8D8;
+}
+#tobemember{
+	color: #0040FF;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+h5 {display: inline;}
 </style>
 </head>
 <body>
 
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="<c:url value='/studyGroup/myStudy'>
-			<c:param name='userId' />
-			</c:url> ">MYSTUDY</a></li>
-		
-	
+		<li><a href="<c:url value='/user/mainPage' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
 				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="<c:url value='/studyGroup/manageStudyList'>
-			<c:param name='userId' />
-			</c:url> ">MANAGE</a>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		 <!--  <li>LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li> <a href="<c:url value='/user/login/form' />">로그인</a></li>
-				<li> <a href = "http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
-		</li>-->
-		
 	</ul>
 </nav>
-<!-- login form  -->
-<form name="form" method="POST" action="<c:url value='/user/login' />">
-  <table>
-	<tr>
-	  <td ></td>
-	  <td>
-	    <table>
-		  <tr>
-			<td>&nbsp;&nbsp;<b>사용자 관리 - 로그인</b>&nbsp;&nbsp;</td>
-		  </tr>
-	    </table>  
-	    <!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-        <c:if test="${loginFailed}">
+<br><br>
+<div id="loginform" >
+	<h4 id="tobemember" style="display: inline;">아직 회원이 아니신가요?</h4>
+	<a href="<c:url value='/user/register/form' />" id="userRB">회원가입</a>
+	<br><br>
+<form  name="form" method="POST" action="<c:url value='/user/login' />">
+	<b>LOGIN</b>
+	<c:if test="${loginFailed}">
 	  	  <br><font color="red"><c:out value="${exception.getMessage()}" /></font><br>
 	    </c:if>
-	    <br>	  
-	    <table >
-	  	  <tr >
-			<td >사용자 ID</td>
-			<td>
-				<input type="text" style="width:240" name="email">
-			</td>
-		  </tr>
-	  	  <tr >
-			<td >비밀번호</td>
-			<td >
-				<input type="password" style="width:240" name="password">
-			</td>
-		  </tr>
-	    </table>
-	    <br>	  
-	<table>
-		  <tr>
-			<td>
-			<input type="submit" value="로그인" onClick="login()"> &nbsp;
-			</td>						
-		  </tr>
-	    </table>
-	  </td>	  
-	</tr>
+	<h4> 사용자 ID : </h4>
+	<input type="text" style="width:240" name="email">
+	<h4> 비밀번호 : </h4>
+	<input type="password" style="width:240" name="password"><br><br>
+	<input type="button" value="로그인" onClick="login()"> &nbsp;
 
-  </table>  
+		
 </form>
+</div>
 </body>
 </html>

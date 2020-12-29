@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>게시글 수정 페이지</title>
 <script>
 	function postModify(){
 		
-		if(form.pTitle.value = ""){
+		if(form.title.value == ""){
 			alert("제목을 입력하십시오.");
 			form.name.focus();
 			return false;
 		}
-		if(form.pContents.value=""){
+		if(form.content.value == ""){
 			alert("내용을 입력하십시오.");
 			form.contents.focus();
 			return false;
@@ -28,7 +28,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -81,7 +81,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -93,7 +92,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -104,70 +102,76 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-td{
-	border-right: 1px solid black;
-	width: 100px;
-}
-#onePost {
-	border: 1px solid black;
-	width: 700px;
-	height: auto;
+
+
+#pTable{
+	margin: auto;
+	width: 400px;
+	height: 200px;
 	text-align: center;
+}
+#bc{
+	background : #084B8A;
+	color: white;
+}
+#pUpdateB{
+	background : #084B8A;
+	color: white;
+	float: right;
 }
 </style>
 </head>
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
 
 <br><br>
-<% //테스트를 위한 설정- failed
 
-	Post firstPost= new Post();
-	firstPost.setPostId(411);
-	System.out.println(firstPost.getContent());
-%>
 <div id="onePost">
-<h3></h3>
+	<h3 style="text-align: center;">게시글 수정</h3>
+	<form name="form" method="POST" action="<c:url value='/post/update'>
+	<c:param name="postId" value="${post.postId}" />
+	</c:url>">
+	
 	<table id="pTable">
 		<tr>
-			<td>제목</td>
-			<td><input type="text" name="pTitle" value="${post.title}"/></td>
-			<td>작성자</td>
-			<td>작성자이름</td>
-			<td>날짜</td>
-			<td>2020-11-23</td>
+			<td id="bc">작성자</td>
+			<td>${post.userName }</td>
+			<td id="bc">날짜</td>
+			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
-			<td >내용</td>
-			<td colspan="5"> <textarea name="pContents" cols="90" rows="5">${post.content}</textarea></td>
-			<!--  <td></td>
-			<td></td>
-			<td></td>
-			<td></td> -->
+			<td id="bc">제목</td>
+			<td colspan="3"><input type="text" name="title" value="${post.title}" style="width: 300px;"></td>
 		</tr>
-		
+		<tr>
+			<td rowspan="2" id="bc">내용</td>
+			<td rowspan= "2" colspan="3"><input type="text" value="${post.content}" name="content" style="width: 300px; height: 100px;"></td>
+		</tr>
 	</table>
-	<input type="button" value="수정 완료" onClick="postModify()" />
+	<br>
+	<input type="button" value="수정 완료" onClick="postModify()" id="pUpdateB" />
+</form>
 </div>
+
+
 </body>
 </html>

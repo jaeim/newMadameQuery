@@ -1,19 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="model.*" %>
+<%@page import="controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>manage update page</title>
-<!-- manage_view.jsp에서 '수정'클릭시 이동 -스터디 그룹의 정보 수정 페이지 -->
 
+<script>
+	function groupModify() {
+		if(form.groupName.value == ""){
+			alert("스터디 그룹 명을 입력하시오.");
+			form.groupName.focus();
+			return false;
+		}
+		if(form.description.value == ""){
+			alert("그룹 소개를 작성하십시오.");
+			form.description.focus();
+			return false;
+		}
+		form.submit();
+		
+	}
+</script>
 <style>
-	body {
+body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -66,7 +85,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -78,7 +96,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -90,215 +107,199 @@ ul, li {
  text-decoration: underline;
 }
 
-#main{
+ #main1, #main2{
  		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 50px;
- 		width: 700px;
- 		height: 30px;
- 	 }
- 	 
- #list{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-bottom: 50px;
- 		width: 700px;
- 		height: 30px;
- 		
- }
- tr{
- 	
- 	margin: 50px;}
- 	
- 	
- 	#main1{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
+ 		border: 1px solid #BDBDBD;
  		margin-top: 50px;
  		margin-bottom: 20px;
  		width: 700px;
  		height: 30px;
  		}
- 	#main2 {
+ #userlist{
  		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 10px;
- 		margin-bottom: 20px;
- 		width: 700px;
- 		height: 30px;
- 	}
- 	#userlist{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
+ 		border: 1px solid #BDBDBD;
  		margin-bottom: 50px;
  		width: 700px;
  		height: 30px;
- 		
  	}
- 	td {
- 		width: 170px;
- 		bgcolor: "ffffff";
- 		padding-left: 10;
+ 	#bc{
+ 		background : #084B8A;
+		color: white;
  	}
- 	tr{
- 		border: 1px solid black;
- 	}
- 	#buttons{
- 		text-align: center;
- 		
- 	}
+ 	
+ a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#mDeleteB {
+	color: red;
+}
+#updateB, #back {
+	background: #E6E6E6;
+	color: black;
+}
+#table1 {float: right;}
 </style>
-<script>
-	function groupModify() {
-		if(form.groupName.value ==""){
-			alert("스터디 그룹 명을 입력하시오.");
-			form.groupName.focus();
-			return false;
-		}
-		if(form.description.value == ""){
-			alert("그룹 소개를 작성하십시오.");
-			form.description.focus();
-			return false;
-		}
-		form.submit();
-		
-	}
-	function groupInfo(targetUri){
-		form.action =targetUri;
-		form.submit();
-	}
-</script>
+
 </head>
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
 
-<%
-//확인을 위한 용도 
+<form name="form" method="POST" action="<c:url value='/studyGroup/manageStudy/update'>
+	<c:param name="groupId" value="${studyGroup.groupId}" />
+	<c:param name="groupMemberList" value="${groupMemberList}" />
+</c:url>" >
 
-	StudyGroup sg = new StudyGroup();
-	sg.setGroupId(501);
-	//밑에서 나중에 sg -> StudyGroup.~로 바꿀 것.
-%>
-
-<form name="form" method="POST" action="<c:url value='/myGroup/manageGroup/update' />">
 <table id="main1">
 		<tr>
-			<td>스터디그룹 명</td>
-			<td> <input type="text" name="groupName" value="${sg.groupName} " ></td>
-			<td>인원</td>
-			<td> ${sg.numberOfUsers } </td>
-			<td>기간</td>
-			<td> <input type="text" name="term" value="${sg.term }"></td>
+			<td id="bc">스터디그룹 명(groupid: ${studyGroup.groupId})</td>
+			<td><input type="text" name="groupName" value="${studyGroup.groupName} " ></td>
+			<td id="bc">모집인원</td>
+			<td> 
+				<%
+					int nowNumber = (Integer)request.getAttribute("nowNumber");
+					if(nowNumber < 3) { nowNumber = 3; }
+					request.setAttribute("nowNumOfMem", nowNumber);
+				%>
+				<select name="numberOfUsers">
+				<c:forEach begin="${nowNumOfMem}" varStatus="status" end="10">
+					<option value="${status.index}" <c:if test="${status.index == studyGroup.numberOfUsers}"> selected </c:if>>${status.index}명</option> 
+				</c:forEach>
+				</select>
+			</td>
+			<td id="bc">기간</td>
+			<td>
+				<select name="term">
+						<c:set var= "term" value="${studyGroup.term}" />
+						<option value="1" <c:if test="${term eq 1}"> selected </c:if>>1개월</option> 
+						<option value="3" <c:if test="${term eq 3}"> selected </c:if>>3개월</option> 
+						<option value="6" <c:if test="${term eq 6}"> selected </c:if>>6개월 </option> 
+						<option value="9" <c:if test="${term eq 9}"> selected </c:if>>9개월 </option> 
+						<option value="12" <c:if test="${term eq 12}"> selected </c:if>>12개월 </option> 
+						<option value="0" <c:if test="${term eq 0}"> selected </c:if>>무기한</option> 
+				</select>
+			</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
-		<td>subjectId(과목)</td>
-		<td>${sg.subjectId} </td>
-		<td>스터디 방식</td>
-		<td> <!-- online, offline, both-->
-			<select name="meetingType">
-				<option value="0">Online</option>
-				<option value="1">Offline</option>
-				<option value="2">On & Off(혼합)</option>
-			</select>
-			<!-- 기존의 데이터 가져와서 selected 표시하기 -->
-		</td>
+		<td id="bc">subjectId</td>
+		<td>${studyGroup.subjectId} </td>
+		<td id="bc">스터디 방식</td>
+				<td> <!-- online, offline, blended-->
+					<select name="meetingType">
+						<c:set var="meetingT" value="${studyGroup.meetingType }" />
+						<option <c:if test="${meetingT eq 'online'}"> selected </c:if>>online</option> 
+						<option <c:if test="${meetingT eq 'offline'}"> selected </c:if>>offline</option> 
+						<option <c:if test="${meetingT eq 'blended'}"> selected </c:if>>blended</option> 
+					</select>
+				</td>
 	</tr>
 	<tr>
-		<td>개설 일자</td>
-		<td>${sg.createdDate }</td>
-		<td>성별</td>
-		<td><select name="meetingType">
-				<option value="0">상관 없음</option>
-				<option value="1">남자</option>
-				<option value="2">여자</option>
+		<td id="bc">개설 일자</td>
+		<td>${studyGroup.createdDate }</td>
+		<td id="bc">모집성별</td>
+		<td><select name="genderType">
+				<c:set var="gender" value="${studyGroup.genderType }" />
+				<c:if test="${gender eq '1'}">
+					<option value="1" <c:if test="${gender eq '1'}">selected</c:if>>남성</option>
+				</c:if>
+				<c:if test="${gender eq '2'}">
+					<option value="2" <c:if test="${gender eq '2'}">selected</c:if>>여성</option>
+				</c:if>
+				<option value="0" <c:if test="${gender eq '0'}">selected</c:if>>상관없음</option>
 			</select></td>
 	</tr>
 	<tr>
-		<td>팀장</td>
+		<td id="bc">팀장</td>
 		<td>
 			<select name="leaderId">
-					<option value="">없음</option>
-					<c:forEach var="member" items="${sg.memberList}">
-						<option value="${member.userId}"
-							<c:if test="${member.userId eq sg.leaderId}">selected="selected"</c:if>
-							>${member.userId}</option>
+					<c:forEach var="member" items="${studyGroup.groupUsers}">
+						<option value="${member.member_id}"
+							<c:if test="${member.member_id eq studyGroup.leaderId}">selected</c:if>
+							>${member.name}</option>
 					</c:forEach>
-				</select>
+			</select>
 		
 		</td>
-		<td>학년</td>
+		<td id="bc">모집학년</td>
 		<td>
-			<select name="grade">
-				<option value="0">상관 없음</option>
-				<option value="1">1학년</option>
-				<option value="2">2학년</option>
-				<option value="3">3학년</option>
-				<option value="4">4학년</option>
+			<select name="gradeType" >
+			<% 
+				StudyGroup sg = (StudyGroup)request.getAttribute("studyGroup");
+				int grade = Integer.valueOf(sg.getGradeType());
+				request.setAttribute("grade", grade);
+			%>
+			<c:forEach begin="0" varStatus="status" end="${grade}">
+				<c:if test="${status.index != 1 }">
+					<option value="${status.index}" <c:if test="${status.index == grade}">selected</c:if>>				
+						<c:if test="${status.index == 0 }">
+							상관없음
+						</c:if>
+						<c:if test="${status.index != 0 }">
+							${status.index}학년이상
+						</c:if>
+					</option>
+				</c:if>
+			</c:forEach>
 			</select>
 		</td>
+	</tr>
+	<tr>
+		<td id="bc">소개</td>
+		<td><input type="text" name="description" value="${studyGroup.description } " style="width:250px"></td>
 	</tr>
 </table>
 
 <br>
 
+<h3>팀원 리스트</h3>
 <table id= "userlist">
 	<tr>
-		<td>이름</td>
-		<td>팀원 관리</td>
+		<td id="bc">이름</td>
 	</tr>
 	
-	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
-	
-	<c:forEach var="member" items="{sg.memberList}">
+	<c:forEach var="member" items="${studyGroup.groupUsers}">
 		<tr>
-			<td><!-- 멤버 이름 출력 --></td>
-			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
-				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${sg.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">수락</a>
-			</td>
-			
-			
+			<td>${member.name}</td>
 		</tr>
 	</c:forEach>
 	
 </table>
-<br>
-<div id="buttons">
-	<input type="button" value="저장하기" onClick="groupModify()"> &nbsp;
-	<input type="button" value="돌아가기" onClick="groupInfo('<c:url value='/studyGroup/manageStudy'>
-		<c:param name="groupId" value="${sg.groupId}" />
-		</c:url>'')">
-</div>
+
+<table id="table1">
+	<tr>
+		<td><input type="button" value="저장하기" onClick="groupModify()" id="updateB"> &nbsp;</td>	
+		<td><a href="<c:url value='/studyGroup/manageStudy'>
+			<c:param name="groupId" value="${studyGroup.groupId}" />
+			</c:url> " id="back">돌아가기</a> </td>
+	</tr>
+</table>
 </form>
 
 

@@ -19,12 +19,6 @@ public class User {
 	private String grade;
 	private int gender;
 
-	// 나의 신청현황 목록 보기위한 변수
-	private String StudyName;
-	private java.util.Date applyDate;
-	private java.util.Date approvedDate;
-	private boolean isApproved;
-
 	public User() {
 		dob = null;
 		date_of_join = null;
@@ -60,15 +54,13 @@ public class User {
 		this.grade = grade;
 		this.gender = gender;
 	}
-
-	public User(int member_id, String email, String password, String name, Date dob, String phone, String university,
+	
+	public User(String email, String password, String name, String phone, String university,
 			String department, String grade, int gender) {
 		super();
-		this.member_id = member_id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.dob = dob;
 		this.phone = phone;
 		this.university = university;
 		this.department = department;
@@ -76,23 +68,19 @@ public class User {
 		this.gender = gender;
 	}
 
-//	public User(String studyName, Date apply_date, Date approved_date, boolean isApproved) {
-//		super();
-//		StudyName = studyName;
-//		this.apply_date = apply_date;
-//		this.approved_date = approved_date;
-//		this.isApproved = isApproved;
-//	}
-
-//	public void update(User updateUser) {
-//        this.password = updateUser.password;
-//        this.name = updateUser.name;
-//        this.email = updateUser.email;
-//        this.phone = updateUser.phone;
-//        this.university = updateUser.university;
-//		this.department = updateUser.department;
-//		this.grade = updateUser.grade;
-//}
+	public User(int member_id, String email, String password, String name, String phone, String university,
+			String department, String grade, int gender) {
+		super();
+		this.member_id = member_id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.phone = phone;
+		this.university = university;
+		this.department = department;
+		this.grade = grade;
+		this.gender = gender;
+	}
 
 	public int getMember_id() {
 		return member_id;
@@ -180,38 +168,6 @@ public class User {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
-	}
-
-	public String getStudyName() {
-		return StudyName;
-	}
-
-	public void setStudyName(String studyName) {
-		StudyName = studyName;
-	}
-
-	public java.util.Date getApplyDate() {
-		return applyDate;
-	}
-
-	public void setApplyDate(java.util.Date applyDate) {
-		this.applyDate = applyDate;
-	}
-
-	public java.util.Date getApprovedDate() {
-		return approvedDate;
-	}
-
-	public void setApprovedDate(java.util.Date approvedDate) {
-		this.approvedDate = approvedDate;
-	}
-
-	public boolean isApproved() {
-		return isApproved;
-	}
-
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
 	}
 
 	/* 비밀번호 검사 */

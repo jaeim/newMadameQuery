@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>mainPage</title>
-
+<title>나의 신청 현황</title>
+<!-- AppliListController 구현 완료 후 확인하기 -->
 <style>
 	body {
   margin: 0;
@@ -85,32 +85,20 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-
-#first{
- 	border: 1px solid black;
- 	text-align: center;
- }
-#loginB, #userRB, #logout, #toMP{
-	color: #08088A;
-	font-weight: bold;
-	background:  #C0EDFF;
-	text-decoration: none;
+#apTable{
+	text-align: center;
+	border: 1px solid black;
+	width: 500px;
+	height: auto;
 }
 
-#div1, #div2{
-	border: 1px solid #C0EDFF;
-	margin : auto;
-	padding: 10px;
-	text-align: center;
-	width: 300px;
-	height: 100px;
-	border-style: outset;
+th{
+	background : #084B8A;
+	color: white;
 }
 </style>
 </head>
 <body>
-
-
 <nav>
 	<ul id="main-menu">
 		<li><a href="<c:url value='/user/home' />">HOME</a></li>
@@ -120,8 +108,6 @@ ul, li {
 					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
 				</ul>
 		</li>
-		
-	
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
 				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
@@ -133,35 +119,26 @@ ul, li {
 		</li>
 	</ul>
 </nav>
-
-<br>
-<br>
-	<h3>
-		<pre style="font-family: 'NanumSquare', sans-serif !important;">Study with me!
-원하는 스터디 그룹을 찾고 싶으신가요?</pre>
-	</h3>
-	
-	<c:if test= "${user.member_id eq null }" >
-		<div id="div1">
-			<br>
-			<a href="<c:url value='/user/login/form' />" id="loginB">로그인</a> <br><br>
-			<a href="<c:url value='/user/register/form' />" id="userRB">회원가입</a>
-		</div>
-	</c:if>
-
-
-
-	<c:if test= "${user.member_id ne null }" >
-		<div id="div2">
-		이름: ${user.name } (로그인) <br>
- 		<br>
-		<a href="<c:url value='/user/view' >
-			</c:url> " id="toMP">마이페이지로 이동</a>
-		<br><br>
-		<a href="<c:url value= '/user/logout' />" id="logout">로그아웃</a>
-		</div>
-	</c:if>
-
-
+<br><br>
+	<%
+		//List<Application> applyList = request.getParameter("applyList");
+		
+	%>
+	<!-- 보여줄 정보 : 스터디그룹 명, 수락 여부(isApproved), 신청날짜  -->
+	<table id="apTable">
+		<caption><h4 style="display: inline;">나의 신청 현황 </h4></caption>
+		<tr>
+			<th>그룹 명</th>
+			<th>수락 여부</th>
+			<th>신청 날짜</th>
+		</tr>
+		<c:forEach var="apList" items="${applyList }" >
+			<tr>
+				<td>${apList.groupName }</td>
+				<td>${apList.isApproved }</td>
+				<td>${apList.applyDate }</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

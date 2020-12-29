@@ -1,25 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 
 <script>
 	function userCreate(){
-		if(form.userId.value == ""){
-			
-			alert("사용자의 id를 입력하십시오.");
-			form.userId.focus();
+		if(form.email.value == "") {
+			alert("이메일을 입력하십시오.");
+			form.email.focus();
 			return false;
 		}
-		if(form.password.value == ""){
+		var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if(emailExp.test(form.email.value)==false) {
+			alert("이메일 형식이 올바르지 않습니다.");
+			form.email.focus();
+			return false;
+		}
+		if(form.password.value == "") {
 			
 			alert("비밀번호를 입력하십시오.");
 			form.password.focus();
 			return false;
 		}
-		if(form.password.value != form.password2.value){
+		if(form.password.value != form.password2.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			form.password2.focus();
 			return false;
@@ -29,40 +35,34 @@
 			form.name.focus();
 			return false;
 		}
-		if(form.email.value=""){
-			
-			alert("이메일을 입력하십시오.");
-			form.email.focus();
-			return false;
-		}
-		if(form.university.value ==""){
-			
-			alert("대학명을 입력하십시오.");
-			form.univerisity.focus();
-			return false;
-		}
-		if(form.department.value == ""){
-			alert("소속 학과명을 선택하십시오.");
-			form.department.focus();
-			return false;
-		}
-		if(form.gender.value == ""){
-			alert("성별을 선택하십시오.");
+		if(form.phone.value == "") {
+			alert("전화번호를 입력하십시오.");
 			form.gender.focus();
 			return false;
 		}
-		//var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-//		if(emailExp.test(form.email.value)==false) {
-//			alert("이메일 형식이 올바르지 않습니다.");
-//			form.email.focus();
-//			return false;
-//		}
 		var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
 		if(phoneExp.test(form.phone.value)==false) {
 			alert("전화번호 형식이 올바르지 않습니다.");
 			form.phone.focus();
 			return false;
 		}
+		if(form.university.value =="") {
+			
+			alert("대학명을 입력하십시오.");
+			form.univerisity.focus();
+			return false;
+		}
+		if(form.department.value == "") {
+			alert("소속 학과명을 선택하십시오.");
+			form.department.focus();
+			return false;
+		}
+		if(form.gender.value == "") {
+			alert("성별을 선택하십시오.");
+			form.gender.focus();
+			return false;
+		}
+
 		form.submit();
 		
 	}
@@ -72,7 +72,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -125,7 +125,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -137,7 +136,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -151,14 +149,12 @@ ul, li {
  	#title {
  		text-align: center;
  		font-size: 50px;
- 		font-family: Arial;
  	}
  	#joinTable, #lectureTable{
  		text-align: center;
  		border: 1px solid black;
  		margin-left: auto;
  		margin-right: auto;
- 		font-family: Arial;
  	}
  	#joinTable{
  		width: 550px;
@@ -172,45 +168,52 @@ ul, li {
  		margin-right: auto;
  	}
 #joinDiv {
-	border: 1px solid black;
 	text-align: center;
-	width: 450px;
-	height: 500px;
+ 	border: 1px solid grey;
+ 	margin-bottom:  50px;
+ 	margin: 50px;
+ 	padding-top: 10px;
+	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right:30px;
+	width: 400px;
+}
+#table1{
+	margin: auto;
 }
 </style>
 </head>
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
+
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="http://localhost:8080/newmadamequery/user/login.jsp">로그인</a></li>
-				<li><a href="http://localhost:8080/newmadamequery/user/user_write.jsp">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
-<br><br>
 
 <div id="joinDiv">
 	
-	<h1>Join With Us!</h1>
+	<h4 id="title">Join With us!</h4>
 	<form name="form" method="POST" action="<c:url value='/user/register' /> ">
-	<table>
+	<table id="table1">
 		<tr>
-			<td>사용자 id: </td>
-			<td><input type="text" name="userId"></td>
+			<td>이메일: </td>
+			<td><input type="text" name="email"></td>
 		</tr>
 		<tr>
 			<td>비밀번호: </td>
@@ -225,12 +228,12 @@ ul, li {
 			<td><input type="text" name="name"></td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호 (ex.010-1234-5678)</td>
+			<td>휴대폰 번호(ex.010-1234-5678)</td>
 			<td><input type="text" name="phone"></td>
 		</tr>
 		<tr>
-			<td>이메일 주소: </td>
-			<td><input type="text" name="email"></td>
+			<td>생년월일 (yyyy/mm/dd)</td>
+			<td><input type="text" name="dob"></td>
 		</tr>
 		<tr>
 			<td>소속 학교 명: </td>
@@ -277,31 +280,29 @@ ul, li {
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td><select name="grade">
-				<option>1학년</option>
-				<option>2학년</option>
-				<option>3학년</option>
-				<option>4학년</option>
-				<option>5학년 이상</option>
-			</select></td>
+			<td>
+				<select name="grade">
+					<option value="1">1학년</option>
+					<option value="2">2학년</option>
+					<option value="3">3학년</option>
+					<option value="4">4학년</option>
+					<option value="5">5학년 이상</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><select name="gender">
-				<option>남자</option>
-				<option>여자</option>
-			</select></td>
+			<td>
+				<select name="gender">
+					<option value="1">남자</option>
+					<option value="2">여자</option>
+				</select>
+			</td>
 		</tr>
 	</table>
-	<br>
-	<table style="width: 100%">
-		  <tr>
-			<td align="left">
-			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
-			</td>
-		  </tr>
-	    </table>
-	 <br>
+	<br><br>
+	<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
+	
 	</form>
 </div>
 </body>

@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Comment {
+public class Comment implements Serializable{
 	private int comment_id; // 댓글 번호(comment_id)
 	private User userName; //댓글 올린 사람 이름 (member_name을 대신 사용)
 	private Date createdDate = null; //댓글 올린 날짜
@@ -12,7 +13,7 @@ public class Comment {
 	private int groupId;
 	
 	private int member_id; // 댓글 작성자의 멤버id
-	private String memeber_name; // 댓글 작성자의 이름 (member 테이블과 조인해야 함)
+	private String member_name; // 댓글 작성자의 이름 (member 테이블과 조인해야 함)
 	
 	public Comment() {
 		super();
@@ -85,13 +86,21 @@ public class Comment {
 	}
 
 
-	public String getMemeber_name() {
-		return memeber_name;
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String memeber_name) {
+		this.member_name = memeber_name;
 	}
 
 
-	public void setMemeber_name(String memeber_name) {
-		this.memeber_name = memeber_name;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
 	
 }
+	
+

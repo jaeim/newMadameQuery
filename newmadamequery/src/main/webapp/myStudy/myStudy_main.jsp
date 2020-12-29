@@ -1,22 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	List<StudyGroup> groupList = (List<StudyGroup>) request.getAttribute("groupList");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>내가 속한 스터디그룹 리스트 출력</title>
-<!--  하나의 스터디를 선택할 경우 myStudy_view.jsp로 이동 (정보 전달)-->
+<title>myStudyGroup List</title>
+<script>
+	<% 
+		String ex = (String)request.getAttribute("exception");
+		if(ex != null){
+			if(ex.equals("deleteException")){
+				out.println("alert('팀장은 그룹에서 탈퇴할 수 없습니다.');");
+			}
+		}
+	%>
+
+</script>
 <style>
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center; 
@@ -69,7 +77,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -81,7 +88,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -94,56 +100,79 @@ ul, li {
 }
 
 #groupList{
-	border-bottom: 1px solid black;
+	text-align: center;
+	border: 1px solid #E6E6E6;
+	width: 500px;
+	height: auto;
 }
-
-
+th{
+	background : #084B8A;
+	color: white;
+}
+a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#bc{
+	color: blue;
+}
+#out{
+	color: red;
+}
 </style>
 </head>
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
-<div> <!-- 내가 속한 스터디 그룹의 리스트 가져와서 보여주기 , 어떤 정보 가져올건지 정하고 table 다시만들기-->
-	<table id="groupList">
+<br><br>
+<h2>나의 스터디</h2>
+<table id="groupList">
 		<tr>
-			<th>스터디 그룹 명</th>
-			<th>인원 수</th>
-			<th>날짜 </th>
+			<th>그룹 명</th>
+			<th>모집인원</th>
+			<th>생성일</th>
+			<th>&nbsp;</th>
 		</tr>
 		
-		<% // 스터디 그룹의 리스트 만큼 tr 생성 %>
 		<c:forEach var="group" items="${groupList}">
 			<tr>
 				<td>
-					<a href="<c:url value='/studyGroup/manageStudy'>
+					<a href="<c:url value='/post/list'>
 						   <c:param name='groupId' value='${group.groupId}'/>
-						 </c:url>">${group.groupName} </a> 
-				</td> <!-- 스터디그룹 명 클릭 시에 해당 스터디그룹의 게시판으로 이동 -->
-				<td>${group.numberOfUsers }</td>
+						 </c:url>" id="bc">${group.groupName} </a> 
+						 
+				</td>
+				<td>${group.numberOfUsers}</td>
 				<td>${group.createdDate}</td>
-				
+				<td><a href="<c:url value='/studyGroup/myStudy/dropOut'>
+						   <c:param name='groupId' value='${group.groupId}'/>
+						 </c:url>" id="out">탈퇴</a></td>
 			</tr>
 		</c:forEach>
-	</table>
-</div>
+</table>
+
 </body>
 </html>

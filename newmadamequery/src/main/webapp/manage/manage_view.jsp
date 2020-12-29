@@ -8,11 +8,27 @@
 <meta charset="EUC-KR">
 <title>스터디 그룹 관리 </title>
 <!-- (리스트에서 출력해서 들어가면 그 스터디 그룹에 대한 정보 보여주기), 삭제 및 수락 은 여기서  -->
+
+<%
+	out.println("<script>");
+	out.println("window.onload = function showResult() {");
+	Object rst = request.getParameter("result");
+
+	if(rst != null){	
+		out.println("alert('지원서를 더이상 받을 수 없습니다!!(인원꽉참)'); ");
+	}
+	
+out.println("}</script>");
+
+
+%>
+
 <style>
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -89,47 +105,50 @@ ul, li {
  text-decoration: underline;
 }
  		
- 	#main1{
+ 	#main1 ,#main2 {
  		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 50px;
- 		margin-bottom: 20px;
+ 		border: 1px solid #BDBDBD;
+ 		margin: 20px;
  		width: 700px;
  		height: 30px;
  		}
- 	#main2 {
+ 	#userlist, #applyList{
  		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
- 		margin-top: 10px;
- 		margin-bottom: 20px;
- 		width: 700px;
- 		height: 30px;
- 	}
- 	#userlist{
- 		text-align: center;
- 		font-family: Arial;
- 		border: 1px solid black;
+ 		border: 1px solid #BDBDBD;
  		margin-bottom: 50px;
  		width: 700px;
  		height: 30px;
  		
  	}
- 	td {
- 		width: 170px;
- 		bgcolor: "ffffff";
- 		padding-left: 10;
- 	}
- 	tr{
- 		border: 1px solid black;
- 	}
- 	mark{
- 		background-color: #C0EDFF;
- 	}
+ th, #bc{
+ 		width: 150px;
+		background : #084B8A;
+		color: white;
+ }
+a{
+	text-decoration: none;
+}
+a:link {
+	color: black;
+}
+a:visited {
+	color: black;
+}
+#acceptB, #rejectB{
+	float: right;
+}
+#acceptB {color: blue;}
+#rejectB {color: red;}
+
+#gManageUpdateB, #gDeleteB {
+		background: #E6E6E6;
+		color: black;
+		float: right;
+}
+
  </style>
  
- <script>
+<script>
 function memberDelete() {
 	return confirm("정말 삭제하시겠습니까?");		
 }
@@ -141,96 +160,223 @@ function memberAccept() {
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
-<%
-//확인을 위한 용도 
-	StudyGroup group = (StudyGroup)request.getAttribute("studyGroup");
-	System.out.println(group.getGroupId() + ", " + group.getGroupName());
-	ArrayList<Application> applyList = (ArrayList<Application>)request.getAttribute("applyList");
-	ArrayList<User> groupMemberList = (ArrayList<User>)request.getAttribute("groupMemberList");
-%>
+
 <table id="main1">
 		<tr>
-			<td>스터디그룹 명</td>
-			<td> ${studyGroup.groupName} </td>
-			<td>인원</td>
-			<td> ${studyGroup.numberOfUsers} </td>
-			<td>기간</td>
-			<td> ${studyGroup.term }</td>
+			<td id="bc">스터디그룹 명</td>
+			<td>${studyGroup.groupName } </td>
+			<td id="bc">모집인원</td>
+			<td>
+				<c:set var="num" value="${studyGroup.numberOfUsers }" />
+				<c:if test="${num eq '3' }" >
+					<c:out value="3명" />
+				</c:if>
+				<c:if test="${num eq '4' }" >
+					<c:out value="4명" />
+				</c:if>
+				<c:if test="${num eq '5' }" >
+					<c:out value="5명" />
+				</c:if>
+				<c:if test="${num eq '6' }" >
+					<c:out value="6명" />
+				</c:if>
+				<c:if test="${num eq '7' }" >
+					<c:out value="7명" />
+				</c:if>
+				<c:if test="${num eq '8' }" >
+					<c:out value="8명" />
+				</c:if>
+				<c:if test="${num eq '9' }" >
+					<c:out value="9명" />
+				</c:if>
+				<c:if test="${num eq '10' }" >
+					<c:out value="10명" />
+				</c:if>
+				<c:if test="${num eq '11' }" >
+					<c:out value="10명이상" />
+				</c:if>
+				<c:if test="${num eq '0' }" >
+					<c:out value="상관없음" />
+				</c:if>
+			
+			</td>
+			<td id="bc">모집기간</td>
+			<td>
+				<c:set var="term" value="${studyGroup.term }" />
+				<c:if test="${term eq '1' }" >
+					<c:out value="1개월" />
+				</c:if>
+				<c:if test="${term eq '3' }" >
+					<c:out value="3개월" />
+				</c:if>
+				<c:if test="${term eq '6' }" >
+					<c:out value="6개월" />
+				</c:if>
+				<c:if test="${term eq '9' }" >
+					<c:out value="9개월 " />
+				</c:if>
+				<c:if test="${term eq '12' }" >
+					<c:out value="12개월 " />
+				</c:if>
+				<c:if test="${term eq '0' }" >
+					<c:out value="무기한" />
+				</c:if>
+			</td>
 		</tr>
 </table>
 
 <table id="main2">
 	<tr>
-		<td>subjectId(과목)</td>
+		<td id="bc">과목 id</td>
 		<td>${studyGroup.subjectId} </td>
-		<td>스터디 방식</td>
+		<td id="bc">스터디 방식</td>
 		<td>${studyGroup.meetingType} </td>
 	</tr>
 	<tr>
-		<td>개설 일자</td>
+		<td id="bc">개설 일자</td>
 		<td>${studyGroup.createdDate }</td>
-		<td>성별</td>
-		<td>${studyGroup.genderType }</td> <!-- 출력 사항은 나중에 수정 -->
+		<td id="bc">모집성별</td>
+		<td>
+			<c:set var="gen" value="${studyGroup.genderType }" />
+			<c:if test="${gen eq '0' }" >
+				<c:out value="상관없음" />
+			</c:if>
+			<c:if test="${gen eq '1'}" >
+				<c:out value="남성" />
+			</c:if>
+			<c:if test="${gen eq '2'}" >
+				<c:out value="여성" />
+			</c:if>
+		</td>
 	</tr>
 	<tr>
-		<td>팀장</td>
-		<td>${studyGroup.leaderId }</td>
-		<td>학년</td>
-		<td>${studyGroup.gradeType }</td>
+		<td id="bc">팀장</td>
+		<td>${studyGroup.leaderName}</td>
+		<td id="bc">모집학년</td>
+		<td >
+			<c:set var="gr" value="${studyGroup.gradeType }" />
+			<c:if test="${gr eq '1' }" >
+				<c:out value="1학년 이상" />
+			</c:if>
+			<c:if test="${gr eq '2' }" >
+				<c:out value="2학년 이상" />
+			</c:if>
+			<c:if test="${gr eq '3' }" >
+				<c:out value="3학년 이상" />
+			</c:if>
+			<c:if test="${gr eq '4' }" >
+				<c:out value="4학년 이상" />
+			</c:if>
+			<c:if test="${gr eq '0' }" >
+				<c:out value="상관없음" />
+			</c:if>
+		</td>
 	</tr>
 	<tr>
-		<td>소개</td>
+		<td id="bc">소개</td>
 		<td>${studyGroup.description }</td>
 	</tr>
 </table>
+
+<a><h3>멤버 리스트</h3></a>
+
 <table id= "userlist">
 	<tr>
-		<td>이름</td>
-		<td>팀원 관리</td>
+		<th>&nbsp;</th>
+		<th>이름</th>
+		<th>학교</th>
+		<th>학과</th>
+		<th>학년</th>
+		<th>성별</th>
 	</tr>
 	
-	<%  //if()...그 스터디그룹의 팀원 가져와서 팀원 수 만큼 <tr> 생성해서 list 출력. %>
-	
-	<c:forEach var="member" items="${groupMemberList}">
-		<tr>
-			<td>${member.name}</td>
+	<c:forEach var="gmList" items="${studyGroup.groupUsers}" varStatus="status" >
+		<tr>			
+			<td><c:out value='${status.count }' /></td>
+			<td>${gmList.name }</td>
+			<td>${gmList.university }</td>
+			<td>${gmList.department }</td>
+			<td>${gmList.grade }</td>
 			<td>
-				<a href="<c:url value='/studyGroup/manageGroup/delete' /> " onClick="return memberDelete(); "> 삭제</a>
-				<a href="<c:url value='/studyGroup/manageStudy/applyAccept'>
-					<c:param name='groupId' value='${studyGroup.groupId }'/>
-					</c:url>" onClick= "return memberAccept(); ">수락</a>
+				<c:set var="gr" value="${gmList.gender}" />
+				<c:if test="${gr eq '1'}"> 
+					<c:out value="남성" />
+				</c:if>
+				<c:if test="${gr eq '2'}"> 
+					<c:out value="여성" />
+				</c:if>
 			</td>
 		</tr>
 	</c:forEach>
 	
 </table>
-<div id="update">
+
+<a><h3>신청자 리스트</h3></a>
+<table id="applyList">
 	
-	<mark>
-		<a href="<c:url value='/studyGroup/mangeGroup/update/form' >
-		<c:param name='groupId' value='${studyGroup.groupId}' />
-		</c:url> ">정보 수정</a>
-	</mark>
-	
-</div>
+		<tr>
+			<th>&nbsp;</th>
+			<th>멤버 id</th>
+			<th>이름</th>
+			<th>작성한 코멘트</th>
+			<th>신청 날짜</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+		</tr>
+		
+		<c:forEach var="aList" items="${applyList}" varStatus="status" >
+			<c:if test="${aList.isApproved eq '0'}">
+				<tr>
+					<td><c:out value="${status.count }" />
+					<td>${aList.memberId}</td>
+					<td>${aList.memberName}</td>
+					<td style="width: 300px;">${aList.comment }</td>
+					<td>${aList.applyDate }</td>
+					<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+						<c:param name="groupId" value="${studyGroup.groupId}" />
+						<c:param name="memberId" value="${aList.memberId}" />
+						<c:param name="isAccepted" value="true" />
+						</c:url>" id="acceptB">수락</a></td>
+					<td><a href= "<c:url value='/studyGroup/manageStudy/applyAccept' > 
+						<c:param name="groupId" value="${studyGroup.groupId}" />
+						<c:param name="memberId" value="${aList.memberId}" />
+						<c:param name="isAccepted" value="false" />
+						</c:url>" id="rejectB">거절</a></td>
+				</tr>
+			</c:if>
+		</c:forEach>
+</table>
+
+<table>
+		<tr>
+			<td><a href="<c:url value='/studyGroup/manageStudy/update/form' >
+				<c:param name='groupId' value='${studyGroup.groupId}' />
+				</c:url> " id="gManageUpdateB">정보 수정</a>
+			</td>
+			<td> <a href="<c:url value='/studyGroup/manageStudy/delete' >
+				<c:param name="groupId" value="${studyGroup.groupId }" />
+				</c:url>" id="gDeleteB">그룹 삭제</a>
+			</td>
+		</tr>
+</table>
+<br><br>
 </body>
 </html>

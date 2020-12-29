@@ -15,7 +15,6 @@ import model.User;
 
 // 현지
 public class Manager {
-	
 	private static Manager manager = new Manager();
 	private MemberDAO memberDAO;
 	private StudyGroupDAO studyGroupDAO;
@@ -61,9 +60,6 @@ public class Manager {
 	}
 	
 	public int updateUser(User user) throws SQLException, NotFoundException{
-		// NotFoundException이 나는지 확인하기 위해 수행하는 코드
-		findUser(user.getMember_id());
-		
 		return memberDAO.userInfoUpdate(user);
 	}
 	
@@ -84,23 +80,17 @@ public class Manager {
 	
 	//ok
 	public int createStudyGroup(StudyGroup group, int memberId) throws SQLException, ExistingException, NotFoundException{
-		int r1 = 0;
+		int createdGroupId = 0;
 		int r2 = 0;
 		
-		if(studyGroupDAO.existingGroup(group.getGroupId())) {
-			throw new ExistingException(group.getGroupId() + "는 존재하는 groupId 입니다.");
-		}
-		
-		findUser(memberId);
-		
-		r1 = studyGroupDAO.addGroup(group, memberId);
-		if(r1 == 1) {
+		createdGroupId = studyGroupDAO.addGroup(group, memberId);
+		if(createdGroupId != 0) {
 			// groupmember 테이블에 팀장 추가
 			r2 = studyGroupDAO.addMemberInGroupMember(group.getGroupId(), memberId, "1");
 		}
 		
-		if(r1 == 1 && r2 == 1)
-			return 1;
+		if(createdGroupId != 0 && r2 == 1)
+			return createdGroupId;
 		return 0;
 	}
 	
@@ -113,7 +103,7 @@ public class Manager {
 		// StudyGroup을 참조 하고 있는 테이블 레코드 전부 삭제
 		result = studyGroupDAO.removeMemberInGroup(groupId, -1);
 		System.out.println("member :" + result);
-		result = commentDAO.removeAllComment(groupId);
+		result = commentDAO.deleteAllCommentsByGroupId(groupId);
 		System.out.println("comment :" + result);
 		result = postDAO.removeAllPost(groupId);
 		System.out.println("post :" + result);
@@ -137,13 +127,13 @@ public class Manager {
 		return result;
 	}
 	
-	// ok
+	// ok (mabatis collection)
 	public StudyGroup findGroup(int groupId) throws SQLException, NotFoundException{
-		StudyGroup group = studyGroupDAO.findGroup(groupId);
+		StudyGroup group = studyGroupDAO.selectStudyGroup(groupId);
 		
 		if(group == null) {throw new NotFoundException();}
-		ArrayList<User> userList = getAllMemberInGroup(groupId);
-		group.setGroupUsers(userList);
+		User leader = findUser(group.getLeaderId());
+		group.setLeaderName(leader.getName());
 		
 		return group;
 	}
@@ -152,7 +142,7 @@ public class Manager {
 	public ArrayList<StudyGroup> searchStudyGroups (int term, int numOfMem, String meeting_type, String gender_type, String grade_type) throws SQLException {
 		ArrayList<StudyGroup> groupList = studyGroupDAO.searchGroupList(term, numOfMem, meeting_type, gender_type, grade_type);
 	
-		if(groupList == null) {throw new SQLException("ArrayList 값이 null입니다.");}
+		if(groupList == null) {throw new SQLException("조건에 맞는 스터디 그룹이 없습니다.");}
 		
 		return groupList;
 	}
@@ -170,7 +160,7 @@ public class Manager {
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException();
 		}
-		
+		int result = studyGroupDAO.deleteFromApplyList(groupId, memberId);
 		return studyGroupDAO.removeMemberInGroup(groupId, memberId);
 	}
 	
@@ -186,20 +176,25 @@ public class Manager {
 	// ok
 	public int manageApplicationInGroup(int groupId, int userId, boolean approved) throws SQLException, NotFoundException{
 		int result = studyGroupDAO.findApplication(groupId, userId);
-		
 		// 지원서에 없을 경우
 		if(result != 1) {throw new NotFoundException();}		
-		
-		result = studyGroupDAO.manageApplication(groupId, userId, approved);
+//		result = studyGroupDAO.deleteFromApplyList(groupId, userId);
 		if(approved && result == 1) {
+			StudyGroup group = studyGroupDAO.selectStudyGroup(groupId);
+			if(group.getNumberOfUsers() <= group.getGroupUsers().size()) {
+				return -3;
+			}			
+			studyGroupDAO.acceptApply(groupId, userId);
 			result = studyGroupDAO.addMemberInGroupMember(groupId, userId, "0");
+		} else if (approved == false && result == 1) {
+			studyGroupDAO.rejectApply(groupId, userId);
 		}
 		
 		return result;
 	}
 	
 	// ok
-	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException, ExistingException, ConditionMismatchException {
+	public int applyToGroup(int groupId, int userId, String comments) throws SQLException, NotFoundException{
 		if(!studyGroupDAO.existingGroup(groupId)) {
 			throw new NotFoundException(groupId + "는 존재하지 않는 groupId 입니다.");
 		}
@@ -207,36 +202,45 @@ public class Manager {
 		StudyGroup studyGroup = findGroup(groupId);
 		
 		int isExistingUser = studyGroupDAO.findApplication(groupId, userId);
+		int isGroupMember = studyGroupDAO.findUserInGroup(groupId, userId);
+		
 		
 		if (isExistingUser != 0) {
 			System.out.println("이미 해당 그룹에 신청하였습니다. 결과는  " + isExistingUser);
-			throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
-		} else if (!studyGroup.getGenderType().equals("0")) {
+			//throw new ExistingException("이미 해당 그룹에 신청하였습니다.");	
+			return -1;
+		}
+		if (isGroupMember != 0) {
+			System.out.println("이미 해당 그룹에 존재하는 멤버입니다. 결과는  " + isGroupMember);
+			//throw new ExistingException("이미 해당 그룹에 존재하는 멤버입니다.");	
+			return 2;
+		}
+		if (!studyGroup.getGenderType().equals("0")) {
 			if (!String.valueOf(user.getGender()).equals(studyGroup.getGenderType())) {
 				System.out.println("신청 조건에 맞지 않습니다. 유저 성별: " + user.getGender() + " 그룹 성별: "  + studyGroup.getGenderType());
-				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				//throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				return 3;
 			}		
-		} else if (!studyGroup.getGradeType().equals("0")) {
+		}
+		if (!studyGroup.getGradeType().equals("0")) {
+			System.out.println("유저 학년 : " + user.getGrade());
+			System.out.println("조건 학년 : " + studyGroup.getGradeType());
 			// studyGroup의 grade 이상인 학년은 가입 가능하도록 설정함
 			if (Integer.valueOf(user.getGrade()) < Integer.valueOf(studyGroup.getGradeType())) {
 				System.out.println("신청 조건에 맞지 않습니다." + "유저 학년: "
 						+ user.getGrade() + " 그룹 학년 : " + studyGroup.getGradeType());
-				throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				//throw new ConditionMismatchException("신청 조건에 맞지 않습니다.");
+				return 4;
 			}
 		}
 		
 		return studyGroupDAO.applyToGroup(groupId, userId, comments);
 	}
 	
-	// ok
+	// ok (mybatis collection)
 	public ArrayList<StudyGroup> getAllStudyGroup() throws SQLException, NotFoundException{
-		ArrayList<StudyGroup> groupList = studyGroupDAO.getGroupList();
 		
-		for(StudyGroup group : groupList) {
-			ArrayList<User> memberList = getAllMemberInGroup(group.getGroupId());
-			group.setGroupUsers(memberList);
-		}
-		
+		ArrayList<StudyGroup> groupList = studyGroupDAO.selectAllStudyGroup();
 		return groupList;
 	}
 	
@@ -292,14 +296,14 @@ public class Manager {
 		if(!postDAO.existingPost(postId)){
 			throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");
 		}
-		commentDAO.deleteCommentByPost(postId);
+		commentDAO.deleteAllComments(postId);
 		
 		return postDAO.removePost(postId);
 	}
 	
 	public Comment findComment(int commentId) throws SQLException, NotFoundException{
-		Comment comment = commentDAO.getOneComment(commentId);
-		
+//		Comment comment = commentDAO.getOneComment(commentId);
+		Comment comment = commentDAO.selectCommentByPrimaryKey(commentId);
 		if(comment == null) {throw new NotFoundException(commentId + "는 존재하지 않는 댓글입니다.");}
 		
 		return comment;
@@ -308,19 +312,22 @@ public class Manager {
 	public int numberOfComment(int postId) throws SQLException, NotFoundException{
 		if(!postDAO.existingPost(postId)) {throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");}
 	
-		return commentDAO.getCommentCount(postId);
+//		return commentDAO.getCommentCount(postId);
+		return commentDAO.selectCommentCount(postId);
 	}
 	
 	public ArrayList<Comment> getAllComment(int postId) throws SQLException, NotFoundException{
 		if(!postDAO.existingPost(postId)) {throw new NotFoundException(postId + "는 존재하지 않는 게시물입니다.");}
 		
-		return commentDAO.getCommentList(postId);
+//		return commentDAO.getCommentList(postId);
+		return commentDAO.selectAllComment(postId);
 	}
 	
 	public int createComment(Comment comment) throws SQLException, AppException{
 		try {
-			int comment_id = commentDAO.createComment(comment);
-			return comment_id;
+//			int comment_id = commentDAO.createComment(comment);
+			commentDAO.insertComment(comment);
+			return comment.getComment_id();
 		} catch (Exception e) {
 			throw new AppException("댓글 등록에 실패하였습니다.");
 		}
@@ -329,13 +336,15 @@ public class Manager {
 	public int removeComment(int commentId) throws SQLException, NotFoundException{
 		if(!commentDAO.existingComment(commentId)) {throw new NotFoundException(commentId + "는 존재하지 않는 댓글입니다.");}
 		
+//		return commentDAO.removeComment(commentId);
 		return commentDAO.deleteComment(commentId);
 	}
 	
 	public int updateComment(Comment comment) throws SQLException, NotFoundException{
 		if(!commentDAO.existingComment(comment.getComment_id())) {throw new NotFoundException(comment.getComment_id() + "는 존재하지 않는 댓글입니다.");}
 	
-		return commentDAO.updateComment(comment);
+//		return commentDAO.updateComment(comment);
+		return commentDAO.updateCommentMB(comment);
 	}
 	
 	public ArrayList<Subject> getAllSubject() throws SQLException{
@@ -343,8 +352,8 @@ public class Manager {
 	}
 	
 	//나의 신청현황
-	public ArrayList<User> getApplyList() throws NotFoundException, SQLException {		
-		ArrayList<User> applyList = memberDAO.getApplyList();
+	public ArrayList<Application> getApplyList(int userId) throws NotFoundException, SQLException {		
+		ArrayList<Application> applyList = memberDAO.getApplyList(userId);
 		
 		if(applyList == null) {throw new NotFoundException("나의 신청 현황 조회 실패");}
 		

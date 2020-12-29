@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
-<%@page import="model.*" %>
+<%@page import="model.*, controller. *" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>게시글 상세보기</title>
 <script>
 	
@@ -18,7 +15,7 @@
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -71,7 +68,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -83,7 +79,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -95,132 +90,155 @@ ul, li {
  text-decoration: underline;
 }
 
-td{
-	border-right: 1px solid black;
-	width: 100px;
-}
 
-#comments, #onePost {
-	border: 1px solid black;
-	width: 700px;
-	height: auto;
+#pTable{
+	margin: auto;
+	width: 400px;
+	height: 200px;
 	text-align: center;
 }
-#pTable, #cmtTable{
-	margin-left: auto;
-    margin-right: auto;
+#myPost{
+	text-align: center;
+	
 }
+#bc{
+	background : #084B8A;
+	color: white;
+}
+
+a{
+	text-decoration: none;
+}
+a:link {
+	color: blue;
+}
+a:visited {
+	color: black;
+}
+
+#pUpdateB, #pDeleteB, #pListB{
+	background: #E6E6E6;
+	color: black;
+}
+#cDeleteB {
+	color: blue;
+}
+#commL{
+	border: 1px solid black;
+}
+
 </style>
 </head>
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
-<p></p>
+
+<br><br>
 
 <div id="onePost">
-<h3></h3>
+<h3 style="text-align: center;">게시글 상세보기</h3>
+	
 	<table id="pTable">
 		<tr>
-			<td>제목</td>
-			<td>${post.title } </td>
-			<td>작성자</td>
+			<td id="bc">작성자</td>
 			<td>${post.userName }</td>
-			<td>날짜</td>
+			<td id="bc">날짜</td>
 			<td>${post.createdDate }</td>
 		</tr>
 		<tr>
-			<td >내용</td>
-			<td colspan="5">${post.content}</td>
-			<!--  <td></td>
-			<td></td>
-			<td></td>
-			<td></td> -->
+			<td id="bc">제목</td>
+			<td colspan="3">${post.title }</td>
 		</tr>
-		
+		<tr>
+			<td rowspan="2" id="bc">내용</td>
+			<td rowspan= "2" colspan="3">${post.content}</td>
+		</tr>
 	</table>
-	<%
-		//내가 게시한 글일 때만 수정하기 버튼 뜨게 하기
+
+</div>
+
+
+<br>
+	<c:set var="myPost" value="${post.member_id}" />
+	<c:if test="${myPost eq userId}">
 		
-	%>
-	<br><br>
+	<table>
+		<tr>
+			<td> <a href=" <c:url value= '/post/update/form' >
+			<c:param name='postId' value='${post.postId}' />
+			<c:param name="memberId" value="${post.member_id}" />
+			</c:url>" id="pUpdateB">게시글 수정</a></td>
+			<td>&nbsp;</td>
+			<td><a href="<c:url value='/post/delete'>
+			<c:param name="postId" value="${post.postId}" />
+			<c:param name="groupId" value="${post.group_id}" />
+			<c:param name="memberId" value="${post.member_id}" />
+			</c:url>" id="pDeleteB">삭제하기</a>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	</c:if>
 	
-	<button onClick="<c:url value='/post/update/form' >
-		<c:param name="postId" value='${post.postId}' />
-			</c:url>"> 수정하기 </button>
-	&nbsp;&nbsp;
-	<button onClick= "<c:url value='/post/delete' />">삭제하기</button>
+<a href="<c:url value='/post/list'>
+			<c:param name="groupId" value="${post.group_id}" />
+			</c:url>" id="pListB">목록으로
+</a>
+<br><br>
+<div id="addComment">
+		
+	<form name="form" method="POST" action="<c:url value='/comment/register' >
+		<c:param name='groupId' value='${post.group_id}' />
+		<c:param name='postId' value='${post.postId }' />
+		</c:url> ">
+		
+		<input type="text" name="content" >
+		<input type="submit" value="댓글 쓰기" />
+	</form>
 	
-	
+	<br>
+</div>
+<div id="commL">
+	<c:forEach var="cm" items="${commList}" varStatus="status" >
+	<table id="commentList">
+		<tr>
+			<td>${status.count}</td>
+			<td colspan="2" style="width: 200px;">${cm.member_name}</td>
+			<td>${cm.createdDate}</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td colspan="2" style="width: 200px;">${cm.content}</td>
+			<c:if test="${memberId eq cm.member_id }">
+			<td style="text-align:right"><a href="<c:url value='/comment/delete'>
+					<c:param name='comment_id' value='${cm.comment_id}'/>
+					<c:param name='member_id' value='${cm.member_id}'/>
+					<c:param name='postId' value='${post.postId }' />
+					</c:url>" id="cDeleteB">삭제</a></td>
+			</c:if>
+		</tr>
+	</table>
+	<hr>
+	</c:forEach>
 </div>
 <br><br>
-<div id="comments">
-	<h3>Comments</h3>
-	
-	<div id="newCommt">
-		<h6>${member.userId }</h6>
-		<textarea name="cmtContents" cols="30" rows="1"></textarea>
-		<input type="button" value="댓글쓰기" onClick= "<c:url value='/comment/register' > 
-			
-				<c:param name='username' value = '${user.name }' />
-				<c:param name='date' value= '${comment.createdDate }' />
-				<c:param name= 'commentText' value='${comment.content }' />
-			</c:url>"  />
-		
-		
-		<!-- 댓글 개수 만큼 댓글 보여주기 -->
-		<br>
-		<table id="cmtTable">
-			
-			<%-- <c:forEach var="cmtList" items="${commentList}" >
-				<tr >
-					<td>이름</td> 
-					<td>이현아</td>
-					<td>날짜</td>
-					<td>2020-11-23</td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td colspan="3">좋은 것 같아요~</td>
-				</tr>
-			</c:forEach>--%>
-			
-		<tr>
-				<td>이름</td>
-				<td>이현아</td>
-				<td>날짜</td>
-				<td>2020-11-23</td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td colspan="3">좋은 것 같아요~</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="text-align:right"><a href="<c:url value='/comment/delete'>
-					<c:param name='commentId' value= '${comment.comment_id}'/>
-					</c:url>">삭제</a>
-				</td>
-			</tr>
-		</table>
-	</div>
-</div>
 </body>
 </html>

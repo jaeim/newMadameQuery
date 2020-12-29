@@ -20,14 +20,14 @@ public class ListPostController implements Controller {
 			ArrayList<Post> postList = manager.getAllPost(groupId);
 			
 			request.setAttribute("postList", postList);
-			
-			return "/myStudy/mystudy_view.jsp";
+			request.setAttribute("groupId", groupId);
+			return "/myStudy/myStudy_view.jsp";
 		} catch (NotFoundException e) {
 	        request.setAttribute("Failed", true);
 			request.setAttribute("exception", e);
 			
-			return "/myStudy/addStudyboard.jsp"; //보여줄 스터디그룹 목록 없으면 스터디그룹 추가 페이지로 이동
+			//return "/myStudy/addStudyboard.jsp"; //보여줄 게시글 없으면 게시글 추가 페이지로 이동
+			return "/";
 		}
-		
 	}
 }

@@ -11,13 +11,13 @@ public class DeleteStudyController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String deleteId = request.getAttribute("groupId").toString();
-		
+		int deleteId = Integer.valueOf(request.getParameter("groupId"));
+//		int deleteId = 1001;
 		try {
 			Manager manager = Manager.getInstance();
-			manager.removeStudyGroup(Integer.parseInt(deleteId));
+			manager.removeStudyGroup(deleteId);
 			// 성공시 다시 (팀장)스터디 그룹 목록화면으로 redirect
-			return "redirect:/studyGroup/manageStudy";
+			return "redirect:/studyGroup/manageStudyList";
 			
 		} catch (Exception e) { // 예외 발생시 다시 manage_main.jsp로 forwarding
 			//alert(exception)

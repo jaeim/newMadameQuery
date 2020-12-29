@@ -5,10 +5,12 @@ import java.util.Date;
 public class Application {
 
 	int memberId;
+	String memberName;
 	int groupId;
-	Date applyDate;
+	String groupName;
+	String applyDate;
 	String isApproved;
-	Date approvedDate;
+	String approvedDate;
 	String comment; //지원자가 남기는 간단한 메시지
 	
 	public int getMemberId() {
@@ -17,16 +19,28 @@ public class Application {
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 	public int getGroupId() {
 		return groupId;
 	}
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
 	}
-	public Date getApplyDate() {
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	public String getApplyDate() {
 		return applyDate;
 	}
-	public void setApplyDate(Date applyDate) {
+	public void setApplyDate(String applyDate) {
 		this.applyDate = applyDate;
 	}
 	public String getIsApproved() {
@@ -35,10 +49,10 @@ public class Application {
 	public void setIsApproved(String isApproved) {
 		this.isApproved = isApproved;
 	}
-	public Date getApprovedDate() {
+	public String getApprovedDate() {
 		return approvedDate;
 	}
-	public void setApprovedDate(Date approvedDate) {
+	public void setApprovedDate(String approvedDate) {
 		this.approvedDate = approvedDate;
 	}
 	public String getComment() {

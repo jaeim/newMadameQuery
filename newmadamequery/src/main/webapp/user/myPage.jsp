@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*, model.*" %> 
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@page import="java.util.*, model.*" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>마이페이지 - 내 정보 받아와서 보여주기 </title>
-<!-- [USERMAN1 - user_modify.jsp, user_view.jsp 참고할 것.] -->
+<meta charset="UTF-8">
+<title>마이페이지 </title>
+
 <style>
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -66,7 +66,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -78,7 +77,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -92,101 +90,116 @@ ul, li {
  #title {
  		text-align: center;
  		font-size: 50px;
- 		font-family: Arial;
- }
- #joinTable, #lectureTable{
- 		text-align: center;
- 		border: 1px solid black;
- 		margin-left: auto;
- 		margin-right: auto;
- 		font-family: Arial;
- }
- #joinTable{
- 		width: 550px;
- 		height: 500px;
- }
- #lectureTable, #tags{
- 		border: 1px solid black;
- 		width: 350px;
- 		height: 100px;
- 		margin-left: auto;
- 		margin-right: auto;
  }
  #forUpdate, #forHome {
  	diplay: inline;
  }
+ 
+ #goHome, #updateB {
+ 	color: #08088A;
+	font-weight: bold;
+	background:  #C0EDFF;
+	text-decoration: none;
+ }
+ #div1{
+ 	text-align: center;
+ 	border: 1px solid grey;
+ 	margin-bottom:  50px;
+ 	margin: 50px;
+ 	padding-top: 10px;
+	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right:30px;
+	width: 400px;
+	
+ }
+ #table1{
+ 	margin: auto;
+ }
 </style>
+
+<script type="text/javascript">
+function home(targetUri) {
+	form.action = targetUri;
+	form.submit();
+}
+</script>
+
 </head>
 <body>
 	<nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
-		<li><a href="#">STUDYGROUP</a>
-			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
-			</ul>
-		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
 		</li>
 		
+	
+		<li><a href="#">STUDYGROUP</a>
+			<ul id="sub-menu">
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
+			</ul>
+		</li>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
+		</li>
 	</ul>
 </nav>
 
-<div>
-	<p id="title">My Page</p>
-	<table>
+<div id="div1">
+	<h4 id="title">My Page</h4>
+	<table id="table1">
 		<tr>
-			<td>사용자 id: </td>
-			<td>${user.member_id }</td>
+			<td>이름 </td>
+			<td>&nbsp;${user.name }</td>
 		</tr>
 		<tr>
-			<td>이름: </td>
-			<td>${user.name }</td>
+			<td>이메일 주소 </td>
+			<td>&nbsp;${user.email }</td>
 		</tr>
 		<tr>
-			<td>휴대폰 번호 (ex.010-1234-5678)</td>
-			<td>${user.phone }</td>
+			<td>휴대폰 번호</td>
+			<td>&nbsp;${user.phone }</td>
 		</tr>
 		<tr>
-			<td>이메일 주소: </td>
-			<td>${user.email }</td>
+			<td>소속 학교 명 </td>
+			<td>&nbsp;${user.university }</td>
 		</tr>
 		<tr>
-			<td>소속 학교 명: </td>
-			<td>${user.university }</td>
-		</tr>
-		<tr>
-			<td>소속 학과명: </td>
-			<td>
-				${user.department }
-			</td>
+			<td>소속 학과명 </td>
+			<td>&nbsp;${user.department }</td>
 		</tr>
 		<tr>
 			<td>학년</td>
-			<td>${user.grade }</td>
+			<td>&nbsp;${user.grade }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td>${user.gender }</td>
+			<td>&nbsp;
+				<c:set var= "gender" value="${ user.gender}" />
+				<c:if test="${gender eq '1'}"> 
+					<c:out value="남성" />
+				</c:if>
+				<c:if test="${gender eq '2'}">
+					<c:out value="여성" />
+				</c:if>
+			</td>
 		</tr>
 	</table>
 </div>
-<br>
-<div>
-<input type="button" id= "forHome"value="홈으로" onClick="location.href='mainPage.jsp'" />
-<input type="button" id="forUpdate" value="수정하기" onClick="<c:url value= '/user/update/form' >
-	<c:param name="member_id" value="${user.member_id }" />
-	</c:url>
+<div id="div2">
+	<a href="<c:url value= '/user/home'>
+		<c:param name='memberId' value='${user.member_id }' />
+	</c:url>" id="goHome">홈으로</a>
+	<a href="<c:url value= '/user/update/form' >
+	<c:param name='userId' value='${user.member_id }' />
+	</c:url>" id="updateB">수정하기</a>	
 	
-"/><br> 
 </div>
+<br>
 </body>
 </html>

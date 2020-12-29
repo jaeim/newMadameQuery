@@ -27,8 +27,8 @@ public class ViewUserController implements Controller{
 		User user;
 		try {
 			user = manager.findUser(userId);
-		}catch(NotFoundException e) {
-			return ""; //오류페이지
+		}catch(Exception e) {
+			return "redirect:/user/mainPage.jsp"; //오류페이지
 		}
 		
 		request.setAttribute("user", user);

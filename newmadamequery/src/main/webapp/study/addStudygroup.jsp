@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>    
-<%@page import="model.*" %>
+<%@page import="model.*,controller.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>스터디 그룹 등록</title>
-<script>
+
+<script type="text/javascript">
+
 	function addStudyGroup(){
 		<!-- numberOfUsers, groupName, description, term,  
 		meetingType,genderType,gradeType, subjectId -->
@@ -51,12 +53,14 @@
 		//과목 처리 - 추가하기
 		form.submit();
 	}
+	
 </script>
-	<style>
+
+<style>
 	body {
   margin: 0;
   padding: 0;
-  font-family: Arial;
+  font-family: 'NanumSquare', sans-serif !important;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -109,7 +113,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -121,7 +124,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -133,146 +135,145 @@ ul, li {
  text-decoration: underline;
 }
  		
-		#intro{
-			font-family: Arial;
-			font-size: 15px;
-			border-bottom: 1px dashed black;
-			text-align: center;
-			margin: 0;
-		}
-		
-		table{
-			border: 2px solid black;
-			width: 650px;
-			height: 300px;
-			font-family: Arial;
+#intro{
+		font-size: 15px;
+		border-bottom: 1px dashed black;
+		text-align: center;
+		margin: 0;
+}
+#addGroup{
+		border: 1px solid #E6E6E6;
+		width: 550px;
+		height: 300px;
 
-		}
-		#createB {
-			float: right;
-		}
-		
-	</style>
+	}
+#bc{
+	width: 150px;
+	background : #084B8A;
+	color: white;
+}
+#gAddB{
+	background : #084B8A;
+	color: white;
+	float: right;
+}
+</style>
 </head>
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
 
 
 <div id="intro">
-	<pre>
-	StudyGroup
-	스터디 등록 후, 마음에 드는 팀원을 찾아보세요.
-	스터디 등록을 위한 조건을 입력 및 선택해주세요.
-	</pre>		
+<h5>
+	<pre style="font-family: 'NanumSquare', sans-serif !important;">StudyGroup
+스터디 등록 후, 마음에 드는 팀원을 찾아보세요.
+스터디 등록을 위한 조건을 입력 및 선택해주세요.</pre></h5>	
 </div>
 	
-<div id="add">
+<div id="gAddDic">
 	<h2 style="text-align: center;">스터디 등록</h2>
 	
-	<!-- 모든 데이터를 입력하도록  : 새로운 데이터를 통해 새로운 스터디를 추가한다. (마치 회원가입과 비슷)-->
-	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">
-		<c:if test= "${creationFailed }">
-			<font color="red"><c:out value="${exception. getMessage()}" /></font>
-		</c:if>
-		
+	<form name="form" method="POST" action="<c:url value='/studyGroup/create' />">	
 		<table id= "addGroup">
 			<tr>
-				<td>과목</td>
+				<td id="bc">과목</td>
 				<td> 
-					<select id="subject"></select>
+					<select name="subjectId">
+						<c:forEach var="sub" items="${subjectList}" >
+							<option value="${sub.subjectId}">${sub.name}</option>
+						</c:forEach>
+					</select>
 				</td>
-				
-				<!-- numberOfUsers, groupName, description, term,  
-				meetingType,genderType,gradeType, subjectId -->
-				<td>인원 수 </td>
+				<td id="bc">모집인원</td>
 				<td>
 					<select name="numberOfUsers">
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						<option>10명 이상</option>
+						<option value="3" selected>3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">10명 이상</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>스터디 그룹 명</td>
+				<td id="bc">스터디 그룹 명</td>
 				<td><input type="text" name="groupName" onFocus="this.value='' " 
 					<c:if test="${creationFailed }"> value="${studyGroup.groupName }"</c:if>
 					/></td>
-				<td>기간</td>
+				<td id="bc">수행기간</td>
 				<td><select name="term">
-					<option>1개월</option>
-					<option>3개월</option>
-					<option>6개월</option>
-					<option>6개월 이상</option>
+					<option value="1">1개월</option>
+					<option value="3">3개월</option>
+					<option value="6">6개월</option>
+					<option value="9">9개월</option>
+					<option value="12">12개월</option>
+					<option value="0">무기한</option>
 				</select>
 				
 				</td>
 			</tr>
 			<tr>
-				<td>소개</td>
-				<td colspan="3"><input type="text" name="description" width="200" onFocus="this.value='' "
+				<td id="bc">소개</td>
+				<td colspan="3"><input type="text" name="description" onFocus="this.value=''' " 
+						style="width:300px;"
 					<c:if test="${creationFaild }">value="${studyGroup.description }" </c:if>
 				/> </td>
 			</tr>
 			<tr>
-				<td>스터디 방식</td>
+				<td id="bc">스터디 방식</td>
 				<td><select name="meetingType">
-					<option>online</option>
-					<option>offline</option>
-					<option>병행</option>
+					<option value="online">online</option>
+					<option value="offline">offline</option>
+					<option value="blended">blended</option>
 				</select></td>
-				<td>성별</td>
+				<td id="bc">모집성별</td>
 				<td>
 					<select name="genderType">
-						<option>0(상관없음)</option>
-						<option>1(남성)</option>
-						<option>2(여성)</option>
+						<option value="0">상관없음</option>
+						<option value="1">남성</option>
+						<option value="2">여성</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>학년</td>
+				<td id="bc">모집학년</td>
 				<td>
 					<select name="gradeType">
-						<option>0(상관없음)</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
+						<option value="0">상관없음</option>
+						<option value="2">2학년이상</option>
+						<option value="3">3학년이상</option>
+						<option value="4">4학년이상</option>
 					</select>
 				</td>
-				<td>팀장</td>
-				<td>userId (자신의  userId 가져오기)</td>
+				<td id="bc">팀장 Id</td>
+				<td>${userId}</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="button" id="createB" value="생성하기" onClick=addStudyGroup() />
+		<input type="submit" value="생성하기" onClick="addStudyGroup()" id="gAddB"/> 
 		<br><br>
 	</form>
 	

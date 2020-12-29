@@ -6,16 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>글쓰기 페이지 </title>
-<script>
-	function boardCreate(){
-		if(form.title.value =""){
+<script type="text/Javascript">
+
+	function postCreate(){
+		
+		if(form.title.value == ""){
 			alert("제목을 입력하십시오.");
 			form.title.focus();
 			return false;
 		}
-		if(form.contents.value=""){
+		if(form.content.value == ""){
 			alert("내용을 입력하십시오.");
 			form.contents.focus();
 			return false;
@@ -23,9 +25,18 @@
 		form.submit();
 	}
 </script>
-<!-- myStudy_view.jsp에서 글쓰기 버튼을 눌렀을 때 이동 (게시판에 글 쓰기) -->
+
 <style>
-	
+	body {
+  margin: 0;
+  padding: 0;
+  font-family: 'NanumSquare', sans-serif !important;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;  
+}
 
 h1 {
   margin: 2em 0 1.5em 0;
@@ -72,7 +83,6 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transition: all 0.15s ease-in;
-  font-family: Arial;
 }
 
 #sub-menu > li {
@@ -84,7 +94,6 @@ ul, li {
 #sub-menu > li >  a {
   color: black;
   text-decoration: none;
-  font-family: Arial;
 }
 
 #main-menu > li:hover #sub-menu {
@@ -95,40 +104,33 @@ ul, li {
 #sub-menu > li >  a:hover {
  text-decoration: underline;
 }
-
-#addform{
- 		border: 1px solid black;
- 		padding: 10px;
- 		width: 50%;
- 		height: auto;
- 		float: left;
- 		
- }
+#addform {
+	border: 1px solid #E6E6E6;
+	text-align: center;
+	padding: 10px;
+	width: 450px;
+}
+#addT{
+	margin: auto;
+	width: 400px;
+}
  #title{
  		width:100%;
  		height: 20px;
  }
- #contents{
+ #content{
  		margin-top: 10px;
  		width: 100%;
- 		height: 80px;
+ 		height: 200px;
  }
- #submit{
+ #sm{
  		margin-top: 10px;
  		width: 30%;
  		height: 30px;
  }
- #members{
- 		background-color: #DCEBFF;
- 		width: 40%;
- 		height: auto;
- 		float: right;
- }
- #groupinfo {
- 		background-color: #FFEBF0;
- 		width: 40%;
- 		height: auto;
- 		float: right;
+ th{
+ 	background : #084B8A;
+	color: white;
  }
  	
 </style>
@@ -136,71 +138,55 @@ ul, li {
 <body>
 <nav>
 	<ul id="main-menu">
-		<li><a href="#">HOME</a></li>
-		<li><a href="#">MYSTUDY</a></li>
+		<li><a href="<c:url value='/user/home' />">HOME</a></li>
+		<li><a href="#">MYSTUDY</a>
+				<ul id="sub-menu">
+					<li><a href="<c:url value= '/studyGroup/myApplyList' />">나의 신청 현황</a></li>
+					<li><a href="<c:url value='/studyGroup/myStudy' />">나의 스터디 보기</a></li>
+				</ul>
+		</li>
 		<li><a href="#">STUDYGROUP</a>
 			<ul id="sub-menu">
-				<li><a href="#">스터디 등록</a></li>
-				<li><a href="#">스터디 검색</a></li>
-				<li><a href="#">스터디 그룹 보기</a></li>
+				<li><a href="<c:url value='/studyGroup/create/form' />">스터디 등록</a></li>
+				<li><a href="<c:url value='/studyGroup/search/form' />">스터디 검색</a></li>
+				<li><a href="<c:url value='/studyGroup/list' />">스터디 그룹 보기</a></li>
 			</ul>
 		</li>
-		<li><a href="#">MANAGE</a></li>
-		<li><a href="#"> LOGIN & JOIN</a>
-			<ul id="sub-menu">
-				<li><a href="#">로그인</a></li>
-				<li><a href="#">회원가입</a></li>
-			</ul>
+		<li><a href="<c:url value='/studyGroup/manageStudyList' />">MANAGE</a>
 		</li>
-		
 	</ul>
 </nav>
-<br><br>
 
+<br><br>
+<%
+	request.setAttribute("groupId", request.getParameter("groupId"));
+%>
 <div id="addform">
-<form name="form" method="POST" action="<c:url value='/post/create'/>">
-	<input type="text" name="title" id="title" placeholder="제목" />
-	<textarea name="contents" cols="30" rows="7" id="contents" placeholder="내용을 입력하세요"></textarea>
-	<input type="button" name="submitB" id="submit" value="게시글 작성 " onClick="postCreate()" />
-</form>
+	<form name="form" method="POST" action="<c:url value='/post/create'>
+		<c:param name='groupId' value='${groupId}' />
+		</c:url>">
+	
+	<table id="addT">
+		<tr>
+			<th>&nbsp;</th>
+			<th>내용 작성하기</th>
+		</tr>
+		<tr>
+			<td>제목</td>
+			<td><input type="text" name="title" style="width: 300px;"/></td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><input type="text" name="content" style="width: 300px; height: 100px;"/></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="button" id="sm" value="게시글 작성 " onClick="postCreate()" /></td>
+		</tr>
+		
+	</table>
+	</form>
 </div>
 
-<div id="members">
-		<h5 id="memberTitle">Group Members</h5>
-		<table id="memberTable">
-			<tr>
-				<th>이름</th>
-				<th>학과</th>
-				<th>학년</th>
-			</tr>
-			<tr>
-				<td>이현아</td>
-				<td>컴퓨터학과</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
-	<div id="groupinfo">
-	<h5 id="memberTitle">Group Info</h5>
-		<table id="infoTable">
-			<tr>
-				<td>과목 명</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>모집 인원</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>기간</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
-	</div>
 </body>
 </html>

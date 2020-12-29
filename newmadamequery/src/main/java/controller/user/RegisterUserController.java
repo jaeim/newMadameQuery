@@ -1,5 +1,8 @@
 package controller.user;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,15 +15,24 @@ public class RegisterUserController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); 
-	    java.util.Date utilDate = df.parse(request.getParameter("birthday"));
+		//java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd"); 
+	    //java.util.Date utilDate = df.parse(request.getParameter("birthday"));
+		request.setCharacterEncoding("UTF-8");
+
+		String dob_string = request.getParameter("dob");
+		String [] date = dob_string.split("/");
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, Integer.valueOf(date[0]));
+		c.set(Calendar.MONTH, Integer.valueOf(date[1]) - 1);
+		c.set(Calendar.DATE, Integer.valueOf(date[2]));
+		Date dob = c.getTime();
 		
 		User user = new User(
-				//Integer.parseInt(request.getParameter("userId")),
-				request.getParameter("password"),
 				request.getParameter("email"),
+				request.getParameter("password"),
 				request.getParameter("name"),
-				utilDate,
+				dob,
 				request.getParameter("phone"),
 				request.getParameter("university"),
 				request.getParameter("department"),
@@ -30,7 +42,7 @@ public class RegisterUserController implements Controller {
 		try {
 			Manager manager = Manager.getInstance();
 			manager.createUser(user);
-		    return "redirect:/user/mainPage";
+		    return "redirect:/user/login";
 		        
 		} catch (ExistingException e) {
 	        request.setAttribute("registerFailed", true);

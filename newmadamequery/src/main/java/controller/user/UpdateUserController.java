@@ -13,28 +13,20 @@ public class UpdateUserController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (request.getMethod().equals("GET")) {
-			// GET request: 회원정보 수정 form 요청
-
-			// 이메일을 파라미터로 받아야함
-			String email = request.getParameter("email");
-			// int updateId = Integer.parseInt(request.getParameter("userId"));
+			int updateId = Integer.parseInt(request.getParameter("userId"));
 
 			Manager manager = Manager.getInstance();
-			// memberId를 setAttribute로 보내야함
-			User user = (User) manager.findUser((int)(request.getAttribute("memberId")));
+			
+			User user = (User) manager.findUser(updateId);
 			request.setAttribute("user", user);
 
 			HttpSession session = request.getSession();
-			
-			int userId;
-			if(UserSessionUtils.hasLogined(session)) {
-				userId = UserSessionUtils.getLoginUserId(session);
-			}else {
+				
+			if(!UserSessionUtils.hasLogined(session)) {
 				return "redirect:/user/login";
 			}
 			
-			// 로그인할때 이메일 사용하니까 이메일을 매개변수로 보냄
-			if (UserSessionUtils.isLoginUser(userId, session)) {
+			if (UserSessionUtils.isLoginUser(updateId, session)) {
 				return "/user/updateForm.jsp";
 			}
 
@@ -43,24 +35,29 @@ public class UpdateUserController implements Controller {
 			return "/user/myPage.jsp";
 		}
 
-		// POST request (회원정보가 parameter로 전송됨)
-		java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
-		java.util.Date dob = df.parse(request.getParameter("birthday"));
-
-		User updateUser = new User(
-				request.getParameter("email"), 
-				request.getParameter("password"),
-				request.getParameter("name"), 
-				dob, 
-				request.getParameter("phone"), 
-				request.getParameter("university"),
-				request.getParameter("department"), 
-				request.getParameter("grade"),
-				Integer.parseInt(request.getParameter("gender")));
-
+		//java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd");
+		//java.util.Date dob = df
+		
+		HttpSession session = request.getSession();
+		int userId;
+		if(UserSessionUtils.hasLogined(session)) {
+			userId = UserSessionUtils.getLoginUserId(session);
+		}else {
+			return "redirect:/user/login";
+		}
+		
+		User updateUser = new User();
+		
+		updateUser.setMember_id(userId);
+		updateUser.setName(request.getParameter("name"));
+		updateUser.setPhone(request.getParameter("phone"));
+		updateUser.setUniversity(request.getParameter("university"));
+		updateUser.setDepartment(request.getParameter("department"));
+		
 		Manager manager = Manager.getInstance();
-		manager.updateUser(updateUser);
-		return "redirect:/user/mainPage";
+		int result = manager.updateUser(updateUser);
+		
+		return "redirect:/user/view";
 	}
 
 }
