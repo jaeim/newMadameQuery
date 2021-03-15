@@ -1,5 +1,6 @@
 # 스터디그룹 매칭 사이트
------
+![image](https://user-images.githubusercontent.com/68433884/111112918-514c0780-85a4-11eb-8e0f-b3fddcf831f3.png)
+
 
 ## 1. 문제의식
 -----
